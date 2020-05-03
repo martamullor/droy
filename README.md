@@ -20,7 +20,7 @@ Herramienta online que te permite construir tu propia página web de forma visua
 
 ## Backlog 
 
-* El usuario puede registrarse (con Google tambien?), hacer log-in y log-out.
+* El usuario puede registrarse, hacer log-in y log-out.
 * El usuario puede tener varios proyectos, no solo uno. El la página inicial, visualiza todos los proyectos empezados y tiene la posibilidad de crear uno de nuevo. El usuario, cuando quiere ver / modificar alguno de sus proyectos o empezar el recién creado, se le dirige a la “Builder” page.
 * El usuario no solo dispone de dos estilos básicos a elegir en el momento de creación de un nuevo proyecto.
 * Cambiar el botón + de añadir un componente la layout principal por un drag and drop.
