@@ -49,7 +49,7 @@ Herramienta online que te permite construir tu propia página web de forma visua
 
 ## Links
 
-[Link to Trello](​https://trello.com/b/Krfo4Qp5/droy)
+[Link to Trello](https://trello.com/b/Krfo4Qp5/droy)
 [Github](https://github.com/marcmnc7/droy)
 [Presentación](https://docs.google.com/presentation/d/1uFGmgLAgxeSe85KBZDAyAb9DgJ9LqC1k4Wlm6_MQMug/edit#slide=id.p)
 
