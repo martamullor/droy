@@ -35,7 +35,7 @@ Herramienta online que te permite construir tu propia página web de forma visua
 * El usuario, puede añadir un componente a una posicion específica de su pagina web mediante drag & drop, y no mediante el botón +.
 * El usuario, puede cambiar la posicion de un componente ya añadido mediante drag & drop y no con los botones de subir/bajar.
 * El usuario puede añadir componentes tales como Contadores, Formularios de contacto, ...
-* El usuario puede editar el estilo de un elemento de contenido, no solo su text/imagen (text-size, text color, referencia de un link, ocularlo/mostrarlo etc.)
+* El usuario puede editar el estilo de un elemento de contenido, no solo su text/imagen (text-size, text color, referencia de un link, ocularlo/mostrarlo, heading fixed o no,... etc.)
 * El usuario puede editar el estilo general de un componente, no solo su contenido (height, background-color/image, espaciado, paddings, ... )
 * El usuario puede editar su información (nombre, password)
 * El usuario no solo dispone de dos estilos básicos a elegir en el momento de creación de un nuevo proyecto.
@@ -58,7 +58,8 @@ Herramienta online que te permite construir tu propia página web de forma visua
 
 ## Models
 
-```
+```javascript
+
 User = {
   name: "Bob",
   email: "bob@marley.com",
@@ -69,16 +70,16 @@ User = {
 UserProject = {
   name: "My First Project",
   style: "Classic",
-  componentsConfiguration: {
-    classic-heading-1: { text1: "Hello", text2: "World", position: 0 },
-    classic-pricing-1: { text1: "Our", desc1: "See our pricing", position: 1 },
+  componentsConfiguration: [{
+    parentComponentCode: "classic-heading-1",
+    componentInfo: { text1: "Hello", text2: "World"},
     ...
-  }
+  }]
 }
 
 Components = {
   code: "heading-1", // unique y que identifica un componente creado dentro de React. 
-  defaultConfig: { text1: "Default Hello", text2: "Default World", position: 0 },
+  defaultConfig: { text1: "Default Hello", text2: "Default World" },
   belongsToStyle: "classic",
 }
 
