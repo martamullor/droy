@@ -81,6 +81,7 @@ Components = {
   code: "heading-1", // unique y que identifica un componente creado dentro de React. 
   defaultConfig: { text1: "Default Hello", text2: "Default World" },
   belongsToStyle: "classic",
+  image: "https://..."
 }
 
 Styles = {
