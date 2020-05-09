@@ -1,9 +1,15 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
-const style = {
-  height: '200px',
-  backgroundColor: 'yellow'
+const Heading2Style = {
+  backgroundColor: '#dedede',
+  padding: '5px 35px 5px 35px',
+  display: 'flex',
+  color: '#1a1a1a'
+}
+
+const logoHeading2 = {
+  width: '9%'
 }
 
 class ClassicHeading2 extends Component {
@@ -11,9 +17,11 @@ class ClassicHeading2 extends Component {
     const { info, changeInfo, children: optionsBar } = this.props
     return (
 
-      <div style={style}>
+      <div style={Heading2Style}>
         { optionsBar }
-        In classic heading component
+        <div>
+          <img style={logoHeading2} src='../../../img/logo-grey.png' alt='logo-classic-heading'></img>
+        </div>
         <p data-id="text1" onDoubleClick={changeInfo}>{info.text1}</p>
       </div>
     )

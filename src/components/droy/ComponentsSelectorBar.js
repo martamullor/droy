@@ -1,6 +1,18 @@
 import React, { Component } from 'react'
 import { withData } from '../../contexts/dataContext'
 
+const componentsBar = {
+  width: '36%',
+  backgroundColor: '#262e66',
+  color: '#7b8add'
+}
+
+const titleComponentsBar = {
+  padding: '15px',
+  fontSize: '1.3rem',
+  fontWeight: '600'
+}
+
 class ComponentsSelectorBar extends Component {
 
   constructor(props) {
@@ -53,7 +65,8 @@ class ComponentsSelectorBar extends Component {
   
   render() {
     return (
-      <div className="components-bar">
+      <div style={componentsBar}>
+        <h2 style={titleComponentsBar}>Components:</h2>
         {this.showComponents()}
       </div>
     )
