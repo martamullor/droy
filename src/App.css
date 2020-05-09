@@ -1,4 +1,39 @@
 .App {
   text-align: center;
+  height: 100vh;
 }
 
+.options-bar {
+  position: absolute;
+}
+
+.main-builder {
+  display: flex;
+  flex-direction: row;
+}
+
+.components-bar {
+  width: 30%;
+  background-color: black;
+  color: wheat;
+}
+
+.user-web-page {
+  width: 100vw;
+}
+
+.user-component-base {
+  width: 100%;
+}
+
+.main-builder {
+  height: 100vh;
+}
+
+.nav-bar {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0px 35px;
+}

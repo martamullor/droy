@@ -1,7 +1,10 @@
 import React, { Component } from 'react'
-import { withData } from '../../contexts/dataContext'
+import { withData } from '../contexts/dataContext'
 import PropTypes from 'prop-types'
-import UserComponentBase from '../droy/UserComponentBase'
+import UserComponentBase from '../components/droy/UserComponentBase'
+import ComponentsSelectorBar from '../components/droy/ComponentsSelectorBar'
+import NavBar from '../components/droy/NavBar'
+
 
 class Builder extends Component {
   constructor (props) {
@@ -14,7 +17,7 @@ class Builder extends Component {
   componentDidMount () {
     // db petition
     const { copyUserLayoutObjToContext } = this.props
-    const apiInfo = [
+    const userApiInfo = [
       {
         code: 'ClassicHeading1',
         info: { text1: 'Default hello', text2: 'default world' }
@@ -24,13 +27,10 @@ class Builder extends Component {
         info: { text1: 'aaaa', text2: 'bbbbb' }
       }
     ]
-    copyUserLayoutObjToContext(apiInfo)
-    this.setState({ userLayoutObj: apiInfo })
+    copyUserLayoutObjToContext(userApiInfo)
+    this.setState({ userLayoutObj: userApiInfo })
   }
 
-  save = () => {
-    console.log("Saving info:", this.props.userLayoutObj)
-  }
 
   /* COMPONENTS POSITION */
   moveDownComponent = (elementCode) => {
@@ -63,16 +63,36 @@ class Builder extends Component {
     })
   }
 
+  addComponent = (componentCode) => {
+    // añade componente
+    const { stateCopy } = {...this.state}
+    stateCopy.userLayoutObj.push({
+      code: componentCode,
+      // info: 
+    })
+    // guarda en contexto
+    /* this.setState({
+
+    }) */
+  }
+
+  usedCompIds = () => {
+    const stateCopy = {...this.state}
+    let { userLayoutObj } = stateCopy
+    return userLayoutObj.map(c=>c.code)
+  }
+
   render () {
-    const { mode, switchMode } = this.props
+    const { mode } = this.props
+    console.log('In render did mount builder')
     return (
       <div>
-        <h1>Builder page</h1>
-        <button onClick={this.save}>Save</button>
-        <button onClick={switchMode}>{ mode }</button>
-        <div id="user-web-page">
-          User web page
-          {this.showComponents()}
+        <NavBar withOptions/>
+        <div className="main-builder">
+          {mode === "edit" && <ComponentsSelectorBar usedCompIds={this.usedCompIds()}/>}
+          <div className="user-web-page">
+            {this.showComponents()}
+          </div>
         </div>
       </div>
     )

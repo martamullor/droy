@@ -9,9 +9,8 @@ class OptionsBar extends Component {
 
   render () {
     return (
-      <div>
+      <div className="options-bar">
         <button onClick={this.handleMoveDownComponent}>down</button>
-        <button>up</button>
       </div>
     )
   }

@@ -14,11 +14,10 @@ class UserComponentBase extends Component {
   }
 
   changeInfo = (e) => {
-    const { info, code } = this.state
-    console.log(code, e.target.id)
+    const { info } = this.state
     const newText = prompt('Inserta el nuevo texto')
     const newInfo = {...info}
-    const attr = e.target.id
+    const attr = e.target.attributes['data-id'].value
     newInfo[attr] = newText
 
     this.setState({ info: newInfo })
@@ -35,7 +34,7 @@ class UserComponentBase extends Component {
     const { code } = this.state
     const UserComp = MATCH_COMPONENTS[code]
     return (
-      <div>
+      <div className="user-component-base">
         { mode === "edit"
           ? <UserComp changeInfo={this.changeInfo} updateInfo={this.updateInfo} {...this.state }>
               <OptionsBar code={code} moveDownComponent={moveDownComponent} />

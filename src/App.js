@@ -3,8 +3,8 @@ import './App.css'
 import './styles/classic.css'
 import './styles/modern.css'
 import { Route } from 'react-router-dom'
-import Homepage from './components/droy/Homepage'
-import Builder from './components/droy/Builder'
+import Homepage from './pages/Homepage'
+import Builder from './pages/Builder'
 import DataProvider from './contexts/dataContext'
 
 class App extends Component {

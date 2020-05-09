@@ -41,18 +41,18 @@ class DataProvider extends Component {
   saveComponentInfoToContext = (componentInfo, componentCode) => {
     const { userLayoutObj } = this
     const existingComponent = userLayoutObj.filter(c => c.code === componentCode)
-    if(existingComponent.length) {
-      userLayoutObj.map(c => {
-        if(c => c.code === componentCode) Object.assign(c.info, componentInfo)
-      })
-    } else {
-      userLayoutObj.push({ info: componentInfo, code: componentCode })
-    }
+    if(existingComponent.length) Object.assign(existingComponent[0], componentInfo)
+    else userLayoutObj.push({ info: componentInfo, code: componentCode })
     this.userLayoutObj = userLayoutObj
   };
 
+
+  save = () => {
+    console.log("Saving info:", this.userLayoutObj)
+  }
+
   render () {
-    const { children, code } = this.props
+    const { children } = this.props
     const { userLayoutObj } = this
     
     return (
@@ -62,6 +62,7 @@ class DataProvider extends Component {
         copyUserLayoutObjToContext: this.copyUserLayoutObjToContext,
         switchMode: this.switchMode,
         userLayoutObj,
+        save: this.save,
         ...this.state
         
       }}>
