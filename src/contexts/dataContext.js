@@ -21,9 +21,9 @@ class DataProvider extends Component {
 
   constructor(props){
     super(props)
-    this.userLayoutObj = []
     this.state = {
-      mode: 'edit'
+      mode: 'edit',
+      userLayoutObj: []
     }
   }
 
@@ -33,27 +33,76 @@ class DataProvider extends Component {
     this.setState({ mode: mode === 'edit' ? 'view': 'edit' })
   }
 
+  
   copyUserLayoutObjToContext = (u) => {
-    this.userLayoutObj.length = 0 // clear array
-    this.userLayoutObj.push(...u)
+    this.setState({
+      userLayoutObj: u
+    })
   }
 
-  saveComponentInfoToContext = (componentInfo, componentCode) => {
-    const { userLayoutObj } = this
-    const existingComponent = userLayoutObj.filter(c => c.code === componentCode)
-    if(existingComponent.length) Object.assign(existingComponent[0], componentInfo)
-    else userLayoutObj.push({ info: componentInfo, code: componentCode })
-    this.userLayoutObj = userLayoutObj
+  deleteComponent = (elementCode) => {
+    const stateCopy = {...this.state}
+    const { userLayoutObj: newUserLayoutObj } = stateCopy
+    let fromIndex = 0; let element
+    for (let i = 0; i < newUserLayoutObj.length; i++) {
+      const c = newUserLayoutObj[i];
+      if(c.code === elementCode) {
+        element = c; fromIndex = i; break
+      }
+    }
+    newUserLayoutObj.splice(fromIndex, 1)
+    this.setState({ userLayoutObj: newUserLayoutObj })
+  }
+
+  moveDownComponent = (elementCode) => {
+    const stateCopy = {...this.state}
+    const { userLayoutObj: newUserLayoutObj } = stateCopy
+    let fromIndex = 0; let element
+    for (let i = 0; i < newUserLayoutObj.length; i++) {
+      const c = newUserLayoutObj[i];
+      if(c.code === elementCode) {
+        element = c; fromIndex = i; break
+      }
+    }
+    newUserLayoutObj.splice(fromIndex, 1)
+    newUserLayoutObj.splice(fromIndex + 1, 0, element)
+    this.setState({ userLayoutObj: newUserLayoutObj })
+  }
+
+  saveComponentInfoToContext = (componentCode, componentAttr, attrContent) => {
+    const stateCopy = {...this.state}
+    const { userLayoutObj: newUserLayoutObj } = stateCopy
+    for (const userObject of newUserLayoutObj) {
+      if(userObject.code === componentCode) {
+        userObject.info[componentAttr] = attrContent
+      }
+    }
+    console.log(44, newUserLayoutObj)
+    this.setState({
+      userLayoutObj: newUserLayoutObj
+    })
   };
 
 
   save = () => {
-    console.log("Saving info:", this.userLayoutObj)
+    console.log("Saving info:", this.state.userLayoutObj)
   }
+
+
+  addComponent = (componentCode, defaultInfo) => {
+    const stateCopy = {...this.state}
+    stateCopy.userLayoutObj.push({
+      code: componentCode,
+      info: defaultInfo
+    })
+    this.setState({
+      userLayoutObj: stateCopy.userLayoutObj
+    })
+  }
+
 
   render () {
     const { children } = this.props
-    const { userLayoutObj } = this
     
     return (
       <DataContext.Provider value={{
@@ -61,7 +110,9 @@ class DataProvider extends Component {
         getUserLayoutObj: this.getUserLayoutObj,
         copyUserLayoutObjToContext: this.copyUserLayoutObjToContext,
         switchMode: this.switchMode,
-        userLayoutObj,
+        moveDownComponent: this.moveDownComponent,
+        addComponent: this.addComponent,
+        deleteComponent: this.deleteComponent,
         save: this.save,
         ...this.state
         

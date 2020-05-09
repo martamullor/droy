@@ -7,10 +7,16 @@ class OptionsBar extends Component {
     moveDownComponent(code)
   }
 
+  handleDelete = () => {
+    const { code, deleteComponent } = this.props
+    deleteComponent(code)
+  }
+
   render () {
     return (
       <div className="options-bar">
         <button onClick={this.handleMoveDownComponent}>down</button>
+        <button onClick={this.handleDelete}>delete</button>
       </div>
     )
   }

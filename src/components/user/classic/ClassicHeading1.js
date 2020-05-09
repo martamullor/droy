@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import { withData } from '../../../contexts/dataContext'
 import PropTypes from 'prop-types'
 
 const style = {
@@ -9,7 +8,7 @@ const style = {
 
 class ClassicHeading1 extends Component {
   render () {
-    const { changeInfo, info, children: optionsBar } = this.props
+    const { info, changeInfo, children: optionsBar } = this.props
     return (
 
       <div style={style}>
@@ -26,7 +25,8 @@ ClassicHeading1.propTypes = {
   info: PropTypes.object,
   changeInfo: PropTypes.func,
   optionsBar: PropTypes.object,
-  children: PropTypes.object
+  // children: PropTypes.object,
+  code: PropTypes.string
 }
 
-export default withData(ClassicHeading1)
+export default ClassicHeading1

@@ -20,30 +20,37 @@ class ComponentsSelectorBar extends Component {
         code: 'ClassicHeading2',
         defaultInfo: { text1: 'Default info classic heading 2' },
         image: 'https://interactive-examples.mdn.mozilla.net/media/examples/grapefruit-slice-332-332.jpg'
+      },
+      {
+        code: 'ClassicHome1',
+        info: { text1: 'aaaa', text2: 'bbbbb' }
       }
     ]
     this.setState({ styleComponents })
   }
 
   showComponents = () => {
-    const { usedCompIds } = this.props
+    const usedCompIds = this.props.userLayoutObj.map(c=>c.code)
     const { styleComponents } = this.state
     return styleComponents.map(c => {
       if (!usedCompIds.includes(c.code)) {
         return (
-          <div style={{ margin: '20px', backgroundColor: 'yellow', height: '50px', color: 'black' }}>
+          <div key={c.code} style={{ margin: '20px', backgroundColor: 'yellow', height: '50px', color: 'black' }}>
             <button data-code={'ClassicHeading2'} onClick={this.handleAddComponent}>Add</button>
             {c.code}
           </div>)
       }
+      return false
     })
   }
 
   handleAddComponent = (e) => {
     const { addComponent } = this.props
-    addComponent(e.target.attributes['data-code'].value)
+    const code = e.target.attributes['data-code'].value
+    const defaultInfo = this.state.styleComponents.filter(c => c.code === code)[0].defaultInfo
+    addComponent(code, defaultInfo)
   }
-
+  
   render() {
     return (
       <div className="components-bar">

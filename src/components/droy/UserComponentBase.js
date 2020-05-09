@@ -8,39 +8,50 @@ class UserComponentBase extends Component {
   constructor (props) {
     super(props)
     this.state = {
+      imChanged: false
+      /*
       info: {...this.props.info},
-      code: this.props.code,
+      code: this.props.code, */
     }
   }
 
   changeInfo = (e) => {
-    const { info } = this.state
+    const { code } = this.props
+    const { saveComponentInfoToContext } = this.props
     const newText = prompt('Inserta el nuevo texto')
-    const newInfo = {...info}
     const attr = e.target.attributes['data-id'].value
-    newInfo[attr] = newText
+    this.setState({ imChanged: true })
+    saveComponentInfoToContext(code, attr, newText)
+  }
 
-    this.setState({ info: newInfo })
+
+  getComponentInfo = () => {
+    const { userLayoutObj, code } = this.props
+    return userLayoutObj.filter(c => c.code === code)[0].info
+  }
+
+  shouldComponentUpdate(nextProps, nextState) {
+    if(nextProps.mode !== this.props.mode) return true
+    // if(nextProps.userLayoutObj.length !== this.props.userLayoutObj.length) return true
+    if(!nextState.imChanged) return false
+    this.setState({ imChanged: false })
+    return true
   }
   
-  componentDidUpdate = () => {
-    const { saveComponentInfoToContext } = this.props
-    const { info, code } = this.state
-    saveComponentInfoToContext(info, code)
-  }
-
+  
   render () {
-    const { mode, moveDownComponent } = this.props
-    const { code } = this.state
+    const { mode, moveDownComponent, code, deleteComponent  } = this.props
     const UserComp = MATCH_COMPONENTS[code]
+    const componentProps = { info: this.getComponentInfo() }
+    if(mode === 'edit'){
+      componentProps['changeInfo'] = this.changeInfo
+      componentProps['updateInfo'] = this.updateInfo
+    }
     return (
       <div className="user-component-base">
-        { mode === "edit"
-          ? <UserComp changeInfo={this.changeInfo} updateInfo={this.updateInfo} {...this.state }>
-              <OptionsBar code={code} moveDownComponent={moveDownComponent} />
-            </UserComp>
-          : <UserComp {...this.state }/>
-        }
+        <UserComp {...componentProps}>
+          {mode === "edit" && <OptionsBar code={code} deleteComponent={deleteComponent} moveDownComponent={moveDownComponent}/>}
+        </UserComp>
       </div>
     )
   }
