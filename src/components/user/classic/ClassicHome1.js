@@ -32,7 +32,7 @@ class ClassicHome1 extends Component {
 
     return (
 
-      <div >
+      <div>
         {optionsBar}
         <div style={textHomeContainer}>
           <h1 style={titleHome1} data-id="text1" onDoubleClick={changeInfo}>{info.text1}</h1>
