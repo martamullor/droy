@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import '../../styles/optionsBar.css'
 
 class OptionsBar extends Component {
 

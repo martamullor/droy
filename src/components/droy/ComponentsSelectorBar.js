@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 import { withData } from '../../contexts/dataContext'
+import '../../styles/components-selectorBar.css'
+
 
 class ComponentsSelectorBar extends Component {
 
@@ -53,7 +55,8 @@ class ComponentsSelectorBar extends Component {
   
   render() {
     return (
-      <div className="components-bar">
+      <div className='components-bar'>
+        <h2 className= 'title-component-bar'>Components:</h2>
         {this.showComponents()}
       </div>
     )

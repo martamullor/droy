@@ -1,0 +1,25 @@
+.nav-bar {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0px 35px;
+    background-color: #dd59da;
+}
+
+.logo-navBar {
+    width: 9%;
+}
+
+.buttons-navBar{
+    font-family: Montserrat, sans-serif;
+    background-color: #ef9bfd;
+    padding: 8px 30px;
+    margin-right: 10px;
+    border-radius: 5px;
+    border: none;
+    color: white;
+    font-weight: 600;
+    font-size: 0.8rem;
+}
+

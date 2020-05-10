@@ -1,0 +1,64 @@
+.modal-container {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    text-align: center;
+}
+
+.modal-style {
+    background: #28306a;
+    box-shadow: -1px 1px 72px -16px rgba(21,26,61,1);
+    width: 50%;
+    color: white;
+    border-radius: 20px;
+    margin-top: -150px;
+    padding: 40px
+}
+
+.form-create-project {
+    display: flex;
+    flex-direction: column;
+}
+
+.close-modal {
+    background-color: transparent;
+    float: right;
+    color: white;
+    border: none;
+}
+
+.label-modal {
+    font-size: 1.3rem;
+    font-weight: 500;
+    color: #7b8add;
+    padding: 20px 10px;
+    text-align: left
+}
+
+.input-modal {
+    background-color: transparent;
+    padding: 5px 0px 5px 15px;
+    border: none;
+    border-bottom: 1px solid #7b8add;
+    color: white;
+    font-size: 0.8rem;
+}
+
+.option-modal {
+    background-color: transparent;
+    color: grey;
+    border: 1px solid #7b8add;
+}
+
+.button-modal {
+    font-family: 'Montserrat', sans-serif;
+    background-color: #8594e7;
+    margin-top: 30px;
+    padding: 9px;
+    border-radius: 5px;
+    border: none;
+    color: white;
+    font-weight: 600;
+    font-size: 0.9rem;
+    width: 100%;
+}

@@ -4,6 +4,7 @@ import PropTypes from 'prop-types'
 import UserComponentBase from '../components/droy/UserComponentBase'
 import ComponentsSelectorBar from '../components/droy/ComponentsSelectorBar'
 import NavBar from '../components/droy/NavBar'
+import '../styles/builder.css'
 
 
 class Builder extends Component {
@@ -48,7 +49,7 @@ class Builder extends Component {
         <NavBar withOptions/>
         <div className="main-builder">
           {mode === "edit" && <ComponentsSelectorBar/>}
-          <div className="user-web-page">
+          <div>
             {this.showComponents()}
           </div>
         </div>
