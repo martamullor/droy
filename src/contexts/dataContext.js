@@ -43,11 +43,11 @@ class DataProvider extends Component {
   deleteComponent = (elementCode) => {
     const stateCopy = {...this.state}
     const { userLayoutObj: newUserLayoutObj } = stateCopy
-    let fromIndex = 0; let element
+    let fromIndex = 0;
     for (let i = 0; i < newUserLayoutObj.length; i++) {
       const c = newUserLayoutObj[i];
       if(c.code === elementCode) {
-        element = c; fromIndex = i; break
+        fromIndex = i; break
       }
     }
     newUserLayoutObj.splice(fromIndex, 1)
