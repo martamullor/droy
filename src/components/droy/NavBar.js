@@ -1,41 +1,17 @@
 import React, { Component } from 'react'
 import { withData } from '../../contexts/dataContext'
 import PropTypes from 'prop-types'
-
-const navBar = {
-  display: 'flex',
-  flexDirection: 'row',
-  justifyContent: 'space-between',
-  alignItems: 'center',
-  padding: '0px 35px',
-  backgroundColor: '#dd59da'
-}
-
-const logoMenu = {
-  width: '9%'
-}
-
-const buttonsNavBar = {
-  fontFamily: 'Montserrat, sans-serif',
-  backgroundColor: '#ef9bfd',
-  padding: '8px 30px',
-  marginRight: '10px',
-  borderRadius: '5px',
-  border: 'none',
-  color: 'white',
-  fontWeight: '600',
-  fontSize: '0.8rem'
-}
+import '../../styles/navBar.css'
 
 class NavBar extends Component {
-  render() {
+  render () {
     const { withOptions, mode, switchMode, save } = this.props
     return (
-      <div style={navBar}>
-        <img style={logoMenu} src='../../../img/logo-white.png' alt='logo-white'></img>
+      <div className='nav-bar'>
+        <img className='logo-navBar' src='../../../img/logo-white.png' alt='logo-white'></img>
         {withOptions && <div>
-          <button style={buttonsNavBar} onClick={save}>Save</button>
-          <button style={buttonsNavBar} onClick={switchMode}>{mode === 'edit' ? 'View page' : 'Edit page'}</button></div>
+          <button className='buttons-navBar' onClick={save}>Save</button>
+          <button className='buttons-navBar' onClick={switchMode}>{mode === 'edit' ? 'View page' : 'Edit page'}</button></div>
         }
       </div>
     )

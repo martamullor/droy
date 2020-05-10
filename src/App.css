@@ -7,25 +7,5 @@
   font-size: 10px;
 }
 
-.options-bar {
-  position: absolute;
-}
 
-.main-builder {
-  display: flex;
-  flex-direction: row;
-}
-
-
-.user-web-page {
-  width: 100vw;
-}
-
-.user-component-base {
-  width: 100%;
-}
-
-.main-builder {
-  height: 100vh;
-}
 

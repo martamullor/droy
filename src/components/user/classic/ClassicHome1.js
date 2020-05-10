@@ -1,8 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
-
-
 const homePhoto = {
   width: '100%'
 }

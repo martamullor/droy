@@ -3,6 +3,7 @@ import MATCH_COMPONENTS from '../../utils/componentsMatching'
 import PropTypes from 'prop-types'
 import { withData } from '../../contexts/dataContext'
 import OptionsBar from '../droy/OptionsBar'
+import '../../styles/user-componentBase.css'
 
 class UserComponentBase extends Component {
   constructor (props) {

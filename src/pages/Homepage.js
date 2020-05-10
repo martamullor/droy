@@ -1,46 +1,26 @@
 import React, { Component } from 'react'
 import NavBar from '../components/droy/NavBar'
-import Modal from '../components/droy/Modal'
-
-const titleHomePage = {
-  padding: '40px 0px 10px 50px',
-  fontSize: '1.4rem',
-  fontWeight: '600',
-  color: '#7b8add'
-}
-
-const buttonHomePage = {
-  backgroundColor: '#262e66',
-  margin: '0px 0px 0px 50px',
-  width: '180px',
-  height: '180px',
-  borderRadius: '15px',
-  border:'none',
-  boxShadow: '-1px 1px 72px -16px rgba(21,26,61,1)'
-}
-
-const imageButton = {
-  width: '30%'
-}
+import Modal from '../components/droy/ModalStartProject'
+import '../styles/homePage.css'
 
 
 export default class Homepage extends Component {
   constructor (props) {
     super(props)
     this.state = {
-      isOpen: false
+      showModal: false
     }
   }
 
   showModal = () => {
     this.setState({
-      isOpen: true
+      showModal: true
     })
   }
 
   closeModal = () => {
     this.setState({
-      isOpen:false
+      showModal:false
     })
   }
 
@@ -48,11 +28,11 @@ export default class Homepage extends Component {
     return (
       <div>
         <NavBar />
-        <h2 style={titleHomePage}>Start a new project:</h2>
-        <button style={buttonHomePage} onClick={this.showModal}>
-        <img style={imageButton} src="../../img/sum-icon.png" alt='create-project'></img>
+        <h2 className='title-homePage'>Start a new project:</h2>
+        <button className='buttons-homePage' onClick={this.showModal}>
+        <img className='image-homePage' src="../../img/sum-icon.png" alt='create-project'></img>
         </button>
-        <Modal isOpen={this.state.isOpen} onClose={this.closeModal} />
+        {this.state.showModal && <Modal onClose={this.closeModal}/>}
       </div>
     )
   }

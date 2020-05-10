@@ -1,17 +1,7 @@
 import React, { Component } from 'react'
 import { withData } from '../../contexts/dataContext'
+import '../../styles/components-selectorBar.css'
 
-const componentsBar = {
-  width: '36%',
-  backgroundColor: '#262e66',
-  color: '#7b8add'
-}
-
-const titleComponentsBar = {
-  padding: '15px',
-  fontSize: '1.3rem',
-  fontWeight: '600'
-}
 
 class ComponentsSelectorBar extends Component {
 
@@ -65,8 +55,8 @@ class ComponentsSelectorBar extends Component {
   
   render() {
     return (
-      <div style={componentsBar}>
-        <h2 style={titleComponentsBar}>Components:</h2>
+      <div className='components-bar'>
+        <h2 className= 'title-component-bar'>Components:</h2>
         {this.showComponents()}
       </div>
     )
