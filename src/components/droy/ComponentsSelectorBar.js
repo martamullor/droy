@@ -25,7 +25,7 @@ class ComponentsSelectorBar extends Component {
       },
       {
         code: 'ClassicHome1',
-        info: { text1: 'aaaa', text2: 'bbbbb' }
+        defaultInfo: { text1: 'aaaa', text2: 'bbbbb' }
       }
     ]
     this.setState({ styleComponents })
@@ -38,7 +38,7 @@ class ComponentsSelectorBar extends Component {
       if (!usedCompIds.includes(c.code)) {
         return (
           <div key={c.code} style={{ margin: '20px', backgroundColor: 'yellow', height: '50px', color: 'black' }}>
-            <button data-code={'ClassicHeading2'} onClick={this.handleAddComponent}>Add</button>
+            <button data-code={c.code} onClick={this.handleAddComponent}>Add</button>
             {c.code}
           </div>)
       }

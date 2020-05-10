@@ -1,15 +1,16 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import '../../styles/modal-start-project.css'
+import api from '../../services/apiClient'
+import { withRouter } from "react-router";
 
-
-export default class Modal extends Component {
+class ModalStartProject extends Component {
   constructor(props) {
     super(props)
     this.state = {
       name: '',
-      theme: 'classic'
+      theme: '',
+      error: ''
     }
   }
 
@@ -19,39 +20,31 @@ export default class Modal extends Component {
     });
   }
 
-  handleSubmit = (event) => {
+  handleSubmit = async (event) => {
     event.preventDefault();
-
-    /*
-    axios
-      .post(" ", this.state)
-      .then(response => {
+    const { name, theme } = this.state
+    const { history } = this.props
+    try {
+      const createdProject = await api.post('/projects', { name, style: theme })
+      history.push(`/builder/${createdProject.data._id}`)      
+    } catch (error) {
+      this.setState({
+        error: error.toString()
       })
-      .catch((error) => {
-        this.setState({
-          error: error,
-        })
-      })
-     */
-
-    this.setState({
-      name: '',
-      theme: 'classic'
-    });
+    }
   }
 
-
   render() {
-    const { onClose } = this.props
-    const { name, theme } = this.state;
-
+    const { onClose, styles } = this.props
+    const { name, theme, error } = this.state;
     return (
       <div className='modal-container'>
         <div className='modal-style'>
           <button className='close-modal' onClick={onClose}>X</button>
+          <p>{error}</p>
           <form className='form-create-project' onSubmit={this.handleSubmit}>
             <label className='label-modal' htmlFor="name">Name of the project</label>
-            <input className='input-modal' type="text"
+            <input required="required" className='input-modal' type="text"
               id='name'
               value={name}
               name="name"
@@ -59,12 +52,9 @@ export default class Modal extends Component {
               onChange={this.handleChange} />
             <label className='label-modal' htmlFor="theme">Theme of the project</label>
             <select className='option-modal' id='theme' value={theme} name='theme' onChange={this.handleChange}>
-              <option value="modern">Modern</option>
-              <option value="classic">Classic</option>
+              {styles.map((s, k) => <option value={s.code}>{s.name}</option> )}
             </select>
-            <Link to="/builder">
-              <button className='button-modal' type='submit'>Create project</button>
-            </Link>
+            <button className='button-modal' type='submit'>Create project</button>
           </form>
         </div>
       </div>
@@ -72,7 +62,9 @@ export default class Modal extends Component {
   }
 }
 
-Modal.propTypes = {
+ModalStartProject.propTypes = {
   isOpen: PropTypes.bool,
   onClose: PropTypes.func
 }
+
+export default withRouter(ModalStartProject)

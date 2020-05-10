@@ -77,7 +77,6 @@ class DataProvider extends Component {
         userObject.info[componentAttr] = attrContent
       }
     }
-    console.log(44, newUserLayoutObj)
     this.setState({
       userLayoutObj: newUserLayoutObj
     })
