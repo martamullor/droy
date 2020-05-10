@@ -6,59 +6,33 @@ import ComponentsSelectorBar from '../components/droy/ComponentsSelectorBar'
 import NavBar from '../components/droy/NavBar'
 import '../styles/builder.css'
 import { withAuth } from '../contexts/authContext'
-import api from '../services/apiClient'
 
 
 class Builder extends Component {
-  constructor (props) {
-    super(props)
-    this.state = {
-      userLayoutObj: [],
-    }
-  }
 
   componentDidMount = async () => {
-    try {
-      const { copyUserLayoutObjToContext, match } = this.props
-      const { data: componentsConfiguration } = await api.get(`/projects/${match.params.projectId}`)
-      console.log(4444, match.params.projectId)
-      const userApiInfo = [
-        {
-          code: 'ClassicHeading1',
-          info: { text1: 'Default hello', text2: 'default world' }
-        },
-        {
-          code: 'ClassicHome1',
-          info: { text1: 'aaaa', text2: 'bbbbb' }
-        }
-      ]
-      copyUserLayoutObjToContext(userApiInfo)      
-    } catch (error) {
-     console.log(error) 
-    }
+    const { match, getProjectInfo } = this.props
+    getProjectInfo(match.params.projectId)
   }
 
-
-  showComponents = () => {
-    const { userLayoutObj } = this.props
+  showUserComponents = () => {
+    const { userLayoutObj, dataError } = this.props
+    if (userLayoutObj.length === 0) return <div>"Hello Droyer!! Start picking one component from the left components bar! :)"</div>
+    if(dataError) return <div>{dataError}</div>
     return userLayoutObj.map((c) => {
-      return <UserComponentBase
-          // moveDownComponent={this.moveDownComponent}
-          code={c.code}
-          key={c.code}/>
+      return <UserComponentBase code={c.code} key={c.code}/>
     })
   }
 
   render () {
     const { mode } = this.props
-    console.log(this.props)
     return (
       <div>
         <NavBar withOptions/>
         <div className="main-builder">
           {mode === "edit" && <ComponentsSelectorBar/>}
           <div>
-            {this.showComponents()}
+            {this.showUserComponents()}
           </div>
         </div>
       </div>

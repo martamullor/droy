@@ -20,7 +20,6 @@ class App extends Component {
             <PrivateRoute exact path='/' component={Homepage} />
             <OnlyNotLoggedRoute exact path='/login' component={Login} />
             <OnlyNotLoggedRoute exact path='/signup' component={SignUp} />
-            <PrivateRoute exact path='/builder' component={Builder} />
             <PrivateRoute exact path='/builder/:projectId' component={Builder} />
           </div>
         </DataProvider>
