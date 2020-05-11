@@ -26,7 +26,7 @@ class ModalStartProject extends Component {
     const { history } = this.props
     try {
       const createdProject = await api.post('/projects', { name, style: theme })
-      history.push(`/builder/${createdProject.data._id}`)      
+      history.push(`/builder/${createdProject.data._id}`)
     } catch (error) {
       console.log(error.response.data)
       this.setState({

@@ -17,6 +17,12 @@ export const withData = (Comp) => {
   }
 }
 
+const STATUS = {
+  LOADING: 'LOADING',
+  LOADED: 'LOADED',
+  ERROR: 'ERROR',
+}
+
 // Provider def
 class DataProvider extends Component {
 
@@ -25,7 +31,9 @@ class DataProvider extends Component {
     this.state = {
       mode: 'edit',
       userLayoutObj: [],
-      dataError: ""
+      projectStyle: "",
+      dataError: "",
+      status: STATUS.LOADING
     }
   }
 
@@ -85,7 +93,7 @@ class DataProvider extends Component {
     const stateCopy = {...this.state}
     stateCopy.userLayoutObj.push({
       code: componentCode,
-      info: defaultInfo
+      info: JSON.parse(defaultInfo)
     })
     this.setState({
       userLayoutObj: stateCopy.userLayoutObj
@@ -94,8 +102,9 @@ class DataProvider extends Component {
 
   getProjectInfo = async (projectId) => {
     try {
-      const { data: { componentsConfiguration } } = await api.get(`/projects/${projectId}`)
-      this.setState({ userLayoutObj: componentsConfiguration })
+      this.setState({status: STATUS.LOADING})
+      const { data: { componentsConfiguration, style } } = await api.get(`/projects/${projectId}`)
+      this.setState({ userLayoutObj: componentsConfiguration, projectStyle: style, status: STATUS.LOADED })
     } catch (error) {
       this.setState({ dataError: "Unable to get your project data" })
     }

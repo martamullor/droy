@@ -26,17 +26,32 @@ class Builder extends Component {
     })
   }
 
-  render () {
-    const { mode } = this.props
-    return (
-      <div>
-        <NavBar withOptions/>
-        <div className="main-builder">
+  showContent = () => {
+    const { mode, status: contextStatus } = this.props
+    switch (contextStatus) {
+      case "LOADING":
+        return <div>Loading...</div>
+      case "LOADED":
+        return (
+          <div className="main-builder">
           {mode === "edit" && <ComponentsSelectorBar/>}
           <div>
             {this.showUserComponents()}
           </div>
         </div>
+        );
+      case "ERROR":
+        return <div>Error</div>
+      default:
+        break;
+    }
+  }
+
+  render () {
+    return (
+      <div>
+        <NavBar withOptions/>
+        {this.showContent()}
       </div>
     )
   }
