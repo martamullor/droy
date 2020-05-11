@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { withAuth } from '../contexts/authContext';
 import NavBar from '../components/droy/NavBar'
 import { Link } from 'react-router-dom'
+import '../styles/login-signup.css'
 
 class SignUp extends Component {
 
@@ -40,49 +41,56 @@ class SignUp extends Component {
     const { signUpError } = this.props
     return (
       <div>
-        <NavBar/>
-        <h1>Sign Up</h1>
-        <p>{signUpError}</p>
-        <form onSubmit={this.handleSubmit}>
-          <input
-            placeholder="email"
-            type="text"
-            required="required"
-            name="email"
-            value={email}
-            id="email"
-            onChange={this.handleChange}
-          />
-          <input
-            type="password"
-            required="required"
-            placeholder="······"
-            name="hashedPassword"
-            id="hashedPassword"
-            value={hashedPassword}
-            onChange={this.handleChange}
-          />
-          <input
-            type="password"
-            required="required"
-            placeholder="······"
-            name="confirmationPassword"
-            id="confirmationPassword"
-            value={confirmationPassword}
-            onChange={this.handleChange}
-          />
-          <input
-            type="text"
-            required="required"
-            placeholder="Bob Marley"
-            name="name"
-            id="name"
-            value={name}
-            onChange={this.handleChange}
-          />
-          <input type="submit" value="submit" />
-          <Link to="/login">Already have an account? Log in here!</Link>
-        </form>
+        <NavBar />
+        <div className='login-signup-container'>
+          <div className='logo-container'>
+            <img className='login-logo' src='../../../img/logo-white.png' alt='logo-white'></img>
+          </div>
+          <div className='form-title-container'>
+            <h1 className='title-login-signup'>Sign Up</h1>
+            <p>{signUpError}</p>
+            <form className='login-form' onSubmit={this.handleSubmit}>
+              <input className='input-form'
+                placeholder="email"
+                type="text"
+                required="required"
+                name="email"
+                value={email}
+                id="email"
+                onChange={this.handleChange}
+              />
+              <input className='input-form'
+                type="password"
+                required="required"
+                placeholder="······"
+                name="hashedPassword"
+                id="hashedPassword"
+                value={hashedPassword}
+                onChange={this.handleChange}
+              />
+              <input className='input-form'
+                type="password"
+                required="required"
+                placeholder="······"
+                name="confirmationPassword"
+                id="confirmationPassword"
+                value={confirmationPassword}
+                onChange={this.handleChange}
+              />
+              <input className='input-form'
+                type="text"
+                required="required"
+                placeholder="Bob Marley"
+                name="name"
+                id="name"
+                value={name}
+                onChange={this.handleChange}
+              />
+              <input className='button-form' type="submit" value="submit" />
+              <Link className='text-form' to="/login">Already have an account? Log in here!</Link>
+            </form>
+          </div>
+        </div>
       </div>
     );
   }

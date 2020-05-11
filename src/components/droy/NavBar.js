@@ -10,7 +10,9 @@ class NavBar extends Component {
     const { withOptions, mode, switchMode, save, isLoggedIn, handleLogout } = this.props
     return (
       <div className='nav-bar'>
-        <img className='logo-navBar' src='../../../img/logo-white.png' alt='logo-white'></img>
+        <Link to ='/' >
+          <img className='logo-navBar' src='../../../img/logo-white.png' alt='logo-white'></img>
+        </Link>
         {withOptions && <div>
           <button className='buttons-navBar' onClick={save}>Save</button>
           <button className='buttons-navBar' onClick={switchMode}>{mode === 'edit' ? 'View page' : 'Edit page'}</button>
@@ -18,7 +20,7 @@ class NavBar extends Component {
         }
         {isLoggedIn
           ? <button onClick={handleLogout} className='buttons-navBar'>Logout</button>
-          : <Link to="/login">Login</Link> }
+          : <Link className='buttons-navBar' to="/login">Login</Link> }
       </div>
     )
   }

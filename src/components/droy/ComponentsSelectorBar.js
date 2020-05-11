@@ -15,17 +15,17 @@ class ComponentsSelectorBar extends Component {
     let styleComponents = [
       {
         code: 'ClassicHeading1',
-        defaultInfo: { text1: 'Default info classic heading 1' },
+        defaultInfo: { text1: 'Link', text2: 'Link' },
         image: 'https://miro.medium.com/max/1200/1*mk1-6aYaf_Bes1E3Imhc0A.jpeg'
       },
       {
         code: 'ClassicHeading2',
-        defaultInfo: { text1: 'Default info classic heading 2' },
+        defaultInfo: { text1: 'Link', text2: 'Link' },
         image: 'https://interactive-examples.mdn.mozilla.net/media/examples/grapefruit-slice-332-332.jpg'
       },
       {
         code: 'ClassicHome1',
-        defaultInfo: { text1: 'aaaa', text2: 'bbbbb' }
+        defaultInfo: { text1: 'Full screen intro', text2: 'Lorem Ipsum has been the industry standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.' }
       }
     ]
     this.setState({ styleComponents })

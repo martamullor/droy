@@ -3,12 +3,12 @@
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    padding: 0px 35px;
+    padding: 5px 30px;
     background-color: #dd59da;
 }
 
 .logo-navBar {
-    width: 9%;
+    width: 70px;
 }
 
 .buttons-navBar{
@@ -16,10 +16,11 @@
     background-color: #ef9bfd;
     padding: 8px 30px;
     margin-right: 10px;
-    border-radius: 5px;
+    border-radius: 3px;
     border: none;
     color: white;
     font-weight: 600;
     font-size: 0.8rem;
+    text-decoration: none;
 }
 

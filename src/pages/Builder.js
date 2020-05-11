@@ -10,9 +10,11 @@ import { withAuth } from '../contexts/authContext'
 
 class Builder extends Component {
 
+
   componentDidMount = async () => {
     const { match, getProjectInfo } = this.props
     getProjectInfo(match.params.projectId)
+
   }
 
   showUserComponents = () => {
