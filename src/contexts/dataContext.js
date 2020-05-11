@@ -106,7 +106,7 @@ class DataProvider extends Component {
     const stateCopy = {...this.state}
     stateCopy.userLayoutObj.push({
       code: componentCode,
-      info: JSON.parse(defaultInfo)
+      info: defaultInfo
     })
     this.setState({
       userLayoutObj: stateCopy.userLayoutObj
