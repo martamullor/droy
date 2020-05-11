@@ -5,40 +5,24 @@ import UserComponentBase from '../components/droy/UserComponentBase'
 import ComponentsSelectorBar from '../components/droy/ComponentsSelectorBar'
 import NavBar from '../components/droy/NavBar'
 import '../styles/builder.css'
+import { withAuth } from '../contexts/authContext'
 
 
 class Builder extends Component {
-  constructor (props) {
-    super(props)
-    this.state = {
-      userLayoutObj: [],
-    }
+
+
+  componentDidMount = async () => {
+    const { match, getProjectInfo } = this.props
+    getProjectInfo(match.params.projectId)
+
   }
 
-  componentDidMount () {
-    // db petition
-    const { copyUserLayoutObjToContext } = this.props
-    const userApiInfo = [
-      {
-        code: 'ClassicHeading1',
-        info: { text1: 'Link', text2: 'Link' }
-      },
-      {
-        code: 'ClassicHome1',
-        info: { text1: 'Full screen intro', text2: 'Lorem Ipsum has been the industry standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.' }
-      }
-    ]
-    copyUserLayoutObjToContext(userApiInfo)
-  }
-
-
-  showComponents = () => {
-    const { userLayoutObj } = this.props
+  showUserComponents = () => {
+    const { userLayoutObj, dataError } = this.props
+    if (userLayoutObj.length === 0) return <div>"Hello Droyer!! Start picking one component from the left components bar! :)"</div>
+    if(dataError) return <div>{dataError}</div>
     return userLayoutObj.map((c) => {
-      return <UserComponentBase
-          // moveDownComponent={this.moveDownComponent}
-          code={c.code}
-          key={c.code}/>
+      return <UserComponentBase code={c.code} key={c.code}/>
     })
   }
 
@@ -50,7 +34,7 @@ class Builder extends Component {
         <div className="main-builder">
           {mode === "edit" && <ComponentsSelectorBar/>}
           <div>
-            {this.showComponents()}
+            {this.showUserComponents()}
           </div>
         </div>
       </div>
@@ -63,4 +47,4 @@ Builder.propTypes = {
   saveInfoToContext: PropTypes.func
 }
 
-export default withData(Builder)
+export default withAuth(withData(Builder))

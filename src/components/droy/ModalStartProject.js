@@ -28,6 +28,7 @@ class ModalStartProject extends Component {
       const createdProject = await api.post('/projects', { name, style: theme })
       history.push(`/builder/${createdProject.data._id}`)      
     } catch (error) {
+      console.log(error.response.data)
       this.setState({
         error: error.toString()
       })
@@ -51,8 +52,9 @@ class ModalStartProject extends Component {
               placeholder="name"
               onChange={this.handleChange} />
             <label className='label-modal' htmlFor="theme">Theme of the project</label>
-            <select className='option-modal' id='theme' value={theme} name='theme' onChange={this.handleChange}>
-              {styles.map((s, k) => <option value={s.code}>{s.name}</option> )}
+            <select required="required" className='option-modal' id='theme' value={theme} name='theme' onChange={this.handleChange}>
+              <option value=""></option>
+              {styles.map((s, k) => <option key={k} value={s.code}>{s.name}</option> )}
             </select>
             <button className='button-modal' type='submit'>Create project</button>
           </form>
