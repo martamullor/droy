@@ -15,6 +15,10 @@ class ApiClient {
   post (endpoint, data) {
     return this.apiClient.post(endpoint, data)
   }
+
+  put (endpoint, data) {
+    return this.apiClient.put(endpoint, data)
+  }
 }
 
 const apiClient = new ApiClient()

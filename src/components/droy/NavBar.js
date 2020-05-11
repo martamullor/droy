@@ -3,18 +3,24 @@ import { withData } from '../../contexts/dataContext'
 import PropTypes from 'prop-types'
 import '../../styles/navBar.css'
 import { withAuth } from '../../contexts/authContext'
-import { Link } from 'react-router-dom'
+import { Link, withRouter } from 'react-router-dom'
 
 class NavBar extends Component {
+
+  handleSave = () => {
+    const { save, match } = this.props
+    save(match.params.projectId)
+  }
+
   render () {
-    const { withOptions, mode, switchMode, save, isLoggedIn, handleLogout } = this.props
+    const { withOptions, mode, switchMode, isLoggedIn, handleLogout, savingStep } = this.props
     return (
       <div className='nav-bar'>
         <Link to ='/' >
           <img className='logo-navBar' src='../../../img/logo-white.png' alt='logo-white'></img>
         </Link>
         {withOptions && <div>
-          <button className='buttons-navBar' onClick={save}>Save</button>
+          <button className='buttons-navBar' onClick={this.handleSave}>{savingStep}</button>
           <button className='buttons-navBar' onClick={switchMode}>{mode === 'edit' ? 'View page' : 'Edit page'}</button>
         </div>
         }
@@ -35,4 +41,4 @@ NavBar.propTypes = {
   handleLogout: PropTypes.func
 }
 
-export default withAuth(withData(NavBar))
+export default withRouter(withAuth(withData(NavBar)))

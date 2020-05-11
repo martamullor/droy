@@ -33,6 +33,7 @@ class DataProvider extends Component {
       userLayoutObj: [],
       projectStyle: "",
       dataError: "",
+      savingStep: 'Save',
       status: STATUS.LOADING
     }
   }
@@ -85,8 +86,20 @@ class DataProvider extends Component {
     })
   };
 
-  save = () => {
-    console.log("Saving info:", this.state.userLayoutObj)
+  save = async (projectId) => {
+    try {
+      this.setState({ savingStep: 'Saving...' })
+      const { userLayoutObj } = this.state
+      await api.put(`/projects/${projectId}`, {componentsConfiguration: userLayoutObj})
+      setTimeout(() => {
+        this.setState({ savingStep: 'OK' })
+        setTimeout(() => { this.setState({ savingStep: 'Save' }) }, 500);
+      }, 500);
+    } catch (error) {
+      alert("Error al guardar.")
+    }
+
+    
   }
 
   addComponent = (componentCode, defaultInfo) => {
@@ -115,6 +128,7 @@ class DataProvider extends Component {
     
     return (
       <DataContext.Provider value={{
+        saveComponentInfoToContext: this.saveComponentInfoToContext,
         getProjectInfo: this.getProjectInfo,
         getUserLayoutObj: this.getUserLayoutObj,
         copyUserLayoutObjToContext: this.copyUserLayoutObjToContext,
