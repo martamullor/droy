@@ -1,3 +1,20 @@
 .options-bar {
     position: absolute;
+    left: 97%;
+    margin-top: 2px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.buttons-optionBar {
+    background-color: transparent;
+    border: none;
+    box-shadow: -1px 1px 72px -16px rgba(21,26,61,1);
+}
+
+.image-optionBar {
+    width: 23px
 }

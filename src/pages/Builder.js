@@ -21,11 +21,11 @@ class Builder extends Component {
     const userApiInfo = [
       {
         code: 'ClassicHeading1',
-        info: { text1: 'Default hello', text2: 'default world' }
+        info: { text1: 'Link', text2: 'Link' }
       },
       {
         code: 'ClassicHome1',
-        info: { text1: 'aaaa', text2: 'bbbbb' }
+        info: { text1: 'Full screen intro', text2: 'Lorem Ipsum has been the industry standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.' }
       }
     ]
     copyUserLayoutObjToContext(userApiInfo)
