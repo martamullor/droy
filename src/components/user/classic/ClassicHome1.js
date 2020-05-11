@@ -1,15 +1,14 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
-const homePhoto = {
-  width: '100%'
+const homeContainer = {
+  backgroundImage: 'url("../../../img/classic-home1.jpg")',
+  height: '700px',
+  backgroundSize: 'auto',
+  padding: '8px 40px 8px 40px'
 }
 
 const textHomeContainer = {
-  position: 'absolute',
-  zIndex: '30',
-  padding: '30px',
-  top: '60%',
   textAlign: 'left'
 }
 
@@ -30,13 +29,12 @@ class ClassicHome1 extends Component {
 
     return (
 
-      <div>
+      <div style={homeContainer}>
         {optionsBar}
         <div style={textHomeContainer}>
           <h1 style={titleHome1} data-id="text1" onDoubleClick={changeInfo}>{info.text1}</h1>
           <p style={textHome1} data-id="text2" onDoubleClick={changeInfo}>{info.text2}</p>
         </div>
-        <img style={homePhoto} src='../../../img/classic-home1.jpg' alt='logo-classic-heading'></img>
       </div>
     )
   }
