@@ -20,7 +20,7 @@ class NavBar extends Component {
         }
         {isLoggedIn
           ? <button onClick={handleLogout} className='buttons-navBar'>Logout</button>
-          : <Link to="/login">Login</Link> }
+          : <Link className='buttons-navBar' to="/login">Login</Link> }
       </div>
     )
   }

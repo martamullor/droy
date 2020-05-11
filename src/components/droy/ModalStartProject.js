@@ -41,17 +41,19 @@ class ModalStartProject extends Component {
     return (
       <div className='modal-container'>
         <div className='modal-style'>
-          <button className='close-modal' onClick={onClose}>X</button>
+          <button className='close-modal' onClick={onClose}>
+          <img className='close-modal-image' src="../../img/delete-icon.png" alt='delete-project'></img>
+          </button>
           <p>{error}</p>
           <form className='form-create-project' onSubmit={this.handleSubmit}>
-            <label className='label-modal' htmlFor="name">Name of the project</label>
+            <label className='label-modal' htmlFor="name">Name:</label>
             <input required="required" className='input-modal' type="text"
               id='name'
               value={name}
               name="name"
               placeholder="name"
               onChange={this.handleChange} />
-            <label className='label-modal' htmlFor="theme">Theme of the project</label>
+            <label className='label-modal' htmlFor="theme">Theme:</label>
             <select required="required" className='option-modal' id='theme' value={theme} name='theme' onChange={this.handleChange}>
               <option value=""></option>
               {styles.map((s, k) => <option key={k} value={s.code}>{s.name}</option> )}

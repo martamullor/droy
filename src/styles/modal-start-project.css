@@ -8,11 +8,11 @@
 .modal-style {
     background: #28306a;
     box-shadow: -1px 1px 72px -16px rgba(21,26,61,1);
-    width: 50%;
+    width: 30%;
     color: white;
-    border-radius: 20px;
+    border-radius: 8px;
     margin-top: -150px;
-    padding: 40px
+    padding: 30px 20px 30px 40px;
 }
 
 .form-create-project {
@@ -27,38 +27,55 @@
     border: none;
 }
 
+.close-modal-image {
+    width: 20px;
+}
+
 .label-modal {
-    font-size: 1.3rem;
-    font-weight: 500;
+    text-align: left;
+    font-weight: 400;
     color: #7b8add;
-    padding: 20px 10px;
-    text-align: left
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin: 10px 0px;
 }
 
 .input-modal {
-    background-color: transparent;
-    padding: 5px 0px 5px 15px;
+    margin: 10px 0px;
+    background: #1f2554;
     border: none;
-    border-bottom: 1px solid #7b8add;
-    color: white;
-    font-size: 0.8rem;
+    padding: 10px;
+    border-radius: 8px;
+    box-shadow: -1px 1px 72px -16px rgba(21,26,61,1)
+}
+
+.input-modal::placeholder {
+    font-family: 'Montserrat', sans-serif;
+    color: #7b8add;
+    font-weight: 500;
 }
 
 .option-modal {
-    background-color: transparent;
-    color: grey;
-    border: 1px solid #7b8add;
+    margin: 5px;
+    background: #1f2554;
+    border: none;
+    border-radius: 8px;
+    box-shadow: -1px 1px 72px -16px rgba(21,26,61,1);
+    padding: 10px;
+    color: #7b8add;
+    padding: 10px;
 }
 
 .button-modal {
+    margin: 25px 5px 15px 5px;
     font-family: 'Montserrat', sans-serif;
-    background-color: #8594e7;
-    margin-top: 30px;
-    padding: 9px;
-    border-radius: 5px;
+    background: #7b8add;
     border: none;
-    color: white;
-    font-weight: 600;
-    font-size: 0.9rem;
-    width: 100%;
+    padding: 8px;
+    border-radius: 8px;
+    box-shadow: -1px 1px 72px -16px rgba(21,26,61,1);
+    color: #262e66;
+    font-weight: 900;
+    text-transform: uppercase;
+    font-size: 0.8rem;
 }
