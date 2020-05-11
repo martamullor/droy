@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import api from '../services/apiClient'
 
 const DataContext = React.createContext()
 
@@ -23,7 +24,8 @@ class DataProvider extends Component {
     super(props)
     this.state = {
       mode: 'edit',
-      userLayoutObj: []
+      userLayoutObj: [],
+      dataError: ""
     }
   }
 
@@ -33,21 +35,14 @@ class DataProvider extends Component {
     this.setState({ mode: mode === 'edit' ? 'view': 'edit' })
   }
 
-  
-  copyUserLayoutObjToContext = (u) => {
-    this.setState({
-      userLayoutObj: u
-    })
-  }
-
   deleteComponent = (elementCode) => {
     const stateCopy = {...this.state}
     const { userLayoutObj: newUserLayoutObj } = stateCopy
-    let fromIndex = 0; let element
+    let fromIndex = 0;
     for (let i = 0; i < newUserLayoutObj.length; i++) {
       const c = newUserLayoutObj[i];
       if(c.code === elementCode) {
-        element = c; fromIndex = i; break
+        fromIndex = i; break
       }
     }
     newUserLayoutObj.splice(fromIndex, 1)
@@ -82,11 +77,9 @@ class DataProvider extends Component {
     })
   };
 
-
   save = () => {
     console.log("Saving info:", this.state.userLayoutObj)
   }
-
 
   addComponent = (componentCode, defaultInfo) => {
     const stateCopy = {...this.state}
@@ -99,13 +92,21 @@ class DataProvider extends Component {
     })
   }
 
+  getProjectInfo = async (projectId) => {
+    try {
+      const { data: { componentsConfiguration } } = await api.get(`/projects/${projectId}`)
+      this.setState({ userLayoutObj: componentsConfiguration })
+    } catch (error) {
+      this.setState({ dataError: "Unable to get your project data" })
+    }
+  }
 
   render () {
     const { children } = this.props
     
     return (
       <DataContext.Provider value={{
-        saveComponentInfoToContext: this.saveComponentInfoToContext,
+        getProjectInfo: this.getProjectInfo,
         getUserLayoutObj: this.getUserLayoutObj,
         copyUserLayoutObjToContext: this.copyUserLayoutObjToContext,
         switchMode: this.switchMode,

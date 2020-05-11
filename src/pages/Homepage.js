@@ -3,6 +3,7 @@ import NavBar from '../components/droy/NavBar'
 import Modal from '../components/droy/ModalStartProject'
 import '../styles/homePage.css'
 import api from '../services/apiClient'
+import { withAuth } from '../contexts/authContext'
 
 const STATUS = {
   LOADING: 'LOADING',
@@ -10,7 +11,7 @@ const STATUS = {
   ERROR: 'ERROR',
 }
 
-export default class Homepage extends Component {
+class Homepage extends Component {
   constructor (props) {
     super(props)
     this.state = {
@@ -81,3 +82,5 @@ export default class Homepage extends Component {
     
   }
 }
+
+export default withAuth(Homepage)
