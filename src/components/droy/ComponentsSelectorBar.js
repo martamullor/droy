@@ -1,34 +1,29 @@
 import React, { Component } from 'react'
 import { withData } from '../../contexts/dataContext'
 import '../../styles/components-selectorBar.css'
+import api from '../../services/apiClient'
 
+const STATUS = {
+  LOADING: 'LOADING',
+  LOADED: 'LOADED',
+  ERROR: 'ERROR',
+}
 
 class ComponentsSelectorBar extends Component {
 
   constructor(props) {
     super(props)
-    this.state = { styleComponents: [] }
+    this.state = { styleComponents: [], status: STATUS.LOADING }
   }
 
-  componentDidMount = () => {
-    // Peticion a BBDD para conseguir todos los componentes de eses estilo.
-    let styleComponents = [
-      {
-        code: 'ClassicHeading1',
-        defaultInfo: { text1: 'Link', text2: 'Link' },
-        image: 'https://miro.medium.com/max/1200/1*mk1-6aYaf_Bes1E3Imhc0A.jpeg'
-      },
-      {
-        code: 'ClassicHeading2',
-        defaultInfo: { text1: 'Link', text2: 'Link' },
-        image: 'https://interactive-examples.mdn.mozilla.net/media/examples/grapefruit-slice-332-332.jpg'
-      },
-      {
-        code: 'ClassicHome1',
-        defaultInfo: { text1: 'Full screen intro', text2: 'Lorem Ipsum has been the industry standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.' }
-      }
-    ]
-    this.setState({ styleComponents })
+  componentDidMount = async () => {
+    try {
+      const { projectStyle } = this.props
+      const { data: styleComponents } = await api.get(`/components?style=${projectStyle}`)
+      this.setState({ styleComponents, status: STATUS.LOADED })
+    } catch (error) {
+      this.setState({ status: STATUS.ERROR })
+    }
   }
 
   showComponents = () => {
@@ -49,15 +44,29 @@ class ComponentsSelectorBar extends Component {
   handleAddComponent = (e) => {
     const { addComponent } = this.props
     const code = e.target.attributes['data-code'].value
-    const defaultInfo = this.state.styleComponents.filter(c => c.code === code)[0].defaultInfo
+    const defaultInfo = this.state.styleComponents.filter(c => c.code === code)[0].defaultConfig
     addComponent(code, defaultInfo)
   }
   
+  showContent = () => {
+    const { status } = this.state
+    switch (status) {
+      case STATUS.LOADING:
+        return <div>Loading...</div>
+      case STATUS.LOADED:
+        return this.showComponents()
+      case STATUS.ERROR:
+        return <div>Error</div>
+      default:
+        break;
+    }
+  }
+
   render() {
     return (
       <div className='components-bar'>
         <h2 className= 'title-component-bar'>Components:</h2>
-        {this.showComponents()}
+        {this.showContent()}
       </div>
     )
   }
