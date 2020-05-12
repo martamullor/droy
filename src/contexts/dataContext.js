@@ -69,45 +69,11 @@ class DataProvider extends Component {
       }
     }
     newUserLayoutObj.splice(fromIndex, 1)
-    if (direction === 'down') {
-      newUserLayoutObj.splice(fromIndex + 1, 0, element)
-    } else if (direction === 'up') {
-      newUserLayoutObj.splice(fromIndex - 1, 0, element)
-    }
+    if (direction === 'down') newUserLayoutObj.splice(fromIndex + 1, 0, element)
+    else if (direction === 'up') newUserLayoutObj.splice(fromIndex - 1, 0, element)
     this.setState({ userLayoutObj: newUserLayoutObj })
   }
 
-  /*
-
-  moveUpComponent = (elementCode) => {
-    const stateCopy = { ...this.state }
-    const { userLayoutObj: newUserLayoutObj } = stateCopy
-    let fromIndex = 0; let element
-    for (let i = 0; i < newUserLayoutObj.length; i++) {
-      const c = newUserLayoutObj[i];
-      if (c.code === elementCode) {
-        element = c; fromIndex = i; break
-      }
-    }
-    newUserLayoutObj.splice(fromIndex, 1)
-    newUserLayoutObj.splice(fromIndex - 1, 0, element)
-    this.setState({ userLayoutObj: newUserLayoutObj })
-  }
-
-  saveComponentInfoToContext = (componentCode, componentAttr, attrContent) => {
-    const stateCopy = { ...this.state }
-    const { userLayoutObj: newUserLayoutObj } = stateCopy
-    for (const userObject of newUserLayoutObj) {
-      if (userObject.code === componentCode) {
-        userObject.info[componentAttr] = attrContent
-      }
-    }
-    this.setState({
-      userLayoutObj: newUserLayoutObj
-    })
-  };
-
-  */
 
   save = async (projectId) => {
     try {
@@ -157,8 +123,6 @@ class DataProvider extends Component {
         copyUserLayoutObjToContext: this.copyUserLayoutObjToContext,
         switchMode: this.switchMode,
         moveComponent: this.moveComponent,
-        //moveDownComponent: this.moveDownComponent,
-        //moveUpComponent: this.moveUpComponent,
         addComponent: this.addComponent,
         deleteComponent: this.deleteComponent,
         save: this.save,
