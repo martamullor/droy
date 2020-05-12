@@ -111,12 +111,8 @@ class DataProvider extends Component {
     }
   }
 
-<<<<<<< HEAD
 
   render () {
-=======
-  render() {
->>>>>>> 93f77425802dc0db4a8d6a0229f89e5af8abd551
     const { children } = this.props
 
     return (

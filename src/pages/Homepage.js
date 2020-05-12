@@ -4,6 +4,7 @@ import ModalStartPage from '../components/droy/ModalStartProject'
 import '../styles/homePage.css'
 import api from '../services/apiClient'
 import { withAuth } from '../contexts/authContext'
+import { Link } from "react-router-dom";
 
 const STATUS = {
   LOADING: 'LOADING',
@@ -26,14 +27,12 @@ class Homepage extends Component {
     try {
       const stylesApi = await api.get('/styles')
       const projectsApi = await api.get('/projects')
-      console.log(projectsApi.data)
       this.setState({
         styles: stylesApi.data,
         allProjects: projectsApi.data,
         status: STATUS.LOADED
       })
     } catch (error) {
-      console.log(error)
       this.setState({
         status: STATUS.ERROR
       })
@@ -52,14 +51,19 @@ class Homepage extends Component {
     })
   }
 
-  
+
   renderProjects = () => {
     const { allProjects } = this.state;
     return allProjects.map((project, index) => {
       return (
-        <li key={index}>
-          {project.name}
-        </li>
+        <Link key={index} to={`builder/${project._id}`}>
+          <button className='buttons-homePage' onClick={this.showModal}>
+            <img className='image-homePage' src="../../img/projects-icon.png" alt='projects'></img>
+            <div >
+              {project.name}
+            </div>
+          </button>
+        </Link>
       );
     });
   };
@@ -80,10 +84,7 @@ class Homepage extends Component {
             </button>
             {this.state.showModal && <ModalStartPage styles={styles} onClose={this.closeModal} />}
             <h2 className='title-homePage'>Your projects:</h2>
-            <button className='buttons-homePage' onClick={this.showModal}>
-              <img className='image-homePage' src="../../img/projects-icon.png" alt='projects'></img>
-            </button>
-            <p>{this.renderProjects()}</p>
+            {this.renderProjects()}
           </div>
         )
       case STATUS.ERROR:
