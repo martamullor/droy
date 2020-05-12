@@ -34,6 +34,7 @@ class DataProvider extends Component {
       projectStyle: "",
       dataError: "",
       savingStep: 'Save',
+      allProjects: [],
       status: STATUS.LOADING
     }
   }
@@ -97,9 +98,7 @@ class DataProvider extends Component {
       }, 500);
     } catch (error) {
       alert("Error al guardar.")
-    }
-
-    
+    }   
   }
 
   addComponent = (componentCode, defaultInfo) => {
@@ -123,6 +122,7 @@ class DataProvider extends Component {
     }
   }
 
+
   render () {
     const { children } = this.props
     
@@ -130,6 +130,7 @@ class DataProvider extends Component {
       <DataContext.Provider value={{
         saveComponentInfoToContext: this.saveComponentInfoToContext,
         getProjectInfo: this.getProjectInfo,
+        getAllProjects: this.getAllProjects,
         getUserLayoutObj: this.getUserLayoutObj,
         copyUserLayoutObjToContext: this.copyUserLayoutObjToContext,
         switchMode: this.switchMode,
