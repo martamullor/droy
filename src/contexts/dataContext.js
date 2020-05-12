@@ -90,6 +90,19 @@ class DataProvider extends Component {
     }   
   }
 
+  saveComponentInfoToContext = (componentCode, componentAttr, attrContent) => {
+    const stateCopy = {...this.state}
+    const { userLayoutObj: newUserLayoutObj } = stateCopy
+    for (const userObject of newUserLayoutObj) {
+      if(userObject.code === componentCode) {
+        userObject.info[componentAttr] = attrContent
+      }
+    }
+    this.setState({
+      userLayoutObj: newUserLayoutObj
+    })
+  };
+
   addComponent = (componentCode, defaultInfo) => {
     const stateCopy = { ...this.state }
     stateCopy.userLayoutObj.push({
@@ -103,7 +116,6 @@ class DataProvider extends Component {
 
   getProjectInfo = async (projectId) => {
     try {
-      this.setState({ status: STATUS.LOADING })
       const { data: { componentsConfiguration, style } } = await api.get(`/projects/${projectId}`)
       this.setState({ userLayoutObj: componentsConfiguration, projectStyle: style, status: STATUS.LOADED })
     } catch (error) {
@@ -118,9 +130,12 @@ class DataProvider extends Component {
       <DataContext.Provider value={{
         saveComponentInfoToContext: this.saveComponentInfoToContext,
         getProjectInfo: this.getProjectInfo,
+<<<<<<< HEAD
         getAllProjects: this.getAllProjects,
         getUserLayoutObj: this.getUserLayoutObj,
         copyUserLayoutObjToContext: this.copyUserLayoutObjToContext,
+=======
+>>>>>>> e9da953d4018b28cf7311b1fdad4f2d366b29e73
         switchMode: this.switchMode,
         moveComponent: this.moveComponent,
         addComponent: this.addComponent,
