@@ -7,10 +7,10 @@ const DataContext = React.createContext()
 // Consumer Wrapper
 export const withData = (Comp) => {
   return class WithData extends Component {
-    render () {
+    render() {
       return (
         <DataContext.Consumer>
-          { (props) => <Comp {...this.props} {...props} /> }
+          {(props) => <Comp {...this.props} {...props} />}
         </DataContext.Consumer>
       )
     }
@@ -26,7 +26,7 @@ const STATUS = {
 // Provider def
 class DataProvider extends Component {
 
-  constructor(props){
+  constructor(props) {
     super(props)
     this.state = {
       mode: 'edit',
@@ -41,16 +41,16 @@ class DataProvider extends Component {
   /* SWITCH MODES */
   switchMode = () => {
     const { mode } = this.state
-    this.setState({ mode: mode === 'edit' ? 'view': 'edit' })
+    this.setState({ mode: mode === 'edit' ? 'view' : 'edit' })
   }
 
   deleteComponent = (elementCode) => {
-    const stateCopy = {...this.state}
+    const stateCopy = { ...this.state }
     const { userLayoutObj: newUserLayoutObj } = stateCopy
     let fromIndex = 0;
     for (let i = 0; i < newUserLayoutObj.length; i++) {
       const c = newUserLayoutObj[i];
-      if(c.code === elementCode) {
+      if (c.code === elementCode) {
         fromIndex = i; break
       }
     }
@@ -58,28 +58,34 @@ class DataProvider extends Component {
     this.setState({ userLayoutObj: newUserLayoutObj })
   }
 
-  moveDownComponent = (elementCode) => {
-    const stateCopy = {...this.state}
+  moveComponent = (elementCode, direction) => {
+    const stateCopy = { ...this.state }
     const { userLayoutObj: newUserLayoutObj } = stateCopy
     let fromIndex = 0; let element
     for (let i = 0; i < newUserLayoutObj.length; i++) {
       const c = newUserLayoutObj[i];
-      if(c.code === elementCode) {
+      if (c.code === elementCode) {
         element = c; fromIndex = i; break
       }
     }
     newUserLayoutObj.splice(fromIndex, 1)
-    newUserLayoutObj.splice(fromIndex + 1, 0, element)
+    if (direction === 'down') {
+      newUserLayoutObj.splice(fromIndex + 1, 0, element)
+    } else if (direction === 'up') {
+      newUserLayoutObj.splice(fromIndex - 1, 0, element)
+    }
     this.setState({ userLayoutObj: newUserLayoutObj })
   }
 
+  /*
+
   moveUpComponent = (elementCode) => {
-    const stateCopy = {...this.state}
+    const stateCopy = { ...this.state }
     const { userLayoutObj: newUserLayoutObj } = stateCopy
     let fromIndex = 0; let element
     for (let i = 0; i < newUserLayoutObj.length; i++) {
       const c = newUserLayoutObj[i];
-      if(c.code === elementCode) {
+      if (c.code === elementCode) {
         element = c; fromIndex = i; break
       }
     }
@@ -89,10 +95,10 @@ class DataProvider extends Component {
   }
 
   saveComponentInfoToContext = (componentCode, componentAttr, attrContent) => {
-    const stateCopy = {...this.state}
+    const stateCopy = { ...this.state }
     const { userLayoutObj: newUserLayoutObj } = stateCopy
     for (const userObject of newUserLayoutObj) {
-      if(userObject.code === componentCode) {
+      if (userObject.code === componentCode) {
         userObject.info[componentAttr] = attrContent
       }
     }
@@ -101,11 +107,13 @@ class DataProvider extends Component {
     })
   };
 
+  */
+
   save = async (projectId) => {
     try {
       this.setState({ savingStep: 'Saving...' })
       const { userLayoutObj } = this.state
-      await api.put(`/projects/${projectId}`, {componentsConfiguration: userLayoutObj})
+      await api.put(`/projects/${projectId}`, { componentsConfiguration: userLayoutObj })
       setTimeout(() => {
         this.setState({ savingStep: 'OK' })
         setTimeout(() => { this.setState({ savingStep: 'Save' }) }, 500);
@@ -114,11 +122,11 @@ class DataProvider extends Component {
       alert("Error al guardar.")
     }
 
-    
+
   }
 
   addComponent = (componentCode, defaultInfo) => {
-    const stateCopy = {...this.state}
+    const stateCopy = { ...this.state }
     stateCopy.userLayoutObj.push({
       code: componentCode,
       info: defaultInfo
@@ -130,7 +138,7 @@ class DataProvider extends Component {
 
   getProjectInfo = async (projectId) => {
     try {
-      this.setState({status: STATUS.LOADING})
+      this.setState({ status: STATUS.LOADING })
       const { data: { componentsConfiguration, style } } = await api.get(`/projects/${projectId}`)
       this.setState({ userLayoutObj: componentsConfiguration, projectStyle: style, status: STATUS.LOADED })
     } catch (error) {
@@ -138,9 +146,9 @@ class DataProvider extends Component {
     }
   }
 
-  render () {
+  render() {
     const { children } = this.props
-    
+
     return (
       <DataContext.Provider value={{
         saveComponentInfoToContext: this.saveComponentInfoToContext,
@@ -148,13 +156,14 @@ class DataProvider extends Component {
         getUserLayoutObj: this.getUserLayoutObj,
         copyUserLayoutObjToContext: this.copyUserLayoutObjToContext,
         switchMode: this.switchMode,
-        moveDownComponent: this.moveDownComponent,
-        moveUpComponent: this.moveUpComponent,
+        moveComponent: this.moveComponent,
+        //moveDownComponent: this.moveDownComponent,
+        //moveUpComponent: this.moveUpComponent,
         addComponent: this.addComponent,
         deleteComponent: this.deleteComponent,
         save: this.save,
         ...this.state
-        
+
       }}>
         {children}
       </DataContext.Provider>

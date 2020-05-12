@@ -3,14 +3,14 @@ import '../../styles/optionsBar.css'
 
 class OptionsBar extends Component {
 
-  handleMoveDownComponent = () => {
-    const { moveDownComponent, code } = this.props
-    moveDownComponent(code)
+  handleMoveUpComponent = () => {
+    const { moveComponent, code } = this.props
+    moveComponent(code, 'up')
   }
 
-  handleMoveUpComponent = () => {
-    const { moveUpComponent, code } = this.props
-    moveUpComponent(code)
+  handleMoveDownComponent = () => {
+    const { moveComponent, code } = this.props
+    moveComponent(code, 'down')
   }
 
   handleDelete = () => {
@@ -28,7 +28,7 @@ class OptionsBar extends Component {
           <img className='image-optionBar' src="../../img/down-icon.png" alt='down'></img>
         </button>
         <button className='buttons-optionBar' onClick={this.handleMoveUpComponent}>
-          <img className='image-optionBar' src="../../img/up-icon.png" alt='down'></img>
+          <img className='image-optionBar' src="../../img/up-icon.png" alt='up'></img>
         </button>
       </div>
     )
