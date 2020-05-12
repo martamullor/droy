@@ -130,12 +130,6 @@ class DataProvider extends Component {
       <DataContext.Provider value={{
         saveComponentInfoToContext: this.saveComponentInfoToContext,
         getProjectInfo: this.getProjectInfo,
-<<<<<<< HEAD
-        getAllProjects: this.getAllProjects,
-        getUserLayoutObj: this.getUserLayoutObj,
-        copyUserLayoutObjToContext: this.copyUserLayoutObjToContext,
-=======
->>>>>>> e9da953d4018b28cf7311b1fdad4f2d366b29e73
         switchMode: this.switchMode,
         moveComponent: this.moveComponent,
         addComponent: this.addComponent,
