@@ -73,6 +73,21 @@ class DataProvider extends Component {
     this.setState({ userLayoutObj: newUserLayoutObj })
   }
 
+  moveUpComponent = (elementCode) => {
+    const stateCopy = {...this.state}
+    const { userLayoutObj: newUserLayoutObj } = stateCopy
+    let fromIndex = 0; let element
+    for (let i = 0; i < newUserLayoutObj.length; i++) {
+      const c = newUserLayoutObj[i];
+      if(c.code === elementCode) {
+        element = c; fromIndex = i; break
+      }
+    }
+    newUserLayoutObj.splice(fromIndex, 1)
+    newUserLayoutObj.splice(fromIndex - 1, 0, element)
+    this.setState({ userLayoutObj: newUserLayoutObj })
+  }
+
   saveComponentInfoToContext = (componentCode, componentAttr, attrContent) => {
     const stateCopy = {...this.state}
     const { userLayoutObj: newUserLayoutObj } = stateCopy
@@ -134,6 +149,7 @@ class DataProvider extends Component {
         copyUserLayoutObjToContext: this.copyUserLayoutObjToContext,
         switchMode: this.switchMode,
         moveDownComponent: this.moveDownComponent,
+        moveUpComponent: this.moveUpComponent,
         addComponent: this.addComponent,
         deleteComponent: this.deleteComponent,
         save: this.save,

@@ -41,7 +41,7 @@ class UserComponentBase extends Component {
   
   
   render () {
-    const { mode, moveDownComponent, code, deleteComponent  } = this.props
+    const { mode, moveDownComponent, moveUpComponent, code, deleteComponent  } = this.props
     const UserComp = MATCH_COMPONENTS[code]
     const componentProps = { info: this.getComponentInfo() }
     if(mode === 'edit'){
@@ -51,7 +51,7 @@ class UserComponentBase extends Component {
     return (
       <div className="user-component-base">
         <UserComp {...componentProps}>
-          {mode === "edit" && <OptionsBar code={code} deleteComponent={deleteComponent} moveDownComponent={moveDownComponent}/>}
+          {mode === "edit" && <OptionsBar code={code} deleteComponent={deleteComponent} moveDownComponent={moveDownComponent} moveUpComponent={moveUpComponent}/>}
         </UserComp>
       </div>
     )
