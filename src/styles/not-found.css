@@ -1,0 +1,13 @@
+.not-found {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.not-found p {
+  font-size: 2rem;
+  color: white;
+  padding: 20px;
+}
+

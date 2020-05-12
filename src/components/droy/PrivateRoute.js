@@ -18,7 +18,7 @@ function PrivateRoute (props) {
 PrivateRoute.propTypes = {
   component: PropTypes.func,
   isLoggedIn: PropTypes.bool,
-  location: PropTypes.string,
+  location: PropTypes.object,
   authLoading: PropTypes.bool
 }
 
