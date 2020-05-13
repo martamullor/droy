@@ -115,7 +115,7 @@ class Homepage extends Component {
             {modalStart && <ModalStartPage styles={styles} onClose={this.closeModalStart} />}
             {modalDelete.show && <ModalDelete onClose={this.closeModalDelete} project={modalDelete.data} />}
             {allProjects.length > 0 && <h2 className='title-homePage'>Your projects:</h2>}
-            <SquareProject project={allProjects} showModalDelete={this.showModalDelete} />
+            {allProjects.map((project, key) => <SquareProject key={key} project={project}  showModalDelete={this.showModalDelete} />)}
           </div>
         )
       case STATUS.ERROR:
