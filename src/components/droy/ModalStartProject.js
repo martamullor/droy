@@ -10,15 +10,18 @@ class ModalStartProject extends Component {
     this.state = {
       name: '',
       theme: '',
-      error: ''
+      error: '',
+      allProjetcs: []
     }
   }
+
 
   handleChange = (e) => {
     this.setState({
       [e.target.name]: e.target.value
     });
   }
+
 
   handleSubmit = async (event) => {
     event.preventDefault();
@@ -35,33 +38,69 @@ class ModalStartProject extends Component {
     }
   }
 
-  render() {
-    const { onClose, styles } = this.props
+  handleDelete = async (projectId) => {
+    const { history } = this.props
+    try {
+      await api.post(`projects/${projectId}`)
+      // Si redirijo a '/' repinta pero no me lo actualiza 
+      history.push(`/`)
+
+    } catch (error) {
+      this.setState({
+        error: error.toString()
+      })
+    }
+  }
+
+  showContentModal = () => {
+    const { onClose, styles, allProjects, isStart } = this.props
     const { name, theme, error } = this.state;
+
+    if (!isStart) {
+      return allProjects.map((project, index) => {
+        return (
+          <div key={index} className='modal-container'>
+            <div className='modal-style'>
+              <button className='close-modal' onClick={onClose}>
+                <img className='close-modal-image' src="../../img/delete-icon.png" alt='delete-project'></img>
+              </button>
+              <button onClick= {(e) => { this.handleDelete(project._id) }}>Delete</button>
+              <p>{error}</p>
+            </div>
+          </div>
+        );
+      });
+    };
     return (
-      <div className='modal-container'>
-        <div className='modal-style'>
-          <button className='close-modal' onClick={onClose}>
-          <img className='close-modal-image' src="../../img/delete-icon.png" alt='delete-project'></img>
-          </button>
-          <p>{error}</p>
-          <form className='form-create-project' onSubmit={this.handleSubmit}>
-            <label className='label-modal' htmlFor="name">Name:</label>
-            <input required="required" className='input-modal' type="text"
-              id='name'
-              value={name}
-              name="name"
-              placeholder="name"
-              onChange={this.handleChange} />
-            <label className='label-modal' htmlFor="theme">Theme:</label>
-            <select required="required" className='option-modal' id='theme' value={theme} name='theme' onChange={this.handleChange}>
-              <option value=""></option>
-              {styles.map((s, k) => <option key={k} value={s.code}>{s.name}</option> )}
-            </select>
-            <button className='button-modal' type='submit'>Create project</button>
-          </form>
+        <div className='modal-container'>
+          <div className='modal-style'>
+            <button className='close-modal' onClick={onClose}>
+              <img className='close-modal-image' src="../../img/delete-icon.png" alt='delete-project'></img>
+            </button>
+            <p>{error}</p>
+            <form className='form-create-project' onSubmit={this.handleSubmit}>
+              <label className='label-modal' htmlFor="name">Name:</label>
+              <input required="required" className='input-modal' type="text"
+                id='name'
+                value={name}
+                name="name"
+                placeholder="name"
+                onChange={this.handleChange} />
+              <label className='label-modal' htmlFor="theme">Theme:</label>
+              <select required="required" className='option-modal' id='theme' value={theme} name='theme' onChange={this.handleChange}>
+                <option value=""></option>
+                {styles.map((s, k) => <option key={k} value={s.code}>{s.name}</option>)}
+              </select>
+              <button className='button-modal' type='submit'>Create project</button>
+            </form>
+          </div>
         </div>
-      </div>
+    )
+  }
+
+  render() {
+    return(
+      this.showContentModal()
     )
   }
 }

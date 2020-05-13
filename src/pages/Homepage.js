@@ -17,6 +17,7 @@ class Homepage extends Component {
     super(props)
     this.state = {
       showModal: false,
+      isStart: '',
       styles: [],
       allProjects: [],
       status: STATUS.LOADING
@@ -39,9 +40,18 @@ class Homepage extends Component {
     }
   }
 
+
   showModalStartProject = () => {
     this.setState({
-      showModal: true
+      showModal: true,
+      isStart: true,
+    })
+  }
+
+  showModalDeleteProject = () => {
+    this.setState({
+      showModal: true,
+      isStart: false,
     })
   }
 
@@ -50,28 +60,32 @@ class Homepage extends Component {
       showModal: false
     })
   }
-
+ 
 
   renderProjects = () => {
     const { allProjects } = this.state;
     return allProjects.map((project, index) => {
       return (
-        <Link key={index} to={`builder/${project._id}`}>
-          <button className='buttons-homePage' onClick={this.showModal}>
-            <img className='image-homePage' src="../../img/projects-icon.png" alt='projects'></img>
-            <div >
-              {project.name}
-            </div>
+        <div key={index} >
+          <Link to={`builder/${project._id}`}>
+            <button className='buttons-homePage'>
+              <img className='image-homePage' src="../../img/projects-icon.png" alt='projects'></img>
+              <div >
+                {project.name}
+              </div>
+            </button>
+          </Link>
+          <button className='buttons-homePage' onClick={this.showModalDeleteProject}>
+            <img className='image-homePage' src="../../img/delete-icon.png" alt='create-project'></img>
           </button>
-        </Link>
+        </div>
       );
     });
   };
 
 
-
   showContent() {
-    const { status, styles } = this.state
+    const { status, styles, allProjects, isStart } = this.state
     switch (status) {
       case STATUS.LOADING:
         return <div> Loading... </div>
@@ -82,7 +96,7 @@ class Homepage extends Component {
             <button className='buttons-homePage' onClick={this.showModalStartProject}>
               <img className='image-homePage' src="../../img/sum-icon.png" alt='create-project'></img>
             </button>
-            {this.state.showModal && <ModalStartPage styles={styles} onClose={this.closeModal} />}
+            {this.state.showModal && <ModalStartPage styles={styles} allProjects={allProjects} onClose={this.closeModal} isStart={isStart} />}
             <h2 className='title-homePage'>Your projects:</h2>
             {this.renderProjects()}
           </div>
@@ -98,7 +112,7 @@ class Homepage extends Component {
 
   render() {
     return (
-      <div>
+      <div className='homePage-container'>
         <NavBar />
         {this.showContent()}
       </div>
