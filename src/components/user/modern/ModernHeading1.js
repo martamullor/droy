@@ -2,10 +2,11 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
 const style = {
-  backgroundColor: '#dedede',
-  padding: '5px 40px 5px 40px',
+  backgroundColor: '#1b1b1b',
+  padding: '8px 40px 8px 40px',
   display: 'flex',
-  color: '#1a1a1a',
+  color: 'white',
+  justifyContent: 'space-between',
   alignItems: 'center'
 }
 
@@ -19,19 +20,19 @@ const textContainer = {
 }
 
 const text = {
-  paddingRight: '10px',
+  paddingRight: '15px',
   fontSize: '0.9rem'
 }
 
-class ClassicHeading2 extends Component {
+class ModernHeading1 extends Component {
   render () {
     const { info, changeInfo, children: optionsBar } = this.props
     return (
 
       <div style={style}>
-        { optionsBar }
+        {optionsBar}
         <div>
-          <img style={logo} src='../../../img/logo-grey.png' alt='logo-classic-heading'></img>
+          <img style={logo} src='../../../img/logo-white.png' alt='logo-classic-heading'></img>
         </div>
         <div style={textContainer}>
           <p style={text} data-id="text1" onDoubleClick={changeInfo}>{info.text1}</p>
@@ -42,7 +43,7 @@ class ClassicHeading2 extends Component {
   }
 }
 
-ClassicHeading2.propTypes = {
+ModernHeading1.propTypes = {
   info: PropTypes.object,
   changeInfo: PropTypes.func,
   optionsBar: PropTypes.object,
@@ -50,4 +51,4 @@ ClassicHeading2.propTypes = {
   code: PropTypes.string
 }
 
-export default ClassicHeading2
+export default ModernHeading1

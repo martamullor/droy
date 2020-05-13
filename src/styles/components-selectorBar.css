@@ -1,0 +1,12 @@
+.components-bar {
+    width: 35%;
+    background-color: #262e66;
+    color: #7b8add;
+    height: 143vh;
+}
+
+.title-component-bar {
+    padding: 15px;
+    font-size: 1.3rem;
+    font-weight: 600;
+}
