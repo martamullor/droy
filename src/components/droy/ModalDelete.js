@@ -10,19 +10,34 @@ export default class ModalDelete extends Component {
     }
   }
 
-  handleDelete = async () => {
+  handleChange = (e) => {
+    this.setState({
+      [e.target.name]: e.target.value
+    });
+  }
+
+  handleDelete = async (e) => {
+    e.preventDefault()
     const { project, onClose } = this.props
+    const { name } = this.state
     try {
-      await api.delete(`projects/${project._id}`)
-      onClose()
+      if( name === project.name) {
+        await api.delete(`projects/${project._id}`)
+        onClose()
+      } else {
+        this.setState({
+          error: 'Los campos no coinciden'
+        })
+      }
     } catch (error) {
       this.setState({
-        error: error.toString()
+        error: error.toString('')
       })
     }
   }
 
-  render () {
+
+  render() {
     const { onClose, project } = this.props
     const { error } = this.state
     return (
@@ -31,9 +46,14 @@ export default class ModalDelete extends Component {
           <button className='close-modal' onClick={onClose}>
             <img className='close-modal-image' src="../../img/delete-icon.png" alt='delete-project'></img>
           </button>
-          <p>Escribe {project.name} si quieres borrar tu proyecto</p>
-          <input type="text"/>
-          <button onClick={this.handleDelete}>Delete</button>
+          <p> Escribe {project.name} para borrar tu proyect</p>
+          <form className='form-create-project' onSubmit={this.handleDelete}>
+            <input required="required" className='input-modal' type="text"
+              name="name"
+              placeholder=""
+              onChange={this.handleChange} />
+            <button className='button-modal' type='submit'>Delete</button>
+          </form>
           <p>{error}</p>
         </div>
       </div>

@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import NavBar from '../components/droy/NavBar'
 import ModalStartPage from '../components/droy/ModalStartProject'
 import ModalDelete from '../components/droy/ModalDelete'
+import SquareProject from '../components/droy/SquareProject'
 import '../styles/homePage.css'
 import api from '../services/apiClient'
 import { withAuth } from '../contexts/authContext'
@@ -68,9 +69,9 @@ class Homepage extends Component {
 
   showModalStart = () => {
     this.setState({
-        modalDelete: {show: false, data: ''},
-        modalStart: true
-      })
+      modalDelete: { show: false, data: '' },
+      modalStart: true
+    })
   }
 
   closeModalStart = () => {
@@ -79,7 +80,7 @@ class Homepage extends Component {
     })
   }
 
- 
+
   renderProjects = () => {
     const { allProjects } = this.state;
     return allProjects.map((project, index) => {
@@ -102,7 +103,7 @@ class Homepage extends Component {
 
 
   showContent() {
-    const { status, styles, modalStart, modalDelete } = this.state
+    const { status, styles, modalStart, modalDelete, allProjects } = this.state
     switch (status) {
       case STATUS.LOADING:
         return <div> Loading... </div>
@@ -113,8 +114,8 @@ class Homepage extends Component {
             <img className='image-homePage' onClick={this.showModalStart} src="../../img/sum-icon.png" alt='create-project'></img>
             {modalStart && <ModalStartPage styles={styles} onClose={this.closeModalStart} />}
             {modalDelete.show && <ModalDelete onClose={this.closeModalDelete} project={modalDelete.data} />}
-            <h2 className='title-homePage'>Your projects:</h2>
-            {this.renderProjects()}
+            {allProjects.length > 0 && <h2 className='title-homePage'>Your projects:</h2>}
+            <SquareProject project={allProjects} showModalDelete={this.showModalDelete} />
           </div>
         )
       case STATUS.ERROR:
