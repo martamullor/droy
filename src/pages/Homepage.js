@@ -1,9 +1,12 @@
 import React, { Component } from 'react'
 import NavBar from '../components/droy/NavBar'
 import ModalStartPage from '../components/droy/ModalStartProject'
+import ModalDelete from '../components/droy/ModalDelete'
+import SquareProject from '../components/droy/SquareProject'
 import '../styles/homePage.css'
 import api from '../services/apiClient'
 import { withAuth } from '../contexts/authContext'
+import { Link } from "react-router-dom";
 
 const STATUS = {
   LOADING: 'LOADING',
@@ -15,59 +18,92 @@ class Homepage extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      showModal: false,
+      modalDelete: { show: '', data: '' },
+      modalStart: false,
       styles: [],
       allProjects: [],
       status: STATUS.LOADING
     }
   }
 
-  componentDidMount = async () => {
+  updateComponents = async () => {
     try {
       const stylesApi = await api.get('/styles')
       const projectsApi = await api.get('/projects')
-      console.log(projectsApi.data)
       this.setState({
         styles: stylesApi.data,
         allProjects: projectsApi.data,
-        status: STATUS.LOADED
+        status: STATUS.LOADED,
       })
     } catch (error) {
-      console.log(error)
       this.setState({
         status: STATUS.ERROR
       })
     }
   }
 
-  showModalStartProject = () => {
+  componentDidMount = async () => {
+    this.updateComponents()
+  }
+
+  showModalDelete = (e) => {
+    const { allProjects } = this.state
+    let targetProject = e.target.attributes['data-project']
+    targetProject = allProjects.find(p => p._id === targetProject.value)
     this.setState({
-      showModal: true
+      modalDelete: {
+        show: true,
+        data: targetProject
+      },
+      modalStart: false
     })
   }
 
-  closeModal = () => {
+  closeModalDelete = () => {
+    // Warning: double rendering
+    this.updateComponents()
     this.setState({
-      showModal: false
+      modalDelete: { show: false }
     })
   }
 
-  
+  showModalStart = () => {
+    this.setState({
+      modalDelete: { show: false, data: '' },
+      modalStart: true
+    })
+  }
+
+  closeModalStart = () => {
+    this.setState({
+      modalStart: false
+    })
+  }
+
+
   renderProjects = () => {
     const { allProjects } = this.state;
     return allProjects.map((project, index) => {
       return (
-        <li key={index}>
-          {project.name}
-        </li>
+        // Hacer componente SquareProject
+        <div key={index} >
+          <Link to={`builder/${project._id}`}>
+            <button className='buttons-homePage'>
+              <img className='image-homePage' src="../../img/projects-icon.png" alt='projects'></img>
+              <div >
+                {project.name}
+              </div>
+            </button>
+          </Link>
+          <img onClick={this.showModalDelete} data-project={project._id} className='image-homePage' src="../../img/delete-icon.png" alt='create-project'></img>
+        </div>
       );
     });
   };
 
 
-
   showContent() {
-    const { status, styles } = this.state
+    const { status, styles, modalStart, modalDelete, allProjects } = this.state
     switch (status) {
       case STATUS.LOADING:
         return <div> Loading... </div>
@@ -75,15 +111,11 @@ class Homepage extends Component {
         return (
           <div>
             <h2 className='title-homePage'>Start a new project:</h2>
-            <button className='buttons-homePage' onClick={this.showModalStartProject}>
-              <img className='image-homePage' src="../../img/sum-icon.png" alt='create-project'></img>
-            </button>
-            {this.state.showModal && <ModalStartPage styles={styles} onClose={this.closeModal} />}
-            <h2 className='title-homePage'>Your projects:</h2>
-            <button className='buttons-homePage' onClick={this.showModal}>
-              <img className='image-homePage' src="../../img/projects-icon.png" alt='projects'></img>
-            </button>
-            <p>{this.renderProjects()}</p>
+            <img className='image-homePage' onClick={this.showModalStart} src="../../img/sum-icon.png" alt='create-project'></img>
+            {modalStart && <ModalStartPage styles={styles} onClose={this.closeModalStart} />}
+            {modalDelete.show && <ModalDelete onClose={this.closeModalDelete} project={modalDelete.data} />}
+            {allProjects.length > 0 && <h2 className='title-homePage'>Your projects:</h2>}
+            {allProjects.map((project, key) => <SquareProject key={key} project={project}  showModalDelete={this.showModalDelete} />)}
           </div>
         )
       case STATUS.ERROR:
@@ -97,7 +129,7 @@ class Homepage extends Component {
 
   render() {
     return (
-      <div>
+      <div className='homePage-container'>
         <NavBar />
         {this.showContent()}
       </div>
