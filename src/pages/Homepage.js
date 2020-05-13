@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import NavBar from '../components/droy/NavBar'
 import ModalStartPage from '../components/droy/ModalStartProject'
+import ModalDelete from '../components/droy/ModalDelete'
 import '../styles/homePage.css'
 import api from '../services/apiClient'
 import { withAuth } from '../contexts/authContext'
@@ -16,22 +17,22 @@ class Homepage extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      showModal: false,
-      isStart: '',
+      modalDelete: { show: '', data: '' },
+      modalStart: false,
       styles: [],
       allProjects: [],
       status: STATUS.LOADING
     }
   }
 
-  componentDidMount = async () => {
+  updateComponents = async () => {
     try {
       const stylesApi = await api.get('/styles')
       const projectsApi = await api.get('/projects')
       this.setState({
         styles: stylesApi.data,
         allProjects: projectsApi.data,
-        status: STATUS.LOADED
+        status: STATUS.LOADED,
       })
     } catch (error) {
       this.setState({
@@ -40,32 +41,50 @@ class Homepage extends Component {
     }
   }
 
+  componentDidMount = async () => {
+    this.updateComponents()
+  }
 
-  showModalStartProject = () => {
+  showModalDelete = (e) => {
+    const { allProjects } = this.state
+    let targetProject = e.target.attributes['data-project']
+    targetProject = allProjects.find(p => p._id === targetProject.value)
     this.setState({
-      showModal: true,
-      isStart: true,
+      modalDelete: {
+        show: true,
+        data: targetProject
+      },
+      modalStart: false
     })
   }
 
-  showModalDeleteProject = () => {
+  closeModalDelete = () => {
+    // Warning: double rendering
+    this.updateComponents()
     this.setState({
-      showModal: true,
-      isStart: false,
+      modalDelete: { show: false }
     })
   }
 
-  closeModal = () => {
+  showModalStart = () => {
     this.setState({
-      showModal: false
+        modalDelete: {show: false, data: ''},
+        modalStart: true
+      })
+  }
+
+  closeModalStart = () => {
+    this.setState({
+      modalStart: false
     })
   }
+
  
-
   renderProjects = () => {
     const { allProjects } = this.state;
     return allProjects.map((project, index) => {
       return (
+        // Hacer componente SquareProject
         <div key={index} >
           <Link to={`builder/${project._id}`}>
             <button className='buttons-homePage'>
@@ -75,9 +94,7 @@ class Homepage extends Component {
               </div>
             </button>
           </Link>
-          <button className='buttons-homePage' onClick={this.showModalDeleteProject}>
-            <img className='image-homePage' src="../../img/delete-icon.png" alt='create-project'></img>
-          </button>
+          <img onClick={this.showModalDelete} data-project={project._id} className='image-homePage' src="../../img/delete-icon.png" alt='create-project'></img>
         </div>
       );
     });
@@ -85,7 +102,7 @@ class Homepage extends Component {
 
 
   showContent() {
-    const { status, styles, allProjects, isStart } = this.state
+    const { status, styles, modalStart, modalDelete } = this.state
     switch (status) {
       case STATUS.LOADING:
         return <div> Loading... </div>
@@ -93,10 +110,9 @@ class Homepage extends Component {
         return (
           <div>
             <h2 className='title-homePage'>Start a new project:</h2>
-            <button className='buttons-homePage' onClick={this.showModalStartProject}>
-              <img className='image-homePage' src="../../img/sum-icon.png" alt='create-project'></img>
-            </button>
-            {this.state.showModal && <ModalStartPage styles={styles} allProjects={allProjects} onClose={this.closeModal} isStart={isStart} />}
+            <img className='image-homePage' onClick={this.showModalStart} src="../../img/sum-icon.png" alt='create-project'></img>
+            {modalStart && <ModalStartPage styles={styles} onClose={this.closeModalStart} />}
+            {modalDelete.show && <ModalDelete onClose={this.closeModalDelete} project={modalDelete.data} />}
             <h2 className='title-homePage'>Your projects:</h2>
             {this.renderProjects()}
           </div>

@@ -10,8 +10,7 @@ class ModalStartProject extends Component {
     this.state = {
       name: '',
       theme: '',
-      error: '',
-      allProjetcs: []
+      error: ''
     }
   }
 
@@ -38,39 +37,11 @@ class ModalStartProject extends Component {
     }
   }
 
-  handleDelete = async (projectId) => {
-    const { history } = this.props
-    try {
-      await api.post(`projects/${projectId}`)
-      // Si redirijo a '/' repinta pero no me lo actualiza 
-      history.push(`/`)
-
-    } catch (error) {
-      this.setState({
-        error: error.toString()
-      })
-    }
-  }
 
   showContentModal = () => {
-    const { onClose, styles, allProjects, isStart } = this.props
+    const { onClose, styles } = this.props
     const { name, theme, error } = this.state;
 
-    if (!isStart) {
-      return allProjects.map((project, index) => {
-        return (
-          <div key={index} className='modal-container'>
-            <div className='modal-style'>
-              <button className='close-modal' onClick={onClose}>
-                <img className='close-modal-image' src="../../img/delete-icon.png" alt='delete-project'></img>
-              </button>
-              <button onClick= {(e) => { this.handleDelete(project._id) }}>Delete</button>
-              <p>{error}</p>
-            </div>
-          </div>
-        );
-      });
-    };
     return (
         <div className='modal-container'>
           <div className='modal-style'>

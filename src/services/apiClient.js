@@ -19,6 +19,11 @@ class ApiClient {
   put (endpoint, data) {
     return this.apiClient.put(endpoint, data)
   }
+
+  delete (endpoint, data) {
+    return this.apiClient.delete(endpoint, data)
+  }
+
 }
 
 const apiClient = new ApiClient()
