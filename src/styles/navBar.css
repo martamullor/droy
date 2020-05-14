@@ -3,8 +3,9 @@
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    padding: 5px 30px;
-    background-color: #dd59da;
+    padding: 12px 30px;
+    box-shadow: 1px 1px 9px -1px rgba(241,241,241,1);
+    background-color: white;
 }
 
 .logo-navBar {
@@ -13,14 +14,14 @@
 
 .buttons-navBar{
     font-family: Montserrat, sans-serif;
-    background-color: #ef9bfd;
+    background-color: #f1f2f4;
     padding: 8px 30px;
     margin-right: 10px;
     border-radius: 3px;
     border: none;
-    color: white;
-    font-weight: 600;
-    font-size: 0.8rem;
+    color: #3f5476;
+    font-weight: 400;
+    font-size: 0.9rem;
     text-decoration: none;
 }
 

@@ -40,7 +40,6 @@ class Login extends Component {
         <NavBar />
         <div className='login-signup-container'>
           <div className='logo-container'>
-            <img className='login-logo' src='../../../img/logo-white.png' alt='logo-white'></img>
           </div>
           <div className='form-title-container'>
             <h1 className='title-login-signup'>Login your account:</h1>
@@ -64,8 +63,10 @@ class Login extends Component {
                 value={hashedPassword}
                 onChange={this.handleChange}
               />
-              <input className='button-form' type="submit" value="submit" />
-              <Link className='text-form' to="/signup">You don't have an account? Register here!</Link>
+              <div className='button-link-login-signup'>
+                <Link className='text-form' to="/signup">You don't have an account? Register here!</Link>
+                <input className='button-form' type="submit" value="submit" />
+              </div>
             </form>
           </div>
         </div>

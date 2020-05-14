@@ -3,21 +3,24 @@
     flex-direction: row;
     justify-content: left;
     align-items: center;
-    height: 80vh;
+    height: 92vh;
+    z-index: -10;
 }
 
 .logo-container {
-    width: 35vw;
-    padding: 80px;
+    width: 90%;
+    height: 100%;
+    background-image: url('/img/droy-cover.png');
 }
 
 .form-title-container {
-    width: 55vw;
+    width: 70vw;
+    height: 95%;
     padding: 30px 70px 0px 70px;
-}
-
-.login-logo {
-    width: 95%;
+    box-shadow: -5px 4px 9px -1px rgba(241,241,241,1);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .subtitle-login {
@@ -28,11 +31,10 @@
 
 .title-login-signup {
     font-weight: 400;
-    color: #7b8add;
-    font-size: 1.3rem;
-    font-weight: 600;
+    color: #3f5476;
+    font-size: 1.5rem;
     margin-left: 5px;
-    margin: 0px 0px 20px 5px;
+    margin: 0px 0px 5px 5px;
 }
 
 .login-form {
@@ -41,37 +43,45 @@
 }
 
 .input-form {
-    margin: 5px;
-    background: #262e66;
+    margin: 7px;
+    background-color: #f1f2f4;
     border: none;
-    padding: 10px;
-    border-radius: 8px;
-    box-shadow: -1px 1px 72px -16px rgba(21,26,61,1)
+    padding: 12px;
+    border-radius: 3px;
+    color: #3f5476;
+    border: 1px solid #c8ced8;
 }
 
 .input-form::placeholder {
     font-family: 'Montserrat', sans-serif;
-    color: #7b8add;
+    color: #3f5476;
     font-weight: 500;
+}
+
+.button-link-login-signup {
+    display: flex;
+    padding: 12px;
 }
 
 
 .button-form {
-    margin: 15px 5px 15px 5px;
     font-family: 'Montserrat', sans-serif;
-    background: #7b8add;
+    background: #f1f2f4;
     border: none;
-    padding: 8px;
-    border-radius: 8px;
-    box-shadow: -1px 1px 72px -16px rgba(21,26,61,1);
-    color: #262e66;
-    font-weight: 900;
-    text-transform: uppercase;
+    padding: 10px 10px;
+    border-radius: 3px;
+    color: #00c77f;
     font-size: 0.8rem;
+    flex-grow: 1;
+    font-size: 0.95rem;
+    text-transform: capitalize;
+    font-weight: 600;
 }
 
 .text-form {
-    color: #7b8add;
-    text-align: center;
-    text-decoration: none;
+    color: #3f5476;
+    text-align: left;
+    align-self: center;
+    flex-grow: 1;
+    font-size: 0.8rem;
 }
