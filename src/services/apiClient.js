@@ -3,7 +3,7 @@ import axios from 'axios'
 class ApiClient {
   constructor () {
     this.apiClient = axios.create({
-      baseURL: 'http://localhost:3005',
+      baseURL: 'https://droy-api-dev.herokuapp.com',
       withCredentials: true
     })
   }

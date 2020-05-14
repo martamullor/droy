@@ -110,12 +110,14 @@ class Homepage extends Component {
       case STATUS.LOADED:
         return (
           <div>
-            <h2 className='title-homePage'>Start a new project:</h2>
-            <img className='image-homePage' onClick={this.showModalStart} src="../../img/sum-icon.png" alt='create-project'></img>
+            <h2 className='title-homePage'>Create a project:</h2>
+            <img className='buttons-homePage' onClick={this.showModalStart} src="../../img/sum-icon.png" alt='create-project'></img>
             {modalStart && <ModalStartPage styles={styles} onClose={this.closeModalStart} />}
             {modalDelete.show && <ModalDelete onClose={this.closeModalDelete} project={modalDelete.data} />}
-            {allProjects.length > 0 && <h2 className='title-homePage'>Your projects:</h2>}
-            {allProjects.map((project, key) => <SquareProject key={key} project={project}  showModalDelete={this.showModalDelete} />)}
+            {allProjects.length > 0 && <h2 className='title-homePage'>Select the project you want to open:</h2>}
+            <div className='all-projects-homePage'>
+              {allProjects.map((project, key) => <SquareProject key={key} project={project} showModalDelete={this.showModalDelete} />)}
+            </div>
           </div>
         )
       case STATUS.ERROR:

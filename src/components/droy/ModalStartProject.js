@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import '../../styles/modal-start-project.css'
+import '../../styles/modal-projects.css'
 import api from '../../services/apiClient'
 import { withRouter } from "react-router";
 
@@ -45,18 +45,18 @@ class ModalStartProject extends Component {
         <div className='modal-container'>
           <div className='modal-style'>
             <button className='close-modal' onClick={onClose}>
-              <img className='close-modal-image' src="../../img/delete-icon.png" alt='delete-project'></img>
+              <img className='close-modal-image' src="../../img/close-icon.png" alt='delete-project'></img>
             </button>
             <p>{error}</p>
             <form className='form-create-project' onSubmit={this.handleSubmit}>
-              <label className='label-modal' htmlFor="name">Name:</label>
+              <label className='label-modal' htmlFor="name">Name of the project:</label>
               <input required="required" className='input-modal' type="text"
                 id='name'
                 value={name}
                 name="name"
                 placeholder="name"
                 onChange={this.handleChange} />
-              <label className='label-modal' htmlFor="theme">Theme:</label>
+              <label className='label-modal' htmlFor="theme">Choose a theme:</label>
               <select required="required" className='option-modal' id='theme' value={theme} name='theme' onChange={this.handleChange}>
                 <option value=""></option>
                 {styles.map((s, k) => <option key={k} value={s.code}>{s.name}</option>)}

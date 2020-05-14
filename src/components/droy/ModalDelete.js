@@ -44,9 +44,9 @@ export default class ModalDelete extends Component {
       <div className='modal-container'>
         <div className='modal-style'>
           <button className='close-modal' onClick={onClose}>
-            <img className='close-modal-image' src="../../img/delete-icon.png" alt='delete-project'></img>
+            <img className='close-modal-image' src="../../img/close-icon.png" alt='delete-project'></img>
           </button>
-          <p> Escribe {project.name} para borrar tu proyect</p>
+          <p className='text-modal-close'> Type {project.name} to delete your project permanently</p>
           <form className='form-create-project' onSubmit={this.handleDelete}>
             <input required="required" className='input-modal' type="text"
               name="name"
@@ -54,7 +54,7 @@ export default class ModalDelete extends Component {
               onChange={this.handleChange} />
             <button className='button-modal' type='submit'>Delete</button>
           </form>
-          <p>{error}</p>
+          <p className='error-text'>{error}</p>
         </div>
       </div>
     )

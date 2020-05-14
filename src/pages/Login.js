@@ -42,7 +42,7 @@ class Login extends Component {
           <div className='logo-container'>
           </div>
           <div className='form-title-container'>
-            <h1 className='title-login-signup'>Login your account:</h1>
+            <h1 className='title-login-signup'>Login:</h1>
             <p>{loginError}</p>
             <form className='login-form' onSubmit={this.handleSubmit}>
               <input className='input-form'
@@ -65,7 +65,7 @@ class Login extends Component {
               />
               <div className='button-link-login-signup'>
                 <Link className='text-form' to="/signup">You don't have an account? Register here!</Link>
-                <input className='button-form' type="submit" value="submit" />
+                <input className='button-form' type="submit" value="Log in" />
               </div>
             </form>
           </div>

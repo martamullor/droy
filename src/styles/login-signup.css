@@ -66,14 +66,14 @@
 
 .button-form {
     font-family: 'Montserrat', sans-serif;
-    background: #f1f2f4;
+    background: #00c77f;
     border: none;
     padding: 10px 10px;
     border-radius: 3px;
-    color: #00c77f;
+    color: white;
     font-size: 0.8rem;
     flex-grow: 1;
-    font-size: 0.95rem;
+    font-size: 0.85rem;
     text-transform: capitalize;
     font-weight: 600;
 }
