@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 import { withData } from '../../contexts/dataContext'
 import { withAuth } from '../../contexts/authContext'
 import OptionsBar from '../droy/OptionsBar'
-import firebase from '../../services/firebase'
+import { firestore, auth } from '../../services/firebase'
 import { uuid } from 'uuidv4'
 import '../../styles/user-componentBase.css'
 
@@ -28,19 +28,18 @@ class UserComponentBase extends Component {
     const { projectId, code, saveComponentInfoToContext, user } = this.props
     const attr = e.target.attributes['data-id'].value
     const file = e.target.files[0]
-    // TODO, cuando borramos proyecto, borramos carpeta bucket para ese proyecto
-    const storageRef = firebase.storage().ref(`/${user.email}/${projectId}/${uuid()}`)
+    const storageRef = firestore.ref(`/${auth.currentUser.uid}/${projectId}/${uuid()}`)
     if(file.size > 20000){
-      alert('Imagen demasiado grande. Elige una mas pequeña o hazle un resize')
+      alert('Imagen demasiado grande.')
       return
     }
     const task = storageRef.put(file)
     task.on('state_changed', (snapshot) => {
       let percentage = (snapshot.bytesTransferred / snapshot.totalBytes) * 100
       // TODO, ir enseñando progreso en front y bloquearlo todo de mientras
-      console.log(111, percentage)
+      console.log('Percentage', percentage)
     }, (error) => {
-      console.error(2222, error.message)
+      console.error('Error on change image', error.message)
     }, async () => {
       const downloadUrl = await task.snapshot.ref.getDownloadURL()
       saveComponentInfoToContext(code, attr, downloadUrl)

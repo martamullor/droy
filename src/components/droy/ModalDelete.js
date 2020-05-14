@@ -23,6 +23,7 @@ export default class ModalDelete extends Component {
     try {
       if( name === project.name) {
         await api.delete(`projects/${project._id}`)
+        // Borrar carpeta de BUCKET buscandola por /userid/projectid !!!
         onClose()
       } else {
         this.setState({

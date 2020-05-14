@@ -1,6 +1,6 @@
-import * as firebase from 'firebase'
+import firebase from 'firebase'
 
-const firebaseConfig = { // Poner estos datos en el .env
+const firebaseConfig = { // Poner estos datos en server?
   apiKey: 'AIzaSyBd5EjLbjtvoWmC4jKmFKcTa5Up87I9bTc',
   authDomain: 'droy-dev.firebaseapp.com',
   databaseURL: 'https://droy-dev.firebaseio.com',
@@ -12,4 +12,5 @@ const firebaseConfig = { // Poner estos datos en el .env
 
 firebase.initializeApp(firebaseConfig)
 
-export default firebase
+export const auth = firebase.auth()
+export const firestore = firebase.storage()

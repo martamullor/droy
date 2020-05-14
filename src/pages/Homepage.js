@@ -26,24 +26,19 @@ class Homepage extends Component {
     }
   }
 
-  updateComponents = async () => {
-    try {
-      const stylesApi = await api.get('/styles')
-      const projectsApi = await api.get('/projects')
-      this.setState({
-        styles: stylesApi.data,
-        allProjects: projectsApi.data,
-        status: STATUS.LOADED,
-      })
-    } catch (error) {
-      this.setState({
-        status: STATUS.ERROR
-      })
-    }
-  }
-
   componentDidMount = async () => {
-    this.updateComponents()
+    try {
+      const { data: styles } = await api.get('/styles')
+      const { data: projects } = await api.get('/projects')
+      this.setState({
+        styles: styles,
+        allProjects: projects,
+        status: STATUS.LOADED,
+      })      
+    } catch (error) {
+      this.setState({ status: STATUS.ERROR })
+    }
+
   }
 
   showModalDelete = (e) => {
@@ -59,12 +54,16 @@ class Homepage extends Component {
     })
   }
 
-  closeModalDelete = () => {
-    // Warning: double rendering
-    this.updateComponents()
-    this.setState({
-      modalDelete: { show: false }
-    })
+  closeModalDelete = async () => {
+    try {
+      const { data: projects} = await api.get('/projects')
+      this.setState({
+        modalDelete: { show: false, data: '' },
+        allProjects: projects,
+      })      
+    } catch (error) {
+      this.setState({ status: STATUS.ERROR })
+    }
   }
 
   showModalStart = () => {

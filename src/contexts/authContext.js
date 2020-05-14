@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import api from "../services/apiClient";
 import { withRouter } from "react-router-dom";
+import { auth } from '../services/firebase'
 
 export const AuthContext = React.createContext();
 
@@ -37,12 +38,20 @@ class AuthProvider extends Component {
       isLoggedIn: false,
       user: null,
       authLoading: true,
-      loginError: ""
+      loginError: "",
+      firebaseUser: ""
     };
   }
 
   componentDidMount = async () => {
     try {
+      auth.onAuthStateChanged(userAuth => {
+        if (user) {
+          this.setState({ firebaseUser: user })
+        } else {
+          return
+        }
+      });
       const { data: user } = await api.get('/auth/whoami')
       this.setState({
         authLoading: false,
@@ -66,8 +75,13 @@ class AuthProvider extends Component {
         isLoggedIn: true,
         user,
       });
+      auth.signInWithEmailAndPassword(email, hashedPassword).catch(function(error) {
+        console.log('in firebase login')
+        console.log(error.message)
+      });
       history.push('/')
     } catch (error) {
+      
       this.setState({
         isLoggedIn: false,
         user: null,
@@ -85,12 +99,17 @@ class AuthProvider extends Component {
         return
       } 
       const { data: user } = await api.post('/auth/signup', { email, hashedPassword, name })
+      auth.createUserWithEmailAndPassword(email, hashedPassword).catch(function(error) {
+        console.log('in sign up')
+        console.log(error.message)
+      });
       this.setState({
         isLoggedIn: true,
         user,
       });
       history.push('/')
     } catch (error) {
+      console.log(error)
       this.setState({
         isLoggedIn: false,
         user: null,
@@ -107,6 +126,11 @@ class AuthProvider extends Component {
         isLoggedIn: false,
         user: null,
       })
+      auth.signOut().then(function() {
+        console.log('in sign out')
+      }).catch(function(error) {
+        console.log('in sign out error')
+      });
       history.push('/login')
     } catch (error) {
       console.log(error);
