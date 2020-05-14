@@ -29,7 +29,7 @@ class ComponentsSelectorBar extends Component {
 
 
   showComponents = () => {
-    const usedCompIds = this.props.userLayoutObj.map(c=>c.code)
+    const usedCompIds = this.props.userLayoutObj.map(c => c.code)
     const { styleComponents } = this.state
     return styleComponents.map(c => {
       if (!usedCompIds.includes(c.code)) {
@@ -39,7 +39,9 @@ class ComponentsSelectorBar extends Component {
             {c.code}
           </div>)
       }
-      return false
+      return (<div key={c.code} style={{ margin: '20px', backgroundColor: 'yellow', opacity:'0.3', height: '50px', color: 'black' }}>
+        {c.code}
+      </div>)
     })
   }
 
@@ -49,7 +51,7 @@ class ComponentsSelectorBar extends Component {
     const defaultInfo = this.state.styleComponents.filter(c => c.code === code)[0].defaultConfig
     addComponent(code, defaultInfo)
   }
-  
+
   showContent = () => {
     const { status } = this.state
     switch (status) {
@@ -67,7 +69,7 @@ class ComponentsSelectorBar extends Component {
   render() {
     return (
       <div className='components-bar'>
-        <h2 className= 'title-component-bar'>Components:</h2>
+        <h2 className='title-component-bar'>Components:</h2>
         {this.showContent()}
       </div>
     )
