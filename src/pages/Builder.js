@@ -19,10 +19,14 @@ class Builder extends Component {
 
   showUserComponents = () => {
     const { userLayoutObj, dataError } = this.props
-    if (userLayoutObj.length === 0) return <div>"Hello Droyer!! Start picking one component from the left components bar! :)"</div>
-    if(dataError) return <div>{dataError}</div>
+    if (userLayoutObj.length === 0) return (
+      <div className='empty-component-base'>
+        <img className='image-emptyBuilder' src='../../img/empty-icon.png' alt='empty-icon'></img>
+        <p className='text-noComponents'>Start picking one component from the left!</p>
+     </div>)
+    if (dataError) return <div>{dataError}</div>
     return userLayoutObj.map((c) => {
-      return <UserComponentBase code={c.code} key={c.code}/>
+      return <UserComponentBase code={c.code} key={c.code} />
     })
   }
 
@@ -34,11 +38,11 @@ class Builder extends Component {
       case "LOADED":
         return (
           <div className="main-builder">
-          {mode === "edit" && <ComponentsSelectorBar/>}
-          <div>
-            {this.showUserComponents()}
+            {mode === "edit" && <ComponentsSelectorBar />}
+            <div>
+              {this.showUserComponents()}
+            </div>
           </div>
-        </div>
         );
       case "ERROR":
         return <div>Error</div>
@@ -47,10 +51,10 @@ class Builder extends Component {
     }
   }
 
-  render () {
+  render() {
     return (
       <div>
-        <NavBar withOptions/>
+        <NavBar withOptions />
         {this.showContent()}
       </div>
     )

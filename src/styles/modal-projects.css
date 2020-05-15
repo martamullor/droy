@@ -88,6 +88,11 @@
     font-size: 0.8rem;
 }
 
+.name-text-delete {
+    font-weight: 700;
+    font-style: italic;
+}
+
 .error-text {
     font-size: 0.8rem;
     color: red; 

@@ -26,7 +26,7 @@ export default class ModalDelete extends Component {
         onClose()
       } else {
         this.setState({
-          error: 'Los campos no coinciden'
+          error: 'The fiels do not match'
         })
       }
     } catch (error) {
@@ -46,7 +46,7 @@ export default class ModalDelete extends Component {
           <button className='close-modal' onClick={onClose}>
             <img className='close-modal-image' src="../../img/close-icon.png" alt='delete-project'></img>
           </button>
-          <p className='text-modal-close'> Type {project.name} to delete your project permanently</p>
+          <p className='text-modal-close'> Type <span className='name-text-delete'>{project.name}</span> to delete your project permanently.</p>
           <form className='form-create-project' onSubmit={this.handleDelete}>
             <input required="required" className='input-modal' type="text"
               name="name"
