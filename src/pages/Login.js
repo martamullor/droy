@@ -3,6 +3,8 @@ import { withAuth } from '../contexts/authContext';
 import NavBar from '../components/droy/NavBar'
 import { Link } from 'react-router-dom'
 import '../styles/login-signup.css'
+import apiClient from '../services/apiClient';
+import { GoogleLogin } from 'react-google-login';
 
 class Login extends Component {
 
@@ -20,6 +22,15 @@ class Login extends Component {
     const { email, hashedPassword } = this.state;
     const { handleLogin } = this.props;
     handleLogin({ email, hashedPassword });
+    this.setState({
+      email: "",
+      hashedPassword: ""
+    });
+  };
+
+  handleSubmitGoogle = (e) => {
+    const { handleGoogle } = this.props;
+    handleGoogle(e);
     this.setState({
       email: "",
       hashedPassword: ""
@@ -67,6 +78,7 @@ class Login extends Component {
               <input className='button-form' type="submit" value="submit" />
               <Link className='text-form' to="/signup">You don't have an account? Register here!</Link>
             </form>
+            <img src="/img/google.png"  onClick={this.handleSubmitGoogle}/>
           </div>
         </div>
       </div>

@@ -28,8 +28,9 @@ class Homepage extends Component {
 
   componentDidMount = async () => {
     try {
+      const { user } = this.props
       const { data: styles } = await api.get('/styles')
-      const { data: projects } = await api.get('/projects')
+      const { data: projects } = await api.get(`/projects/user/${user.uid}`)
       this.setState({
         styles: styles,
         allProjects: projects,
@@ -56,7 +57,8 @@ class Homepage extends Component {
 
   closeModalDelete = async () => {
     try {
-      const { data: projects} = await api.get('/projects')
+      const { user } = this.props
+      const { data: projects} = await api.get(`/projects/user/${user.uid}`)
       this.setState({
         modalDelete: { show: false, data: '' },
         allProjects: projects,

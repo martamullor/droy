@@ -14,6 +14,7 @@ import SignUp from './pages/SignUp'
 import { Route, Switch } from 'react-router-dom'
 
 class App extends Component {
+
   render () {
     return (
       <AuthProvider>

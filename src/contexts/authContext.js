@@ -1,7 +1,9 @@
 import React, { Component } from "react";
 import api from "../services/apiClient";
 import { withRouter } from "react-router-dom";
-import { auth } from '../services/firebase'
+import firebase from '../services/firebase'
+import apiClient from "../services/apiClient";
+import axios from "axios";
 
 export const AuthContext = React.createContext();
 
@@ -19,6 +21,8 @@ export const withAuth = (Comp) => {
                 authLoading={props.authLoading}
                 loginError={props.loginError}
                 handleSignUp={props.handleSignUp}
+                handleGoogle={props.handleGoogle}
+                handleGoogle={props.handleGoogle}
                 isLoggedIn={props.isLoggedIn}
                 handleLogout={props.handleLogout}
                 {...this.props}
@@ -45,95 +49,98 @@ class AuthProvider extends Component {
 
   componentDidMount = async () => {
     try {
-      auth.onAuthStateChanged(userAuth => {
+      firebase.auth().onAuthStateChanged((user) => {
         if (user) {
-          this.setState({ firebaseUser: user })
+          this.setState({
+            user,
+            isLoggedIn: true,
+            authLoading: false
+          })
         } else {
-          return
+          this.setState({
+            user: null,
+            isLoggedIn: false,
+            authLoading: false
+          })
         }
       });
-      const { data: user } = await api.get('/auth/whoami')
-      this.setState({
-        authLoading: false,
-        isLoggedIn: true,
-        user,
-      })
     } catch (error) {
       this.setState({
-        authLoading: false,
-        isLoggedIn: false,
         user: null,
-      })      
+        isLoggedIn: false,
+        authLoading: false
+      })
     }
   }
 
   handleLogin = async ({ email, hashedPassword }) => {
     try {
       const { history } = this.props
-      const { data: user } = await api.post('/auth/login', { email, hashedPassword })
+      const user = await firebase.auth().signInWithEmailAndPassword(email, hashedPassword)
       this.setState({
         isLoggedIn: true,
-        user,
-      });
-      auth.signInWithEmailAndPassword(email, hashedPassword).catch(function(error) {
-        console.log('in firebase login')
-        console.log(error.message)
-      });
-      history.push('/')
+        user
+      })
+      history.push("/")
     } catch (error) {
-      
       this.setState({
         isLoggedIn: false,
         user: null,
-        loginError: error.response.data.errors[0]
-      })      
+        loginError: "Incorrect user or password"
+      })
     }
-  };
+  }
 
+  handleGoogle = async () => {
+    try {
+      const { history } = this.props
+      const provider = new firebase.auth.GoogleAuthProvider()
+      const result = await firebase.auth().signInWithPopup(provider)
+      const { user } = result
+      this.setState({
+        isLoggedIn: true,
+        user,
+      })
+      history.push('/')      
+    } catch (error) {
+      this.setState({
+        isLoggedIn: false,
+        user: null,
+        loginError: "Error on signup"
+      })
+    }
+  }
 
   handleSignUp = async ({ email, hashedPassword, name, confirmationPassword }) => {
     try {
+      // confirmate password matching
       const { history } = this.props
-      if(hashedPassword !== confirmationPassword){
-        this.setState({ signUpError: 'Incorrect passwords' })
-        return
-      } 
-      const { data: user } = await api.post('/auth/signup', { email, hashedPassword, name })
-      auth.createUserWithEmailAndPassword(email, hashedPassword).catch(function(error) {
-        console.log('in sign up')
-        console.log(error.message)
-      });
+      const user = await firebase.auth().createUserWithEmailAndPassword(email, hashedPassword)
       this.setState({
         isLoggedIn: true,
         user,
-      });
+      })
       history.push('/')
     } catch (error) {
-      console.log(error)
       this.setState({
         isLoggedIn: false,
         user: null,
-        signUpError: error.response.data.errors[0]
-      })      
+        loginError: "Error on signup"
+      })
     }
-  };
+  }
 
   handleLogout = async () => {
     try {
       const { history } = this.props
-      await api.get('/auth/logout')
+      await firebase.auth().signOut()
       this.setState({
         isLoggedIn: false,
         user: null,
-      })
-      auth.signOut().then(function() {
-        console.log('in sign out')
-      }).catch(function(error) {
-        console.log('in sign out error')
-      });
+      })  
       history.push('/login')
     } catch (error) {
-      console.log(error);
+      console.log('Error on logout')      
     }
   };
 
@@ -149,6 +156,7 @@ class AuthProvider extends Component {
           loginError,
           signUpError,
           handleLogin: this.handleLogin,
+          handleGoogle: this.handleGoogle,
           handleLogout: this.handleLogout,
           handleSignUp: this.handleSignUp
         }}
