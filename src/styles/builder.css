@@ -1,4 +1,29 @@
 .main-builder {
     display: flex;
-    width: 100%;
-  }
+    width: 100vw;
+    height: 100vh;
+}
+
+.text-noComponents {
+    font-size: 1rem;
+    color: #3f5476;
+}
+
+
+.empty-component-base {
+    width: 76vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    text-align: center;
+    height: 85vh;
+}
+
+.image-emptyBuilder {
+    width: 120px;
+    align-self: center;
+    padding: 20px;
+}
+
+

@@ -1,27 +1,67 @@
-.homePage-container {
-    background-color: #1f2554;
-    padding-bottom: 50px;
-}
 
 .title-homePage {
     padding: 40px 0px 5px 50px;
     font-size: 1.4rem;
-    font-weight: 600;
-    color: #7b8add;
+    font-weight: 300;
+    color: #3f5476;
 }
 
 .buttons-homePage {
-    background-color: #262e66;
-    margin: 20px 0px 0px 50px;
-    width: 180px;
-    height: 180px;
-    border-radius: 15px;
-    border: none;
-    box-shadow: -1px 1px 72px -16px rgba(21,26,61,1)
+    margin: 25px 0px 0px 100px;
+    display: flex;
+    justify-content: center;
+    width: 70px;
 }
 
-.image-homePage {
-    width: 30%
+.buttons-homePage:hover {
+    opacity: 0.7;
 }
+
+.all-projects-homePage {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.projects-content {
+    display: flex;
+    flex-direction: row;
+    width: 250px;
+    padding: 20px 25px;
+    border-radius: 5px;
+    border: 1px solid #c8ced8;
+    margin: 20px 30px 0px 50px;
+    align-items: center;
+}
+
+.image-project-homePage {
+    width: 50px;
+}
+
+.project-info {
+    padding: 0px 20px 0px 30px;
+}
+
+.title-project-homePage {
+    font-size: 1.1rem;
+    color: #3f5476;
+    font-weight: 600;
+    margin-bottom: -5px;
+    text-transform: capitalize;
+}
+
+.theme-project-homePage {
+    font-size: 0.8rem;
+    color: #3f5476;
+    font-style: italic;
+    text-transform: capitalize;
+}
+
+.image-small-homePage {
+    width: 20px;
+    padding-right: 10px;
+    padding: 0px 10px 10px 0px;
+}
+
+
 
   

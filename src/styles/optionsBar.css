@@ -1,18 +1,29 @@
-.options-bar {
-    position: absolute;
-    left: 90%;
+.container-options-bar {
     display: flex;
     flex-direction: row;
+    justify-content: center;
+    position: absolute;
+    background-color: #f1f2f4;
+    border: 1px solid #c8ced8;
 }
 
-
 .buttons-optionBar {
-    background-color: transparent;
     border: none;
-    box-shadow: -1px 1px 72px -16px rgba(21,26,61,1);
-    padding: 0px 5px 0px 0px;
+    animation: appear 0.5s forwards;
 }
 
 .image-optionBar {
-    width: 23px
+    width: 25px;
+    margin-top: 2px;
 }
+
+@keyframes appear {
+    0% {
+      opacity: 0.1%;
+      transform: scale(0.7);
+    }
+    100% {
+      opacity: 1;
+      transition: transform 0.5s;
+    }
+  }

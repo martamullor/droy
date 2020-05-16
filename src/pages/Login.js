@@ -83,40 +83,41 @@ class Login extends Component {
       case STATUS.LOADING:
         return <div>Loading...</div>
       case STATUS.LOADED:
-        return (<div className='login-signup-container'>
-        <div className='logo-container'>
-          <img className='login-logo' src='../../../img/logo-white.png' alt='logo-white'></img>
-        </div>
-        <div className='form-title-container'>
-          <h1 className='title-login-signup'>Login your account:</h1>
-          <p>{errorMessage}</p>
-          {resetPasswordModal && <ModalResetPassword onClose={this.closeModalReset}/>}
-          <form className='login-form' onSubmit={this.handleSubmit}>
-            <input className='input-form'
-              placeholder="email"
-              type="text"
-              required="required"
-              name="email"
-              value={email}
-              id="email"
-              onChange={this.handleChange}
-            />
-            <input className='input-form'
-              type="password"
-              required="required"
-              placeholder="······"
-              name="hashedPassword"
-              id="hashedPassword"
-              value={hashedPassword}
-              onChange={this.handleChange}
-            />
-            <input className='button-form' type="submit" value="submit" />
-            <Link className='text-form' to="/signup">You don't have an account? Register here!</Link>
-          </form>
-          <button onClick={this.showModalReset}>Reset password </button>
+        return (
+         <div className='login-signup-container'>
+          <div className='logo-container'>
+          </div>
+          <div className='form-title-container'>
+            <h1 className='title-login-signup'>Login:</h1>
+            <p>{loginError}</p>
+            <form className='login-form' onSubmit={this.handleSubmit}>
+              <input className='input-form'
+                placeholder="email"
+                type="text"
+                required="required"
+                name="email"
+                value={email}
+                id="email"
+                onChange={this.handleChange}
+              />
+              <input className='input-form'
+                type="password"
+                required="required"
+                placeholder="······"
+                name="hashedPassword"
+                id="hashedPassword"
+                value={hashedPassword}
+                onChange={this.handleChange}
+              />
+              <div className='button-link-login-signup'>
+                <Link className='text-form' to="/signup">You don't have an account? Register here!</Link>
+                <input className='button-form' type="submit" value="Log in" />
+              </div>
+            </form>
+                <button onClick={this.showModalReset}>Reset password </button>
           <img src="/img/google.png" alt="google" onClick={this.handleSubmitGoogle}/>
-        </div>
-      </div>)
+          </div>
+        </div>)
       case STATUS.ERROR:
         return <div>{errorMessage}</div>
       default:

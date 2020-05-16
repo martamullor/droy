@@ -33,12 +33,12 @@ class ComponentsSelectorBar extends Component {
     return styleComponents.map(c => {
       if (!usedCompIds.includes(c.code)) {
         return (
-          <div key={c.code} style={{ margin: '20px', backgroundColor: 'yellow', height: '50px', color: 'black' }}>
+          <div key={c.code} style={{ margin: '20px', backgroundColor: '#f1f2f4', height: '50px', color: '#3f5476' }}>
             <button data-code={c.code} onClick={this.handleAddComponent}>Add</button>
             {c.code}
           </div>)
       }
-      return (<div key={c.code} style={{ margin: '20px', backgroundColor: 'yellow', opacity:'0.3', height: '50px', color: 'black' }}>
+      return (<div key={c.code} style={{ margin: '20px', backgroundColor: '#f1f2f4', opacity:'0.3', height: '50px', color: '#3f5476' }}>
         {c.code}
       </div>)
     })

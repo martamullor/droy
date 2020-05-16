@@ -76,7 +76,6 @@ class SignUp extends Component {
       case STATUS.LOADED:
         return (<div className='login-signup-container'>
           <div className='logo-container'>
-            <img className='login-logo' src='../../../img/logo-white.png' alt='logo-white'></img>
           </div>
           <div className='form-title-container'>
             <h1 className='title-login-signup'>Sign Up</h1>
@@ -118,9 +117,11 @@ class SignUp extends Component {
                 value={name}
                 onChange={this.handleChange}
               />
-              <input className='button-form' type="submit" value="submit" />
-              <img alt="google" src="/img/google.png"  onClick={this.handleSubmitGoogle}/>
-              <Link className='text-form' to="/login">Already have an account? Log in here!</Link>
+              <div className='button-link-login-signup'>
+                <Link className='text-form' to="/login">Already have an account? Log in here!</Link>
+                <input className='button-form' type="submit" value="create your account" />
+                <img alt="google" src="/img/google.png"  onClick={this.handleSubmitGoogle}/>
+              </div>
             </form>
           </div>
         </div>)
