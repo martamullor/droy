@@ -6,6 +6,7 @@ import ComponentsSelectorBar from '../components/droy/ComponentsSelectorBar'
 import NavBar from '../components/droy/NavBar'
 import '../styles/builder.css'
 import { withAuth } from '../contexts/authContext'
+import { Spring } from 'react-spring/renderprops'
 
 
 class Builder extends Component {
@@ -23,7 +24,7 @@ class Builder extends Component {
       <div className='empty-component-base'>
         <img className='image-emptyBuilder' src='../../img/empty-icon.png' alt='empty-icon'></img>
         <p className='text-noComponents'>Start picking one component from the left!</p>
-     </div>)
+      </div>)
     if (dataError) return <div>{dataError}</div>
     return userLayoutObj.map((c) => {
       return <UserComponentBase code={c.code} key={c.code} />
@@ -34,7 +35,11 @@ class Builder extends Component {
     const { mode, status: contextStatus } = this.props
     switch (contextStatus) {
       case "LOADING":
-        return <div>Loading...</div>
+        return <Spring
+          from={{ number: 0 }}
+          to={{ number: 1 }}>
+          {props => <div>{props.number}</div>}
+        </Spring>
       case "LOADED":
         return (
           <div className="main-builder">
