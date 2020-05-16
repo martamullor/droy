@@ -2,7 +2,7 @@ import firebase from 'firebase/app'
 import 'firebase/auth'
 import 'firebase/storage'
 
-const firebaseConfig = { // Poner estos datos en server?
+const firebaseConfig = {
   apiKey: 'AIzaSyBd5EjLbjtvoWmC4jKmFKcTa5Up87I9bTc',
   authDomain: 'droy-dev.firebaseapp.com',
   databaseURL: 'https://droy-dev.firebaseio.com',

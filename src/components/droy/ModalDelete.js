@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import api from '../../services/apiClient'
+import firebase from '../../services/firebase'
 
 export default class ModalDelete extends Component {
   constructor(props) {
@@ -23,7 +24,13 @@ export default class ModalDelete extends Component {
     try {
       if( name === project.name) {
         await api.delete(`/projects/${project._id}`)
-        // Borrar carpeta de BUCKET buscandola por /userid/projectid !!!
+        const listRef = firebase.storage().ref(firebase.auth().currentUser.uid)
+        const res = listRef.child(project._id)
+        res.listAll().then(function(res) {
+          res.items.forEach(function(itemRef) {
+            itemRef.delete()
+          });
+        })  
         onClose()
       } else {
         this.setState({

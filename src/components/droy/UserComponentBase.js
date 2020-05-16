@@ -3,7 +3,6 @@ import MATCH_COMPONENTS from '../../utils/componentsMatching'
 import PropTypes from 'prop-types'
 import { withData } from '../../contexts/dataContext'
 import OptionsBar from '../droy/OptionsBar'
-import firestore from '../../services/firebase'
 import { uuid } from 'uuidv4'
 import '../../styles/user-componentBase.css'
 import firebase from '../../services/firebase'
@@ -32,7 +31,7 @@ class UserComponentBase extends Component {
       alert('Imagen demasiado grande.')
       return
     }
-    const storageRef = firestore.storage().ref(`/${firebase.auth().currentUser.uid}/${projectId}/${uuid()}`)
+    const storageRef = firebase.storage().ref(`/${firebase.auth().currentUser.uid}/${projectId}/${uuid()}`)
     const task = storageRef.put(file)
     task.on('state_changed', (snapshot) => {
       let percentage = (snapshot.bytesTransferred / snapshot.totalBytes) * 100

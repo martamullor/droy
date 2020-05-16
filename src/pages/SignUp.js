@@ -35,8 +35,8 @@ class SignUp extends Component {
           status: STATUS.LOADED
         })
       } else {
-        await firebase.auth().createUserWithEmailAndPassword(email, hashedPassword)
         this.setState({ status: STATUS.LOADING })
+        await firebase.auth().createUserWithEmailAndPassword(email, hashedPassword)
         history.push('/')
       }
     } catch (error) {
@@ -51,8 +51,8 @@ class SignUp extends Component {
     try {
       const { history } = this.props
       const provider = new firebase.auth.GoogleAuthProvider()
-      await firebase.auth().signInWithPopup(provider)
       this.setState({ status: STATUS.LOADING })
+      await firebase.auth().signInWithPopup(provider)
       history.push("/")
     } catch (error) {
       this.setState({

@@ -12,7 +12,6 @@ import Login from './pages/Login'
 import SignUp from './pages/SignUp'
 import { Route, Switch } from 'react-router-dom'
 import firebase from './services/firebase'
-import { withRouter } from "react-router";
 
 
 class App extends Component {
@@ -57,4 +56,4 @@ class App extends Component {
   }
 }
 
-export default withRouter(App)
+export default App

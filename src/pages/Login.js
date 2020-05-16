@@ -29,8 +29,8 @@ class Login extends Component {
       e.preventDefault();
       const { history } = this.props
       const { email, hashedPassword } = this.state;
-      await firebase.auth().signInWithEmailAndPassword(email, hashedPassword)
       this.setState({ status: STATUS.LOADING })
+      await firebase.auth().signInWithEmailAndPassword(email, hashedPassword)
       history.push("/")
     } catch (error) {
       this.setState({
@@ -44,8 +44,8 @@ class Login extends Component {
     try {
       const { history } = this.props
       const provider = new firebase.auth.GoogleAuthProvider()
-      await firebase.auth().signInWithPopup(provider)
       this.setState({ status: STATUS.LOADING })
+      await firebase.auth().signInWithPopup(provider)
       history.push("/")
     } catch (error) {
       this.setState({
