@@ -35,7 +35,7 @@ class Login extends Component {
       history.push("/")
     } catch (error) {
       this.setState({
-        status: STATUS.ERROR,
+        status: STATUS.LOADED,
         errorMessage: 'Error on login'
       })
     }
@@ -62,6 +62,7 @@ class Login extends Component {
       await firebase.auth().signInWithPopup(provider)
       history.push("/")
     } catch (error) {
+      console.log(error)
       this.setState({
         status: STATUS.ERROR,
         errorMessage: 'Error on login google',
