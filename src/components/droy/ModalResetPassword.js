@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import '../../styles/modal-start-project.css'
+import '../../styles/modal-projects.css'
 import firebase from '../../services/firebase'
 
 class ModalResetPassword extends Component {

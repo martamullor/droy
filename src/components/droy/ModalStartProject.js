@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import '../../styles/modal-projects.css'
 import api from '../../services/apiClient'
 import { withRouter } from "react-router";
 import firebase from '../../services/firebase'

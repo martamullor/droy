@@ -89,7 +89,8 @@ class Login extends Component {
           </div>
           <div className='form-title-container'>
             <h1 className='title-login-signup'>Login:</h1>
-            <p>{loginError}</p>
+            <p>{errorMessage}</p>
+            {resetPasswordModal && <ModalResetPassword onClose={this.closeModalReset}/>}
             <form className='login-form' onSubmit={this.handleSubmit}>
               <input className='input-form'
                 placeholder="email"
