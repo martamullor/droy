@@ -29,7 +29,7 @@ class SignUp extends Component {
       e.preventDefault();
       const { email, hashedPassword, confirmationPassword } = this.state
       const { history } = this.props
-      if(hashedPassword !== confirmationPassword || hashedPassword.length < 6){
+      if (hashedPassword !== confirmationPassword || hashedPassword.length < 6) {
         this.setState({
           errorMessage: 'Weak password or mismatch',
           status: STATUS.LOADED
@@ -79,7 +79,7 @@ class SignUp extends Component {
           </div>
           <div className='form-title-container'>
             <h1 className='title-login-signup'>Sign Up</h1>
-            { errorMessage }
+            {errorMessage}
             <form className='login-form' onSubmit={this.handleSubmit}>
               <input className='input-form'
                 placeholder="email"
@@ -120,9 +120,14 @@ class SignUp extends Component {
               <div className='button-link-login-signup'>
                 <Link className='text-form' to="/login">Already have an account? Log in here!</Link>
                 <input className='button-form' type="submit" value="create your account" />
-                <img alt="google" src="/img/google.png"  onClick={this.handleSubmitGoogle}/>
               </div>
             </form>
+            <div className='google-container' onClick={this.handleSubmitGoogle} >
+              <div>
+                <img className='google-image' src="/img/google.png" alt="google" />
+              </div>
+              <p className='google-text'>Sign up with google</p>
+            </div>
           </div>
         </div>)
       case STATUS.ERROR:

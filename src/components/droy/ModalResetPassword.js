@@ -37,10 +37,10 @@ class ModalResetPassword extends Component {
     const { email, error } = this.state
     const { onClose } = this.props
     return(
-      <div className='modal-container'>
-      <div className='modal-style'>
+      <div className='modal-container-reset'>
+      <div className='modal-style-reset'>
         <button className='close-modal' onClick={onClose}>
-          <img className='close-modal-image' src="../../img/delete-icon.png" alt='delete-project'></img>
+          <img className='close-modal-image' src="../../img/close-icon.png" alt='delete-project'></img>
         </button>
         <p>{error}</p>
         <form className='form-create-project' onSubmit={this.handleSubmit}>

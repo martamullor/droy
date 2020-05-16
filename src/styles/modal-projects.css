@@ -8,6 +8,15 @@
     animation: pulse 0.5s forwards;
 }
 
+.modal-container-reset {
+    display: flex;
+    position: absolute;
+    justify-content: center;
+    align-content: center;
+    width: 40%;
+    animation: pulse 0.5s forwards;
+}
+
 .modal-style {
     background-color: #fafafa;
     box-shadow: 10px 11px 19px -10px rgba(214,214,214,1);   
@@ -16,6 +25,16 @@
     border-radius: 8px;
     margin-top: -80px;
     padding: 30px 20px 30px 40px;
+}
+
+.modal-style-reset {
+    background-color: #fafafa;
+    box-shadow: 10px 11px 19px -10px rgba(214,214,214,1);   
+    width: 100%;
+    color: white;
+    border-radius: 8px;
+    margin-top: -30px;
+    padding: 50px 20px 90px 40px;
 }
 
 .form-create-project {
@@ -49,7 +68,6 @@
     border-radius: 5px;
     color: #3f5476;
     border: 1px solid #c8ced8;
-    text-transform: capitalize;
 }
 
 .input-modal::placeholder {
