@@ -61,7 +61,7 @@ class ComponentsSelectorBar extends Component {
       case STATUS.LOADED:
         return this.showComponents()
       case STATUS.ERROR:
-        return <div>Error</div>
+        return <div className='error-text padding-error'>Error</div>
       default:
         break;
     }

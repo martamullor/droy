@@ -134,7 +134,7 @@ class SignUp extends Component {
       case STATUS.ERROR:
         return <div className='error-text padding-error'>{errorMessage}</div>
       default:
-        return <div>Strange error...</div>
+        return <div className='error-text padding-error'>Strange error...</div>
     }
   }
 
