@@ -31,14 +31,15 @@ class ComponentsSelectorBar extends Component {
     const usedCompIds = this.props.userLayoutObj.map(c => c.code)
     const { styleComponents } = this.state
     return styleComponents.map(c => {
+      const thumbnail = c.thumbnail
       if (!usedCompIds.includes(c.code)) {
         return (
-          <div key={c.code} style={{ margin: '20px', backgroundColor: '#f1f2f4', height: '50px', color: '#3f5476' }}>
+          <div key={c.code} style={{ margin: '20px', backgroundImage:`url("${thumbnail.name}")`, backgroundRepeat: 'no-repeat', backgroundSize:'100%', height: thumbnail.height }}>
             <button data-code={c.code} onClick={this.handleAddComponent}>Add</button>
-            {c.code}
+            
           </div>)
       }
-      return (<div key={c.code} style={{ margin: '20px', backgroundColor: '#f1f2f4', opacity:'0.3', height: '50px', color: '#3f5476' }}>
+      return (<div key={c.code} style={{ margin: '20px',  opacity:'0.3', backgroundImage:`url("${thumbnail.name}")`, backgroundRepeat: 'no-repeat', backgroundSize:'100%', height: thumbnail.height }}>
         {c.code}
       </div>)
     })

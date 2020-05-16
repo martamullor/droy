@@ -30,11 +30,12 @@ class ClassicHeading1 extends Component {
 
   render () {
     const { info, changeInfo, children: optionsBar, changeImage } = this.props
+    console.log(info.logo)
     return (
 
       <div style={style}>
         {optionsBar}
-        <ImageEditable data-id="image1" src={info.image1} changeImage={changeImage}/>
+        <ImageEditable data-id="logo" src={info.logo} changeImage={changeImage}/>
         <div>
           <img style={logo} src='../../../img/logo-white.png' alt='logo-classic-heading'></img>
         </div>
