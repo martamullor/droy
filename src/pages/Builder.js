@@ -6,7 +6,6 @@ import ComponentsSelectorBar from '../components/droy/ComponentsSelectorBar'
 import NavBar from '../components/droy/NavBar'
 import '../styles/builder.css'
 import { withAuth } from '../contexts/authContext'
-import { Spring } from 'react-spring/renderprops'
 
 
 class Builder extends Component {
@@ -35,11 +34,7 @@ class Builder extends Component {
     const { mode, status: contextStatus } = this.props
     switch (contextStatus) {
       case "LOADING":
-        return <Spring
-          from={{ number: 0 }}
-          to={{ number: 1 }}>
-          {props => <div>{props.number}</div>}
-        </Spring>
+        return <div>Loading....</div>
       case "LOADED":
         return (
           <div className="main-builder">
