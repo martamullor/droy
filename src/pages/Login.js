@@ -92,7 +92,7 @@ class Login extends Component {
             </div>
             <div className='form-title-container'>
               <h1 className='title-login-signup'>Login:</h1>
-              <p>{errorMessage}</p>
+              <p className='error-text padding-error'>{errorMessage}</p>
               {resetPasswordModal && <ModalResetPassword onClose={this.closeModalReset} />}
               <form className='login-form' onSubmit={this.handleSubmit}>
                 <input className='input-form'
@@ -130,9 +130,9 @@ class Login extends Component {
             </div>
           </div>)
       case STATUS.ERROR:
-        return <div>{errorMessage}</div>
+        return <div className='error-text'>{errorMessage}</div>
       default:
-        return <div>Strange error...</div>
+        return <div className='error-text'>Strange error...</div>
     }
   }
 

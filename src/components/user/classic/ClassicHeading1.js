@@ -9,7 +9,8 @@ const style = {
   color: 'white',
   justifyContent: 'space-between',
   alignItems: 'center',
-  height: '120px'
+  height: '120px',
+  position: 'relative'
 }
 
 const logo = {

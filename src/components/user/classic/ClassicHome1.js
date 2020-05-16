@@ -5,7 +5,8 @@ const homeContainer = {
   backgroundImage: 'url("../../../img/classic-home1.jpg")',
   height: '700px',
   backgroundSize: '100%',
-  padding: '8px 40px 8px 40px'
+  padding: '8px 40px 8px 40px',
+  position: 'relative'
 }
 
 const textHomeContainer = {

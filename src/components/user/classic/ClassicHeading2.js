@@ -6,7 +6,8 @@ const style = {
   padding: '5px 40px 5px 40px',
   display: 'flex',
   color: '#1a1a1a',
-  alignItems: 'center'
+  alignItems: 'center',
+  position: 'relative'
 }
 
 const logo = {

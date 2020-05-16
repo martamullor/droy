@@ -69,7 +69,7 @@ class UserComponentBase extends Component {
       componentProps['changeImage'] = this.changeImage
     }
     return (
-      <div className="user-component-base">
+      <div>
         <UserComp {...componentProps}>
           {mode === "edit" && <OptionsBar code={code} deleteComponent={deleteComponent} moveComponent={moveComponent}/>}
         </UserComp>

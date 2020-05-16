@@ -37,7 +37,7 @@ class Builder extends Component {
         return (
           <div className="main-builder">
             {mode === "edit" && <ComponentsSelectorBar />}
-            <div>
+            <div className='components-builder'>
               {this.showUserComponents()}
             </div>
           </div>

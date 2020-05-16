@@ -1,7 +1,13 @@
 .main-builder {
     display: flex;
     width: 100vw;
-    height: 100vh;
+    height: 92vh;
+}
+
+.components-builder {
+    flex-grow: 1;
+    width: 75vw;
+    overflow:scroll;
 }
 
 .text-noComponents {
@@ -11,7 +17,7 @@
 
 
 .empty-component-base {
-    width: 76vw;
+    width: 75vw;
     display: flex;
     flex-direction: column;
     justify-content: center;

@@ -111,10 +111,6 @@
     font-style: italic;
 }
 
-.error-text {
-    font-size: 0.8rem;
-    color: red; 
-}
 
 @keyframes pulse {
     0% {

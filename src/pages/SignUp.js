@@ -80,7 +80,7 @@ class SignUp extends Component {
           </div>
           <div className='form-title-container'>
             <h1 className='title-login-signup'>Sign Up</h1>
-            {errorMessage}
+            <p className='error-text padding-error'>{errorMessage}</p>
             <form className='login-form' onSubmit={this.handleSubmit}>
               <input className='input-form'
                 placeholder="email"
@@ -132,7 +132,7 @@ class SignUp extends Component {
           </div>
         </div>)
       case STATUS.ERROR:
-        return <div>{errorMessage}</div>
+        return <div className='error-text padding-error'>{errorMessage}</div>
       default:
         return <div>Strange error...</div>
     }
