@@ -1,9 +1,14 @@
 import React, { Component } from 'react'
-import { withAuth } from '../contexts/authContext';
+import firebase from '../services/firebase'
 import NavBar from '../components/droy/NavBar'
 import { Link } from 'react-router-dom'
 import '../styles/login-signup.css'
-import { GoogleLogin } from 'react-google-login';
+
+const STATUS = {
+  LOADING: 'LOADING',
+  ERROR: 'ERROR',
+  LOADED: 'LOADED',
+}
 
 class SignUp extends Component {
 
@@ -13,31 +18,48 @@ class SignUp extends Component {
       email: "",
       hashedPassword: "",
       name: "",
-      confirmationPassword: ""
+      confirmationPassword: "",
+      status: STATUS.LOADED,
+      errorMessage: ""
     }
-
   }
 
-  handleSubmit = (e) => {
-    e.preventDefault();
-    const { email, hashedPassword, name, confirmationPassword } = this.state
-    const { handleSignUp } = this.props
-    handleSignUp({ email, hashedPassword, name, confirmationPassword });
-    this.setState({
-      email: "",
-      password: "",
-      hashedPassword: "",
-      confirmationPassword: ""
-    });
+  handleSubmit = async (e) => {
+    try {
+      e.preventDefault();
+      const { email, hashedPassword, confirmationPassword } = this.state
+      const { history } = this.props
+      if(hashedPassword !== confirmationPassword || hashedPassword.length < 6){
+        this.setState({
+          errorMessage: 'Weak password or mismatch',
+          status: STATUS.LOADED
+        })
+      } else {
+        await firebase.auth().createUserWithEmailAndPassword(email, hashedPassword)
+        this.setState({ status: STATUS.LOADING })
+        history.push('/')
+      }
+    } catch (error) {
+      this.setState({
+        status: STATUS.ERROR,
+        errorMessage: 'Error on signup'
+      })
+    }
   };
 
-  handleSubmitGoogle = () => {
-    const { handleGoogle } = this.props;
-    handleGoogle();
-    this.setState({
-      email: "",
-      hashedPassword: ""
-    });
+  handleSubmitGoogle = async () => {
+    try {
+      const { history } = this.props
+      const provider = new firebase.auth.GoogleAuthProvider()
+      await firebase.auth().signInWithPopup(provider)
+      this.setState({ status: STATUS.LOADING })
+      history.push("/")
+    } catch (error) {
+      this.setState({
+        status: STATUS.ERROR,
+        errorMessage: 'Error on signup google',
+      });
+    }
   };
 
   handleChange = (e) => {
@@ -46,19 +68,19 @@ class SignUp extends Component {
     });
   };
 
-  render() {
-    const { email, hashedPassword, name, confirmationPassword } = this.state
-    const { signUpError } = this.props
-    return (
-      <div>
-        <NavBar />
-        <div className='login-signup-container'>
+  showContent = () => {
+    const { status, errorMessage, email, hashedPassword, name, confirmationPassword } = this.state
+    switch (status) {
+      case STATUS.LOADING:
+        return <div>Loading...</div>
+      case STATUS.LOADED:
+        return (<div className='login-signup-container'>
           <div className='logo-container'>
             <img className='login-logo' src='../../../img/logo-white.png' alt='logo-white'></img>
           </div>
           <div className='form-title-container'>
             <h1 className='title-login-signup'>Sign Up</h1>
-            <p>{signUpError}</p>
+            { errorMessage }
             <form className='login-form' onSubmit={this.handleSubmit}>
               <input className='input-form'
                 placeholder="email"
@@ -97,14 +119,26 @@ class SignUp extends Component {
                 onChange={this.handleChange}
               />
               <input className='button-form' type="submit" value="submit" />
-              <img src="/img/google.png"  onClick={this.handleSubmitGoogle}/>
+              <img alt="google" src="/img/google.png"  onClick={this.handleSubmitGoogle}/>
               <Link className='text-form' to="/login">Already have an account? Log in here!</Link>
             </form>
           </div>
-        </div>
+        </div>)
+      case STATUS.ERROR:
+        return <div>{errorMessage}</div>
+      default:
+        return <div>Strange error...</div>
+    }
+  }
+
+  render() {
+    return (
+      <div>
+        <NavBar />
+        {this.showContent()}
       </div>
     );
   }
 }
 
-export default withAuth(SignUp)
+export default SignUp

@@ -1,14 +1,13 @@
 import React from 'react'
 import { Route, Redirect } from 'react-router-dom'
 import PropTypes from 'prop-types'
-import { withAuth } from '../../contexts/authContext'
+import firebase from '../../services/firebase'
 
 function OnlyNotLoggedRoute (props) {
-  const { authLoading, isLoggedIn, component: Comp, location, ...rest } = props
-  if (authLoading) return <div></div> // It's good????
+  const { component: Comp, location, ...rest } = props
   return (
     <Route {...rest} render={
-      (props) => isLoggedIn
+      (props) => firebase.auth().currentUser
         ? <Redirect to={{ pathname: '/', state: { from: location } }} />
         : <Comp {...props} />
     }
@@ -18,9 +17,7 @@ function OnlyNotLoggedRoute (props) {
 
 OnlyNotLoggedRoute.propTypes = {
   component: PropTypes.func,
-  isLoggedIn: PropTypes.bool,
-  location: PropTypes.string,
-  authLoading: PropTypes.bool
+  location: PropTypes.object
 }
 
-export default withAuth(OnlyNotLoggedRoute)
+export default OnlyNotLoggedRoute

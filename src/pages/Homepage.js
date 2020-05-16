@@ -5,8 +5,8 @@ import ModalDelete from '../components/droy/ModalDelete'
 import SquareProject from '../components/droy/SquareProject'
 import '../styles/homePage.css'
 import api from '../services/apiClient'
-import { withAuth } from '../contexts/authContext'
 import { Link } from "react-router-dom";
+import firebase from '../services/firebase'
 
 const STATUS = {
   LOADING: 'LOADING',
@@ -28,9 +28,8 @@ class Homepage extends Component {
 
   componentDidMount = async () => {
     try {
-      const { user } = this.props
       const { data: styles } = await api.get('/styles')
-      const { data: projects } = await api.get(`/projects/user/${user.uid}`)
+      const { data: projects } = await api.get(`/projects/user/${firebase.auth().currentUser.uid}`)
       this.setState({
         styles: styles,
         allProjects: projects,
@@ -57,8 +56,7 @@ class Homepage extends Component {
 
   closeModalDelete = async () => {
     try {
-      const { user } = this.props
-      const { data: projects} = await api.get(`/projects/user/${user.uid}`)
+      const { data: projects} = await api.get(`/projects/user/${firebase.auth().currentUser.uid}`)
       this.setState({
         modalDelete: { show: false, data: '' },
         allProjects: projects,
@@ -139,4 +137,4 @@ class Homepage extends Component {
   }
 }
 
-export default withAuth(Homepage)
+export default Homepage

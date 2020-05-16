@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 
 export default class ImageEditable extends Component {
 
-  uploadHandler = (e) => {
+  uploadHandler = () => {
     this.refs.imageUploader.click();
   }
 

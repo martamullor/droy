@@ -1,5 +1,4 @@
 import axios from 'axios'
-import { auth } from '../services/firebase'
 
 class ApiClient {
   constructor () {

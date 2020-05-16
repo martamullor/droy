@@ -1,14 +1,13 @@
 import React from 'react'
 import { Route, Redirect } from 'react-router-dom'
 import PropTypes from 'prop-types'
-import { withAuth } from '../../contexts/authContext'
+import firebase from '../../services/firebase'
 
 function PrivateRoute (props) {
-  const { authLoading, isLoggedIn, component: Comp, location, ...rest } = props
-  if (authLoading) return <div></div> // It's good????
+  const { component: Comp, location, ...rest } = props
   return (
     <Route {...rest} render={
-      (props) => isLoggedIn
+      (props) => firebase.auth().currentUser
         ? <Comp {...props} />
         : <Redirect to={{ pathname: '/login', state: { from: location } }} />}
     />
@@ -22,4 +21,4 @@ PrivateRoute.propTypes = {
   authLoading: PropTypes.bool
 }
 
-export default withAuth(PrivateRoute)
+export default PrivateRoute

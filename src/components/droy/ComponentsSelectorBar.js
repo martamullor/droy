@@ -19,9 +19,7 @@ class ComponentsSelectorBar extends Component {
   componentDidMount = async () => {
     try {
       const { projectStyle } = this.props
-      console.log(projectStyle)
       const { data: styleComponents } = await api.get(`/components?style=${projectStyle}`)
-      // console.log(this.props.status)
       this.setState({ styleComponents, status: STATUS.LOADED })
     } catch (error) {
       this.setState({ status: STATUS.ERROR })

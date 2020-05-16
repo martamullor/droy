@@ -1,10 +1,16 @@
 import React, { Component } from 'react'
-import { withAuth } from '../contexts/authContext';
 import NavBar from '../components/droy/NavBar'
 import { Link } from 'react-router-dom'
+import firebase from '../services/firebase'
 import '../styles/login-signup.css'
-import apiClient from '../services/apiClient';
-import { GoogleLogin } from 'react-google-login';
+
+
+const STATUS = {
+  LOADING: 'LOADING',
+  ERROR: 'ERROR',
+  LOADED: 'LOADED',
+}
+
 
 class Login extends Component {
 
@@ -12,29 +18,41 @@ class Login extends Component {
     super(props)
     this.state = {
       email: "",
-      hashedPassword: ""
+      hashedPassword: "",
+      status: STATUS.LOADED,
+      errorMessage: ""
     }
-
   }
 
-  handleSubmit = (e) => {
-    e.preventDefault();
-    const { email, hashedPassword } = this.state;
-    const { handleLogin } = this.props;
-    handleLogin({ email, hashedPassword });
-    this.setState({
-      email: "",
-      hashedPassword: ""
-    });
+  handleSubmit = async (e) => {
+    try {
+      e.preventDefault();
+      const { history } = this.props
+      const { email, hashedPassword } = this.state;
+      await firebase.auth().signInWithEmailAndPassword(email, hashedPassword)
+      this.setState({ status: STATUS.LOADING })
+      history.push("/")
+    } catch (error) {
+      this.setState({
+        status: STATUS.ERROR,
+        errorMessage: 'Error on login'
+      })
+    }
   };
 
-  handleSubmitGoogle = (e) => {
-    const { handleGoogle } = this.props;
-    handleGoogle(e);
-    this.setState({
-      email: "",
-      hashedPassword: ""
-    });
+  handleSubmitGoogle = async (e) => {
+    try {
+      const { history } = this.props
+      const provider = new firebase.auth.GoogleAuthProvider()
+      await firebase.auth().signInWithPopup(provider)
+      this.setState({ status: STATUS.LOADING })
+      history.push("/")
+    } catch (error) {
+      this.setState({
+        status: STATUS.ERROR,
+        errorMessage: 'Error on login google',
+      });
+    }
   };
 
   handleChange = (e) => {
@@ -43,47 +61,59 @@ class Login extends Component {
     });
   };
 
+  showContent = () => {
+    const { status, errorMessage, email, hashedPassword } = this.state
+    switch (status) {
+      case STATUS.LOADING:
+        return <div>Loading...</div>
+      case STATUS.LOADED:
+        return (<div className='login-signup-container'>
+        <div className='logo-container'>
+          <img className='login-logo' src='../../../img/logo-white.png' alt='logo-white'></img>
+        </div>
+        <div className='form-title-container'>
+          <h1 className='title-login-signup'>Login your account:</h1>
+          <p>{errorMessage}</p>
+          <form className='login-form' onSubmit={this.handleSubmit}>
+            <input className='input-form'
+              placeholder="email"
+              type="text"
+              required="required"
+              name="email"
+              value={email}
+              id="email"
+              onChange={this.handleChange}
+            />
+            <input className='input-form'
+              type="password"
+              required="required"
+              placeholder="······"
+              name="hashedPassword"
+              id="hashedPassword"
+              value={hashedPassword}
+              onChange={this.handleChange}
+            />
+            <input className='button-form' type="submit" value="submit" />
+            <Link className='text-form' to="/signup">You don't have an account? Register here!</Link>
+          </form>
+          <img src="/img/google.png" alt="google" onClick={this.handleSubmitGoogle}/>
+        </div>
+      </div>)
+      case STATUS.ERROR:
+        return <div>{errorMessage}</div>
+      default:
+        return <div>Strange error...</div>
+    }
+  }
+
   render() {
-    const { email, hashedPassword } = this.state
-    const { loginError } = this.props
     return (
       <div>
         <NavBar />
-        <div className='login-signup-container'>
-          <div className='logo-container'>
-            <img className='login-logo' src='../../../img/logo-white.png' alt='logo-white'></img>
-          </div>
-          <div className='form-title-container'>
-            <h1 className='title-login-signup'>Login your account:</h1>
-            <p>{loginError}</p>
-            <form className='login-form' onSubmit={this.handleSubmit}>
-              <input className='input-form'
-                placeholder="email"
-                type="text"
-                required="required"
-                name="email"
-                value={email}
-                id="email"
-                onChange={this.handleChange}
-              />
-              <input className='input-form'
-                type="password"
-                required="required"
-                placeholder="······"
-                name="hashedPassword"
-                id="hashedPassword"
-                value={hashedPassword}
-                onChange={this.handleChange}
-              />
-              <input className='button-form' type="submit" value="submit" />
-              <Link className='text-form' to="/signup">You don't have an account? Register here!</Link>
-            </form>
-            <img src="/img/google.png"  onClick={this.handleSubmitGoogle}/>
-          </div>
-        </div>
+        { this.showContent() }
       </div>
     );
   }
 }
 
-export default withAuth(Login)
+export default Login
