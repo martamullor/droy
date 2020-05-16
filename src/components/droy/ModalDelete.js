@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import api from '../../services/apiClient'
+import firebase from '../../services/firebase'
 
 export default class ModalDelete extends Component {
   constructor(props) {
@@ -22,7 +23,14 @@ export default class ModalDelete extends Component {
     const { name } = this.state
     try {
       if( name === project.name) {
-        await api.delete(`projects/${project._id}`)
+        await api.delete(`/projects/${project._id}`)
+        const listRef = firebase.storage().ref(firebase.auth().currentUser.uid)
+        const res = listRef.child(project._id)
+        res.listAll().then(function(res) {
+          res.items.forEach(function(itemRef) {
+            itemRef.delete()
+          });
+        })  
         onClose()
       } else {
         this.setState({

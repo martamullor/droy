@@ -5,8 +5,8 @@ import ModalDelete from '../components/droy/ModalDelete'
 import SquareProject from '../components/droy/SquareProject'
 import '../styles/homePage.css'
 import api from '../services/apiClient'
-import { withAuth } from '../contexts/authContext'
 import { Link } from "react-router-dom";
+import firebase from '../services/firebase'
 
 const STATUS = {
   LOADING: 'LOADING',
@@ -26,24 +26,19 @@ class Homepage extends Component {
     }
   }
 
-  updateComponents = async () => {
-    try {
-      const stylesApi = await api.get('/styles')
-      const projectsApi = await api.get('/projects')
-      this.setState({
-        styles: stylesApi.data,
-        allProjects: projectsApi.data,
-        status: STATUS.LOADED,
-      })
-    } catch (error) {
-      this.setState({
-        status: STATUS.ERROR
-      })
-    }
-  }
-
   componentDidMount = async () => {
-    this.updateComponents()
+    try {
+      const { data: styles } = await api.get('/styles')
+      const { data: projects } = await api.get(`/projects/user/${firebase.auth().currentUser.uid}`)
+      this.setState({
+        styles: styles,
+        allProjects: projects,
+        status: STATUS.LOADED,
+      })      
+    } catch (error) {
+      this.setState({ status: STATUS.ERROR })
+    }
+
   }
 
   showModalDelete = (e) => {
@@ -59,12 +54,16 @@ class Homepage extends Component {
     })
   }
 
-  closeModalDelete = () => {
-    // Warning: double rendering
-    this.updateComponents()
-    this.setState({
-      modalDelete: { show: false }
-    })
+  closeModalDelete = async () => {
+    try {
+      const { data: projects} = await api.get(`/projects/user/${firebase.auth().currentUser.uid}`)
+      this.setState({
+        modalDelete: { show: false, data: '' },
+        allProjects: projects,
+      })      
+    } catch (error) {
+      this.setState({ status: STATUS.ERROR })
+    }
   }
 
   showModalStart = () => {
@@ -140,4 +139,4 @@ class Homepage extends Component {
   }
 }
 
-export default withAuth(Homepage)
+export default Homepage

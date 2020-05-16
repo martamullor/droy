@@ -5,16 +5,13 @@ import UserComponentBase from '../components/droy/UserComponentBase'
 import ComponentsSelectorBar from '../components/droy/ComponentsSelectorBar'
 import NavBar from '../components/droy/NavBar'
 import '../styles/builder.css'
-import { withAuth } from '../contexts/authContext'
 
 
 class Builder extends Component {
 
-
   componentDidMount = async () => {
     const { match, getProjectInfo } = this.props
     getProjectInfo(match.params.projectId)
-
   }
 
   showUserComponents = () => {
@@ -66,4 +63,4 @@ Builder.propTypes = {
   saveInfoToContext: PropTypes.func
 }
 
-export default withAuth(withData(Builder))
+export default withData(Builder)
