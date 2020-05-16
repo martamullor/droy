@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import '../../styles/modal-start-project.css'
 import api from '../../services/apiClient'
 import { withRouter } from "react-router";
+import firebase from '../../services/firebase'
 
 class ModalStartProject extends Component {
   constructor(props) {
@@ -26,8 +27,9 @@ class ModalStartProject extends Component {
     event.preventDefault();
     const { name, theme } = this.state
     const { history } = this.props
+    const userUid = firebase.auth().currentUser.uid
     try {
-      const createdProject = await api.post('/projects', { name, style: theme })
+      const createdProject = await api.post(`/projects/user/${userUid}`, { name, style: theme })
       history.push(`/builder/${createdProject.data._id}`)
     } catch (error) {
       this.setState({

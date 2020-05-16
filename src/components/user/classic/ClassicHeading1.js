@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import ImageEditable from '../../droy/ImageEditable'
 
 const style = {
   backgroundColor: '#1b1b1b',
@@ -7,7 +8,8 @@ const style = {
   display: 'flex',
   color: 'white',
   justifyContent: 'space-between',
-  alignItems: 'center'
+  alignItems: 'center',
+  height: '120px'
 }
 
 const logo = {
@@ -25,12 +27,14 @@ const text = {
 }
 
 class ClassicHeading1 extends Component {
+
   render () {
-    const { info, changeInfo, children: optionsBar } = this.props
+    const { info, changeInfo, children: optionsBar, changeImage } = this.props
     return (
 
       <div style={style}>
         {optionsBar}
+        <ImageEditable data-id="image1" src={info.image1} changeImage={changeImage}/>
         <div>
           <img style={logo} src='../../../img/logo-white.png' alt='logo-classic-heading'></img>
         </div>

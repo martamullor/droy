@@ -2,18 +2,24 @@ import React, { Component } from 'react'
 import { withData } from '../../contexts/dataContext'
 import PropTypes from 'prop-types'
 import '../../styles/navBar.css'
-import { withAuth } from '../../contexts/authContext'
 import { Link, withRouter } from 'react-router-dom'
+import firebase from '../../services/firebase'
 
 class NavBar extends Component {
 
   handleSave = () => {
-    const { save, match } = this.props
-    save(match.params.projectId)
+    const { projectId, save } = this.props
+    save(projectId)
+  }
+
+  handleLogout = async () => {
+    const { history } = this.props
+    await firebase.auth().signOut()
+    history.push('/login')
   }
 
   render () {
-    const { withOptions, mode, switchMode, isLoggedIn, handleLogout, savingStep } = this.props
+    const { withOptions, mode, switchMode, savingStep } = this.props
     return (
       <div className='nav-bar'>
         <Link to ='/' >
@@ -24,8 +30,8 @@ class NavBar extends Component {
           <button className='buttons-navBar' onClick={switchMode}>{mode === 'edit' ? 'View page' : 'Edit page'}</button>
         </div>
         }
-        {isLoggedIn
-          ? <button onClick={handleLogout} className='buttons-navBar'>Logout</button>
+        {firebase.auth().currentUser
+          ? <button onClick={this.handleLogout} className='buttons-navBar'>Logout</button>
           : <Link className='buttons-navBar' to="/login">Login</Link> }
       </div>
     )
@@ -37,8 +43,6 @@ NavBar.propTypes = {
   mode: PropTypes.string,
   switchMode: PropTypes.func,
   save: PropTypes.func,
-  isLoggedIn: PropTypes.bool,
-  handleLogout: PropTypes.func
 }
 
-export default withRouter(withAuth(withData(NavBar)))
+export default withRouter(withData(NavBar))

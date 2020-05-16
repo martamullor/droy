@@ -32,6 +32,7 @@ class DataProvider extends Component {
       mode: 'edit',
       userLayoutObj: [],
       projectStyle: "",
+      projectId: "",
       dataError: "",
       savingStep: 'Save',
       allProjects: [],
@@ -116,8 +117,8 @@ class DataProvider extends Component {
 
   getProjectInfo = async (projectId) => {
     try {
-      const { data: { componentsConfiguration, style } } = await api.get(`/projects/${projectId}`)
-      this.setState({ userLayoutObj: componentsConfiguration, projectStyle: style, status: STATUS.LOADED })
+      const { data: { componentsConfiguration, style, _id } } = await api.get(`/projects/${projectId}`)
+      this.setState({ projectId: _id, userLayoutObj: componentsConfiguration, projectStyle: style, status: STATUS.LOADED })
     } catch (error) {
       this.setState({ dataError: "Unable to get your project data" })
     }
