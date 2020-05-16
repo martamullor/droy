@@ -4,20 +4,16 @@ import '../../styles/optionsBar.css'
 class OptionsBar extends Component {
 
   constructor() {
-    super();
+    super()
     this.state = {
       showOptions: false
     }
   }
 
-  handleMoveUpComponent = () => {
+  handleMoveComponent = (e) => {
     const { moveComponent, code } = this.props
-    moveComponent(code, 'up')
-  }
-
-  handleMoveDownComponent = () => {
-    const { moveComponent, code } = this.props
-    moveComponent(code, 'down')
+    const { value: action } = e.target.attributes['data-action']
+    moveComponent(code, action)
   }
 
   handleDelete = () => {
@@ -27,7 +23,7 @@ class OptionsBar extends Component {
 
   showOptions = () => {
     this.setState({
-      showOptions: true
+      showOptions: !this.state.showOptions
     })
   }
 
@@ -41,24 +37,16 @@ class OptionsBar extends Component {
     const { showOptions } = this.state
     return (
       <div className='container-options-bar'>
-        <button className='buttons-optionBar' onClick={this.showOptions}>
-          <img className='image-optionBar' src="../../img/edit-icon.png" alt='edit'></img>
+        <button className='buttons-optionBar' >
+          <img className='image-optionBar' onClick={this.showOptions} src="../../img/edit-icon.png" alt='edit'></img>
         </button>
         <div className="options-bar">
           {showOptions &&
             <div>
-              <button className='buttons-optionBar' onClick={this.handleMoveDownComponent}>
-                <img className='image-optionBar' src="../../img/down-icon.png" alt='down'></img>
-              </button>
-              <button className='buttons-optionBar' onClick={this.handleMoveUpComponent}>
-                <img className='image-optionBar' src="../../img/up-icon.png" alt='up'></img>
-              </button>
-              <button className='buttons-optionBar' onClick={this.handleDelete}>
-                <img className='image-optionBar' src="../../img/deleteBar-icon.png" alt='delete'></img>
-              </button>
-              <button className='buttons-optionBar' onClick={this.closeOptions}>
-                <img className='image-optionBar' src="../../img/closeBar-icon.png" alt='up'></img>
-              </button>
+              <img className='image-optionBar' data-action='down' src="../../img/down-icon.png" alt='down' onClick={this.handleMoveComponent}/>
+              <img className='image-optionBar' data-action='up' src="../../img/up-icon.png" alt='up' onClick={this.handleMoveComponent}/>
+              <img className='image-optionBar' onClick={this.handleDelete} src="../../img/deleteBar-icon.png" alt='delete'></img>
+              <img className='image-optionBar' onClick={this.closeOptions} src="../../img/closeBar-icon.png" alt='up'></img>
             </div>
           }
         </div>

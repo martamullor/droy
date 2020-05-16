@@ -13,19 +13,21 @@ class ComponentsSelectorBar extends Component {
 
   constructor(props) {
     super(props)
-    this.state = { styleComponents: [], status: STATUS.LOADING }
+    this.state = {
+      styleComponents: [],
+      status: STATUS.LOADING
+    }
   }
 
   componentDidMount = async () => {
     try {
       const { projectStyle } = this.props
       const { data: styleComponents } = await api.get(`/components?style=${projectStyle}`)
-      this.setState({ styleComponents, status: STATUS.LOADED })
+      this.setState({ styleComponents, status: STATUS.LOADED, style: projectStyle })
     } catch (error) {
       this.setState({ status: STATUS.ERROR })
     }
   }
-
 
   showComponents = () => {
     const usedCompIds = this.props.userLayoutObj.map(c => c.code)

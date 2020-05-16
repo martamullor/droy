@@ -17,12 +17,6 @@ export const withData = (Comp) => {
   }
 }
 
-const STATUS = {
-  LOADING: 'LOADING',
-  LOADED: 'LOADED',
-  ERROR: 'ERROR',
-}
-
 // Provider def
 class DataProvider extends Component {
 
@@ -35,8 +29,6 @@ class DataProvider extends Component {
       projectId: "",
       dataError: "",
       savingStep: 'Save',
-      allProjects: [],
-      status: STATUS.LOADING
     }
   }
 
@@ -94,11 +86,8 @@ class DataProvider extends Component {
   saveComponentInfoToContext = (componentCode, componentAttr, attrContent) => {
     const stateCopy = {...this.state}
     const { userLayoutObj: newUserLayoutObj } = stateCopy
-    for (const userObject of newUserLayoutObj) {
-      if(userObject.code === componentCode) {
-        userObject.info[componentAttr] = attrContent
-      }
-    }
+    const saveTo = newUserLayoutObj.find(userObject => userObject.code === componentCode)
+    saveTo.info[componentAttr] = attrContent
     this.setState({
       userLayoutObj: newUserLayoutObj
     })
@@ -118,7 +107,11 @@ class DataProvider extends Component {
   getProjectInfo = async (projectId) => {
     try {
       const { data: { componentsConfiguration, style, _id } } = await api.get(`/projects/${projectId}`)
-      this.setState({ projectId: _id, userLayoutObj: componentsConfiguration, projectStyle: style, status: STATUS.LOADED })
+      this.setState({
+        projectId: _id,
+        userLayoutObj: componentsConfiguration,
+        projectStyle: style,
+      })
     } catch (error) {
       this.setState({ dataError: "Unable to get your project data" })
     }

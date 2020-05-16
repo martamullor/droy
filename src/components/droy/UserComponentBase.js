@@ -3,6 +3,7 @@ import MATCH_COMPONENTS from '../../utils/componentsMatching'
 import PropTypes from 'prop-types'
 import { withData } from '../../contexts/dataContext'
 import OptionsBar from '../droy/OptionsBar'
+import ModalChangeInfo from '../droy/ModalChangeInfo'
 import { uuid } from 'uuidv4'
 import '../../styles/user-componentBase.css'
 import firebase from '../../services/firebase'
@@ -11,16 +12,23 @@ class UserComponentBase extends Component {
   constructor (props) {
     super(props)
     this.state = {
-      imChanged: false
+      optionsModal: false,
+      attributeSelected: '',
     }
   }
 
-  changeInfo = (e) => {
-    const { code, saveComponentInfoToContext } = this.props
-    const newText = prompt('Inserta el nuevo texto')
-    const attr = e.target.attributes['data-id'].value
-    this.setState({ imChanged: true })
-    saveComponentInfoToContext(code, attr, newText)
+  handleOpenModal = (e) =>{
+    this.setState({
+      openChangeModal: true,
+      attributeSelected: e.target.attributes['data-id'].value
+    })
+  }
+
+  handleCloseModal = () =>{
+    this.setState({
+      openChangeModal: false,
+      attributeSelected: ''
+    })
   }
 
   changeImage = async e => {
@@ -31,47 +39,30 @@ class UserComponentBase extends Component {
       alert('Imagen demasiado grande.')
       return
     }
-    const storageRef = firebase.storage().ref(`/${firebase.auth().currentUser.uid}/${projectId}/${uuid()}`)
-    const task = storageRef.put(file)
-    task.on('state_changed', (snapshot) => {
-      let percentage = (snapshot.bytesTransferred / snapshot.totalBytes) * 100
-      // TODO, ir enseñando progreso en front y bloquearlo todo de mientras
-      console.log('Percentage', percentage)
-    }, (error) => {
-      console.error('Error on change image', error.message)
-    }, async () => {
-      const downloadUrl = await task.snapshot.ref.getDownloadURL()
-      saveComponentInfoToContext(code, attr, downloadUrl)
-    })
+    const randomFileName = uuid()
+    const storageRef = firebase.storage().ref(`/${firebase.auth().currentUser.uid}/${projectId}/${randomFileName}`)
+    await storageRef.put(file)
+    const downloadUrl = await storageRef.getDownloadURL()
+    saveComponentInfoToContext(code, attr, downloadUrl)
   }
-  
-  getComponentInfo = () => {
-    const { userLayoutObj, code } = this.props
-    return userLayoutObj.filter(c => c.code === code)[0].info
-  }
-
-  /* Causa que no funcione tema imagenes por la asincronia de carga... De momento comentar
-  shouldComponentUpdate(nextProps, nextState) {
-    if(nextProps.mode !== this.props.mode) return true
-    if(!nextState.imChanged) return false
-    this.setState({ imChanged: false })
-    return true
-  } */
-  
 
   render () {
-    const { mode, moveComponent , code, deleteComponent  } = this.props
+    const { mode, moveComponent , code, deleteComponent, saveComponentInfoToContext, userLayoutObj  } = this.props
+    const { attributeSelected, openChangeModal } = this.state
     const UserComp = MATCH_COMPONENTS[code]
-    const componentProps = { info: this.getComponentInfo() }
+    const componentInfo = userLayoutObj.filter(c => c.code === code)[0].info
+    const componentProps = {}
     if(mode === 'edit'){
-      componentProps['changeInfo'] = this.changeInfo
+      componentProps['openChangeModal'] = this.handleOpenModal
       componentProps['updateInfo'] = this.updateInfo
       componentProps['changeImage'] = this.changeImage
     }
+    componentProps['info'] = componentInfo 
     return (
       <div className="user-component-base">
         <UserComp {...componentProps}>
           {mode === "edit" && <OptionsBar code={code} deleteComponent={deleteComponent} moveComponent={moveComponent}/>}
+          {mode === "edit" && openChangeModal && <ModalChangeInfo oldText={componentInfo[attributeSelected]} code={code} attributeSelected={attributeSelected} saveComponentInfoToContext={saveComponentInfoToContext} onClose={this.handleCloseModal}/>}
         </UserComp>
       </div>
     )

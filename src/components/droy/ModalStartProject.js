@@ -23,11 +23,11 @@ class ModalStartProject extends Component {
 
 
   handleSubmit = async (event) => {
-    event.preventDefault();
-    const { name, theme } = this.state
-    const { history } = this.props
-    const userUid = firebase.auth().currentUser.uid
     try {
+      event.preventDefault();
+      const { name, theme } = this.state
+      const { history } = this.props
+      const userUid = firebase.auth().currentUser.uid
       const createdProject = await api.post(`/projects/user/${userUid}`, { name, style: theme })
       history.push(`/builder/${createdProject.data._id}`)
     } catch (error) {
