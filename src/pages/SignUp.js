@@ -3,6 +3,7 @@ import firebase from '../services/firebase'
 import NavBar from '../components/droy/NavBar'
 import { Link } from 'react-router-dom'
 import '../styles/login-signup.css'
+import Loading from '../components/droy/Loading'
 
 const STATUS = {
   LOADING: 'LOADING',
@@ -72,7 +73,7 @@ class SignUp extends Component {
     const { status, errorMessage, email, hashedPassword, name, confirmationPassword } = this.state
     switch (status) {
       case STATUS.LOADING:
-        return <div>Loading...</div>
+        return <div className='loading-container'><Loading /></div>
       case STATUS.LOADED:
         return (<div className='login-signup-container'>
           <div className='logo-container'>

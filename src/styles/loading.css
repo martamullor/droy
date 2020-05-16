@@ -1,0 +1,11 @@
+.loading-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.loading-text {
+    font-weight: 400;
+    margin-top: 25px;
+    color: #00c77f;
+    font-family: 'Montserrat', sans-serif;
+}

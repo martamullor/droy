@@ -4,6 +4,7 @@ import PropTypes from 'prop-types'
 import UserComponentBase from '../components/droy/UserComponentBase'
 import ComponentsSelectorBar from '../components/droy/ComponentsSelectorBar'
 import NavBar from '../components/droy/NavBar'
+import Loading from '../components/droy/Loading'
 import '../styles/builder.css'
 
 
@@ -31,7 +32,7 @@ class Builder extends Component {
     const { mode, status: contextStatus } = this.props
     switch (contextStatus) {
       case "LOADING":
-        return <div>Loading....</div>
+        return <div className='loading-container'><Loading /></div>
       case "LOADED":
         return (
           <div className="main-builder">

@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { withData } from '../../contexts/dataContext'
 import '../../styles/components-selectorBar.css'
 import api from '../../services/apiClient'
+import Loading from '../droy/Loading'
 
 const STATUS = {
   LOADING: 'LOADING',
@@ -56,7 +57,7 @@ class ComponentsSelectorBar extends Component {
     const { status } = this.state
     switch (status) {
       case STATUS.LOADING:
-        return <div>Loading...</div>
+        return <div className='loading-container'><Loading /></div>
       case STATUS.LOADED:
         return this.showComponents()
       case STATUS.ERROR:
