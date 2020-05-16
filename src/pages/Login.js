@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 import NavBar from '../components/droy/NavBar'
+import ModalResetPassword from '../components/droy/ModalResetPassword'
 import { Link } from 'react-router-dom'
 import firebase from '../services/firebase'
 import '../styles/login-signup.css'
-
 
 const STATUS = {
   LOADING: 'LOADING',
@@ -20,7 +20,8 @@ class Login extends Component {
       email: "",
       hashedPassword: "",
       status: STATUS.LOADED,
-      errorMessage: ""
+      errorMessage: "",
+      resetPasswordModal: false
     }
   }
 
@@ -40,6 +41,19 @@ class Login extends Component {
     }
   };
 
+  showModalReset = () => {
+    this.setState({
+      resetPasswordModal: true
+    })
+  }
+
+  closeModalReset = () => {
+    this.setState({
+      resetPasswordModal: false
+    })
+  }
+
+  
   handleSubmitGoogle = async (e) => {
     try {
       const { history } = this.props
@@ -61,8 +75,10 @@ class Login extends Component {
     });
   };
 
+
+
   showContent = () => {
-    const { status, errorMessage, email, hashedPassword } = this.state
+    const { status, errorMessage, email, hashedPassword, resetPasswordModal } = this.state
     switch (status) {
       case STATUS.LOADING:
         return <div>Loading...</div>
@@ -74,6 +90,7 @@ class Login extends Component {
         <div className='form-title-container'>
           <h1 className='title-login-signup'>Login your account:</h1>
           <p>{errorMessage}</p>
+          {resetPasswordModal && <ModalResetPassword onClose={this.closeModalReset}/>}
           <form className='login-form' onSubmit={this.handleSubmit}>
             <input className='input-form'
               placeholder="email"
@@ -96,6 +113,7 @@ class Login extends Component {
             <input className='button-form' type="submit" value="submit" />
             <Link className='text-form' to="/signup">You don't have an account? Register here!</Link>
           </form>
+          <button onClick={this.showModalReset}>Reset password </button>
           <img src="/img/google.png" alt="google" onClick={this.handleSubmitGoogle}/>
         </div>
       </div>)
