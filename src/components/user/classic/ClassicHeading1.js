@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
-import PropTypes from 'prop-types'
+import PropTypes, { object } from 'prop-types'
 import ImageEditable from '../../droy/ImageEditable'
+import LinkEditable from '../../droy/LinkEditable'
 
 const style = {
   backgroundColor: '#1b1b1b',
@@ -30,15 +31,28 @@ const text = {
 
 class ClassicHeading1 extends Component {
 
+
+  showLinks = () => {
+    const { mode, info, openChangeModal, deleteLink } = this.props
+    const allLinks = []
+    let i = 1
+    for (const key in info) {
+      if(info[key].type !== 'link') continue
+      allLinks.push(<LinkEditable deleteLink={deleteLink} key={i} mode={mode} info={info[key]} style={text} data-id={key} onDoubleClick={openChangeModal}/>)
+      i += 1      
+    }
+    return allLinks
+  }
+
+
   render () {
-    const { info, openChangeModal, children: optionsBar, changeImage } = this.props
+    const { mode, info, openChangeModal, children: optionsBar, changeImage } = this.props
     return (
       <div style={style}>
         {optionsBar}
-        <ImageEditable style={logoContainer} data-id="logo" src={info.logo} changeImage={changeImage} />
+        <ImageEditable style={logoContainer} data-id="logo" src={info.logo.src} changeImage={changeImage}/>
         <div style={textContainer}>
-          <p style={text} data-id="text1" onDoubleClick={openChangeModal}>{info.text1}</p>
-          <p style={text} data-id="text2" onDoubleClick={openChangeModal}>{info.text2}</p>
+          {this.showLinks()}
         </div>
       </div>
     )

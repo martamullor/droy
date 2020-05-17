@@ -125,3 +125,14 @@
       transition: transform 0.5s;
     }
   }
+
+.label-modal {
+    color: darkgray;
+    font-size: 0.8rem;
+    margin-bottom: 0px;
+}
+
+.modal-field-group {
+    display: flex;
+    flex-direction: column;
+}

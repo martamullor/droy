@@ -32,7 +32,7 @@ class Builder extends Component {
       </div>)
     if (dataError) return <div>{dataError}</div>
     return userLayoutObj.map((c) => {
-      return <UserComponentBase code={c.code} key={c.code} />
+      return <UserComponentBase componentType={c.componentType} code={c.code} key={c.code} />
     })
   }
 

@@ -35,6 +35,7 @@ class OptionsBar extends Component {
 
   render() {
     const { showOptions } = this.state
+    const { componentType, addLink, code} = this.props
     return (
       <div className='container-options-bar'>
         <button className='buttons-optionBar' >
@@ -47,6 +48,7 @@ class OptionsBar extends Component {
               <img className='image-optionBar' data-action='up' src="../../img/up-icon.png" alt='up' onClick={this.handleMoveComponent}/>
               <img className='image-optionBar' onClick={this.handleDelete} src="../../img/deleteBar-icon.png" alt='delete'></img>
               <img className='image-optionBar' onClick={this.closeOptions} src="../../img/closeBar-icon.png" alt='up'></img>
+              {componentType === "nav" && <img data-id={code} onClick={addLink} className='image-optionBar' src="../../img/up-icon.png"/>}
             </div>
           }
         </div>

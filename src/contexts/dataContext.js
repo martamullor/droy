@@ -87,26 +87,29 @@ class DataProvider extends Component {
     const stateCopy = {...this.state}
     const { userLayoutObj: newUserLayoutObj } = stateCopy
     const saveTo = newUserLayoutObj.find(userObject => userObject.code === componentCode)
-    saveTo.info[componentAttr] = attrContent
+    if(attrContent) saveTo.info[componentAttr] = attrContent
+    else delete saveTo.info[componentAttr]
     this.setState({
       userLayoutObj: newUserLayoutObj
     })
   };
 
-  addComponent = (componentCode, defaultInfo) => {
+  addComponent = (componentCode, defaultInfo, componentType) => {
     const stateCopy = { ...this.state }
     stateCopy.userLayoutObj.push({
       code: componentCode,
-      info: defaultInfo
+      info: defaultInfo,
+      componentType: componentType
     })
     this.setState({
-      userLayoutObj: stateCopy.userLayoutObj
+      userLayoutObj: stateCopy.userLayoutObj,
     })
   }
 
   getProjectInfo = async (projectId) => {
     try {
       const { data: { componentsConfiguration, style, _id } } = await api.get(`/projects/${projectId}`)
+      console.log(componentsConfiguration)
       this.setState({
         projectId: _id,
         userLayoutObj: componentsConfiguration,
