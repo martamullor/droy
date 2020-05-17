@@ -23,7 +23,7 @@ class ComponentsSelectorBar extends Component {
     try {
       const { projectStyle } = this.props
       const { data: styleComponents } = await api.get(`/components?style=${projectStyle}`)
-      this.setState({ styleComponents, status: STATUS.LOADED, style: projectStyle })
+      this.setState({ styleComponents, status: STATUS.LOADED })
     } catch (error) {
       this.setState({ status: STATUS.ERROR })
     }
