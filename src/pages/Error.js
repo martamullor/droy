@@ -1,7 +1,7 @@
 import React from 'react'
 import '../../styles/loading-error.css'
 
-export default class Loading extends React.Component {
+export default class Error extends React.Component {
   render () {
     return (
       <div className='loading-container'>
