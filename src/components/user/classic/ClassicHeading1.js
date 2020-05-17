@@ -9,12 +9,13 @@ const style = {
   color: 'white',
   justifyContent: 'space-between',
   alignItems: 'center',
-  height: '120px',
+  height: '60px',
   position: 'relative'
 }
 
-const logo = {
-  width: '10%'
+const logoContainer = {
+  paddingLeft: '50px',
+  width: '100px'
 }
 
 const textContainer = {
@@ -33,12 +34,10 @@ class ClassicHeading1 extends Component {
     const { info, changeInfo, children: optionsBar, changeImage } = this.props
     console.log(info.logo)
     return (
-
       <div style={style}>
         {optionsBar}
-        <ImageEditable data-id="logo" src={info.logo} changeImage={changeImage}/>
-        <div>
-          <img style={logo} src='../../../img/logo-white.png' alt='logo-classic-heading'></img>
+        <div style={logoContainer}>
+          <ImageEditable data-id="logo" src={info.logo} changeImage={changeImage} />
         </div>
         <div style={textContainer}>
           <p style={text} data-id="text1" onDoubleClick={changeInfo}>{info.text1}</p>
