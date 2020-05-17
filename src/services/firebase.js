@@ -3,14 +3,14 @@ import 'firebase/auth'
 import 'firebase/storage'
 
 const firebaseConfig = {
-  apiKey: 'AIzaSyBd5EjLbjtvoWmC4jKmFKcTa5Up87I9bTc',
-  authDomain: 'droy-dev.firebaseapp.com',
-  databaseURL: 'https://droy-dev.firebaseio.com',
-  projectId: 'droy-dev',
-  cliendId: '832956384747-g7hlgv9pm4vrncb27s0n0j0fjmoq1q25.apps.googleusercontent.com',
-  storageBucket: 'droy-dev.appspot.com',
-  messagingSenderId: '832956384747',
-  appId: '1:832956384747:web:3870c2e89e40d7401385ae'
+  apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
+  authDomain: `${process.env.REACT_APP_PROJECT_FIREBASE}.firebaseapp.com`,
+  databaseURL: `https://${process.env.REACT_APP_PROJECT_FIREBASE}.firebaseio.com`,
+  projectId: process.env.REACT_APP_PROJECT_FIREBASE,
+  cliendId: process.env.REACT_APP_FIREBASE_CLIENT_ID,
+  storageBucket: `${process.env.REACT_APP_PROJECT_FIREBASE}.appspot.com`,
+  messagingSenderId: process.env.REACT_APP_FIREBASE_MESSAGE_SENDER_ID,
+  appId: process.env.REACT_APP_FIREBASE_APP_ID
 }
 
 firebase.initializeApp(firebaseConfig)
