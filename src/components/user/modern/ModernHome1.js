@@ -2,9 +2,9 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
 const homeContainer = {
-  backgroundImage: 'url("../../../img/modern-home1.jpg")',
+  backgroundImage: 'url("/img/modern-home1.jpg")',
   height: '600px',
-  backgroundSize: '100%',
+  backgroundSize: 'cover',
   padding: '8px 40px 8px 40px',
   position: 'relative',
   fontFamily: "'Oswald', sans-serif"
@@ -27,15 +27,15 @@ const textHome1 = {
 
 class ModernHome1 extends Component {
   render () {
-    const { info, changeInfo, children: optionsBar } = this.props
+    const { info, openChangeModal, children: optionsBar } = this.props
 
     return (
 
       <div style={homeContainer}>
         {optionsBar}
         <div style={textHomeContainer}>
-          <h1 style={titleHome1} data-id="text1" onDoubleClick={changeInfo}>{info.text1}</h1>
-          <p style={textHome1} data-id="text2" onDoubleClick={changeInfo}>{info.text2}</p>
+          <h1 style={titleHome1} data-id="text1" onDoubleClick={openChangeModal}>{info.text1}</h1>
+          <p style={textHome1} data-id="text2" onDoubleClick={openChangeModal}>{info.text2}</p>
         </div>
       </div>
     )

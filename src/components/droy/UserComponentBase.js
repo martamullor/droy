@@ -54,7 +54,6 @@ class UserComponentBase extends Component {
     const componentProps = {}
     if(mode === 'edit'){
       componentProps['openChangeModal'] = this.handleOpenModal
-      componentProps['updateInfo'] = this.updateInfo
       componentProps['changeImage'] = this.changeImage
     }
     componentProps['info'] = componentInfo 

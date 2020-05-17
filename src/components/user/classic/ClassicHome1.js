@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 const homeContainer = {
   backgroundImage: 'url("/img/classic-home1.jpg")',
   height: '600px',
-  backgroundSize: '100%',
+  backgroundSize: 'cover',
   padding: '8px 40px 8px 40px',
   position: 'relative'
 }
