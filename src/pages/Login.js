@@ -13,7 +13,6 @@ const STATUS = {
   LOADED: 'LOADED',
 }
 
-
 class Login extends Component {
 
   constructor(props) {
@@ -55,16 +54,13 @@ class Login extends Component {
     })
   }
 
-
   handleSubmitGoogle = async (e) => {
     try {
       const { history } = this.props
       const provider = new firebase.auth.GoogleAuthProvider()
-      this.setState({ status: STATUS.LOADING })
       await firebase.auth().signInWithPopup(provider)
       history.push("/")
     } catch (error) {
-      console.log(error)
       this.setState({
         status: STATUS.ERROR,
         errorMessage: 'Error on login google',
@@ -77,8 +73,6 @@ class Login extends Component {
       [e.target.name]: e.target.value,
     });
   };
-
-
 
   showContent = () => {
     const { status, errorMessage, email, hashedPassword, resetPasswordModal } = this.state

@@ -31,15 +31,14 @@ const text = {
 class ClassicHeading1 extends Component {
 
   render () {
-    const { info, changeInfo, children: optionsBar, changeImage } = this.props
-    console.log(info.logo)
+    const { info, openChangeModal, children: optionsBar, changeImage } = this.props
     return (
       <div style={style}>
         {optionsBar}
         <ImageEditable style={logoContainer} data-id="logo" src={info.logo} changeImage={changeImage} />
         <div style={textContainer}>
-          <p style={text} data-id="text1" onDoubleClick={changeInfo}>{info.text1}</p>
-          <p style={text} data-id="text2" onDoubleClick={changeInfo}>{info.text2}</p>
+          <p style={text} data-id="text1" onDoubleClick={openChangeModal}>{info.text1}</p>
+          <p style={text} data-id="text2" onDoubleClick={openChangeModal}>{info.text2}</p>
         </div>
       </div>
     )
