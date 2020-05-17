@@ -36,9 +36,7 @@ class ModernHeading1 extends Component {
     return (
       <div style={style}>
         {optionsBar}
-        <div style={logoContainer}>
-          <ImageEditable data-id="logo" src={info.logo} changeImage={changeImage} />
-        </div>
+        <ImageEditable style={logoContainer} data-id="logo" src={info.logo} changeImage={changeImage} />
         <div style={textContainer}>
           <p style={text} data-id="text1" onDoubleClick={changeInfo}>{info.text1}</p>
           <p style={text} data-id="text2" onDoubleClick={changeInfo}>{info.text2}</p>
