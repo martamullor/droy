@@ -5,6 +5,7 @@ import UserComponentBase from '../components/droy/UserComponentBase'
 import ComponentsSelectorBar from '../components/droy/ComponentsSelectorBar'
 import NavBar from '../components/droy/NavBar'
 import Loading from '../components/droy/Loading'
+import Error from '../components/droy/Error'
 import '../styles/builder.css'
 
 
@@ -43,7 +44,7 @@ class Builder extends Component {
           </div>
         );
       case "ERROR":
-        return <div>Error</div>
+        return <div><Error /></div>
       default:
         break;
     }

@@ -4,10 +4,21 @@
 }
 
 .image-container {
-    width: 100%;
-    height: 100%;
+    height: 100vh;
     display: flex;
     justify-content: center;
+}
+
+.error-container {
+    display: flex;
+    justify-content: center; 
+    align-items: center;
+    height: 80%;
+}
+
+.error-title {
+    color: #3f5476;
+    font-size: 3rem;
 }
 
 .image-loading {
