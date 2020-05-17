@@ -48,7 +48,7 @@ class ModalStartProject extends Component {
             <button className='close-modal' onClick={onClose}>
               <img className='close-modal-image' src="../../img/close-icon.png" alt='delete-project'></img>
             </button>
-            <p>{error}</p>
+            <p className='error-text'>{error}</p>
             <form className='form-create-project' onSubmit={this.handleSubmit}>
               <label className='label-modal' htmlFor="name">Name of the project:</label>
               <input required="required" className='input-modal' type="text"

@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { withData } from '../../contexts/dataContext'
 import '../../styles/components-selectorBar.css'
 import api from '../../services/apiClient'
+import Loading from '../droy/Loading'
 
 const STATUS = {
   LOADING: 'LOADING',
@@ -36,13 +37,13 @@ class ComponentsSelectorBar extends Component {
       const thumbnail = c.thumbnail
       if (!usedCompIds.includes(c.code)) {
         return (
-          <div key={c.code} style={{ margin: '20px', backgroundImage:`url("${thumbnail.name}")`, backgroundRepeat: 'no-repeat', backgroundSize:'100%', height: thumbnail.height }}>
-            <button data-code={c.code} onClick={this.handleAddComponent}>Add</button>
-            
+          <div key={c.code} style={{ margin: '20px', backgroundImage: `url("${thumbnail.name}")`, backgroundRepeat: 'no-repeat', backgroundSize: '100%', height: thumbnail.height }}>
+            <button className='buttons-selectorBar'>
+              <img data-code={c.code} onClick={this.handleAddComponent} className='image-selectorBar' src="../../img/sum-icon.png" alt='down'></img>
+            </button>
           </div>)
       }
-      return (<div key={c.code} style={{ margin: '20px',  opacity:'0.3', backgroundImage:`url("${thumbnail.name}")`, backgroundRepeat: 'no-repeat', backgroundSize:'100%', height: thumbnail.height }}>
-        {c.code}
+      return (<div key={c.code} style={{ margin: '20px', opacity: '0.3', backgroundImage: `url("${thumbnail.name}")`, backgroundRepeat: 'no-repeat', backgroundSize: '100%', height: thumbnail.height }}>
       </div>)
     })
   }
@@ -58,11 +59,11 @@ class ComponentsSelectorBar extends Component {
     const { status } = this.state
     switch (status) {
       case STATUS.LOADING:
-        return <div>Loading...</div>
+        return <div className='loading-container'><Loading /></div>
       case STATUS.LOADED:
         return this.showComponents()
       case STATUS.ERROR:
-        return <div>Error</div>
+        return <div className='error-text padding-error'>Error</div>
       default:
         break;
     }

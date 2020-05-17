@@ -3,6 +3,8 @@ import NavBar from '../components/droy/NavBar'
 import ModalStartPage from '../components/droy/ModalStartProject'
 import ModalDelete from '../components/droy/ModalDelete'
 import SquareProject from '../components/droy/SquareProject'
+import Loading from '../components/droy/Loading'
+import Error from '../components/droy/Error'
 import '../styles/homePage.css'
 import api from '../services/apiClient'
 import firebase from '../services/firebase'
@@ -86,7 +88,7 @@ class Homepage extends Component {
     const { status, styles, modalStart, modalDelete, allProjects } = this.state
     switch (status) {
       case STATUS.LOADING:
-        return <div> Loading... </div>
+        return <div className='loading-container'><Loading /></div>
       case STATUS.LOADED:
         return (
           <div>
@@ -105,7 +107,7 @@ class Homepage extends Component {
           </div>
         )
       case STATUS.ERROR:
-        return <div> Error </div>
+        return <div> <Error /> </div>
 
       default:
         break;

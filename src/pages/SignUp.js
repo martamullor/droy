@@ -3,6 +3,7 @@ import firebase from '../services/firebase'
 import NavBar from '../components/droy/NavBar'
 import { Link } from 'react-router-dom'
 import '../styles/login-signup.css'
+import Loading from '../components/droy/Loading'
 
 const STATUS = {
   LOADING: 'LOADING',
@@ -29,7 +30,7 @@ class SignUp extends Component {
       e.preventDefault();
       const { email, hashedPassword, confirmationPassword } = this.state
       const { history } = this.props
-      if(hashedPassword !== confirmationPassword || hashedPassword.length < 6){
+      if (hashedPassword !== confirmationPassword || hashedPassword.length < 6) {
         this.setState({
           errorMessage: 'Weak password or mismatch',
           status: STATUS.LOADED
@@ -71,14 +72,14 @@ class SignUp extends Component {
     const { status, errorMessage, email, hashedPassword, name, confirmationPassword } = this.state
     switch (status) {
       case STATUS.LOADING:
-        return <div>Loading...</div>
+        return <div className='loading-container'><Loading /></div>
       case STATUS.LOADED:
         return (<div className='login-signup-container'>
           <div className='logo-container'>
           </div>
           <div className='form-title-container'>
             <h1 className='title-login-signup'>Sign Up</h1>
-            { errorMessage }
+            <p className='error-text padding-error'>{errorMessage}</p>
             <form className='login-form' onSubmit={this.handleSubmit}>
               <input className='input-form'
                 placeholder="email"
@@ -119,15 +120,20 @@ class SignUp extends Component {
               <div className='button-link-login-signup'>
                 <Link className='text-form' to="/login">Already have an account? Log in here!</Link>
                 <input className='button-form' type="submit" value="create your account" />
-                <img alt="google" src="/img/google.png"  onClick={this.handleSubmitGoogle}/>
               </div>
             </form>
+            <div className='google-container' onClick={this.handleSubmitGoogle} >
+              <div>
+                <img className='google-image' src="/img/google.png" alt="google" />
+              </div>
+              <p className='google-text'>Sign up with google</p>
+            </div>
           </div>
         </div>)
       case STATUS.ERROR:
-        return <div>{errorMessage}</div>
+        return <div className='error-text padding-error'>{errorMessage}</div>
       default:
-        return <div>Strange error...</div>
+        return <div className='error-text padding-error'>Strange error...</div>
     }
   }
 

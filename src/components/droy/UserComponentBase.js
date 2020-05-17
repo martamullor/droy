@@ -59,7 +59,7 @@ class UserComponentBase extends Component {
     }
     componentProps['info'] = componentInfo 
     return (
-      <div className="user-component-base">
+      <div>
         <UserComp {...componentProps}>
           {mode === "edit" && <OptionsBar code={code} deleteComponent={deleteComponent} moveComponent={moveComponent}/>}
           {mode === "edit" && openChangeModal && <ModalChangeInfo oldText={componentInfo[attributeSelected]} code={code} attributeSelected={attributeSelected} saveComponentInfoToContext={saveComponentInfoToContext} onClose={this.handleCloseModal}/>}

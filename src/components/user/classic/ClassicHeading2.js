@@ -1,16 +1,21 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import ImageEditable from '../../droy/ImageEditable'
 
 const style = {
   backgroundColor: '#dedede',
-  padding: '5px 40px 5px 40px',
+  padding: '8px 40px 8px 40px',
   display: 'flex',
-  color: '#1a1a1a',
-  alignItems: 'center'
+  color: 'white',
+  justifyContent: 'space-between',
+  alignItems: 'center',
+  height: '60px',
+  position: 'relative'
 }
 
-const logo = {
-  width: '10%'
+const logoContainer = {
+  paddingLeft: '50px',
+  width: '100px'
 }
 
 const textContainer = {
@@ -19,20 +24,18 @@ const textContainer = {
 }
 
 const text = {
-  paddingRight: '10px',
-  fontSize: '0.9rem'
+  paddingRight: '15px',
+  fontSize: '0.9rem',
+  color: '#242424'
 }
 
 class ClassicHeading2 extends Component {
   render () {
-    const { info, changeInfo, children: optionsBar } = this.props
+    const { info, changeInfo, children: optionsBar, changeImage } = this.props
     return (
-
       <div style={style}>
-        { optionsBar }
-        <div>
-          <img style={logo} src='/img/logo-grey.png' alt='logo-classic-heading'></img>
-        </div>
+        {optionsBar}
+        <ImageEditable style={logoContainer} data-id="logo" src={info.logo} changeImage={changeImage} />
         <div style={textContainer}>
           <p style={text} data-id="text1" onDoubleClick={changeInfo}>{info.text1}</p>
           <p style={text} data-id="text2" onDoubleClick={changeInfo}>{info.text2}</p>

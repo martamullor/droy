@@ -63,11 +63,16 @@
     padding: 12px;
 }
 
+.link-login-container {
+    margin-right: 50px;
+}
+
 
 .button-form {
     font-family: 'Montserrat', sans-serif;
     background: #00c77f;
     border: none;
+    margin: 10px 0px;
     padding: 10px 10px;
     border-radius: 3px;
     color: white;
@@ -80,8 +85,32 @@
 
 .text-form {
     color: #3f5476;
-    text-align: left;
     align-self: center;
     flex-grow: 1;
     font-size: 0.8rem;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+
+
+.google-container {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    cursor: pointer;
+    margin: 20px 0px;
+    border: 1px solid #c8ced8;
+    border-radius: 3px;
+}
+
+.google-image {
+    width: 30px;
+    margin-top: 10px;
+    padding-right: 20px;
+}
+
+.google-text {
+    font-size: 0.9rem;
+    color: #3f5476;
 }

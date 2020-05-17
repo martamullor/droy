@@ -1,0 +1,27 @@
+.loading-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.image-container {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+}
+
+.error-container {
+    display: flex;
+    justify-content: center; 
+    align-items: center;
+    height: 80%;
+}
+
+.error-title {
+    color: #3f5476;
+    font-size: 3rem;
+}
+
+.image-loading {
+    text-align: center;
+    align-self: center;
+}

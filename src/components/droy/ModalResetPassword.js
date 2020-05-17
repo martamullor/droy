@@ -21,10 +21,12 @@ class ModalResetPassword extends Component {
 
 
   handleSubmit = async (e) => {
+    const { onClose } = this.props
     try {
       e.preventDefault()
       const { email } = this.state
       await firebase.auth().sendPasswordResetEmail(email)
+      onClose();
     } catch (error) {
       this.setState({
         error: "Error on sending mail"
@@ -37,12 +39,12 @@ class ModalResetPassword extends Component {
     const { email, error } = this.state
     const { onClose } = this.props
     return(
-      <div className='modal-container'>
-      <div className='modal-style'>
+      <div className='modal-container-reset'>
+      <div className='modal-style-reset'>
         <button className='close-modal' onClick={onClose}>
-          <img className='close-modal-image' src="../../img/delete-icon.png" alt='delete-project'></img>
+          <img className='close-modal-image' src="../../img/close-icon.png" alt='delete-project'></img>
         </button>
-        <p>{error}</p>
+        <p className='error-text'>{error}</p>
         <form className='form-create-project' onSubmit={this.handleSubmit}>
           <label className='label-modal' htmlFor="name">Email:</label>
           <input required="required" className='input-modal' type="text"

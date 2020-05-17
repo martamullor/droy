@@ -2,11 +2,12 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
 const homeContainer = {
-  backgroundImage: 'url("/img/classic-home1.jpg")',
+  backgroundImage: 'url("../../../img/modern-home1.jpg")',
   height: '600px',
   backgroundSize: '100%',
   padding: '8px 40px 8px 40px',
-  position: 'relative'
+  position: 'relative',
+  fontFamily: "'Oswald', sans-serif"
 }
 
 const textHomeContainer = {
@@ -24,24 +25,24 @@ const textHome1 = {
   marginTop: '-25px'
 }
 
-class ClassicHome1 extends Component {
+class ModernHome1 extends Component {
   render () {
-    const { info, openChangeModal, children: optionsBar } = this.props
+    const { info, changeInfo, children: optionsBar } = this.props
 
     return (
 
       <div style={homeContainer}>
         {optionsBar}
         <div style={textHomeContainer}>
-          <h1 style={titleHome1} data-id="text1" onDoubleClick={openChangeModal}>{info.text1}</h1>
-          <p style={textHome1} data-id="text2" onDoubleClick={openChangeModal}>{info.text2}</p>
+          <h1 style={titleHome1} data-id="text1" onDoubleClick={changeInfo}>{info.text1}</h1>
+          <p style={textHome1} data-id="text2" onDoubleClick={changeInfo}>{info.text2}</p>
         </div>
       </div>
     )
   }
 }
 
-ClassicHome1.propTypes = {
+ModernHome1.propTypes = {
   info: PropTypes.object,
   changeInfo: PropTypes.func,
   optionsBar: PropTypes.object,
@@ -49,4 +50,4 @@ ClassicHome1.propTypes = {
   code: PropTypes.string
 }
 
-export default ClassicHome1
+export default ModernHome1

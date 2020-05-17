@@ -12,6 +12,7 @@ import Login from './pages/Login'
 import SignUp from './pages/SignUp'
 import { Route, Switch } from 'react-router-dom'
 import firebase from './services/firebase'
+import Loading from './components/droy/Loading'
 
 
 class App extends Component {
@@ -49,7 +50,7 @@ class App extends Component {
               </Switch>
             </div>
           </DataProvider>
-          : <div>Loading...</div>
+          : <div className='loading-container'><Loading /></div>
       }
       </div>
     )
