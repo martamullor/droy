@@ -31,7 +31,7 @@ class ClassicHeading2 extends Component {
       <div style={style}>
         { optionsBar }
         <div>
-          <img style={logo} src='../../../img/logo-grey.png' alt='logo-classic-heading'></img>
+          <img style={logo} src='/img/logo-grey.png' alt='logo-classic-heading'></img>
         </div>
         <div style={textContainer}>
           <p style={text} data-id="text1" onDoubleClick={changeInfo}>{info.text1}</p>

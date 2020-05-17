@@ -51,7 +51,6 @@ class SignUp extends Component {
     try {
       const { history } = this.props
       const provider = new firebase.auth.GoogleAuthProvider()
-      this.setState({ status: STATUS.LOADING })
       await firebase.auth().signInWithPopup(provider)
       history.push("/")
     } catch (error) {

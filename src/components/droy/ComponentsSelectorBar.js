@@ -13,7 +13,10 @@ class ComponentsSelectorBar extends Component {
 
   constructor(props) {
     super(props)
-    this.state = { styleComponents: [], status: STATUS.LOADING }
+    this.state = {
+      styleComponents: [],
+      status: STATUS.LOADING
+    }
   }
 
   componentDidMount = async () => {
@@ -25,7 +28,6 @@ class ComponentsSelectorBar extends Component {
       this.setState({ status: STATUS.ERROR })
     }
   }
-
 
   showComponents = () => {
     const usedCompIds = this.props.userLayoutObj.map(c => c.code)

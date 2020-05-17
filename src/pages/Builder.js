@@ -9,9 +9,17 @@ import '../styles/builder.css'
 
 class Builder extends Component {
 
+  constructor(props) {
+    super(props)
+    this.state = {
+      isLoading: true
+    }
+  }
+
   componentDidMount = async () => {
     const { match, getProjectInfo } = this.props
-    getProjectInfo(match.params.projectId)
+    await getProjectInfo(match.params.projectId)
+    this.setState({ isLoading: false })
   }
 
   showUserComponents = () => {
@@ -27,32 +35,18 @@ class Builder extends Component {
     })
   }
 
-  showContent = () => {
-    const { mode, status: contextStatus } = this.props
-    switch (contextStatus) {
-      case "LOADING":
-        return <div>Loading....</div>
-      case "LOADED":
-        return (
-          <div className="main-builder">
-            {mode === "edit" && <ComponentsSelectorBar />}
+  render() {
+    const { mode } = this.props
+    const { isLoading } = this.state
+    return (
+      <div>
+        <NavBar withOptions />
+        <div className="main-builder">
+            {!isLoading && mode === "edit" && <ComponentsSelectorBar />}
             <div>
               {this.showUserComponents()}
             </div>
           </div>
-        );
-      case "ERROR":
-        return <div>Error</div>
-      default:
-        break;
-    }
-  }
-
-  render() {
-    return (
-      <div>
-        <NavBar withOptions />
-        {this.showContent()}
       </div>
     )
   }

@@ -5,7 +5,6 @@ import ModalDelete from '../components/droy/ModalDelete'
 import SquareProject from '../components/droy/SquareProject'
 import '../styles/homePage.css'
 import api from '../services/apiClient'
-import { Link } from "react-router-dom";
 import firebase from '../services/firebase'
 
 const STATUS = {
@@ -28,8 +27,10 @@ class Homepage extends Component {
 
   componentDidMount = async () => {
     try {
-      const { data: styles } = await api.get('/styles')
-      const { data: projects } = await api.get(`/projects/user/${firebase.auth().currentUser.uid}`)
+      const [{ data: styles }, { data: projects }] = await Promise.all([
+        api.get('/styles'),
+        api.get(`/projects/user/${firebase.auth().currentUser.uid}`)
+      ])
       this.setState({
         styles: styles,
         allProjects: projects,
@@ -38,7 +39,6 @@ class Homepage extends Component {
     } catch (error) {
       this.setState({ status: STATUS.ERROR })
     }
-
   }
 
   showModalDelete = (e) => {
@@ -56,11 +56,14 @@ class Homepage extends Component {
 
   closeModalDelete = async () => {
     try {
-      const { data: projects} = await api.get(`/projects/user/${firebase.auth().currentUser.uid}`)
+      const { data: projects } = await api.get(`/projects/user/${firebase.auth().currentUser.uid}`)
       this.setState({
-        modalDelete: { show: false, data: '' },
+        modalDelete: {
+          show: false,
+          data: ''
+        },
         allProjects: projects,
-      })      
+      })
     } catch (error) {
       this.setState({ status: STATUS.ERROR })
     }
@@ -79,28 +82,6 @@ class Homepage extends Component {
     })
   }
 
-
-  renderProjects = () => {
-    const { allProjects } = this.state;
-    return allProjects.map((project, index) => {
-      return (
-        // Hacer componente SquareProject
-        <div key={index} >
-          <Link to={`builder/${project._id}`}>
-            <button className='buttons-homePage'>
-              <img className='image-homePage' src="../../img/projects-icon.png" alt='projects'></img>
-              <div >
-                {project.name}
-              </div>
-            </button>
-          </Link>
-          <img onClick={this.showModalDelete} data-project={project._id} className='image-homePage' src="../../img/delete-icon.png" alt='create-project'></img>
-        </div>
-      );
-    });
-  };
-
-
   showContent() {
     const { status, styles, modalStart, modalDelete, allProjects } = this.state
     switch (status) {
@@ -110,13 +91,17 @@ class Homepage extends Component {
         return (
           <div>
             <h2 className='title-homePage'>Create a project:</h2>
-            <img className='buttons-homePage' onClick={this.showModalStart} src="../../img/sum-icon.png" alt='create-project'></img>
+            <img className='buttons-homePage' onClick={this.showModalStart} src="../../img/sum-icon.png" alt='create-project'/>
             {modalStart && <ModalStartPage styles={styles} onClose={this.closeModalStart} />}
             {modalDelete.show && <ModalDelete onClose={this.closeModalDelete} project={modalDelete.data} />}
-            {allProjects.length > 0 && <h2 className='title-homePage'>Select the project you want to open:</h2>}
-            <div className='all-projects-homePage'>
-              {allProjects.map((project, key) => <SquareProject key={key} project={project} showModalDelete={this.showModalDelete} />)}
-            </div>
+            {allProjects.length > 0 &&
+              <div>
+                <h2 className='title-homePage'>Select the project you want to open:</h2>
+                <div className='all-projects-homePage'>
+                  {allProjects.map((project, key) => <SquareProject key={key} project={project} showModalDelete={this.showModalDelete} />)}
+                </div>
+              </div>
+            }
           </div>
         )
       case STATUS.ERROR:
