@@ -10,6 +10,7 @@ import NotFound from './pages/NotFound'
 import DataProvider from './contexts/dataContext'
 import Login from './pages/Login'
 import SignUp from './pages/SignUp'
+import AboutUs from './pages/AboutUs'
 import { Route, Switch } from 'react-router-dom'
 import firebase from './services/firebase'
 import Loading from './components/droy/Loading'
@@ -46,6 +47,7 @@ class App extends Component {
                 <OnlyNotLoggedRoute exact path='/login' component={Login} />
                 <OnlyNotLoggedRoute exact path='/signup' component={SignUp} />
                 <PrivateRoute exact path='/builder/:projectId' component={Builder} />
+                <Route path='/about' component={AboutUs} />
                 <Route path='*' component={NotFound} />
               </Switch>
             </div>

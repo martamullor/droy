@@ -1,0 +1,20 @@
+.section-home-about {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    height: 90vh;
+}
+
+.section-container {
+    display: flex;
+    padding: 0px 100px;
+    height: 50vh;
+}
+
+.section-container-info {
+    padding: 10px 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
