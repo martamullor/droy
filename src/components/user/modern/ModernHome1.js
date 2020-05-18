@@ -7,7 +7,8 @@ const homeContainer = {
   backgroundSize: 'cover',
   padding: '8px 40px 8px 40px',
   position: 'relative',
-  fontFamily: "'Oswald', sans-serif"
+  fontFamily: "'Oswald', sans-serif",
+  overflow: 'hidden'
 }
 
 const textHomeContainer = {

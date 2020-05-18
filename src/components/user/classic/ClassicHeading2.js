@@ -10,7 +10,8 @@ const style = {
   justifyContent: 'space-between',
   alignItems: 'center',
   height: '60px',
-  position: 'relative'
+  position: 'relative',
+  overflow: 'hidden'
 }
 
 const logoContainer = {
