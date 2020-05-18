@@ -94,6 +94,16 @@ class DataProvider extends Component {
     })
   };
 
+  saveUserComponentStyleInfoToContext = (componentCode, newStylePair) => {
+    const stateCopy = {...this.state}
+    const component = stateCopy.userLayoutObj.find(userObject => userObject.code === componentCode)
+    if(!component.componentUserOverrideStyle) component.componentUserOverrideStyle = newStylePair
+    else Object.assign(component.componentUserOverrideStyle, newStylePair)
+    this.setState({
+      userLayoutObj: stateCopy.userLayoutObj
+    })
+  }
+
   addComponent = (componentCode, defaultInfo, componentType) => {
     const stateCopy = { ...this.state }
     stateCopy.userLayoutObj.push({
@@ -109,6 +119,7 @@ class DataProvider extends Component {
   getProjectInfo = async (projectId) => {
     try {
       const { data: { componentsConfiguration, style, _id } } = await api.get(`/projects/${projectId}`)
+      console.log(componentsConfiguration)
       this.setState({
         projectId: _id,
         userLayoutObj: componentsConfiguration,
@@ -131,6 +142,7 @@ class DataProvider extends Component {
         addComponent: this.addComponent,
         deleteComponent: this.deleteComponent,
         save: this.save,
+        saveUserComponentStyleInfoToContext: this.saveUserComponentStyleInfoToContext,
         ...this.state
 
       }}>

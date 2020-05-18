@@ -3,6 +3,8 @@
     flex-direction: row;
     justify-content: center;
     position: absolute;
+    top: 0px;
+    left: 0px;
     background-color: #f1f2f4;
     border: 1px solid #c8ced8;
 }
@@ -13,8 +15,9 @@
 }
 
 .image-optionBar {
-    width: 25px;
+    width: 23px;
     margin-top: 2px;
+    animation: appear 0.5s forwards;
 }
 
 @keyframes appear {
@@ -27,3 +30,9 @@
       transition: transform 0.5s;
     }
   }
+
+.colorPicker {
+  position: absolute;
+  top: 35px;
+  left: 150px;
+}

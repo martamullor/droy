@@ -50,7 +50,7 @@ class UserComponentBase extends Component {
     saveComponentInfoToContext(code, attr, {src: downloadUrl})
   }
 
-  addLink = (e) => {
+  addLink = () => {
     const { code, saveComponentInfoToContext, userLayoutObj } = this.props
     const newUserLayoutObj = [...userLayoutObj]
     const targetComponentInfo = newUserLayoutObj.find(c => c.code === code).info
@@ -82,11 +82,18 @@ class UserComponentBase extends Component {
     this.handleCloseModal()
   }
 
+  changeColor = (color) => {
+    const { code, saveUserComponentStyleInfoToContext } = this.props
+    saveUserComponentStyleInfoToContext(code, {backgroundColor: color})
+  }
+
   render () {
     const { mode, moveComponent, componentType, code, deleteComponent, userLayoutObj  } = this.props
     const { attributeSelected, openChangeModal, attributeSelectedInfo } = this.state
     const UserComp = MATCH_COMPONENTS[code]
     const componentInfo = userLayoutObj.filter(c => c.code === code)[0].info
+    const userStyle = userLayoutObj.filter(c => c.code === code)[0].componentUserOverrideStyle
+    console.log(3333, userLayoutObj)
     const componentProps = {}
     if(mode === 'edit'){
       componentProps['openChangeModal'] = this.handleOpenModal
@@ -96,10 +103,11 @@ class UserComponentBase extends Component {
       }
     }
     componentProps['info'] = componentInfo
+    componentProps['userStyle'] = userStyle
     return (
       <div>
         <UserComp {...componentProps} mode={mode}>
-          {mode === "edit" && <OptionsBar addLink={this.addLink} componentType={componentType} code={code} deleteComponent={deleteComponent} moveComponent={moveComponent}/>}
+          {mode === "edit" && <OptionsBar changeColor={this.changeColor} addLink={this.addLink} componentType={componentType} code={code} deleteComponent={deleteComponent} moveComponent={moveComponent}/>}
           {mode === "edit" && openChangeModal && <ModalChangeInfo deleteLink={this.deleteLink} info={attributeSelectedInfo} code={code} attributeSelected={attributeSelected} changeInfo={this.changeInfo} onClose={this.handleCloseModal}/>}
         </UserComp>
       </div>

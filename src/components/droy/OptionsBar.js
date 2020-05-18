@@ -1,13 +1,20 @@
 import React, { Component } from 'react'
 import '../../styles/optionsBar.css'
+import { SketchPicker } from 'react-color'
 
 class OptionsBar extends Component {
 
   constructor() {
     super()
     this.state = {
-      showOptions: false
+      showOptions: false,
+      color: '',
+      showColorPicker: false
     }
+  }
+
+  handleAcceptChangeColor = () => {
+    this.props.changeColor(this.state.color.hex)
   }
 
   handleMoveComponent = (e) => {
@@ -21,21 +28,33 @@ class OptionsBar extends Component {
     deleteComponent(code)
   }
 
+  handleChange = (e) => {
+    this.setState({
+      [e.target.name]: e.target.value
+    })
+  }
+
   showOptions = () => {
     this.setState({
       showOptions: !this.state.showOptions
     })
   }
 
-  closeOptions = () => {
+  toggleColorPicker = () => {
     this.setState({
-      showOptions: false
+      showColorPicker: !this.state.showColorPicker
+    })
+  }
+
+  handleChangeColor = (color) => {
+    this.setState({
+      color: color
     })
   }
 
   render() {
-    const { showOptions } = this.state
-    const { componentType, addLink, code} = this.props
+    const { showOptions, color, showColorPicker } = this.state
+    const { componentType, addLink } = this.props
     return (
       <div className='container-options-bar'>
         <button className='buttons-optionBar' >
@@ -44,14 +63,17 @@ class OptionsBar extends Component {
         <div className="options-bar">
           {showOptions &&
             <div>
-              <img className='image-optionBar' data-action='down' src="../../img/down-icon.png" alt='down' onClick={this.handleMoveComponent}/>
-              <img className='image-optionBar' data-action='up' src="../../img/up-icon.png" alt='up' onClick={this.handleMoveComponent}/>
-              <img className='image-optionBar' onClick={this.handleDelete} src="../../img/deleteBar-icon.png" alt='delete'></img>
-              <img className='image-optionBar' onClick={this.closeOptions} src="../../img/closeBar-icon.png" alt='up'></img>
-              {componentType === "nav" && <img alt="newLink" data-id={code} onClick={addLink} className='image-optionBar' src="../../img/up-icon.png"/>}
+              <img className='image-optionBar' data-action='down' src="/img/down-icon.png" alt='down' onClick={this.handleMoveComponent}/>
+              <img className='image-optionBar' data-action='up' src="/img/up-icon.png" alt='up' onClick={this.handleMoveComponent}/>
+              <img className='image-optionBar' onClick={this.handleDelete} src="/img/deleteBar-icon.png" alt='delete'></img>
+              {componentType === "nav" && <img alt="newLink" onClick={addLink} className='image-optionBar' src="/img/up-icon.png"/> }
+              {componentType === "nav" && <img onClick={this.toggleColorPicker} alt="newLink" className='image-optionBar' src="/img/up-icon.png"/> }
             </div>
           }
         </div>
+        { showColorPicker && <div className='colorPicker'>
+          <SketchPicker disableAlpha={true} onCancel={this.toggleColorPicker} onChange={ this.handleChangeColor } color={color} onChangeComplete={this.handleAcceptChangeColor}/> 
+        </div> }
       </div>
     )
   }
