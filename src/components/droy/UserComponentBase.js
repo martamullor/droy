@@ -59,23 +59,31 @@ class UserComponentBase extends Component {
       if(targetComponentInfo[key].type !== 'link') continue
       linksIds.push(parseInt(key.match(/\d+$/)[0]))
     }
-    if(linksIds.length > 5) return
+    if(linksIds.length >= 5) return
     let newAttr = ''
-    if(!linksIds.length) newAttr = 'Link1'
-    else newAttr = `Link${Math.max(...linksIds)+1}`
+    if(!linksIds.length) newAttr = 'link1'
+    else newAttr = `link${Math.max(...linksIds)+1}`
     // Cambiar link por default a pagina de quienes somos de Droy
-    const newInfo = { type: 'link', text: newAttr, href: 'http://www.google.es', toNewPage:true}
+    const newInfo = { type: 'link', text: "New link", href: 'http://www.google.es', toNewPage:true}
     saveComponentInfoToContext(code, newAttr, newInfo)
   }
 
   deleteLink = (e) => {
-    const { code, saveComponentInfoToContext, userLayoutObj } = this.props
-    const attr = e.target.attributes['data-id'].value
-    saveComponentInfoToContext(code, attr, undefined)
+    const { code, saveComponentInfoToContext } = this.props
+    const { attributeSelected } = this.state
+    saveComponentInfoToContext(code, attributeSelected, undefined)
+    this.handleCloseModal()
+  }
+
+  changeInfo = (info) => {
+    const { attributeSelected } = this.state
+    const { code, saveComponentInfoToContext } = this.props
+    saveComponentInfoToContext(code, attributeSelected, info)
+    this.handleCloseModal()
   }
 
   render () {
-    const { mode, moveComponent, componentType, code, deleteComponent, saveComponentInfoToContext, userLayoutObj  } = this.props
+    const { mode, moveComponent, componentType, code, deleteComponent, userLayoutObj  } = this.props
     const { attributeSelected, openChangeModal, attributeSelectedInfo } = this.state
     const UserComp = MATCH_COMPONENTS[code]
     const componentInfo = userLayoutObj.filter(c => c.code === code)[0].info
@@ -84,7 +92,6 @@ class UserComponentBase extends Component {
       componentProps['openChangeModal'] = this.handleOpenModal
       componentProps['changeImage'] = this.changeImage
       if(componentType === "nav") {
-        componentProps['deleteLink'] = this.deleteLink
         componentProps['addLink'] = this.addLink
       }
     }
@@ -93,7 +100,7 @@ class UserComponentBase extends Component {
       <div>
         <UserComp {...componentProps} mode={mode}>
           {mode === "edit" && <OptionsBar addLink={this.addLink} componentType={componentType} code={code} deleteComponent={deleteComponent} moveComponent={moveComponent}/>}
-          {mode === "edit" && openChangeModal && <ModalChangeInfo info={attributeSelectedInfo} code={code} attributeSelected={attributeSelected} saveComponentInfoToContext={saveComponentInfoToContext} onClose={this.handleCloseModal}/>}
+          {mode === "edit" && openChangeModal && <ModalChangeInfo deleteLink={this.deleteLink} info={attributeSelectedInfo} code={code} attributeSelected={attributeSelected} changeInfo={this.changeInfo} onClose={this.handleCloseModal}/>}
         </UserComp>
       </div>
     )

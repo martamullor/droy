@@ -11,23 +11,21 @@ export default class ModalDelete extends Component {
 
   handleChange = (e) => {
     const infoCopy = {...this.state.info}
-    infoCopy[e.target.name] = e.target.name == "toNewPage" ? e.target.checked : e.target.value
+    infoCopy[e.target.name] = e.target.name === "toNewPage" ? e.target.checked : e.target.value
     this.setState({
       info: infoCopy
     });
   }
 
-  changeInfo = (e) => {
+  handleChangeInfo = (e) => {
     e.preventDefault()
-    const { onClose, code, attributeSelected, saveComponentInfoToContext } = this.props
+    const { changeInfo } = this.props
     const { info } = this.state
-    // Warning, double rendering.
-    saveComponentInfoToContext(code, attributeSelected, info)
-    onClose()
+    changeInfo(info)
   }
 
   render() {
-    const { onClose } = this.props
+    const { onClose, deleteLink } = this.props
     const { info } = this.state
     return (
       <div className='modal-container'>
@@ -35,7 +33,7 @@ export default class ModalDelete extends Component {
           <button className='close-modal' onClick={onClose}>
             <img className='close-modal-image' src="/img/close-icon.png" alt='delete-project'></img>
           </button>
-          <form className='form-create-project' onSubmit={this.changeInfo}>
+          <form className='form-create-project' onSubmit={this.handleChangeInfo}>
             <div className="modal-field-group">
               <label className="label-modal" htmlFor="display-text">Display text:</label>
               <input required="required" className='input-modal' type="text"
@@ -56,6 +54,7 @@ export default class ModalDelete extends Component {
             }
             <button className='button-modal' type='submit'>Update info</button>
           </form>
+          {info.type === 'link' && <p onClick={deleteLink} className='button-modal-red' type='submit'>Delete link</p>}
         </div>
       </div>
     )

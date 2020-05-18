@@ -109,7 +109,6 @@ class DataProvider extends Component {
   getProjectInfo = async (projectId) => {
     try {
       const { data: { componentsConfiguration, style, _id } } = await api.get(`/projects/${projectId}`)
-      console.log(componentsConfiguration)
       this.setState({
         projectId: _id,
         userLayoutObj: componentsConfiguration,

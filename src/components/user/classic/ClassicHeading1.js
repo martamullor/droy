@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
-import PropTypes, { object } from 'prop-types'
+import PropTypes from 'prop-types'
 import ImageEditable from '../../droy/ImageEditable'
-import LinkEditable from '../../droy/LinkEditable'
+import LinksListEditable from '../../droy/LinksListEditable'
 
 const style = {
   backgroundColor: '#1b1b1b',
@@ -19,41 +19,27 @@ const logoContainer = {
   width: '100px'
 }
 
-const textContainer = {
+const linksContainer = {
   display: 'flex',
   flexDirection: 'row'
 }
 
-const text = {
+const linksStyle = {
   paddingRight: '15px',
-  fontSize: '0.9rem'
+  fontSize: '0.9rem',
+  backgroundColor: 'transparent',
+  border: 'none',
+  color: 'white'
 }
 
 class ClassicHeading1 extends Component {
-
-
-  showLinks = () => {
-    const { mode, info, openChangeModal, deleteLink } = this.props
-    const allLinks = []
-    let i = 1
-    for (const key in info) {
-      if(info[key].type !== 'link') continue
-      allLinks.push(<LinkEditable deleteLink={deleteLink} key={i} mode={mode} info={info[key]} style={text} data-id={key} onDoubleClick={openChangeModal}/>)
-      i += 1      
-    }
-    return allLinks
-  }
-
-
   render () {
-    const { mode, info, openChangeModal, children: optionsBar, changeImage } = this.props
+    const { info, children: optionsBar, changeImage, openChangeModal } = this.props
     return (
       <div style={style}>
         {optionsBar}
         <ImageEditable style={logoContainer} data-id="logo" src={info.logo.src} changeImage={changeImage}/>
-        <div style={textContainer}>
-          {this.showLinks()}
-        </div>
+        <LinksListEditable openChangeModal={openChangeModal} info={info} containerStyle={linksContainer} linksStyle={linksStyle}/>
       </div>
     )
   }
@@ -63,8 +49,13 @@ ClassicHeading1.propTypes = {
   info: PropTypes.object,
   changeInfo: PropTypes.func,
   optionsBar: PropTypes.object,
-  // children: PropTypes.object,
-  code: PropTypes.string
+  children: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.node),
+    PropTypes.node
+  ]),
+  code: PropTypes.string,
+  changeImage: PropTypes.func,
+  openChangeModal: PropTypes.func
 }
 
 export default ClassicHeading1

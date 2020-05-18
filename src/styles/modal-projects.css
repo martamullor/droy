@@ -104,6 +104,17 @@
     font-weight: 500;
 }
 
+.button-modal-red {
+    font-family: 'Montserrat', sans-serif;
+    color: #f82323;
+    margin: 0px;
+    text-transform: capitalize;
+    font-size: 0.9rem;
+    font-weight: 500;
+    text-decoration: underline;
+}
+
+
 .text-modal-close {
     color: #3f5476;
     font-size: 0.8rem;
