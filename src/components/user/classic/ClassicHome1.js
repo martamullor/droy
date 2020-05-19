@@ -31,10 +31,9 @@ const textHome1 = {
 class ClassicHome1 extends Component {
   render () {
     const { userStyle, mode, info, children: optionsBar, changeImage, openChangeModal } = this.props
-    console.log(info)
+    const copyStyle = Object.assign({}, homeContainer, userStyle)
     return (
-
-      <div style={homeContainer}>
+      <div style={copyStyle}>
         {optionsBar}
         <div style={textHomeContainer}>
           <h1 style={titleHome1} data-id="text1" onDoubleClick={openChangeModal}>{info.text1.text}</h1>

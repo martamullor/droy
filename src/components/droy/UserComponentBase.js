@@ -95,9 +95,24 @@ class UserComponentBase extends Component {
     saveUserComponentStyleInfoToContext(code, {backgroundColor: color})
   }
 
+  /* Uploads the recived image to Firebase Storage and updates the context */
+  changeBackgroundImage = async (e) => {
+    const { projectId, code, saveUserComponentStyleInfoToContext } = this.props
+    const file = e.target.files[0]
+    if(file.size > 20000){
+      alert('Imagen demasiado grande.')
+    } else {
+      const randomFileName = uuid()
+      const storageRef = firebase.storage().ref(`/${firebase.auth().currentUser.uid}/${projectId}/${randomFileName}`)
+      await storageRef.put(file)
+      const downloadUrl = await storageRef.getDownloadURL()
+      saveUserComponentStyleInfoToContext(code, {backgroundImage: `url("${downloadUrl}")`})
+    }
+  } 
+
   /* Gets the real React components and pass new funcionalities */
   render () {
-    const { mode, moveComponent, componentType, code, deleteComponent, userLayoutObj  } = this.props
+    const { mode, moveComponent, componentOptions, code, deleteComponent, userLayoutObj  } = this.props
     const { attributeSelected, openChangeModal, attributeSelectedInfo } = this.state
     const UserComp = MATCH_COMPONENTS[code]
     const { info: componentInfo, componentUserOverrideStyle: userStyle } = userLayoutObj.find(c => c.code === code)
@@ -105,13 +120,13 @@ class UserComponentBase extends Component {
     if(mode === 'edit'){
       componentProps['openChangeModal'] = this.handleOpenModal
       componentProps['changeImage'] = this.changeImage
-      if(componentType === "nav") componentProps['addLink'] = this.addLink
+      if(componentOptions.includes('backgroundColor')) componentProps['addLink'] = this.addLink
     }
     componentProps['info'] = componentInfo
     componentProps['userStyle'] = userStyle
     return (
       <UserComp {...componentProps} mode={mode}>
-        {mode === "edit" && <OptionsBar changeColor={this.changeColor} addLink={this.addLink} componentType={componentType} code={code} deleteComponent={deleteComponent} moveComponent={moveComponent}/>}
+        {mode === "edit" && <OptionsBar changeColor={this.changeColor} addLink={this.addLink} componentOptions={componentOptions} code={code} deleteComponent={deleteComponent} moveComponent={moveComponent} changeBackgroundImage={this.changeBackgroundImage}/>}
         {mode === "edit" && openChangeModal && <ModalChangeInfo deleteLink={this.deleteLink} info={attributeSelectedInfo} code={code} attributeSelected={attributeSelected} changeInfo={this.changeInfo} onClose={this.handleCloseModal}/>}
       </UserComp>
     )

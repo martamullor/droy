@@ -52,9 +52,14 @@ class OptionsBar extends Component {
     })
   }
 
+  uploadHandler = () => {
+    this.refs.imageUploader.click();
+  }
+
   render() {
     const { showOptions, color, showColorPicker } = this.state
-    const { componentType, addLink } = this.props
+    const { componentOptions, addLink, changeBackgroundImage } = this.props
+    console.log(componentOptions)
     return (
       <div className='container-options-bar'>
         <button className='buttons-optionBar' >
@@ -66,8 +71,11 @@ class OptionsBar extends Component {
               <img className='image-optionBar' data-action='down' src="/img/down-icon.png" alt='down' onClick={this.handleMoveComponent}/>
               <img className='image-optionBar' data-action='up' src="/img/up-icon.png" alt='up' onClick={this.handleMoveComponent}/>
               <img className='image-optionBar' onClick={this.handleDelete} src="/img/deleteBar-icon.png" alt='delete'></img>
-              {componentType === "nav" && <img alt="newLink" onClick={addLink} className='image-optionBar' src="/img/up-icon.png"/> }
-              {componentType === "nav" && <img onClick={this.toggleColorPicker} alt="newLink" className='image-optionBar' src="/img/up-icon.png"/> }
+              {componentOptions.includes('addLinks') && <img alt="newLink" onClick={addLink} className='image-optionBar' src="/img/up-icon.png"/> }
+              {componentOptions.includes('backgroundColor') && <img onClick={this.toggleColorPicker} alt="newLink" className='image-optionBar' src="/img/up-icon.png"/> }
+              {componentOptions.includes('backgroundImage') && <img onClick={this.uploadHandler} alt="newLink" className='image-optionBar' src="/img/up-icon.png"/> }
+              <input name='image' id='image' style={{ display: 'none' }} onChange={changeBackgroundImage} ref="imageUploader" type="file"/>
+
             </div>
           }
         </div>
