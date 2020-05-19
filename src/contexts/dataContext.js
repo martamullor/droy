@@ -4,7 +4,6 @@ import api from '../services/apiClient'
 
 const DataContext = React.createContext()
 
-// Consumer Wrapper
 export const withData = (Comp) => {
   return class WithData extends Component {
     render() {
@@ -17,9 +16,7 @@ export const withData = (Comp) => {
   }
 }
 
-// Provider def
 class DataProvider extends Component {
-
   constructor(props) {
     super(props)
     this.state = {
@@ -32,80 +29,49 @@ class DataProvider extends Component {
     }
   }
 
-  /* SWITCH MODES */
+  /* Switch between edit/view modes */
   switchMode = () => {
     const { mode } = this.state
-    this.setState({ mode: mode === 'edit' ? 'view' : 'edit' })
+    this.setState({
+      mode: mode === 'edit' ? 'view' : 'edit'
+    })
   }
 
+  /* Delete component from main layout */
   deleteComponent = (elementCode) => {
     const stateCopy = { ...this.state }
-    const { userLayoutObj: newUserLayoutObj } = stateCopy
+    const { userLayoutObj } = stateCopy
     let fromIndex = 0;
-    for (let i = 0; i < newUserLayoutObj.length; i++) {
-      const c = newUserLayoutObj[i];
-      if (c.code === elementCode) {
-        fromIndex = i; break
-      }
+    for (let i = 0; i < userLayoutObj.length; i++) {
+      const c = userLayoutObj[i];
+      if (c.code !== elementCode) continue
+      fromIndex = i
+      break
     }
-    newUserLayoutObj.splice(fromIndex, 1)
-    this.setState({ userLayoutObj: newUserLayoutObj })
+    userLayoutObj.splice(fromIndex, 1)
+    this.setState({ userLayoutObj: userLayoutObj })
   }
 
+  /* Move component position from main layout */
   moveComponent = (elementCode, direction) => {
     const stateCopy = { ...this.state }
-    const { userLayoutObj: newUserLayoutObj } = stateCopy
+    const { userLayoutObj } = stateCopy
     let fromIndex = 0; let element
-    for (let i = 0; i < newUserLayoutObj.length; i++) {
-      const c = newUserLayoutObj[i];
+    for (let i = 0; i < userLayoutObj.length; i++) {
+      const c = userLayoutObj[i];
       if (c.code === elementCode) {
         element = c; fromIndex = i; break
       }
     }
-    newUserLayoutObj.splice(fromIndex, 1)
-    if (direction === 'down') newUserLayoutObj.splice(fromIndex + 1, 0, element)
-    else if (direction === 'up') newUserLayoutObj.splice(fromIndex - 1, 0, element)
-    this.setState({ userLayoutObj: newUserLayoutObj })
+    userLayoutObj.splice(fromIndex, 1)
+    if (direction === 'down') userLayoutObj.splice(fromIndex + 1, 0, element)
+    else if (direction === 'up') userLayoutObj.splice(fromIndex - 1, 0, element)
+    this.setState({ userLayoutObj: userLayoutObj })
   }
 
-
-  save = async (projectId) => {
-    try {
-      this.setState({ savingStep: 'Saving...' })
-      const { userLayoutObj } = this.state
-      await api.put(`/projects/${projectId}`, { componentsConfiguration: userLayoutObj })
-      setTimeout(() => {
-        this.setState({ savingStep: 'OK' })
-        setTimeout(() => { this.setState({ savingStep: 'Save' }) }, 500);
-      }, 500);
-    } catch (error) {
-      alert("Error al guardar.")
-    }   
-  }
-
-  saveComponentInfoToContext = (componentCode, componentAttr, attrContent) => {
-    const stateCopy = {...this.state}
-    const { userLayoutObj: newUserLayoutObj } = stateCopy
-    const saveTo = newUserLayoutObj.find(userObject => userObject.code === componentCode)
-    if(attrContent) saveTo.info[componentAttr] = attrContent
-    else delete saveTo.info[componentAttr]
-    this.setState({
-      userLayoutObj: newUserLayoutObj
-    })
-  };
-
-  saveUserComponentStyleInfoToContext = (componentCode, newStylePair) => {
-    const stateCopy = {...this.state}
-    const component = stateCopy.userLayoutObj.find(userObject => userObject.code === componentCode)
-    if(!component.componentUserOverrideStyle) component.componentUserOverrideStyle = newStylePair
-    else Object.assign(component.componentUserOverrideStyle, newStylePair)
-    this.setState({
-      userLayoutObj: stateCopy.userLayoutObj
-    })
-  }
-
+  /* Add new component to actual configurarion */
   addComponent = (componentCode, defaultInfo, componentType) => {
-    const stateCopy = { ...this.state }
+    const stateCopy = {...this.state}
     stateCopy.userLayoutObj.push({
       code: componentCode,
       info: defaultInfo,
@@ -116,10 +82,48 @@ class DataProvider extends Component {
     })
   }
 
+  /* Save actual user configuration to BBDD */
+  save = async (projectId) => {
+    try {
+      this.setState({ savingStep: 'Saving...' })
+      const { userLayoutObj } = this.state
+      await api.put(`/projects/${projectId}`, { componentsConfiguration: userLayoutObj })
+      setTimeout(() => {
+        this.setState({ savingStep: 'OK' })
+        setTimeout(() => { this.setState({ savingStep: 'Save' }) }, 500);
+      }, 500);
+    } catch (error) {
+      alert("Error al guardar. Vuelve a intentarlo")
+    }   
+  }
+
+  /* Update content configuration and rerender with it */
+  saveComponentInfoToContext = (componentCode, componentAttr, attrContent) => {
+    const stateCopy = {...this.state}
+    const { userLayoutObj } = stateCopy
+    const component = userLayoutObj.find(userObject => userObject.code === componentCode)
+    if (attrContent) component.info[componentAttr] = attrContent
+    else delete component.info[componentAttr]
+    this.setState({
+      userLayoutObj: userLayoutObj
+    })
+  };
+
+  /* Update style configuration and rerender with it */
+  saveUserComponentStyleInfoToContext = (componentCode, newStylePair) => {
+    const stateCopy = {...this.state}
+    const component = stateCopy.userLayoutObj.find(userObject => userObject.code === componentCode)
+    if (!component.componentUserOverrideStyle) component.componentUserOverrideStyle = newStylePair
+    else Object.assign(component.componentUserOverrideStyle, newStylePair)
+    this.setState({
+      userLayoutObj: stateCopy.userLayoutObj
+    })
+  }
+
+  /* Get project info to BBDD based on the project ID */
   getProjectInfo = async (projectId) => {
     try {
       const { data: { componentsConfiguration, style, _id } } = await api.get(`/projects/${projectId}`)
-      console.log(componentsConfiguration)
       this.setState({
         projectId: _id,
         userLayoutObj: componentsConfiguration,
@@ -132,7 +136,6 @@ class DataProvider extends Component {
 
   render () {
     const { children } = this.props
-
     return (
       <DataContext.Provider value={{
         saveComponentInfoToContext: this.saveComponentInfoToContext,
@@ -144,7 +147,6 @@ class DataProvider extends Component {
         save: this.save,
         saveUserComponentStyleInfoToContext: this.saveUserComponentStyleInfoToContext,
         ...this.state
-
       }}>
         {children}
       </DataContext.Provider>
