@@ -9,7 +9,6 @@ import '../styles/builder.css'
 
 
 class Builder extends Component {
-
   constructor(props) {
     super(props)
     this.state = {
@@ -17,22 +16,25 @@ class Builder extends Component {
     }
   }
 
+  /* Updates data context with the actual project information */
   componentDidMount = async () => {
     const { match, getProjectInfo } = this.props
     await getProjectInfo(match.params.projectId)
     this.setState({ isLoading: false })
   }
 
+  /* Loops over project info in data context to print user components */
+  /* If not components found, prints a pretty message */
   showUserComponents = () => {
     const { userLayoutObj, dataError } = this.props
-    if (userLayoutObj.length === 0) return (
+    if (!userLayoutObj.length) return (
       <div className='empty-component-base'>
-        <img className='image-emptyBuilder' src='../../img/empty-icon.png' alt='empty-icon'></img>
+        <img className='image-emptyBuilder' src='/img/empty-icon.png' alt='empty-icon'/>
         <p className='text-noComponents'>Start picking one component from the left!</p>
       </div>)
     if (dataError) return <div>{dataError}</div>
     return userLayoutObj.map((c) => {
-      return <UserComponentBase code={c.code} key={c.code} />
+      return <UserComponentBase componentType={c.componentType} code={c.code} key={c.code} />
     })
   }
 

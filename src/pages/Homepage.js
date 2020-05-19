@@ -27,6 +27,7 @@ class Homepage extends Component {
     }
   }
 
+  /* Gets all the available styles and the projects of this user and store it to the state*/
   componentDidMount = async () => {
     try {
       const [{ data: styles }, { data: projects }] = await Promise.all([
@@ -43,6 +44,7 @@ class Homepage extends Component {
     }
   }
 
+  /* Opens the delete project modal setting the target to the state */
   showModalDelete = (e) => {
     const { allProjects } = this.state
     let targetProject = e.target.attributes['data-project']
@@ -56,6 +58,7 @@ class Homepage extends Component {
     })
   }
 
+  /* Closes the delete project modal and refresh data */
   closeModalDelete = async () => {
     try {
       const { data: projects } = await api.get(`/projects/user/${firebase.auth().currentUser.uid}`)
@@ -71,6 +74,7 @@ class Homepage extends Component {
     }
   }
 
+  /* Opens the start project modal */
   showModalStart = () => {
     this.setState({
       modalDelete: { show: false, data: '' },
@@ -78,6 +82,7 @@ class Homepage extends Component {
     })
   }
 
+  /* Close the start project modal */
   closeModalStart = () => {
     this.setState({
       modalStart: false
