@@ -70,12 +70,12 @@ class DataProvider extends Component {
   }
 
   /* Add new component to actual configurarion */
-  addComponent = (componentCode, defaultInfo, componentType) => {
+  addComponent = (componentCode, defaultInfo, componentOptions) => {
     const stateCopy = {...this.state}
     stateCopy.userLayoutObj.push({
       code: componentCode,
       info: defaultInfo,
-      componentType: componentType
+      componentOptions: componentOptions
     })
     this.setState({
       userLayoutObj: stateCopy.userLayoutObj,

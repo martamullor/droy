@@ -33,8 +33,7 @@ const linksStyle = {
 class ClassicHeading2 extends Component {
   render () {
     const { userStyle, mode, info, children: optionsBar, changeImage, openChangeModal } = this.props
-    const copyStyle = { ...style }
-    Object.assign(copyStyle, userStyle)
+    const copyStyle = Object.assign({}, style, userStyle)
     return (
       <div style={copyStyle}>
         {optionsBar}
