@@ -6,8 +6,7 @@ const homeContainer = {
   height: '600px',
   backgroundSize: 'cover',
   padding: '8px 40px 8px 40px',
-  position: 'relative',
-  overflow: 'hidden'
+  position: 'relative'
 }
 
 const textHomeContainer = {
@@ -17,29 +16,29 @@ const textHomeContainer = {
 const titleHome1 = {
   fontSize: '3rem',
   fontWeight: '400',
-  overflow: 'hidden',
+  overflow: 'hidden'
 }
 
 const textHome1 = {
   fontSize: '1rem',
   fontWeight: '200',
   marginTop: '-25px',
-  height: '335px',
+  height: '300px',
   width: '100%',
   overflow: 'hidden'
 }
 
 class ClassicHome1 extends Component {
   render () {
-    const { info, openChangeModal, children: optionsBar } = this.props
-
+    const { userStyle, mode, info, children: optionsBar, changeImage, openChangeModal } = this.props
+    console.log(info)
     return (
 
       <div style={homeContainer}>
         {optionsBar}
         <div style={textHomeContainer}>
-          <h1 style={titleHome1} data-id="text1" onDoubleClick={openChangeModal}>{info.text1}</h1>
-          <p style={textHome1} data-id="text2" onDoubleClick={openChangeModal}>{info.text2}</p>
+          <h1 style={titleHome1} data-id="text1" onDoubleClick={openChangeModal}>{info.text1.text}</h1>
+          <p style={textHome1} data-id="text2" onDoubleClick={openChangeModal}>{info.text2.text}</p>
         </div>
       </div>
     )

@@ -7,8 +7,7 @@ const homeContainer = {
   backgroundSize: 'cover',
   padding: '8px 40px 8px 40px',
   position: 'relative',
-  fontFamily: "'Oswald', sans-serif",
-  overflow: 'hidden'
+  fontFamily: "'Oswald', sans-serif"
 }
 
 const textHomeContainer = {
@@ -35,8 +34,8 @@ class ModernHome1 extends Component {
       <div style={homeContainer}>
         {optionsBar}
         <div style={textHomeContainer}>
-          <h1 style={titleHome1} data-id="text1" onDoubleClick={openChangeModal}>{info.text1}</h1>
-          <p style={textHome1} data-id="text2" onDoubleClick={openChangeModal}>{info.text2}</p>
+          <h1 style={titleHome1} data-id="text1" onDoubleClick={openChangeModal}>{info.text1.text}</h1>
+          <p style={textHome1} data-id="text2" onDoubleClick={openChangeModal}>{info.text2.text}</p>
         </div>
       </div>
     )

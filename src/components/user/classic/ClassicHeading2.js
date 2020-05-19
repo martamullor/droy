@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import ImageEditable from '../../droy/ImageEditable'
+import LinksListEditable from '../../droy/LinksListEditable'
 
 const style = {
   backgroundColor: '#dedede',
@@ -10,8 +11,7 @@ const style = {
   justifyContent: 'space-between',
   alignItems: 'center',
   height: '60px',
-  position: 'relative',
-  overflow: 'hidden'
+  position: 'relative'
 }
 
 const logoContainer = {
@@ -19,12 +19,12 @@ const logoContainer = {
   width: '100px'
 }
 
-const textContainer = {
+const linksContainer = {
   display: 'flex',
   flexDirection: 'row'
 }
 
-const text = {
+const linksStyle = {
   paddingRight: '15px',
   fontSize: '0.9rem',
   color: '#242424'
@@ -32,15 +32,14 @@ const text = {
 
 class ClassicHeading2 extends Component {
   render () {
-    const { info, openChangeModal, children: optionsBar, changeImage } = this.props
+    const { userStyle, mode, info, children: optionsBar, changeImage, openChangeModal } = this.props
+    const copyStyle = { ...style }
+    Object.assign(copyStyle, userStyle)
     return (
-      <div style={style}>
+      <div style={copyStyle}>
         {optionsBar}
-        <ImageEditable style={logoContainer} data-id="logo" src={info.logo} changeImage={changeImage} />
-        <div style={textContainer}>
-          <p style={text} data-id="text1" onDoubleClick={openChangeModal}>{info.text1}</p>
-          <p style={text} data-id="text2" onDoubleClick={openChangeModal}>{info.text2}</p>
-        </div>
+        <ImageEditable style={logoContainer} data-id="logo" src={info.logo.src} changeImage={changeImage}/>
+        <LinksListEditable mode={mode} openChangeModal={openChangeModal} info={info} containerStyle={linksContainer} linksStyle={linksStyle}/>
       </div>
     )
   }
