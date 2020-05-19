@@ -5,7 +5,7 @@
     position: absolute;
     top: 0px;
     left: 0px;
-    background-color: #f1f2f4;
+    background-color: white;
     border: 1px solid #c8ced8;
 }
 
@@ -15,9 +15,11 @@
 }
 
 .image-optionBar {
-    width: 23px;
+    width: 25px;
     margin-top: 2px;
+    padding-right: 2px;
     animation: appear 0.5s forwards;
+    background-color: white;
 }
 
 @keyframes appear {

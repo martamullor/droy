@@ -16,12 +16,17 @@ const style = {
 
 const logoContainer = {
   paddingLeft: '50px',
-  width: '100px'
+  width: '81px',
+  overflow: 'hidden',
+  height: '70px'
 }
 
 const linksContainer = {
   display: 'flex',
-  flexDirection: 'row'
+  flexDirection: 'row',
+  maxHeight: '60px',
+  maxWidth: '50vw',
+  overflow: 'hidden'
 }
 
 const linksStyle = {

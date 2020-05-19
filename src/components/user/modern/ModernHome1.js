@@ -16,13 +16,17 @@ const textHomeContainer = {
 
 const titleHome1 = {
   fontSize: '3rem',
-  fontWeight: '400'
+  fontWeight: '400',
+  maxWidth: '50vw',
+  overflow: 'hidden'
 }
 
 const textHome1 = {
   fontSize: '1rem',
   fontWeight: '200',
-  marginTop: '-25px'
+  marginTop: '-25px',
+  maxWidth: '80vw',
+  overflow: 'hidden'
 }
 
 class ModernHome1 extends Component {

@@ -16,18 +16,25 @@ const style = {
 
 const logoContainer = {
   paddingLeft: '50px',
-  width: '100px'
+  width: '81px',
+  overflow: 'hidden',
+  height: '70px'
 }
 
 const linksContainer = {
   display: 'flex',
-  flexDirection: 'row'
+  flexDirection: 'row',
+  maxHeight: '60px',
+  maxWidth: '50vw',
+  overflow: 'hidden'
 }
 
 const linksStyle = {
+  color: '#242424',
   paddingRight: '15px',
   fontSize: '0.9rem',
-  color: '#242424'
+  backgroundColor: 'transparent',
+  border: 'none'
 }
 
 class ClassicHeading2 extends Component {

@@ -1,9 +1,44 @@
+.fixed-nav {
+    position: fixed;
+    width: 100vw;
+}
+
 .section-home-about {
     display: flex;
     flex-direction: column;
     justify-content: center;
     text-align: center;
     height: 90vh;
+    padding: 0px 100px;
+}
+
+.title-home {
+    color: #00c77f;
+    font-size: 1.4rem;
+    text-transform: uppercase;
+}
+
+.text-home {
+    font-size: 3.5rem;
+    font-weight: 400;
+}
+
+.button-home {
+    background-color: #00c77f;
+    padding: 15px 20px;
+    width: 20%;
+    align-self: center;
+    color: white;
+    border-radius: 3px;
+    font-size: 1rem;
+    text-decoration: none;
+}
+
+
+.button-home:hover {
+    border: 1px solid #00c77f;
+    color:#00c77f;
+    background-color: white;
 }
 
 .section-container {
@@ -17,4 +52,18 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
+    padding: 0px 100px;
+}
+
+.section-container-column {
+    display: flex;
+    flex-direction: column;
+    padding: 0px 100px;
+    border: 1px solid green;
+    justify-content: center;
+    padding: 0px 100px; 
+}
+
+.section-title {
+    text-align: center;
 }
