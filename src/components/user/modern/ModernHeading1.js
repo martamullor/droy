@@ -11,7 +11,8 @@ const style = {
   alignItems: 'center',
   height: '60px',
   position: 'relative',
-  fontFamily: "'Oswald', sans-serif"
+  fontFamily: "'Oswald', sans-serif",
+  overflow: 'hidden'
 }
 
 const logoContainer = {

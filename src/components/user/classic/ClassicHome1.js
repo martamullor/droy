@@ -6,7 +6,8 @@ const homeContainer = {
   height: '600px',
   backgroundSize: 'cover',
   padding: '8px 40px 8px 40px',
-  position: 'relative'
+  position: 'relative',
+  overflow: 'hidden'
 }
 
 const textHomeContainer = {
@@ -15,13 +16,17 @@ const textHomeContainer = {
 
 const titleHome1 = {
   fontSize: '3rem',
-  fontWeight: '400'
+  fontWeight: '400',
+  overflow: 'hidden',
 }
 
 const textHome1 = {
   fontSize: '1rem',
   fontWeight: '200',
-  marginTop: '-25px'
+  marginTop: '-25px',
+  height: '335px',
+  width: '100%',
+  overflow: 'hidden'
 }
 
 class ClassicHome1 extends Component {
