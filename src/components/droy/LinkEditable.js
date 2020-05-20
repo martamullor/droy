@@ -10,8 +10,9 @@ export default class LinkEditable extends Component {
   }
 
   render () {
-    const { info, style, onDoubleClick } = this.props
+    let { info, style, onDoubleClick, contentAttrStyle } = this.props
     const dataId = this.props['data-id']
+    style = Object.assign({}, style, contentAttrStyle)
     return <button type="button" onClick={this.goToLink} data-id={dataId} onDoubleClick={onDoubleClick} style={style}>{info.text}</button>
   }
 }

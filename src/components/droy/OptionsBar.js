@@ -59,7 +59,6 @@ class OptionsBar extends Component {
   render() {
     const { showOptions, color, showColorPicker } = this.state
     const { componentOptions, addLink, changeBackgroundImage } = this.props
-    console.log(componentOptions)
     return (
       <div className='container-options-bar'>
         <button className='buttons-optionBar' >

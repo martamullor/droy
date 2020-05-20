@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import api from '../services/apiClient'
+import alias from '../utils/alias'
 
 const DataContext = React.createContext()
 
@@ -71,14 +72,22 @@ class DataProvider extends Component {
 
   /* Add new component to actual configurarion */
   addComponent = (componentCode, defaultInfo, componentOptions) => {
-    const stateCopy = {...this.state}
-    stateCopy.userLayoutObj.push({
+    const { userLayoutObj } = alias.copyObject(this.state)
+    // Get component sub styles and extract it
+    let firstStyle = {}
+    for (const attr in defaultInfo) {
+      const attrObj = defaultInfo[attr]
+      if(!attrObj.style) continue
+      firstStyle = Object.assign(firstStyle, {[attr]: attrObj.style  })
+    }
+    userLayoutObj.push({
       code: componentCode,
       info: defaultInfo,
-      componentOptions: componentOptions
+      style: firstStyle,
+      componentOptions
     })
     this.setState({
-      userLayoutObj: stateCopy.userLayoutObj,
+      userLayoutObj: userLayoutObj,
     })
   }
 
@@ -99,13 +108,23 @@ class DataProvider extends Component {
 
   /* Update content configuration and rerender with it */
   saveComponentInfoToContext = (componentCode, componentAttr, attrContent) => {
-    const stateCopy = {...this.state}
-    const { userLayoutObj } = stateCopy
-    const component = userLayoutObj.find(userObject => userObject.code === componentCode)
-    if (attrContent) component.info[componentAttr] = attrContent
-    else delete component.info[componentAttr]
+    const layoutCopy = alias.copyArray(this.state.userLayoutObj)
+    const styleOptions = ['fontSize']
+    const component = alias.findByCode(layoutCopy, componentCode)
+    let componentStyles = component.style
+    if (attrContent){
+      component.info[componentAttr] = attrContent
+      for (const option in attrContent.style) {
+        if (!styleOptions.includes(option)) continue
+        componentStyles = Object.assign(componentStyles, {[componentAttr]: {[option]: attrContent.style[option]}})
+      }
+      component.style = componentStyles
+    } else {
+      delete component.info[componentAttr]
+      component.style = componentStyles
+    }
     this.setState({
-      userLayoutObj: userLayoutObj
+      userLayoutObj: layoutCopy
     })
   };
 

@@ -34,13 +34,13 @@ const linksStyle = {
 
 class ClassicHeading1 extends Component {
   render () {
-    const { userStyle, mode, info, children: optionsBar, changeImage, openChangeModal } = this.props
+    const { userStyle, mode, info, contentStyle, children: optionsBar, changeImage, openChangeModal } = this.props
     const copyStyle = Object.assign({}, style, userStyle)
     return (
       <div style={copyStyle}>
         {optionsBar}
         <ImageEditable style={logoContainer} data-id="logo" src={info.logo.src} changeImage={changeImage}/>
-        <LinksListEditable mode={mode} openChangeModal={openChangeModal} info={info} containerStyle={linksContainer} linksStyle={linksStyle}/>
+        <LinksListEditable mode={mode} openChangeModal={openChangeModal} info={info} contentStyle={contentStyle} containerStyle={linksContainer} linksStyle={linksStyle}/>
       </div>
     )
   }
