@@ -99,7 +99,7 @@ class UserComponentBase extends Component {
   changeBackgroundImage = async (e) => {
     const { projectId, code, saveUserComponentStyleInfoToContext } = this.props
     const file = e.target.files[0]
-    if(file.size > 20000){
+    if(file.size > 700000){
       alert('Imagen demasiado grande.')
     } else {
       const randomFileName = uuid()
