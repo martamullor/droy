@@ -6,6 +6,7 @@ export default class LinksListEditable extends Component {
     const { mode, info, openChangeModal, linksStyle, contentStyle} = this.props
     const allLinks = []
     let i = 1
+    console.log(contentStyle)
     for (const key in info) {
       if(info[key].type !== 'link') continue
       allLinks.push(<LinkEditable contentAttrStyle={contentStyle[key]} key={i} mode={mode} info={info[key]} style={linksStyle} data-id={key} onDoubleClick={openChangeModal}/>)

@@ -30,7 +30,7 @@ const textHome1 = {
 
 class ClassicHome1 extends Component {
   render () {
-    const { userStyle, mode, info, children: optionsBar, changeImage, openChangeModal } = this.props
+    const { userStyle, info, children: optionsBar, openChangeModal } = this.props
     const copyStyle = Object.assign({}, homeContainer, userStyle)
     return (
       <div style={copyStyle}>

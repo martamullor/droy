@@ -40,8 +40,7 @@ class DataProvider extends Component {
 
   /* Delete component from main layout */
   deleteComponent = (elementCode) => {
-    const stateCopy = { ...this.state }
-    const { userLayoutObj } = stateCopy
+    const { userLayoutObj } = alias.copyObject(this.state)
     let fromIndex = 0;
     for (let i = 0; i < userLayoutObj.length; i++) {
       const c = userLayoutObj[i];
@@ -55,13 +54,15 @@ class DataProvider extends Component {
 
   /* Move component position from main layout */
   moveComponent = (elementCode, direction) => {
-    const stateCopy = { ...this.state }
-    const { userLayoutObj } = stateCopy
-    let fromIndex = 0; let element
+    const { userLayoutObj } = alias.copyObject(this.state)
+    let fromIndex = 0
+    let element
     for (let i = 0; i < userLayoutObj.length; i++) {
       const c = userLayoutObj[i];
       if (c.code === elementCode) {
-        element = c; fromIndex = i; break
+        element = c
+        fromIndex = i
+        break
       }
     }
     userLayoutObj.splice(fromIndex, 1)
@@ -73,12 +74,9 @@ class DataProvider extends Component {
   /* Add new component to actual configurarion */
   addComponent = (componentCode, defaultInfo, componentOptions) => {
     const { userLayoutObj } = alias.copyObject(this.state)
-    // Get component sub styles and extract it
     let firstStyle = {}
     for (const attr in defaultInfo) {
-      const attrObj = defaultInfo[attr]
-      if(!attrObj.style) continue
-      firstStyle = Object.assign(firstStyle, {[attr]: attrObj.style  })
+      firstStyle = Object.assign(firstStyle, {[attr]: defaultInfo[attr].style})
     }
     userLayoutObj.push({
       code: componentCode,
@@ -109,33 +107,29 @@ class DataProvider extends Component {
   /* Update content configuration and rerender with it */
   saveComponentInfoToContext = (componentCode, componentAttr, attrContent) => {
     const layoutCopy = alias.copyArray(this.state.userLayoutObj)
-    const styleOptions = ['fontSize']
     const component = alias.findByCode(layoutCopy, componentCode)
+    const styleOptions = ['fontSize']
     let componentStyles = component.style
-    if (attrContent){
+    if(!attrContent) delete component.info[componentAttr]
+    else {
       component.info[componentAttr] = attrContent
       for (const option in attrContent.style) {
         if (!styleOptions.includes(option)) continue
         componentStyles = Object.assign(componentStyles, {[componentAttr]: {[option]: attrContent.style[option]}})
       }
-      component.style = componentStyles
-    } else {
-      delete component.info[componentAttr]
-      component.style = componentStyles
     }
-    this.setState({
-      userLayoutObj: layoutCopy
-    })
+    component.style = componentStyles
+    this.setState({ userLayoutObj: layoutCopy })
   };
 
   /* Update style configuration and rerender with it */
   saveUserComponentStyleInfoToContext = (componentCode, newStylePair) => {
-    const stateCopy = {...this.state}
-    const component = stateCopy.userLayoutObj.find(userObject => userObject.code === componentCode)
+    const { userLayoutObj } = alias.copyObject(this.state)
+    const component = alias.findByCode(userLayoutObj, componentCode)
     if (!component.componentUserOverrideStyle) component.componentUserOverrideStyle = newStylePair
     else Object.assign(component.componentUserOverrideStyle, newStylePair)
     this.setState({
-      userLayoutObj: stateCopy.userLayoutObj
+      userLayoutObj: userLayoutObj
     })
   }
 
@@ -143,6 +137,15 @@ class DataProvider extends Component {
   getProjectInfo = async (projectId) => {
     try {
       const { data: { componentsConfiguration, style, _id } } = await api.get(`/projects/${projectId}`)
+      let firstStyle = {}
+      for (const key in componentsConfiguration) {
+        const component = componentsConfiguration[key]
+        const componentInfo = component.info
+        for (const attr in componentInfo) {
+          firstStyle = Object.assign(firstStyle, {[attr]: componentInfo[attr].style})
+        }
+        component.style = firstStyle
+      }
       this.setState({
         projectId: _id,
         userLayoutObj: componentsConfiguration,
@@ -157,14 +160,14 @@ class DataProvider extends Component {
     const { children } = this.props
     return (
       <DataContext.Provider value={{
+        saveUserComponentStyleInfoToContext: this.saveUserComponentStyleInfoToContext,
         saveComponentInfoToContext: this.saveComponentInfoToContext,
+        deleteComponent: this.deleteComponent,
         getProjectInfo: this.getProjectInfo,
-        switchMode: this.switchMode,
         moveComponent: this.moveComponent,
         addComponent: this.addComponent,
-        deleteComponent: this.deleteComponent,
+        switchMode: this.switchMode,
         save: this.save,
-        saveUserComponentStyleInfoToContext: this.saveUserComponentStyleInfoToContext,
         ...this.state
       }}>
         {children}
