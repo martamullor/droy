@@ -40,7 +40,7 @@ class ComponentsSelectorBar extends Component {
         return (
           <div key={c.code} style={{ margin: '20px', backgroundImage: `url("${thumbnail.name}")`, backgroundRepeat: 'no-repeat', backgroundSize: '100%', height: thumbnail.height }}>
             <button className='buttons-selectorBar'>
-              <img data-code={c.code} data-options={c.componentOptions} onClick={this.handleAddComponent} className='image-selectorBar' src="/img/sum-icon.png" alt='down'/>
+              <img data-code={c.code} onClick={this.handleAddComponent} className='image-selectorBar' src="/img/sum-icon.png" alt='down'/>
             </button>
           </div>)
       }
@@ -52,10 +52,9 @@ class ComponentsSelectorBar extends Component {
   handleAddComponent = (e) => {
     const { addComponent } = this.props
     const { styleComponents } = this.state
-    const code = e.target.attributes['data-code'].value
-    const componentOptions = e.target.attributes['data-options'].value.split(',')
-    const { defaultConfig } = alias.findByCode(styleComponents, code)
-    addComponent(code, defaultConfig, componentOptions)
+    const code = e.target.attributes['data-code'].value  
+    const { defaultConfig, componentOptions, componentStyle } = alias.findByCode(styleComponents, code)
+    addComponent(code, defaultConfig, componentOptions, componentStyle)
   }
 
   showContent = () => {

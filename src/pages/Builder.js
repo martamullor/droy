@@ -34,7 +34,7 @@ class Builder extends Component {
       </div>)
     if (dataError) return <div>{dataError}</div>
     return userLayoutObj.map((c) => {
-      return <UserComponentBase componentOptions={c.componentOptions} code={c.code} key={c.code} />
+      return <UserComponentBase componentStyle={c.componentStyle} componentOptions={c.componentOptions} code={c.code} key={c.code} />
     })
   }
 

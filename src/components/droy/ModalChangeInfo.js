@@ -30,7 +30,6 @@ export default class ModalDelete extends Component {
     e.preventDefault()
     const { changeInfo } = this.props
     const { info, style } = this.state
-    console.log(666, style)
     changeInfo({...info, style})
   }
 
@@ -62,13 +61,23 @@ export default class ModalDelete extends Component {
                 <input className="checkbox" onChange={this.handleChangeNormal} checked={info.toNewPage} type="checkbox" name="toNewPage" id="toNewPage"/>
               </div>
             }
-             <div className="modal-field-group">
+             <div className="modal-field-subgroup">
+               <div className="subgroup-field">
                 <label className="label-modal" htmlFor="fontSize">Text size:</label>
                 <input id="fontSize" required="required" className='input-modal' type="text"
                 name="fontSize"
                 data-type="style"
                 value={style.fontSize}
                 onChange={this.handleChangeStyle} />
+               </div>
+               <div className="subgroup-field">
+                <label className="label-modal" htmlFor="letterSpacing">Letter spacing:</label>
+                <input id="letterSpacing" required="required" className='input-modal' type="text"
+                name="letterSpacing"
+                data-type="style"
+                value={style.letterSpacing}
+                onChange={this.handleChangeStyle} />
+                </div>
               </div>
             <button className='button-modal' type='submit'>Update info</button>
           </form>

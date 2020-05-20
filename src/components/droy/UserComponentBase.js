@@ -74,7 +74,7 @@ class UserComponentBase extends Component {
     if(!linksIds.length) newAttr = 'link1'
     else newAttr = `link${Math.max(...linksIds)+1}`
     // Cambiar link por default a pagina de quienes somos de Droy
-    const newInfo = { style: { fontSize: '1rem' }, type: 'link', text: "New link", href: 'http://www.google.es', toNewPage:true}
+    const newInfo = { style: { fontSize: '1rem', letterSpacing: 'inherit' }, type: 'link', text: "New link", href: 'http://www.google.es', toNewPage:true}
     saveComponentInfoToContext(code, newAttr, newInfo)
   }
 
@@ -100,6 +100,12 @@ class UserComponentBase extends Component {
     saveUserComponentStyleInfoToContext(code, {backgroundColor: color})
   }
 
+  /* Recieves the value of de new height to set to the target component and updates de context */
+  changeHeight = (height) => {
+    const { code, saveUserComponentStyleInfoToContext } = this.props
+    saveUserComponentStyleInfoToContext(code, { height })
+  }
+
   /* Uploads the recived image to Firebase Storage and updates the context */
   changeBackgroundImage = async (e) => {
     const { projectId, code, saveUserComponentStyleInfoToContext } = this.props
@@ -119,7 +125,6 @@ class UserComponentBase extends Component {
   render () {
     const { mode, moveComponent, componentOptions, code, deleteComponent, userLayoutObj  } = this.props
     const { attributeSelected, openChangeModal, attributeSelectedInfo, attributeSelectedStyle } = this.state
-    
     const UserComp = MATCH_COMPONENTS[code]
     const { info: componentInfo, style: contentStyle, componentUserOverrideStyle: userStyle } = alias.findByCode(userLayoutObj, code)
     const componentProps = {}
@@ -130,11 +135,12 @@ class UserComponentBase extends Component {
       componentProps['openChangeModal'] = this.handleOpenModal
       componentProps['changeImage'] = this.changeImage
     }
-
     const optionsProps = {}
     optionsProps['code'] = code
     optionsProps['deleteComponent'] = deleteComponent
     optionsProps['moveComponent'] = moveComponent
+    optionsProps['componentStyle'] = userStyle
+    if(componentOptions.includes('changeHeight')) optionsProps['changeHeight'] = this.changeHeight
     if(componentOptions.includes('addLinks')) optionsProps['addLink'] = this.addLink
     if(componentOptions.includes('backgroundColor')) optionsProps['changeColor'] = this.changeColor
     if(componentOptions.includes('backgroundImage')) optionsProps['changeBackgroundImage'] = this.changeBackgroundImage 

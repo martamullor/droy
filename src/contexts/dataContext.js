@@ -72,17 +72,22 @@ class DataProvider extends Component {
   }
 
   /* Add new component to actual configurarion */
-  addComponent = (componentCode, defaultInfo, componentOptions) => {
+  addComponent = (componentCode, defaultInfo, componentOptions, componentStyle) => {
     const { userLayoutObj } = alias.copyObject(this.state)
     let firstStyle = {}
     for (const attr in defaultInfo) {
       firstStyle = Object.assign(firstStyle, {[attr]: defaultInfo[attr].style})
     }
+    let firstUserOverrideStyle = {}
+    for (const attr in componentStyle) {
+      firstUserOverrideStyle = Object.assign(firstUserOverrideStyle, {[attr]: componentStyle[attr]})
+    }
     userLayoutObj.push({
       code: componentCode,
       info: defaultInfo,
       style: firstStyle,
-      componentOptions
+      componentOptions,
+      componentUserOverrideStyle: firstUserOverrideStyle
     })
     this.setState({
       userLayoutObj: userLayoutObj,
@@ -108,14 +113,16 @@ class DataProvider extends Component {
   saveComponentInfoToContext = (componentCode, componentAttr, attrContent) => {
     const layoutCopy = alias.copyArray(this.state.userLayoutObj)
     const component = alias.findByCode(layoutCopy, componentCode)
-    const styleOptions = ['fontSize']
+    const styleOptions = ['fontSize', 'letterSpacing']
     let componentStyles = component.style
     if(!attrContent) delete component.info[componentAttr]
     else {
       component.info[componentAttr] = attrContent
+      let stylesAttr = {}
       for (const option in attrContent.style) {
         if (!styleOptions.includes(option)) continue
-        componentStyles = Object.assign(componentStyles, {[componentAttr]: {[option]: attrContent.style[option]}})
+        stylesAttr = {...stylesAttr, [option]: attrContent.style[option]}
+        componentStyles = Object.assign(componentStyles, {[componentAttr]: stylesAttr})
       }
     }
     component.style = componentStyles
