@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import api from '../services/apiClient'
+import alias from '../utils/alias'
 
 const DataContext = React.createContext()
 
@@ -39,8 +40,7 @@ class DataProvider extends Component {
 
   /* Delete component from main layout */
   deleteComponent = (elementCode) => {
-    const stateCopy = { ...this.state }
-    const { userLayoutObj } = stateCopy
+    const { userLayoutObj } = alias.copyObject(this.state)
     let fromIndex = 0;
     for (let i = 0; i < userLayoutObj.length; i++) {
       const c = userLayoutObj[i];
@@ -54,13 +54,15 @@ class DataProvider extends Component {
 
   /* Move component position from main layout */
   moveComponent = (elementCode, direction) => {
-    const stateCopy = { ...this.state }
-    const { userLayoutObj } = stateCopy
-    let fromIndex = 0; let element
+    const { userLayoutObj } = alias.copyObject(this.state)
+    let fromIndex = 0
+    let element
     for (let i = 0; i < userLayoutObj.length; i++) {
       const c = userLayoutObj[i];
       if (c.code === elementCode) {
-        element = c; fromIndex = i; break
+        element = c
+        fromIndex = i
+        break
       }
     }
     userLayoutObj.splice(fromIndex, 1)
@@ -70,15 +72,25 @@ class DataProvider extends Component {
   }
 
   /* Add new component to actual configurarion */
-  addComponent = (componentCode, defaultInfo, componentOptions) => {
-    const stateCopy = {...this.state}
-    stateCopy.userLayoutObj.push({
+  addComponent = (componentCode, defaultInfo, componentOptions, componentStyle) => {
+    const { userLayoutObj } = alias.copyObject(this.state)
+    let firstStyle = {}
+    for (const attr in defaultInfo) {
+      firstStyle = Object.assign(firstStyle, {[attr]: defaultInfo[attr].style})
+    }
+    let firstUserOverrideStyle = {}
+    for (const attr in componentStyle) {
+      firstUserOverrideStyle = Object.assign(firstUserOverrideStyle, {[attr]: componentStyle[attr]})
+    }
+    userLayoutObj.push({
       code: componentCode,
       info: defaultInfo,
-      componentOptions: componentOptions
+      style: firstStyle,
+      componentOptions,
+      componentUserOverrideStyle: firstUserOverrideStyle
     })
     this.setState({
-      userLayoutObj: stateCopy.userLayoutObj,
+      userLayoutObj: userLayoutObj,
     })
   }
 
@@ -99,24 +111,32 @@ class DataProvider extends Component {
 
   /* Update content configuration and rerender with it */
   saveComponentInfoToContext = (componentCode, componentAttr, attrContent) => {
-    const stateCopy = {...this.state}
-    const { userLayoutObj } = stateCopy
-    const component = userLayoutObj.find(userObject => userObject.code === componentCode)
-    if (attrContent) component.info[componentAttr] = attrContent
-    else delete component.info[componentAttr]
-    this.setState({
-      userLayoutObj: userLayoutObj
-    })
+    const layoutCopy = alias.copyArray(this.state.userLayoutObj)
+    const component = alias.findByCode(layoutCopy, componentCode)
+    const styleOptions = ['fontSize', 'letterSpacing']
+    let componentStyles = component.style
+    if(!attrContent) delete component.info[componentAttr]
+    else {
+      component.info[componentAttr] = attrContent
+      let stylesAttr = {}
+      for (const option in attrContent.style) {
+        if (!styleOptions.includes(option)) continue
+        stylesAttr = {...stylesAttr, [option]: attrContent.style[option]}
+        componentStyles = Object.assign(componentStyles, {[componentAttr]: stylesAttr})
+      }
+    }
+    component.style = componentStyles
+    this.setState({ userLayoutObj: layoutCopy })
   };
 
   /* Update style configuration and rerender with it */
   saveUserComponentStyleInfoToContext = (componentCode, newStylePair) => {
-    const stateCopy = {...this.state}
-    const component = stateCopy.userLayoutObj.find(userObject => userObject.code === componentCode)
+    const { userLayoutObj } = alias.copyObject(this.state)
+    const component = alias.findByCode(userLayoutObj, componentCode)
     if (!component.componentUserOverrideStyle) component.componentUserOverrideStyle = newStylePair
     else Object.assign(component.componentUserOverrideStyle, newStylePair)
     this.setState({
-      userLayoutObj: stateCopy.userLayoutObj
+      userLayoutObj: userLayoutObj
     })
   }
 
@@ -124,6 +144,15 @@ class DataProvider extends Component {
   getProjectInfo = async (projectId) => {
     try {
       const { data: { componentsConfiguration, style, _id } } = await api.get(`/projects/${projectId}`)
+      let firstStyle = {}
+      for (const key in componentsConfiguration) {
+        const component = componentsConfiguration[key]
+        const componentInfo = component.info
+        for (const attr in componentInfo) {
+          firstStyle = Object.assign(firstStyle, {[attr]: componentInfo[attr].style})
+        }
+        component.style = firstStyle
+      }
       this.setState({
         projectId: _id,
         userLayoutObj: componentsConfiguration,
@@ -138,14 +167,14 @@ class DataProvider extends Component {
     const { children } = this.props
     return (
       <DataContext.Provider value={{
+        saveUserComponentStyleInfoToContext: this.saveUserComponentStyleInfoToContext,
         saveComponentInfoToContext: this.saveComponentInfoToContext,
+        deleteComponent: this.deleteComponent,
         getProjectInfo: this.getProjectInfo,
-        switchMode: this.switchMode,
         moveComponent: this.moveComponent,
         addComponent: this.addComponent,
-        deleteComponent: this.deleteComponent,
+        switchMode: this.switchMode,
         save: this.save,
-        saveUserComponentStyleInfoToContext: this.saveUserComponentStyleInfoToContext,
         ...this.state
       }}>
         {children}

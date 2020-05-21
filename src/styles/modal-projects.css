@@ -147,3 +147,18 @@
     display: flex;
     flex-direction: column;
 }
+
+.modal-field-subgroup {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
+.subgroup-field {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.subgroup-field input{
+    width: 50%;
+}
