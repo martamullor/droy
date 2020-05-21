@@ -21,20 +21,18 @@ const titleHome1 = {
 
 const textHome1 = {
   fontSize: '1rem',
-  fontWeight: '200',
-  marginTop: '-25px'
+  fontWeight: '200'
 }
 
 class ModernHome1 extends Component {
   render () {
-    const { userStyle, mode, info, children: optionsBar, changeImage, openChangeModal } = this.props
-    const copyStyle = Object.assign({}, homeContainer, userStyle)
+    const { userStyle, mode, info, contentStyle, children: optionsBar, changeImage, openChangeModal } = this.props
     return (
-      <div style={copyStyle}>
+      <div style={Object.assign({}, homeContainer, userStyle)}>
         {optionsBar}
         <div style={textHomeContainer}>
-          <h1 style={titleHome1} data-id="text1" onDoubleClick={openChangeModal}>{info.text1.text}</h1>
-          <p style={textHome1} data-id="text2" onDoubleClick={openChangeModal}>{info.text2.text}</p>
+          <h1 style={Object.assign({}, titleHome1, contentStyle.text1)} data-id="text1" onDoubleClick={openChangeModal}>{info.text1.text}</h1>
+          <p style={Object.assign({}, textHome1, contentStyle.text2)} data-id="text2" onDoubleClick={openChangeModal}>{info.text2.text}</p>
         </div>
       </div>
     )

@@ -7,6 +7,7 @@ import ModalChangeInfo from '../droy/ModalChangeInfo'
 import { uuid } from 'uuidv4'
 import '../../styles/user-componentBase.css'
 import firebase from '../../services/firebase'
+import alias from '../../utils/alias'
 
 /* Provides all the funcions to manage all component content and style */
 class UserComponentBase extends Component {
@@ -15,7 +16,8 @@ class UserComponentBase extends Component {
     this.state = {
       optionsModal: false,
       attributeSelected: '',
-      attributeSelectedInfo: ''
+      attributeSelectedInfo: '',
+      attributeSelectedStyle: ''
     }
   }
   
@@ -23,10 +25,12 @@ class UserComponentBase extends Component {
   handleOpenModal = (e) =>{
     const { userLayoutObj, code  } = this.props
     const attrCode = e.target.attributes['data-id'].value
+    const attributeInfo = alias.findByCode(userLayoutObj, code)
     this.setState({
       openChangeModal: true,
       attributeSelected: attrCode,
-      attributeSelectedInfo: userLayoutObj.find(c => c.code === code).info[attrCode]
+      attributeSelectedInfo: attributeInfo.info[attrCode],
+      attributeSelectedStyle: attributeInfo.style[attrCode]
     })
   }
 
@@ -35,7 +39,8 @@ class UserComponentBase extends Component {
     this.setState({
       openChangeModal: false,
       attributeSelected: '',
-      attributeSelectedInfo: ''
+      attributeSelectedInfo: '',
+      attributeSelectedStyle: ''
     })
   }
   
@@ -58,7 +63,7 @@ class UserComponentBase extends Component {
   /* Ads a new link in the target component and updates the context */
   addLink = () => {
     const { code, saveComponentInfoToContext, userLayoutObj } = this.props
-    const targetComponentInfo = userLayoutObj.find(c => c.code === code).info
+    const targetComponentInfo = alias.findByCode(userLayoutObj, code).info
     const linksIds = [] 
     for (const key in targetComponentInfo) {
       if(targetComponentInfo[key].type !== 'link') continue
@@ -69,7 +74,7 @@ class UserComponentBase extends Component {
     if(!linksIds.length) newAttr = 'link1'
     else newAttr = `link${Math.max(...linksIds)+1}`
     // Cambiar link por default a pagina de quienes somos de Droy
-    const newInfo = { type: 'link', text: "New link", href: 'http://www.google.es', toNewPage:true}
+    const newInfo = { style: { fontSize: '1rem', letterSpacing: 'inherit' }, type: 'link', text: "New link", href: 'http://www.google.es', toNewPage:true}
     saveComponentInfoToContext(code, newAttr, newInfo)
   }
 
@@ -95,6 +100,12 @@ class UserComponentBase extends Component {
     saveUserComponentStyleInfoToContext(code, {backgroundColor: color})
   }
 
+  /* Recieves the value of de new height to set to the target component and updates de context */
+  changeHeight = (height) => {
+    const { code, saveUserComponentStyleInfoToContext } = this.props
+    saveUserComponentStyleInfoToContext(code, { height })
+  }
+
   /* Uploads the recived image to Firebase Storage and updates the context */
   changeBackgroundImage = async (e) => {
     const { projectId, code, saveUserComponentStyleInfoToContext } = this.props
@@ -106,28 +117,47 @@ class UserComponentBase extends Component {
       const storageRef = firebase.storage().ref(`/${firebase.auth().currentUser.uid}/${projectId}/${randomFileName}`)
       await storageRef.put(file)
       const downloadUrl = await storageRef.getDownloadURL()
-      saveUserComponentStyleInfoToContext(code, {backgroundImage: `url("${downloadUrl}")`})
+      saveUserComponentStyleInfoToContext(code, { backgroundImage: `url("${downloadUrl}")` })
     }
   } 
 
   /* Gets the real React components and pass new funcionalities */
   render () {
     const { mode, moveComponent, componentOptions, code, deleteComponent, userLayoutObj  } = this.props
-    const { attributeSelected, openChangeModal, attributeSelectedInfo } = this.state
+    const { attributeSelected, openChangeModal, attributeSelectedInfo, attributeSelectedStyle } = this.state
     const UserComp = MATCH_COMPONENTS[code]
-    const { info: componentInfo, componentUserOverrideStyle: userStyle } = userLayoutObj.find(c => c.code === code)
+    const { info: componentInfo, style: contentStyle, componentUserOverrideStyle: userStyle } = alias.findByCode(userLayoutObj, code)
     const componentProps = {}
+    componentProps['info'] = componentInfo
+    componentProps['contentStyle'] = contentStyle
+    componentProps['userStyle'] = userStyle
     if(mode === 'edit'){
       componentProps['openChangeModal'] = this.handleOpenModal
       componentProps['changeImage'] = this.changeImage
-      if(componentOptions.includes('backgroundColor')) componentProps['addLink'] = this.addLink
     }
-    componentProps['info'] = componentInfo
-    componentProps['userStyle'] = userStyle
+    const optionsProps = {}
+    optionsProps['code'] = code
+    optionsProps['deleteComponent'] = deleteComponent
+    optionsProps['moveComponent'] = moveComponent
+    optionsProps['componentStyle'] = userStyle
+    if(componentOptions.includes('changeHeight')) optionsProps['changeHeight'] = this.changeHeight
+    if(componentOptions.includes('addLinks')) optionsProps['addLink'] = this.addLink
+    if(componentOptions.includes('backgroundColor')) optionsProps['changeColor'] = this.changeColor
+    if(componentOptions.includes('backgroundImage')) optionsProps['changeBackgroundImage'] = this.changeBackgroundImage 
+
+    const modalProps = {}
+    modalProps['attributeSelected'] = attributeSelected
+    modalProps['onClose'] = this.handleCloseModal
+    modalProps['style'] = attributeSelectedStyle
+    modalProps['deleteLink'] = this.deleteLink
+    modalProps['changeInfo'] = this.changeInfo
+    modalProps['info'] = attributeSelectedInfo
+    modalProps['code'] = code
+
     return (
       <UserComp {...componentProps} mode={mode}>
-        {mode === "edit" && <OptionsBar changeColor={this.changeColor} addLink={this.addLink} componentOptions={componentOptions} code={code} deleteComponent={deleteComponent} moveComponent={moveComponent} changeBackgroundImage={this.changeBackgroundImage}/>}
-        {mode === "edit" && openChangeModal && <ModalChangeInfo deleteLink={this.deleteLink} info={attributeSelectedInfo} code={code} attributeSelected={attributeSelected} changeInfo={this.changeInfo} onClose={this.handleCloseModal}/>}
+        {mode === "edit" && <OptionsBar {...optionsProps}/>}
+        {openChangeModal && <ModalChangeInfo {...modalProps}/>}
       </UserComp>
     )
   }

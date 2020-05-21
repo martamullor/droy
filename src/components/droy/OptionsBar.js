@@ -4,12 +4,13 @@ import { SketchPicker } from 'react-color'
 
 class OptionsBar extends Component {
 
-  constructor() {
-    super()
+  constructor(props) {
+    super(props)
     this.state = {
       showOptions: false,
       color: '',
-      showColorPicker: false
+      showColorPicker: false,
+      height: this.props.componentStyle.height.replace('px', '')
     }
   }
 
@@ -31,6 +32,15 @@ class OptionsBar extends Component {
   handleChange = (e) => {
     this.setState({
       [e.target.name]: e.target.value
+    })
+  }
+
+  handleChangeHeight = (e) => {
+    const { changeHeight } = this.props
+    this.setState({
+      height: e.target.value
+    }, () => {
+      changeHeight(`${this.state.height}px`)
     })
   }
 
@@ -57,9 +67,8 @@ class OptionsBar extends Component {
   }
 
   render() {
-    const { showOptions, color, showColorPicker } = this.state
-    const { componentOptions, addLink, changeBackgroundImage } = this.props
-    console.log(componentOptions)
+    const { showOptions, color, showColorPicker, height } = this.state
+    const { changeColor, addLink, changeBackgroundImage, changeHeight } = this.props
     return (
       <div className='container-options-bar'>
         <button className='buttons-optionBar' >
@@ -71,11 +80,11 @@ class OptionsBar extends Component {
               <img className='image-optionBar' data-action='down' src="/img/down-icon.png" alt='down' onClick={this.handleMoveComponent}/>
               <img className='image-optionBar' data-action='up' src="/img/up-icon.png" alt='up' onClick={this.handleMoveComponent}/>
               <img className='image-optionBar' onClick={this.handleDelete} src="/img/deleteBar-icon.png" alt='delete'></img>
-              {componentOptions.includes('addLinks') && <img alt="newLink" onClick={addLink} className='image-optionBar' src="/img/up-icon.png"/> }
-              {componentOptions.includes('backgroundColor') && <img onClick={this.toggleColorPicker} alt="newLink" className='image-optionBar' src="/img/up-icon.png"/> }
-              {componentOptions.includes('backgroundImage') && <img onClick={this.uploadHandler} alt="newLink" className='image-optionBar' src="/img/up-icon.png"/> }
+              {addLink && <img alt="newLink" onClick={addLink} className='image-optionBar' src="/img/up-icon.png"/> }
+              {changeColor && <img onClick={this.toggleColorPicker} alt="newLink" className='image-optionBar' src="/img/up-icon.png"/> }
+              {changeBackgroundImage && <img onClick={this.uploadHandler} alt="newLink" className='image-optionBar' src="/img/up-icon.png"/> }
               <input name='image' id='image' style={{ display: 'none' }} onChange={changeBackgroundImage} ref="imageUploader" type="file"/>
-
+              {changeHeight && <input type='number' min='40' step='5' value={height} onChange={this.handleChangeHeight} name='height' max='400'/>}
             </div>
           }
         </div>
