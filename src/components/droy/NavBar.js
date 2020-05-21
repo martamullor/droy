@@ -18,21 +18,40 @@ class NavBar extends Component {
     history.push('/login')
   }
 
-  render () {
-    const { withOptions, mode, switchMode, savingStep } = this.props
+  showEditViewButton = () => {
+    const { mode, switchMode, userLayoutObj } = this.props
+    if (mode === 'view') {
+      return <button className='buttons-navBar' onClick={switchMode}>Edit page</button>
+    }
+    if (!userLayoutObj.length) {
+      return <button className='buttons-navBar'>View page</button>
+    }
+    return <button className='buttons-navBar' onClick={switchMode}>View page</button>
+  }
+
+  render() {
+    const { withOptions, mode, switchMode, savingStep, userLayoutObj } = this.props
+    const { currentUser } = firebase.auth()
     return (
       <div className='nav-bar'>
-        <Link to ='/' >
+        <Link to='/' >
           <img className='logo-navBar' src='/img/logo-green.png' alt='logo-white'></img>
         </Link>
         {withOptions && <div>
           <button className='buttons-navBar' onClick={this.handleSave}>{savingStep}</button>
-          <button className='buttons-navBar' onClick={switchMode}>{mode === 'edit' ? 'View page' : 'Edit page'}</button>
+          {this.showEditViewButton()}
         </div>
         }
-        {firebase.auth().currentUser
+        {currentUser
           ? <button onClick={this.handleLogout} className='buttons-navBar'>Logout</button>
-          : <Link className='buttons-navBar' to="/login">Login</Link> }
+          : <Link className='buttons-navBar' to="/login">Login</Link>}
+        {currentUser && 
+          <div className='user-nav'>
+          <img src={currentUser.photoURL} alt="user-photo" />
+          <p>{currentUser.displayName}</p>
+        </div>
+        }
+
       </div>
     )
   }

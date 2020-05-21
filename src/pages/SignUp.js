@@ -28,7 +28,7 @@ class SignUp extends Component {
   handleSubmit = async (e) => {
     try {
       e.preventDefault();
-      const { email, hashedPassword, confirmationPassword } = this.state
+      const { name, email, hashedPassword, confirmationPassword } = this.state
       const { history } = this.props
       if (hashedPassword !== confirmationPassword || hashedPassword.length < 6) {
         this.setState({
@@ -38,9 +38,14 @@ class SignUp extends Component {
       } else {
         this.setState({ status: STATUS.LOADING })
         await firebase.auth().createUserWithEmailAndPassword(email, hashedPassword)
+        await firebase.auth().currentUser.updateProfile({
+          photoURL: "https://firebasestorage.googleapis.com/v0/b/droy-prod.appspot.com/o/public%2FdefaultAvatar.png?alt=media&token=dec42397-ff82-42b5-bc30-f6daff12e837",
+          displayName: name
+        })
         history.push('/')
       }
     } catch (error) {
+      // Show popup, not error on all page!!
       this.setState({
         status: STATUS.ERROR,
         errorMessage: 'Error on signup'
