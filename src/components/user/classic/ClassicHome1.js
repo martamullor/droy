@@ -10,20 +10,22 @@ const homeContainer = {
 }
 
 const textHomeContainer = {
-  textAlign: 'left'
+  textAlign: 'left',
+  overflow: 'hidden'
 }
 
 const titleHome1 = {
   fontSize: '3rem',
   fontWeight: '400',
+  maxWidth: '50vw',
   overflow: 'hidden'
 }
 
 const textHome1 = {
   fontSize: '1rem',
   fontWeight: '200',
-  height: '300px',
-  width: '100%',
+  marginTop: '-25px',
+  maxWidth: '80vw',
   overflow: 'hidden'
 }
 

@@ -17,18 +17,26 @@ const style = {
 
 const logoContainer = {
   paddingLeft: '30px',
-  width: '100px'
+  width: '81px',
+  overflow: 'hidden',
+  height: '70px'
 }
 
 const linksContainer = {
   display: 'flex',
-  flexDirection: 'row'
+  flexDirection: 'row',
+  color: 'white',
+  maxHeight: '60px',
+  maxWidth: '50vw',
+  overflow: 'hidden'
 }
 
 const linksStyle = {
+  color: 'white',
   paddingRight: '15px',
   fontSize: '0.9rem',
-  color: 'white'
+  backgroundColor: 'transparent',
+  border: 'none'
 }
 
 class ModernHeading1 extends Component {
