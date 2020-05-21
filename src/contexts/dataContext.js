@@ -140,6 +140,10 @@ class DataProvider extends Component {
     })
   }
 
+  updateOrder = async (userLayoutObj) => {
+    this.setState({ userLayoutObj })
+  }
+
   /* Get project info to BBDD based on the project ID */
   getProjectInfo = async (projectId) => {
     try {
@@ -174,6 +178,7 @@ class DataProvider extends Component {
         moveComponent: this.moveComponent,
         addComponent: this.addComponent,
         switchMode: this.switchMode,
+        updateOrder: this.updateOrder,
         save: this.save,
         ...this.state
       }}>
