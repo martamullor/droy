@@ -6,11 +6,7 @@ class Footer extends Component {
   render () {
     return (
       <div className='footer-container'>
-        <h4>Contact</h4>
-        <ul>
-          <li>Email:</li>
-          <li><Link>Contact</Link></li>
-        </ul>
+        <p>Created and designed by Marc Serra and Marta Mullor</p>
       </div>
     )
   }

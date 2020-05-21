@@ -10,7 +10,7 @@ class AboutUs extends Component {
     render () {
         return (
             <main>
-                <Parallax ref={ref => (this.parallax = ref)} pages={4.8}>
+                <Parallax ref={ref => (this.parallax = ref)} pages={4.6}>
                     <NavBar />
                     <ParallaxLayer offset={0} speed={0.5} style={{ opacity: 0.8 }}>
                         <img className='home-picture' src='/img/about-home.png' alt='about-home' />
@@ -86,14 +86,9 @@ class AboutUs extends Component {
                                 <p className='text-section-icon'>Mobirise Website Builder is a refresher on the two
                                 solutions for creating websites that load as well on mobile devices as they do on desktops.</p>
                             </div>
-                            <div className='opinion-container'>
-                                <h4 className='name-opinion'>Roger Hollings</h4>
-                                <p className='text-section-icon'>Mobirise Website Builder is a refresher on the two
-                                solutions for creating websites that load as well on mobile devices as they do on desktops.</p>
-                            </div>
                         </div>
                     </ParallaxLayer>
-                    <ParallaxLayer offset={4.1} speed={1} style={{ opacity: 1 }}>
+                    <ParallaxLayer offset={4.01} speed={1} style={{ opacity: 1 }}>
                         <Footer />
                     </ParallaxLayer>
                 </Parallax>
