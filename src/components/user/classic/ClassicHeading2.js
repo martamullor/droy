@@ -4,8 +4,8 @@ import ImageEditable from '../../droy/ImageEditable'
 import LinksListEditable from '../../droy/LinksListEditable'
 
 const style = {
-  backgroundColor: '#dedede',
-  padding: '8px 40px 8px 40px',
+  backgroundColor: '#f4ece5',
+  padding: '8px 40px 8px 10px',
   display: 'flex',
   color: 'white',
   justifyContent: 'space-between',
@@ -30,7 +30,7 @@ const linksContainer = {
 }
 
 const linksStyle = {
-  color: '#242424',
+  color: '#252525',
   paddingRight: '15px',
   fontSize: '0.9rem',
   backgroundColor: 'transparent',
