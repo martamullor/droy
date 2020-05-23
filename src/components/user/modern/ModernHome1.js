@@ -31,7 +31,7 @@ const textHome1 = {
 
 class ModernHome1 extends Component {
   render () {
-    const { userStyle, mode, info, children: optionsBar, changeImage, openChangeModal } = this.props
+    const { userStyle, info, children: optionsBar, openChangeModal } = this.props
     return (
       <div style={Object.assign({}, homeContainer, userStyle)}>
         {optionsBar}

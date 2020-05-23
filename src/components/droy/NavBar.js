@@ -30,7 +30,7 @@ class NavBar extends Component {
   }
 
   render() {
-    const { withOptions, mode, switchMode, savingStep, userLayoutObj } = this.props
+    const { withOptions, savingStep } = this.props
     const { currentUser } = firebase.auth()
     return (
       <div className='nav-bar'>
@@ -47,7 +47,7 @@ class NavBar extends Component {
           : <Link className='buttons-navBar' to="/login">Login</Link>}
         {currentUser && 
           <div className='user-nav'>
-          <img src={currentUser.photoURL} alt="user-photo" />
+          <img src={currentUser.photoURL} alt="user" />
           <p>{currentUser.displayName}</p>
         </div>
         }

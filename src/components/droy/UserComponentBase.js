@@ -126,7 +126,7 @@ class UserComponentBase extends Component {
     const { mode, moveComponent, componentOptions, code, deleteComponent, userLayoutObj  } = this.props
     const { attributeSelected, openChangeModal, attributeSelectedInfo, attributeSelectedStyle } = this.state
     const UserComp = MATCH_COMPONENTS[code]
-    const { info: componentInfo, style: contentStyle, componentUserOverrideStyle: userStyle } = alias.findByCode(userLayoutObj, code)
+    const { info: componentInfo, componentUserOverrideStyle: userStyle } = alias.findByCode(userLayoutObj, code)
     const componentProps = {}
     componentProps['info'] = componentInfo
     componentProps['userStyle'] = userStyle
