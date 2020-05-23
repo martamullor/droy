@@ -9,6 +9,7 @@
     top: 50vh;
     transform: translateY(-50%);
     z-index: 50;
+    font-family: 'Montserrat', sans-serif;
 }
 
 .modal-container-reset {

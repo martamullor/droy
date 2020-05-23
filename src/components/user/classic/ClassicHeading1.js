@@ -4,21 +4,20 @@ import ImageEditable from '../../droy/ImageEditable'
 import LinksListEditable from '../../droy/LinksListEditable'
 
 const style = {
-  backgroundColor: '#1b1b1b',
+  backgroundColor: '#383a37',
   padding: '8px 40px 8px 40px',
   display: 'flex',
   color: 'white',
   justifyContent: 'space-between',
   alignItems: 'center',
-  height: '60px',
   position: 'relative'
 }
 
 const logoContainer = {
   paddingLeft: '50px',
-  width: '81px',
+  width: '90px',
   overflow: 'hidden',
-  height: '70px'
+  height: '78px'
 }
 
 const linksContainer = {
@@ -31,10 +30,10 @@ const linksContainer = {
 
 const linksStyle = {
   paddingRight: '15px',
-  fontSize: '0.9rem',
   backgroundColor: 'transparent',
   border: 'none',
-  color: 'white'
+  color: '#ededed',
+  fontFamily: "'Caladea', serif"
 }
 
 class ClassicHeading1 extends Component {
