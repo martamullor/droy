@@ -31,13 +31,13 @@ const textHome1 = {
 
 class ModernHome1 extends Component {
   render () {
-    const { userStyle, mode, info, contentStyle, children: optionsBar, changeImage, openChangeModal } = this.props
+    const { userStyle, mode, info, children: optionsBar, changeImage, openChangeModal } = this.props
     return (
       <div style={Object.assign({}, homeContainer, userStyle)}>
         {optionsBar}
         <div style={textHomeContainer}>
-          <h1 style={Object.assign({}, titleHome1, contentStyle.text1)} data-id="text1" onDoubleClick={openChangeModal}>{info.text1.text}</h1>
-          <p style={Object.assign({}, textHome1, contentStyle.text2)} data-id="text2" onDoubleClick={openChangeModal}>{info.text2.text}</p>
+          <h1 style={Object.assign({}, titleHome1, info.text1.style)} data-id="text1" onDoubleClick={openChangeModal}>{info.text1.text}</h1>
+          <p style={Object.assign({}, textHome1, info.text2.style)} data-id="text2" onDoubleClick={openChangeModal}>{info.text2.text}</p>
         </div>
       </div>
     )

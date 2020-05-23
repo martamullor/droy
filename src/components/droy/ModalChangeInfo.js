@@ -58,7 +58,7 @@ export default class ModalDelete extends Component {
                 value={info.href}
                 onChange={this.handleChangeNormal} />
                 <label className="label-modal" htmlFor="link-to">Open in new window?</label>
-                <input className="checkbox" onChange={this.handleChangeNormal} checked={info.toNewPage} type="checkbox" name="toNewPage" id="toNewPage"/>
+                <input className="checkbox" onChange={this.handleChangeNormal} checked={info.toNewPage ? 'checked' : false } type="checkbox" name="toNewPage" id="toNewPage"/>
               </div>
             }
              <div className="modal-field-subgroup">

@@ -39,16 +39,16 @@ const textSection1 = {
 
 class ClassicSectionLeft extends Component {
   render () {
-    const { userStyle, info, changeImage, contentStyle, children: optionsBar, openChangeModal } = this.props
+    const { userStyle, info, changeImage, children: optionsBar, openChangeModal } = this.props
     return (
       <div style={Object.assign({}, sectionContainer, userStyle)}>
         {optionsBar}
         <div style={textSectionContainer}>
-          <h1 style={Object.assign({}, titleSection1, contentStyle.text7)} data-id="text7" onDoubleClick={openChangeModal}>{info.text7.text}</h1>
-          <p style={Object.assign({}, textSection1, contentStyle.text8)} data-id="text8" onDoubleClick={openChangeModal}>{info.text8.text}</p>
+          <h1 style={Object.assign({}, titleSection1, info.text1.style)} data-id="text1" onDoubleClick={openChangeModal}>{info.text1.text}</h1>
+          <p style={Object.assign({}, textSection1, info.text2.style)} data-id="text2" onDoubleClick={openChangeModal}>{info.text2.text}</p>
         </div>
         <div style={imageContainer}>
-          <ImageEditable data-id="image" src={info.image.src} changeImage={changeImage} />
+          <ImageEditable data-id="image1" src={info.image1.src} changeImage={changeImage} />
         </div>
       </div>
     )

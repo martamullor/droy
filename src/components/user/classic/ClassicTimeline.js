@@ -32,33 +32,33 @@ const titleSection1 = {
 
 class ClassicTimeline extends Component {
   render () {
-    const { userStyle, info, changeImage, contentStyle, children: optionsBar, openChangeModal } = this.props
+    const { userStyle, info, changeImage, children: optionsBar, openChangeModal } = this.props
     return (
       <div style={Object.assign({}, timelineContainer, userStyle)}>
         {optionsBar}
         <div style={textTimelineContainer}>
           <div style={imageContainer}>
-            <ImageEditable data-id="image" src={info.image.src} changeImage={changeImage} />
-          </div>
-          <h2 style={Object.assign({}, titleSection1, contentStyle.text9)} data-id="text9" onDoubleClick={openChangeModal}>{info.text9.text}</h2>
-        </div>
-        <div style={textTimelineContainer}>
-          <div style={imageContainer}>
             <ImageEditable data-id="image1" src={info.image1.src} changeImage={changeImage} />
           </div>
-          <h2 style={Object.assign({}, titleSection1, contentStyle.text10)} data-id="text10" onDoubleClick={openChangeModal}>{info.text10.text}</h2>
+          <h2 style={Object.assign({}, titleSection1, info.text1.style)} data-id="text1" onDoubleClick={openChangeModal}>{info.text1.text}</h2>
         </div>
         <div style={textTimelineContainer}>
           <div style={imageContainer}>
             <ImageEditable data-id="image2" src={info.image2.src} changeImage={changeImage} />
           </div>
-          <h2 style={Object.assign({}, titleSection1, contentStyle.text11)} data-id="text11" onDoubleClick={openChangeModal}>{info.text11.text}</h2>
+          <h2 style={Object.assign({}, titleSection1, info.text2.style)} data-id="text2" onDoubleClick={openChangeModal}>{info.text2.text}</h2>
         </div>
         <div style={textTimelineContainer}>
           <div style={imageContainer}>
             <ImageEditable data-id="image3" src={info.image3.src} changeImage={changeImage} />
           </div>
-          <h2 style={Object.assign({}, titleSection1, contentStyle.text12)} data-id="text12" onDoubleClick={openChangeModal}>{info.text12.text}</h2>
+          <h2 style={Object.assign({}, titleSection1, info.text3.style)} data-id="text3" onDoubleClick={openChangeModal}>{info.text3.text}</h2>
+        </div>
+        <div style={textTimelineContainer}>
+          <div style={imageContainer}>
+            <ImageEditable data-id="image4" src={info.image4.src} changeImage={changeImage} />
+          </div>
+          <h2 style={Object.assign({}, titleSection1, info.text4.style)} data-id="text4" onDoubleClick={openChangeModal}>{info.text4.text}</h2>
         </div>
       </div>
     )

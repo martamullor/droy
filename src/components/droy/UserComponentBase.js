@@ -30,7 +30,7 @@ class UserComponentBase extends Component {
       openChangeModal: true,
       attributeSelected: attrCode,
       attributeSelectedInfo: attributeInfo.info[attrCode],
-      attributeSelectedStyle: attributeInfo.style[attrCode]
+      attributeSelectedStyle: attributeInfo.info[attrCode].style
     })
   }
 
@@ -74,7 +74,7 @@ class UserComponentBase extends Component {
     if(!linksIds.length) newAttr = 'link1'
     else newAttr = `link${Math.max(...linksIds)+1}`
     // Cambiar link por default a pagina de quienes somos de Droy
-    const newInfo = { style: { fontSize: '1rem', letterSpacing: 'inherit' }, type: 'link', text: "New link", href: 'http://www.google.es', toNewPage:true}
+    const newInfo = { style: { fontSize: '1rem', letterSpacing: 'inherit' }, type: 'link', text: "New link", href: 'http://www.droy-prod.web.app', toNewPage:true}
     saveComponentInfoToContext(code, newAttr, newInfo)
   }
 
@@ -129,12 +129,12 @@ class UserComponentBase extends Component {
     const { info: componentInfo, style: contentStyle, componentUserOverrideStyle: userStyle } = alias.findByCode(userLayoutObj, code)
     const componentProps = {}
     componentProps['info'] = componentInfo
-    componentProps['contentStyle'] = contentStyle
     componentProps['userStyle'] = userStyle
     if(mode === 'edit'){
       componentProps['openChangeModal'] = this.handleOpenModal
       componentProps['changeImage'] = this.changeImage
     }
+    console.log(userLayoutObj)
     const optionsProps = {}
     optionsProps['code'] = code
     optionsProps['deleteComponent'] = deleteComponent

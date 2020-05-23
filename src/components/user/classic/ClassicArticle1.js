@@ -38,15 +38,15 @@ const textArticle1 = {
 
 class ClassicArticle1 extends Component {
   render () {
-    const { userStyle, info, contentStyle, children: optionsBar, openChangeModal } = this.props
+    const { userStyle, info, children: optionsBar, openChangeModal } = this.props
     return (
       <div style={Object.assign({}, articleContainer, userStyle)}>
         {optionsBar}
         <div style={textArticleContainer}>
-          <h1 style={Object.assign({}, titleArticle1, contentStyle.text4)} data-id="text4" onDoubleClick={openChangeModal}>{info.text4.text}</h1>
+          <h1 style={Object.assign({}, titleArticle1, info.text1.style)} data-id="text1" onDoubleClick={openChangeModal}>{info.text1.text}</h1>
           <div style={containerArticle}>
-            <p style={Object.assign({}, textArticle1, contentStyle.text5)} data-id="text5" onDoubleClick={openChangeModal}>{info.text5.text}</p>
-            <p style={Object.assign({}, textArticle1, contentStyle.text6)} data-id="text6" onDoubleClick={openChangeModal}>{info.text6.text}</p>
+            <p style={Object.assign({}, textArticle1, info.text2.style)} data-id="text2" onDoubleClick={openChangeModal}>{info.text2.text}</p>
+            <p style={Object.assign({}, textArticle1, info.text3.style)} data-id="text3" onDoubleClick={openChangeModal}>{info.text3.text}</p>
           </div>
         </div>
       </div>
