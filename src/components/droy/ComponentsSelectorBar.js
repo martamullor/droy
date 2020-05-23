@@ -38,7 +38,7 @@ class ComponentsSelectorBar extends Component {
       const thumbnail = c.thumbnail
       if (!usedCompIds.includes(c.code)) {
         return (
-          <div key={c.code} style={{ margin: '20px', backgroundImage: `url("${thumbnail.name}")`, backgroundRepeat: 'no-repeat', backgroundSize: '100%', height: thumbnail.height }}>
+          <div className='component-selector' key={c.code} style={{ margin: '20px', backgroundImage: `url("${thumbnail.name}")`, backgroundRepeat: 'no-repeat', backgroundSize: '100%', height: thumbnail.height }}>
             <button className='buttons-selectorBar'>
               <img data-code={c.code} onClick={this.handleAddComponent} className='image-selectorBar' src="/img/sum-icon.png" alt='down'/>
             </button>
