@@ -72,6 +72,18 @@
     height: 100vh;
 }
 
+.updatedAt-project-homePage {
+    color: #00c77f;
+    font-size: 0.7rem;
+    margin-top: -5px;
+}
+
+.createdAt-project-homePage {
+    color: #3f5476;
+    font-size: 0.7rem;
+    margin-top: -5px;
+}
+
 
 
   

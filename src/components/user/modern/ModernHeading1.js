@@ -4,15 +4,15 @@ import ImageEditable from '../../droy/ImageEditable'
 import LinksListEditable from '../../droy/LinksListEditable'
 
 const style = {
-  backgroundColor: '#a40000',
+  backgroundColor: '#252529',
   padding: '8px 40px 8px 40px',
   display: 'flex',
-  color: 'white',
   justifyContent: 'space-between',
   alignItems: 'center',
   height: '60px',
   position: 'relative',
-  fontFamily: "'Oswald', sans-serif"
+  fontFamily: "'Roboto', sans-serif",
+  border: 'none'
 }
 
 const logoContainer = {
@@ -25,18 +25,19 @@ const logoContainer = {
 const linksContainer = {
   display: 'flex',
   flexDirection: 'row',
-  color: 'white',
   maxHeight: '60px',
   maxWidth: '50vw',
   overflow: 'hidden'
 }
 
 const linksStyle = {
-  color: 'white',
-  paddingRight: '15px',
-  fontSize: '0.9rem',
+  padding: '8px 35px 8px 35px',
+  marginRight: '10px',
   backgroundColor: 'transparent',
-  border: 'none'
+  border: '1px solid white',
+  color: 'white',
+  fontFamily: "'Roboto', sans-serif",
+  borderRadius: '3px'
 }
 
 class ModernHeading1 extends Component {
@@ -47,7 +48,7 @@ class ModernHeading1 extends Component {
       <div style={copyStyle}>
         {optionsBar}
         <ImageEditable style={logoContainer} data-id="image1" src={info.image1.src} changeImage={changeImage}/>
-        <LinksListEditable mode={mode} openChangeModal={openChangeModal} info={info} containerStyle={linksContainer} linksStyle={linksStyle}/>
+        <LinksListEditable mode={mode} openChangeModal={openChangeModal} info={info} contentStyle={info} containerStyle={linksContainer} linksStyle={linksStyle}/>
       </div>
     )
   }
