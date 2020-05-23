@@ -5,6 +5,7 @@ import ClassicArticle1 from '../components/user/classic/ClassicArticle1'
 import ClassicSectionRight from '../components/user/classic/ClassicSectionRight'
 import ClassicSectionLeft from '../components/user/classic/ClassicSectionLeft'
 import ClassicTimeline from '../components/user/classic/ClassicTimeline'
+import ClassicFooter1 from '../components/user/classic/ClassicFooter1'
 import ModernHeading1 from '../components/user/modern/ModernHeading1'
 import ModernHome1 from '../components/user/modern/ModernHome1'
 
@@ -16,6 +17,7 @@ export default {
   ClassicSectionRight: ClassicSectionRight,
   ClassicSectionLeft: ClassicSectionLeft,
   ClassicTimeline: ClassicTimeline,
+  ClassicFooter1: ClassicFooter1,
   ModernHeading1: ModernHeading1,
   ModernHome1: ModernHome1
 }

@@ -134,7 +134,7 @@ class UserComponentBase extends Component {
       componentProps['openChangeModal'] = this.handleOpenModal
       componentProps['changeImage'] = this.changeImage
     }
-    console.log(userLayoutObj)
+    
     const optionsProps = {}
     optionsProps['code'] = code
     optionsProps['deleteComponent'] = deleteComponent

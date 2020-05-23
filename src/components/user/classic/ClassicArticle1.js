@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
 const articleContainer = {
-  padding: '30px 40px 8px 80px',
+  padding: '30px 10px 30px 10px',
   position: 'relative',
   fontFamily: "'Caladea', serif",
   backgroundColor: '#edecdf'
