@@ -10,17 +10,34 @@
     z-index: 10;
 }
 
+.options-bar {
+  display: flex;
+  padding: 5px 10px;
+}
+
 .buttons-optionBar {
     border: none;
     animation: appear 0.5s forwards;
+    background-color: transparent;
 }
 
 .image-optionBar {
-    width: 25px;
-    margin-top: 2px;
-    padding-right: 2px;
-    animation: appear 0.5s forwards;
-    background-color: white;
+  width: 23px;
+  animation: appear 0.5s forwards;
+}
+
+.options {
+  margin-right: 5px;
+}
+
+.height-optionsBar{
+  font-family: 'Montserrat', sans-serif;
+  text-align: center;
+  border: 1px solid #c8ced8;
+  padding-right: 5px;
+  border-radius: 3px;
+  padding: 5px;
+  color: #001745;
 }
 
 @keyframes appear {
