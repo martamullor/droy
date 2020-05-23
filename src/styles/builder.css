@@ -1,7 +1,7 @@
 .main-builder {
     display: flex;
     width: 100vw;
-    height: 92vh;
+    height: 89vh;
 }
 
 .components-builder {
@@ -9,6 +9,11 @@
     width: 75vw;
     overflow:scroll;
 }
+
+
+.components-builder::-webkit-scrollbar {
+    display: none;
+   }
 
 .text-noComponents {
     font-size: 1rem;

@@ -44,7 +44,7 @@ class ClassicHeading2 extends Component {
     return (
       <div style={copyStyle}>
         {optionsBar}
-        <ImageEditable style={logoContainer} data-id="logo" src={info.logo.src} changeImage={changeImage}/>
+        <ImageEditable style={logoContainer} data-id="image1" src={info.image1.src} changeImage={changeImage}/>
         <LinksListEditable mode={mode} openChangeModal={openChangeModal} info={info} contentStyle={contentStyle} containerStyle={linksContainer} linksStyle={linksStyle}/>
       </div>
     )
