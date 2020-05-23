@@ -9,7 +9,7 @@ function copyArray (array) {
 function findByCode (array, id) {
   return array.find(o => o.code === id)
 }
-module.exports = {
+export default {
   copyObject,
   copyArray,
   findByCode
