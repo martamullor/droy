@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import api from '../services/apiClient'
 import alias from '../utils/alias'
+import { notifyError } from '../services/notifications'
 
 const DataContext = React.createContext()
 
@@ -74,11 +75,6 @@ class DataProvider extends Component {
   /* Add new component to actual configurarion */
   addComponent = (componentCode, defaultInfo, componentOptions, componentStyle) => {
     const { userLayoutObj } = alias.copyObject(this.state)
-    /* let firstUserOverrideStyle = {}
-    console.log(componentStyle)
-    for (const attr in componentStyle) {
-      firstUserOverrideStyle = Object.assign(firstUserOverrideStyle, {[attr]: componentStyle[attr]})
-    }*/
     userLayoutObj.push({
       code: componentCode,
       info: defaultInfo,
@@ -101,7 +97,7 @@ class DataProvider extends Component {
         setTimeout(() => { this.setState({ savingStep: 'Save' }) }, 500);
       }, 500);
     } catch (error) {
-      alert("Error al guardar. Vuelve a intentarlo")
+      notifyError("Not saved. Try again.")
     }   
   }
 
@@ -148,7 +144,8 @@ class DataProvider extends Component {
         projectStyle: style,
       })
     } catch (error) {
-      this.setState({ dataError: "Unable to get your project data" })
+      notifyError("We can't retrieve your project information.... So sorry.")
+      this.setState({ userLayoutObj: null })
     }
   }
 

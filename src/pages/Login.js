@@ -1,15 +1,15 @@
 import React, { Component } from 'react'
 import NavBar from '../components/droy/NavBar'
+import Error from '../components/droy/Error'
 import Loading from '../components/droy/Loading'
 import ModalResetPassword from '../components/droy/ModalResetPassword'
 import { Link } from 'react-router-dom'
 import firebase from '../services/firebase'
 import '../styles/login-signup.css'
-
+import { notifyError, notifyInfo } from '../services/notifications'
 
 const STATUS = {
   LOADING: 'LOADING',
-  ERROR: 'ERROR',
   LOADED: 'LOADED',
 }
 
@@ -21,25 +21,24 @@ class Login extends Component {
       email: "",
       hashedPassword: "",
       status: STATUS.LOADED,
-      errorMessage: "",
       resetPasswordModal: false
     }
   }
 
   handleSubmit = async (e) => {
-    try {
-      e.preventDefault();
-      const { history } = this.props
-      const { email, hashedPassword } = this.state;
-      this.setState({ status: STATUS.LOADING })
-      await firebase.auth().signInWithEmailAndPassword(email, hashedPassword)
+    e.preventDefault();
+    const { history } = this.props
+    const { email, hashedPassword } = this.state;
+    this.setState({ status: STATUS.LOADING })
+    firebase.auth().signInWithEmailAndPassword(email, hashedPassword)
+    .then(() => {
+      notifyInfo(`👋 Welcome, ${firebase.auth().currentUser.displayName}!`)
       history.push("/")
-    } catch (error) {
-      this.setState({
-        status: STATUS.LOADED,
-        errorMessage: 'Error on login'
-      })
-    }
+    })
+    .catch((e) => {
+      notifyError(e.message)
+      this.setState({ status: STATUS.LOADED })
+    })
   };
 
   showModalReset = () => {
@@ -55,17 +54,17 @@ class Login extends Component {
   }
 
   handleSubmitGoogle = async (e) => {
-    try {
-      const { history } = this.props
-      const provider = new firebase.auth.GoogleAuthProvider()
-      await firebase.auth().signInWithPopup(provider)
+    const { history } = this.props
+    const provider = new firebase.auth.GoogleAuthProvider()
+    firebase.auth().signInWithPopup(provider)
+    .then(() => {
+      notifyInfo(`👋 Welcome, ${firebase.auth().currentUser.displayName}!`)
       history.push("/")
-    } catch (error) {
-      this.setState({
-        status: STATUS.ERROR,
-        errorMessage: 'Error on login google',
-      });
-    }
+    })
+    .catch((e) => {
+      notifyError(e.message)
+      this.setState({ status: STATUS.LOADED })
+    })
   };
 
   handleChange = (e) => {
@@ -123,10 +122,8 @@ class Login extends Component {
               </div>
             </div>
           </div>)
-      case STATUS.ERROR:
-        return <div className='error-text'>{errorMessage}</div>
       default:
-        return <div className='error-text'>Strange error...</div>
+        return <Error/>
     }
   }
 
