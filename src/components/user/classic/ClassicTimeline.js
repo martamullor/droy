@@ -10,12 +10,6 @@ const timelineContainer = {
   backgroundColor: 'white'
 }
 
-const titleTimeline1 = {
-  fontWeight: '400',
-  maxWidth: '100%',
-  overflow: 'hidden'
-}
-
 const textTimelineContainer = {
   display: 'flex',
   flexDirection: 'column',
