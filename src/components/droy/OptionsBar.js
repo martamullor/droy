@@ -46,7 +46,8 @@ class OptionsBar extends Component {
 
   showOptions = () => {
     this.setState({
-      showOptions: !this.state.showOptions
+      showOptions: !this.state.showOptions,
+      showColorPicker: false
     })
   }
 

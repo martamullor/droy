@@ -25,3 +25,14 @@
     text-decoration: none;
 }
 
+.user-nav {
+    display: flex;
+    flex-direction: row-reverse;
+}
+
+.user-nav img{
+    height: 40px;
+    width: 40px;
+    margin-left: 10px;
+    border-radius: 50%;
+}
