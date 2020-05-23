@@ -74,20 +74,16 @@ class DataProvider extends Component {
   /* Add new component to actual configurarion */
   addComponent = (componentCode, defaultInfo, componentOptions, componentStyle) => {
     const { userLayoutObj } = alias.copyObject(this.state)
-    let firstStyle = {}
-    for (const attr in defaultInfo) {
-      firstStyle = Object.assign(firstStyle, {[attr]: defaultInfo[attr].style})
-    }
-    let firstUserOverrideStyle = {}
+    /* let firstUserOverrideStyle = {}
+    console.log(componentStyle)
     for (const attr in componentStyle) {
       firstUserOverrideStyle = Object.assign(firstUserOverrideStyle, {[attr]: componentStyle[attr]})
-    }
+    }*/
     userLayoutObj.push({
       code: componentCode,
       info: defaultInfo,
-      style: firstStyle,
       componentOptions,
-      componentUserOverrideStyle: firstUserOverrideStyle
+      componentUserOverrideStyle: componentStyle
     })
     this.setState({
       userLayoutObj: userLayoutObj,
@@ -114,18 +110,16 @@ class DataProvider extends Component {
     const layoutCopy = alias.copyArray(this.state.userLayoutObj)
     const component = alias.findByCode(layoutCopy, componentCode)
     const styleOptions = ['fontSize', 'letterSpacing']
-    let componentStyles = component.style
+    let attrStyle
     if(!attrContent) delete component.info[componentAttr]
     else {
       component.info[componentAttr] = attrContent
-      let stylesAttr = {}
+      attrStyle = component.info[componentAttr].style
       for (const option in attrContent.style) {
         if (!styleOptions.includes(option)) continue
-        stylesAttr = {...stylesAttr, [option]: attrContent.style[option]}
-        componentStyles = Object.assign(componentStyles, {[componentAttr]: stylesAttr})
+        attrStyle[option] = attrContent.style[option]
       }
     }
-    component.style = componentStyles
     this.setState({ userLayoutObj: layoutCopy })
   };
 
@@ -148,15 +142,6 @@ class DataProvider extends Component {
   getProjectInfo = async (projectId) => {
     try {
       const { data: { componentsConfiguration, style, _id } } = await api.get(`/projects/${projectId}`)
-      let firstStyle = {}
-      for (const key in componentsConfiguration) {
-        const component = componentsConfiguration[key]
-        const componentInfo = component.info
-        for (const attr in componentInfo) {
-          firstStyle = Object.assign(firstStyle, {[attr]: componentInfo[attr].style})
-        }
-        component.style = firstStyle
-      }
       this.setState({
         projectId: _id,
         userLayoutObj: componentsConfiguration,

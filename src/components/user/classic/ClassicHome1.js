@@ -54,14 +54,14 @@ const linksStyle = {
 
 class ClassicHome1 extends Component {
   render () {
-    const { userStyle, mode, info, contentStyle, children: optionsBar, openChangeModal } = this.props
+    const { userStyle, mode, info, children: optionsBar, openChangeModal } = this.props
     return (
       <div style={Object.assign({}, homeContainer, userStyle)}>
         {optionsBar}
         <div style={textHomeContainer}>
-          <h1 style={Object.assign({}, titleHome1, contentStyle.text1)} data-id="text1" onDoubleClick={openChangeModal}>{info.text1.text}</h1>
-          <p style={Object.assign({}, textHome1, contentStyle.text2)} data-id="text2" onDoubleClick={openChangeModal}>{info.text2.text}</p>
-          <LinksListEditable mode={mode} openChangeModal={openChangeModal} info={info} contentStyle={contentStyle} containerStyle={linksContainer} linksStyle={linksStyle}/>
+          <h1 style={Object.assign({}, titleHome1, info.text1.style)} data-id="text1" onDoubleClick={openChangeModal}>{info.text1.text}</h1>
+          <p style={Object.assign({}, textHome1, info.text2.style)} data-id="text2" onDoubleClick={openChangeModal}>{info.text2.text}</p>
+          <LinksListEditable mode={mode} openChangeModal={openChangeModal} info={info} contentStyle={info} containerStyle={linksContainer} linksStyle={linksStyle}/>
         </div>
       </div>
     )
