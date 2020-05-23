@@ -1,26 +1,44 @@
 .container-options-bar {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    position: absolute;
-    top: 0px;
-    left: 0px;
-    background-color: white;
-    border: 1px solid #c8ced8;
-    z-index: 10;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  background-color: white;
+  border: 1px solid #c8ced8;
+  z-index: 10;
+  padding: 2px;
+}
+
+.options-bar {
+  display: flex;
+  justify-content: center;
 }
 
 .buttons-optionBar {
-    border: none;
-    animation: appear 0.5s forwards;
+  border: none;
+  animation: appear 0.5s forwards;
+  background-color: transparent;
 }
 
 .image-optionBar {
-    width: 25px;
-    margin-top: 2px;
-    padding-right: 2px;
-    animation: appear 0.5s forwards;
-    background-color: white;
+  width: 23px;
+  animation: appear 0.5s forwards;
+}
+
+.options {
+  margin-right: 8px;
+}
+
+.height-optionsBar{
+  font-family: 'Montserrat', sans-serif;
+  text-align: center;
+  border: 1px solid #c8ced8;
+  padding-right: 5px;
+  border-radius: 3px;
+  padding: 5px;
+  color: #001745;
 }
 
 @keyframes appear {
