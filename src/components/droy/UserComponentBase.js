@@ -49,7 +49,7 @@ class UserComponentBase extends Component {
     const { projectId, code, saveComponentInfoToContext } = this.props
     const attr = e.target.attributes['data-id'].value
     const file = e.target.files[0]
-    if(file.size > 70000){
+    if(file.size > 2000000){
       alert('Imagen demasiado grande.')
     } else {
       const randomFileName = uuid()
