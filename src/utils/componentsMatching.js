@@ -13,6 +13,7 @@ import ModernSectionLeft from '../components/user/modern/ModernSectionLeft'
 import ModernSectionRight from '../components/user/modern/ModernSectionRight'
 import ModernTimeline from '../components/user/modern/ModernTimeline'
 import ModernThreeColumns from '../components/user/modern/ModernThreeColumns'
+import Modern4Options from '../components/user/modern/Modern4Options'
 
 export default {
   ClassicHeading1: ClassicHeading1,
@@ -29,5 +30,6 @@ export default {
   ModernSectionLeft: ModernSectionLeft,
   ModernSectionRight: ModernSectionRight,
   ModernTimeline: ModernTimeline,
-  ModernThreeColumns: ModernThreeColumns
+  ModernThreeColumns: ModernThreeColumns,
+  Modern4Options: Modern4Options
 }
