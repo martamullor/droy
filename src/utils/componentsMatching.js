@@ -18,6 +18,9 @@ import ModernTitleAndText from '../components/user/modern/ModernTitleAndText'
 import ModernSectionBackground from '../components/user/modern/ModernSectionBackground'
 import ModernSectionBackground2 from '../components/user/modern/ModernSectionBackground2'
 import ModernTwoContainer from '../components/user/modern/ModernTwoContainer'
+import ModernBlog from '../components/user/modern/ModernBlog'
+import ModernArticle1 from '../components/user/modern/ModernArticle1'
+import ModernFooter from '../components/user/modern/ModernFooter'
 
 export default {
   ClassicHeading1: ClassicHeading1,
@@ -39,5 +42,8 @@ export default {
   ModernTitleAndText: ModernTitleAndText,
   ModernSectionBackground: ModernSectionBackground,
   ModernSectionBackground2: ModernSectionBackground2,
-  ModernTwoContainer: ModernTwoContainer
+  ModernTwoContainer: ModernTwoContainer,
+  ModernBlog: ModernBlog,
+  ModernArticle1: ModernArticle1,
+  ModernFooter: ModernFooter
 }
