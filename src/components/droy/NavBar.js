@@ -23,14 +23,14 @@ class NavBar extends Component {
     if (mode === 'view') {
       return <button className='buttons-navBar' onClick={switchMode}>Edit page</button>
     }
-    if (!userLayoutObj.length) {
+    if (userLayoutObj && !userLayoutObj.length) {
       return <button className='buttons-navBar'>View page</button>
     }
     return <button className='buttons-navBar' onClick={switchMode}>View page</button>
   }
 
   render() {
-    const { withOptions, mode, switchMode, savingStep, userLayoutObj } = this.props
+    const { withOptions, savingStep } = this.props
     const { currentUser } = firebase.auth()
     return (
       <div className='nav-bar'>
@@ -47,7 +47,7 @@ class NavBar extends Component {
           : <Link className='buttons-navBar' to="/login">Login</Link>}
         {currentUser && 
           <div className='user-nav'>
-          <img src={currentUser.photoURL} alt="user-photo" />
+          <img src={currentUser.photoURL} alt="user-icon" />
           <p>{currentUser.displayName}</p>
         </div>
         }

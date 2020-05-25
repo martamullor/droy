@@ -2,17 +2,17 @@ import React, { Component } from 'react'
 import NavBar from '../components/droy/NavBar'
 import ModalStartPage from '../components/droy/ModalStartProject'
 import ModalDelete from '../components/droy/ModalDelete'
+import Error from '../components/droy/Error'
 import SquareProject from '../components/droy/SquareProject'
 import Loading from '../components/droy/Loading'
-import Error from '../components/droy/Error'
 import '../styles/homePage.css'
 import api from '../services/apiClient'
 import firebase from '../services/firebase'
+import { notifyError } from '../services/notifications'
 
 const STATUS = {
   LOADING: 'LOADING',
   LOADED: 'LOADED',
-  ERROR: 'ERROR',
 }
 
 class Homepage extends Component {
@@ -40,7 +40,7 @@ class Homepage extends Component {
         status: STATUS.LOADED,
       })      
     } catch (error) {
-      this.setState({ status: STATUS.ERROR })
+      notifyError("We can retrieve your information... So sorry.")
     }
   }
 
@@ -70,7 +70,7 @@ class Homepage extends Component {
         allProjects: projects,
       })
     } catch (error) {
-      this.setState({ status: STATUS.ERROR })
+      notifyError("We can't refresh the projects... So sorry.")
     }
   }
 
@@ -111,14 +111,10 @@ class Homepage extends Component {
             }
           </div>
         )
-      case STATUS.ERROR:
-        return <div> <Error /> </div>
-
       default:
-        break;
-    }
-
+        return <Error/>
   }
+}
 
   render() {
     return (

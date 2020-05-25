@@ -1,13 +1,14 @@
 import React, { Component } from 'react'
 import firebase from '../services/firebase'
+import Error from '../components/droy/Error'
 import NavBar from '../components/droy/NavBar'
 import { Link } from 'react-router-dom'
 import '../styles/login-signup.css'
 import Loading from '../components/droy/Loading'
+import { notifyError, notifyInfo } from '../services/notifications'
 
 const STATUS = {
   LOADING: 'LOADING',
-  ERROR: 'ERROR',
   LOADED: 'LOADED',
 }
 
@@ -21,57 +22,54 @@ class SignUp extends Component {
       name: "",
       confirmationPassword: "",
       status: STATUS.LOADED,
-      errorMessage: ""
     }
   }
 
   handleSubmit = async (e) => {
-    try {
-      e.preventDefault();
-      const { name, email, hashedPassword, confirmationPassword } = this.state
-      const { history } = this.props
-      if (hashedPassword !== confirmationPassword || hashedPassword.length < 6) {
-        this.setState({
-          errorMessage: 'Weak password or mismatch',
-          status: STATUS.LOADED
-        })
-      } else {
-        this.setState({ status: STATUS.LOADING })
-        await firebase.auth().createUserWithEmailAndPassword(email, hashedPassword)
-        await firebase.auth().currentUser.updateProfile({
+    e.preventDefault();
+    const { name, email, hashedPassword, confirmationPassword } = this.state
+    const { history } = this.props
+    if (hashedPassword !== confirmationPassword || hashedPassword.length < 6) {
+      notifyError("Incorrect password or weak password")
+      this.setState({ status: STATUS.LOADED })
+    } else {
+      firebase.auth().createUserWithEmailAndPassword(email, hashedPassword)
+      .then(() => {
+        return firebase.auth().currentUser.updateProfile({
           photoURL: "https://firebasestorage.googleapis.com/v0/b/droy-prod.appspot.com/o/public%2FdefaultAvatar.png?alt=media&token=dec42397-ff82-42b5-bc30-f6daff12e837",
           displayName: name
         })
+      })
+      .then(() => {
+        notifyInfo(`👋 Nice to meet you, ${firebase.auth().currentUser.displayName}!`)
         history.push('/')
-      }
-    } catch (error) {
-      // Show popup, not error on all page!!
-      this.setState({
-        status: STATUS.ERROR,
-        errorMessage: 'Error on signup'
+      })
+      .catch((e) => {
+        notifyError(e.message)
+        this.setState({ status: STATUS.LOADED })
       })
     }
   };
 
   handleSubmitGoogle = async () => {
-    try {
-      const { history } = this.props
-      const provider = new firebase.auth.GoogleAuthProvider()
-      await firebase.auth().signInWithPopup(provider)
+    const { history } = this.props
+    const provider = new firebase.auth.GoogleAuthProvider()
+    firebase.auth().signInWithPopup(provider)
+    .then(() => {
+      notifyInfo(`👋 Nice to meet you, ${firebase.auth().currentUser.displayName}!`)
       history.push("/")
-    } catch (error) {
-      this.setState({
-        status: STATUS.ERROR,
-        errorMessage: 'Error on signup google',
-      });
-    }
-  };
+    })
+    .catch((e) => {
+      notifyError(e.message)
+      this.setState({ status: STATUS.LOADED })
+    })  
+  }
 
   handleChange = (e) => {
     this.setState({
       [e.target.name]: e.target.value,
-    });
-  };
+    })
+  }
 
   showContent = () => {
     const { status, errorMessage, email, hashedPassword, name, confirmationPassword } = this.state
@@ -98,7 +96,7 @@ class SignUp extends Component {
               <input className='input-form'
                 type="password"
                 required="required"
-                placeholder="······"
+                placeholder="···········"
                 name="hashedPassword"
                 id="hashedPassword"
                 value={hashedPassword}
@@ -107,7 +105,7 @@ class SignUp extends Component {
               <input className='input-form'
                 type="password"
                 required="required"
-                placeholder="······"
+                placeholder="···········"
                 name="confirmationPassword"
                 id="confirmationPassword"
                 value={confirmationPassword}
@@ -135,10 +133,8 @@ class SignUp extends Component {
             </div>
           </div>
         </div>)
-      case STATUS.ERROR:
-        return <div className='error-text padding-error'>{errorMessage}</div>
       default:
-        return <div className='error-text padding-error'>Strange error...</div>
+        return <Error/>
     }
   }
 

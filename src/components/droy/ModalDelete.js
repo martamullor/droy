@@ -1,13 +1,13 @@
 import React, { Component } from 'react'
 import api from '../../services/apiClient'
 import firebase from '../../services/firebase'
+import { notifyError, notifyInfo } from '../../services/notifications'
 
 export default class ModalDelete extends Component {
   constructor(props) {
     super(props)
     this.state = {
       name: '',
-      error: ''
     }
   }
 
@@ -18,36 +18,30 @@ export default class ModalDelete extends Component {
   }
 
   handleDelete = async (e) => {
-    e.preventDefault()
-    const { project, onClose } = this.props
-    const { name } = this.state
     try {
-      if( name === project.name) {
+      e.preventDefault()
+      const { project, onClose } = this.props
+      const { name } = this.state
+      if (name !== project.name) notifyError('Incorrect project name')
+      else {
         await api.delete(`/projects/${project._id}`)
         const listRef = firebase.storage().ref(firebase.auth().currentUser.uid)
         const res = listRef.child(project._id)
         res.listAll().then(function(res) {
           res.items.forEach(function(itemRef) {
             itemRef.delete()
-          });
-        })  
-        onClose()
-      } else {
-        this.setState({
-          error: 'The fiels do not match'
+          })
         })
+        notifyInfo('👋 Project deleted')
+        onClose()
       }
     } catch (error) {
-      this.setState({
-        error: error.toString('')
-      })
+      notifyError('Error deleting your project...')
     }
   }
 
-
   render() {
     const { onClose, project } = this.props
-    const { error } = this.state
     return (
       <div className='modal-container'>
         <div className='modal-style'>
@@ -62,7 +56,6 @@ export default class ModalDelete extends Component {
               onChange={this.handleChange} />
             <button className='button-modal' type='submit'>Delete</button>
           </form>
-          <p className='error-text'>{error}</p>
         </div>
       </div>
     )
