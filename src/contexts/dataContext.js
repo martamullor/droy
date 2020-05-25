@@ -74,11 +74,6 @@ class DataProvider extends Component {
   /* Add new component to actual configurarion */
   addComponent = (componentCode, defaultInfo, componentOptions, componentStyle) => {
     const { userLayoutObj } = alias.copyObject(this.state)
-    /* let firstUserOverrideStyle = {}
-    console.log(componentStyle)
-    for (const attr in componentStyle) {
-      firstUserOverrideStyle = Object.assign(firstUserOverrideStyle, {[attr]: componentStyle[attr]})
-    }*/
     userLayoutObj.push({
       code: componentCode,
       info: defaultInfo,
