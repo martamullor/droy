@@ -4,7 +4,7 @@ import { EmailIcon, EmailShareButton, FacebookIcon, FacebookShareButton, Linkedi
 export default class ModalDeploy extends Component {
   render () {
     const { projectId, onClose } = this.props
-    const projectUrl = `https://${projectId}.my-droy.com`
+    const projectUrl = `http://${projectId}.my-droy.com`
     return (
       <div className='modal-container'>
         <div className='modal-style-deploy'>
