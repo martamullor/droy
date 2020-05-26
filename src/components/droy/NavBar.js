@@ -23,7 +23,7 @@ class NavBar extends Component {
     if (mode === 'view') {
       return <button className='buttons-navBar' onClick={switchMode}>Edit page</button>
     }
-    if (!userLayoutObj.length) {
+    if (userLayoutObj && !userLayoutObj.length) {
       return <button className='buttons-navBar'>View page</button>
     }
     return <button className='buttons-navBar' onClick={switchMode}>View page</button>

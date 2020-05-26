@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { notifyError } from '../../services/notifications'
 
 export default class ModalDelete extends Component {
   constructor(props) {
@@ -6,7 +7,6 @@ export default class ModalDelete extends Component {
     this.state = {
       info: this.props.info, 
       style: this.props.style,
-      error: ''
     }
   }
 
@@ -26,11 +26,30 @@ export default class ModalDelete extends Component {
     });
   }
 
-  handleChangeInfo = (e) => {
+  isValid = (info) => {
+    const pxRemRegex = /^(\d{0,3}\.?\d{0,3})(px|rem)$/
+    const linkRegex = /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_+.~#?&//=]*)/
+    if (!pxRemRegex.test(info.style.fontSize) && info.style.fontSize !== 'inherit') {
+      notifyError("Invalid text size: must be px/rem/inherit")
+      return false
+    }
+    if(!pxRemRegex.test(info.style.letterSpacing) && info.style.letterSpacing !== 'inherit') {
+      notifyError("Invalid letter spacing: must be px/rem/inherit")
+      return false
+    }
+    if(!linkRegex.test(info.href)) {
+      notifyError("Invalid link")
+      return false
+    }
+    return true
+  }
+
+  submitChanges = (e) => {
     e.preventDefault()
     const { changeInfo } = this.props
     const { info, style } = this.state
-    changeInfo({...info, style})
+    const finalInfo = {...info, style}
+    if(this.isValid(finalInfo)) changeInfo(finalInfo)
   }
 
   render() {
@@ -42,7 +61,7 @@ export default class ModalDelete extends Component {
           <button className='close-modal' onClick={onClose}>
             <img className='close-modal-image' src="/img/close-icon.png" alt='delete-project'></img>
           </button>
-          <form className='form-create-project' onSubmit={this.handleChangeInfo}>
+          <form className='form-create-project' onSubmit={this.submitChanges}>
             <div className="modal-field-group">
               <label className="label-modal" htmlFor="display-text">Display text:</label>
               <input required="required" className='input-modal' type="text"
