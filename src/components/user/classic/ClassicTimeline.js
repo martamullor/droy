@@ -69,8 +69,14 @@ ClassicTimeline.propTypes = {
   info: PropTypes.object,
   changeInfo: PropTypes.func,
   optionsBar: PropTypes.object,
-  // children: PropTypes.object,
-  code: PropTypes.string
+  children: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.node),
+    PropTypes.node
+  ]),
+  code: PropTypes.string,
+  userStyle: PropTypes.object,
+  changeImage: PropTypes.func,
+  openChangeModal: PropTypes.func
 }
 
 export default ClassicTimeline

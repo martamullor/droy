@@ -58,7 +58,12 @@ ClassicArticle1.propTypes = {
   info: PropTypes.object,
   changeInfo: PropTypes.func,
   optionsBar: PropTypes.object,
-  // children: PropTypes.object,
+  children: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.node),
+    PropTypes.node
+  ]),
+  openChangeModal: PropTypes.func,
+  userStyle: PropTypes.object,
   code: PropTypes.string
 }
 

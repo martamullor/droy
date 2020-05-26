@@ -19,7 +19,7 @@
 .buttons-selectorBar {
     border: none;
     animation: appear 0.5s forwards;
-    background: transparent;
+    background: white;
 }
 
 .image-selectorBar {

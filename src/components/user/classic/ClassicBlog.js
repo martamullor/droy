@@ -8,7 +8,7 @@ const timelineContainer = {
   position: 'relative',
   padding: '50px',
   backgroundColor: 'white',
-  fontFamily: "'Roboto Mono', monospace"
+  fontFamily: "'Caladea', serif"
 }
 
 const container4options = {
@@ -27,7 +27,7 @@ const textTimelineContainer = {
   justifyContent: 'center',
   color: '#2a2c2a',
   width: '90%',
-  fontFamily: "'Roboto', sans-serif",
+  fontFamily: "'Caladea', serif",
   margin: '0px 5px 30px 0px',
   padding: '30px',
   boxShadow: '-5px 4px 9px -1px rgba(225,225,225,1)',
@@ -37,9 +37,9 @@ const textTimelineContainer = {
 
 const titleSection = {
   margin: '5px 0px',
-  padding: ' 0px 30px',
+  padding: ' 10px 30px',
   color: '#30374d',
-  textAlign: 'left'
+  textAlign: 'center'
 }
 
 const imageContainer = {
@@ -59,7 +59,7 @@ const textSection1 = {
   color: '#7d818f'
 }
 
-class ModernBlog extends Component {
+class ClassicBlog extends Component {
   render () {
     const { userStyle, info, changeImage, children: optionsBar, openChangeModal } = this.props
     return (
@@ -113,7 +113,7 @@ class ModernBlog extends Component {
   }
 }
 
-ModernBlog.propTypes = {
+ClassicBlog.propTypes = {
   info: PropTypes.object,
   changeInfo: PropTypes.func,
   optionsBar: PropTypes.object,
@@ -127,4 +127,4 @@ ModernBlog.propTypes = {
   openChangeModal: PropTypes.func
 }
 
-export default ModernBlog
+export default ClassicBlog
