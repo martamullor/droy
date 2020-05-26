@@ -17,7 +17,7 @@ class Builder extends Component {
     }
   }
 
-  // a little function to help us with reordering the result
+  /* Drag Reorder components  */
   reorder = (list, startIndex, endIndex) => {
     const result = Array.from(list);
     const [removed] = result.splice(startIndex, 1);
@@ -47,14 +47,16 @@ class Builder extends Component {
   /* Loops over project info in data context to print user components */
   /* If not components found, prints a pretty message */
   showUserComponents = () => {
-    const { userLayoutObj, dataError } = this.props
+    const { userLayoutObj, history } = this.props
+    if (!userLayoutObj){
+      history.push('/')
+      return
+    }
     if (!userLayoutObj.length) return (
       <div className='empty-component-base'>
         <img className='image-emptyBuilder' src='/img/empty-icon.png' alt='empty-icon' />
         <p className='text-noComponents'>Start picking one component from the left!</p>
       </div>)
-    if (dataError) return <div>{dataError}</div>
-
     const allComponents = []
     if (this.props.mode === 'edit') {
       let i = 0

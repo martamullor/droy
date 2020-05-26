@@ -1,51 +1,46 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import ImageEditable from '../../droy/ImageEditable'
 
 const sectionContainer = {
-  fontFamily: "'Caladea', serif",
+  position: 'relative',
+  fontFamily: "'Roboto', sans-serif",
   display: 'flex',
-  position: 'relative'
-}
-
-const imageContainer = {
-  width: '50%',
-  overflow: 'hidden',
-  height: '100%'
+  backgroundColor: 'white'
 }
 
 const textSectionContainer = {
   textAlign: 'left',
   overflow: 'hidden',
   color: '#2a2c2a',
-  width: '50%',
-  backgroundColor: 'white'
+  width: '100%',
+  justifyContent: 'center',
+  display: 'flex',
+  flexDirection: 'column',
+  padding: ' 0px 90px 0px 30px'
 }
 
 const titleSection1 = {
-  fontWeight: '400',
+  fontWeight: '800',
   maxWidth: '100%',
   overflow: 'hidden',
-  padding: ' 30px 40px 0px 40px'
+  fontFamily: "'Roboto Mono', monospace",
+  color: '#2d334d'
 }
 
 const textSection1 = {
-  fontSize: '1rem',
   fontWeight: '200',
-  maxWidth: '80vw',
+  maxWidth: '100%',
   overflow: 'hidden',
-  padding: ' 0px 40px'
+  marginTop: '-5px',
+  color: '#818594'
 }
 
-class ClassicSectionRight extends Component {
+class ModernTitleAndText extends Component {
   render () {
-    const { userStyle, info, changeImage, children: optionsBar, openChangeModal } = this.props
+    const { userStyle, info, children: optionsBar, openChangeModal } = this.props
     return (
       <div style={Object.assign({}, sectionContainer, userStyle)}>
         {optionsBar}
-        <div style={imageContainer}>
-          <ImageEditable data-id="image1" src={info.image1.src} changeImage={changeImage} />
-        </div>
         <div style={textSectionContainer}>
           <h1 style={Object.assign({}, titleSection1, info.text1.style)} data-id="text1" onDoubleClick={openChangeModal}>{info.text1.text}</h1>
           <p style={Object.assign({}, textSection1, info.text2.style)} data-id="text2" onDoubleClick={openChangeModal}>{info.text2.text}</p>
@@ -55,7 +50,7 @@ class ClassicSectionRight extends Component {
   }
 }
 
-ClassicSectionRight.propTypes = {
+ModernTitleAndText.propTypes = {
   info: PropTypes.object,
   changeInfo: PropTypes.func,
   optionsBar: PropTypes.object,
@@ -65,8 +60,7 @@ ClassicSectionRight.propTypes = {
   ]),
   code: PropTypes.string,
   userStyle: PropTypes.object,
-  changeImage: PropTypes.func,
   openChangeModal: PropTypes.func
 }
 
-export default ClassicSectionRight
+export default ModernTitleAndText

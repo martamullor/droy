@@ -3,41 +3,45 @@ import PropTypes from 'prop-types'
 import ImageEditable from '../../droy/ImageEditable'
 
 const sectionContainer = {
-  fontFamily: "'Caladea', serif",
-  display: 'flex',
-  position: 'relative'
+  position: 'relative',
+  fontFamily: "'Roboto', sans-serif",
+  display: 'flex'
 }
 
 const imageContainer = {
-  width: '50%',
+  width: '70%',
   overflow: 'hidden',
-  height: '100%'
+  justifyContent: 'center',
+  alignItems: 'center',
+  display: 'flex'
 }
 
 const textSectionContainer = {
   textAlign: 'left',
   overflow: 'hidden',
   color: '#2a2c2a',
-  width: '50%',
-  backgroundColor: 'white'
+  width: '30%',
+  backgroundColor: 'white',
+  justifyContent: 'center',
+  display: 'flex',
+  flexDirection: 'column',
+  padding: ' 0px 90px 0px 30px'
 }
 
 const titleSection1 = {
-  fontWeight: '400',
+  fontWeight: '200',
   maxWidth: '100%',
   overflow: 'hidden',
-  padding: ' 30px 40px 0px 40px'
+  fontStyle: 'italic'
 }
 
 const textSection1 = {
-  fontSize: '1rem',
   fontWeight: '200',
-  maxWidth: '80vw',
-  overflow: 'hidden',
-  padding: ' 0px 40px'
+  maxWidth: '100%',
+  overflow: 'hidden'
 }
 
-class ClassicSectionRight extends Component {
+class ModernSectionLeft extends Component {
   render () {
     const { userStyle, info, changeImage, children: optionsBar, openChangeModal } = this.props
     return (
@@ -55,7 +59,7 @@ class ClassicSectionRight extends Component {
   }
 }
 
-ClassicSectionRight.propTypes = {
+ModernSectionLeft.propTypes = {
   info: PropTypes.object,
   changeInfo: PropTypes.func,
   optionsBar: PropTypes.object,
@@ -69,4 +73,4 @@ ClassicSectionRight.propTypes = {
   openChangeModal: PropTypes.func
 }
 
-export default ClassicSectionRight
+export default ModernSectionLeft

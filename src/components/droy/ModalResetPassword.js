@@ -2,16 +2,15 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import '../../styles/modal-projects.css'
 import firebase from '../../services/firebase'
+import { notifyError, notifyInfo } from '../../services/notifications'
 
 class ModalResetPassword extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      email: '',
-      error: ''
+      email: ''
     }
   }
-
 
   handleChange = (e) => {
     this.setState({
@@ -19,24 +18,22 @@ class ModalResetPassword extends Component {
     });
   }
 
-
   handleSubmit = async (e) => {
+    e.preventDefault()
     const { onClose } = this.props
-    try {
-      e.preventDefault()
-      const { email } = this.state
-      await firebase.auth().sendPasswordResetEmail(email)
-      onClose();
-    } catch (error) {
-      this.setState({
-        error: "Error on sending mail"
-      })
-      
-    }    
+    const { email } = this.state
+    firebase.auth().sendPasswordResetEmail(email)
+    .then(() => {
+      notifyInfo(`Check your inbox 😊`)
+      onClose()
+    })
+    .catch((e) => {
+      notifyError(e.message)
+    })
   }
 
   render() {
-    const { email, error } = this.state
+    const { email } = this.state
     const { onClose } = this.props
     return(
       <div className='modal-container-reset'>
@@ -44,7 +41,6 @@ class ModalResetPassword extends Component {
         <button className='close-modal' onClick={onClose}>
           <img className='close-modal-image' src="../../img/close-icon.png" alt='delete-project'></img>
         </button>
-        <p className='error-text'>{error}</p>
         <form className='form-create-project' onSubmit={this.handleSubmit}>
           <label className='label-modal' htmlFor="name">Email:</label>
           <input required="required" className='input-modal' type="text"

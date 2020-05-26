@@ -45,7 +45,7 @@ class NavBar extends Component {
     if (mode === 'view') {
       return <button className='buttons-navBar' onClick={switchMode}>Edit page</button>
     }
-    if (!userLayoutObj.length) {
+    if (userLayoutObj && !userLayoutObj.length) {
       return <button className='buttons-navBar'>View page</button>
     }
     return <button className='buttons-navBar' onClick={switchMode}>View page</button>
@@ -59,7 +59,7 @@ class NavBar extends Component {
       <div className='nav-bar'>
         {modalDeploy && <ModalDeploy projectId={projectId} onClose={this.handleCloseModal}/>}
         <Link to='/' >
-          <img className='logo-navBar' src='/img/logo-green.png' alt='logo-white'></img>
+          <img className='logo-navBar' src='/img/logo-green.png' alt='logo-green'></img>
         </Link>
         {withOptions && <div>
           <button className='buttons-navBar' onClick={this.deployApp}>Publish</button>
@@ -72,7 +72,7 @@ class NavBar extends Component {
           : <Link className='buttons-navBar' to="/login">Login</Link>}
         {currentUser && 
           <div className='user-nav'>
-          <img src={currentUser.photoURL} alt="user-photo" />
+          <img src={currentUser.photoURL} alt="user" />
           <p>{currentUser.displayName}</p>
         </div>
         }

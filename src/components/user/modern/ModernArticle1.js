@@ -4,8 +4,7 @@ import PropTypes from 'prop-types'
 const articleContainer = {
   padding: '30px 10px 30px 10px',
   position: 'relative',
-  fontFamily: "'Caladea', serif",
-  backgroundColor: '#edecdf'
+  backgroundColor: '#fafafa'
 }
 
 const textArticleContainer = {
@@ -23,7 +22,8 @@ const containerArticle = {
 const titleArticle1 = {
   fontWeight: '400',
   maxWidth: '100%',
-  overflow: 'hidden'
+  overflow: 'hidden',
+  fontFamily: "'Roboto Mono', monospace"
 }
 
 const textArticle1 = {
@@ -33,10 +33,11 @@ const textArticle1 = {
   overflow: 'hidden',
   textAlign: 'left',
   padding: '5px 55px',
-  flexGrow: '1'
+  flexGrow: '1',
+  fontFamily: "'Roboto', sans-serif"
 }
 
-class ClassicArticle1 extends Component {
+class ModernArticle1 extends Component {
   render () {
     const { userStyle, info, children: optionsBar, openChangeModal } = this.props
     return (
@@ -54,7 +55,7 @@ class ClassicArticle1 extends Component {
   }
 }
 
-ClassicArticle1.propTypes = {
+ModernArticle1.propTypes = {
   info: PropTypes.object,
   changeInfo: PropTypes.func,
   optionsBar: PropTypes.object,
@@ -62,9 +63,9 @@ ClassicArticle1.propTypes = {
     PropTypes.arrayOf(PropTypes.node),
     PropTypes.node
   ]),
-  openChangeModal: PropTypes.func,
+  code: PropTypes.string,
   userStyle: PropTypes.object,
-  code: PropTypes.string
+  openChangeModal: PropTypes.func
 }
 
-export default ClassicArticle1
+export default ModernArticle1
