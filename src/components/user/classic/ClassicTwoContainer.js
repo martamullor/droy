@@ -8,7 +8,7 @@ const timelineContainer = {
   position: 'relative',
   padding: '50px',
   backgroundColor: 'white',
-  fontFamily: "'Roboto Mono', monospace",
+  fontFamily: "'Caladea', serif",
   alignItems: 'center',
   justifyContent: 'center'
 }
@@ -24,8 +24,7 @@ const textTimelineContainerOne = {
   justifyContent: 'center',
   color: '#2a2c2a',
   width: '50%',
-  fontFamily: "'Roboto', sans-serif",
-  backgroundColor: '#fff3e5',
+  backgroundColor: '#97a68f',
   padding: '50px',
   margin: '15px 30px 15px 0px',
   borderRadius: '5px'
@@ -38,7 +37,6 @@ const textTimelineContainerTwo = {
   justifyContent: 'center',
   color: '#2a2c2a',
   width: '50%',
-  fontFamily: "'Roboto', sans-serif",
   margin: '15px 30px 15px 0px',
   backgroundColor: '#eaeaed',
   padding: '50px',
@@ -47,15 +45,15 @@ const textTimelineContainerTwo = {
 
 const titleSection = {
   margin: '5px 0px',
-  color: '#30374d',
-  textAlign: 'left'
+  color: '#242424',
+  textAlign: 'center'
 }
 
 const titleSection1 = {
   fontWeight: '700',
   maxWidth: '100%',
   overflow: 'hidden',
-  color: '#2d334d'
+  color: '#242424'
 }
 
 const textSection1 = {
@@ -63,7 +61,7 @@ const textSection1 = {
   maxWidth: '100%',
   overflow: 'hidden',
   marginTop: '0px',
-  color: '#818594'
+  color: '#242424'
 }
 
 const linksContainer = {
@@ -78,8 +76,8 @@ const linksStyle1 = {
   padding: '8px 55px 8px 55px',
   marginRight: '10px',
   backgroundColor: 'transparent',
-  border: '2px solid #ff8b00',
-  color: '#ff8b00',
+  border: '2px solid white',
+  color: 'white',
   fontFamily: "'Roboto', sans-serif",
   borderRadius: '3px'
 }
@@ -94,7 +92,7 @@ const linksStyle2 = {
   borderRadius: '3px'
 }
 
-class ModernTwoContainer extends Component {
+class ClassicTwoContainer extends Component {
   render () {
     const { userStyle, mode, info, children: optionsBar, openChangeModal } = this.props
     return (
@@ -122,7 +120,7 @@ class ModernTwoContainer extends Component {
   }
 }
 
-ModernTwoContainer.propTypes = {
+ClassicTwoContainer.propTypes = {
   info: PropTypes.object,
   changeInfo: PropTypes.func,
   optionsBar: PropTypes.object,
@@ -137,4 +135,4 @@ ModernTwoContainer.propTypes = {
   contentStyle: PropTypes.string
 }
 
-export default ModernTwoContainer
+export default ClassicTwoContainer

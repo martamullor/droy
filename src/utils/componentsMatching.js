@@ -8,6 +8,8 @@ import ClassicTimeline from '../components/user/classic/ClassicTimeline'
 import ClassicBlog from '../components/user/classic/ClassicBlog'
 import Classic4Options from '../components/user/classic/Classic4Options'
 import ClassicSaleRate from '../components/user/classic/ClassicSaleRate'
+import ClassicTwoContainer from '../components/user/classic/ClassicTwoContainer'
+import ClassicTitleAndText from '../components/user/classic/ClassicTitleAndText'
 import ClassicFooter1 from '../components/user/classic/ClassicFooter1'
 import ModernHeading1 from '../components/user/modern/ModernHeading1'
 import ModernHome1 from '../components/user/modern/ModernHome1'
@@ -37,6 +39,8 @@ export default {
   ClassicBlog: ClassicBlog,
   Classic4Options: Classic4Options,
   ClassicSaleRate: ClassicSaleRate,
+  ClassicTitleAndText: ClassicTitleAndText,
+  ClassicTwoContainer: ClassicTwoContainer,
   ModernHeading1: ModernHeading1,
   ModernHome1: ModernHome1,
   ModernSectionLogo: ModernSectionLogo,
