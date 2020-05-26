@@ -35,7 +35,7 @@ class NavBar extends Component {
     return (
       <div className='nav-bar'>
         <Link to='/' >
-          <img className='logo-navBar' src='/img/logo-green.png' alt='logo-white'></img>
+          <img className='logo-navBar' src='/img/logo-green.png' alt='logo-green'></img>
         </Link>
         {withOptions && <div>
           <button className='buttons-navBar' onClick={this.handleSave}>{savingStep}</button>
@@ -47,7 +47,7 @@ class NavBar extends Component {
           : <Link className='buttons-navBar' to="/login">Login</Link>}
         {currentUser && 
           <div className='user-nav'>
-          <img src={currentUser.photoURL} alt="user-icon" />
+          <img src={currentUser.photoURL} alt="user" />
           <p>{currentUser.displayName}</p>
         </div>
         }

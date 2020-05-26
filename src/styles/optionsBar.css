@@ -8,6 +8,7 @@
     background-color: white;
     border: 1px solid #c8ced8;
     z-index: 10;
+    padding: 3px 0px 3px 0px;
 }
 
 .options-bar {
@@ -26,7 +27,7 @@
 }
 
 .options {
-  margin-right: 5px;
+  margin-right: 10px;
 }
 
 .height-optionsBar{

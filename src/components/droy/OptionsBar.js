@@ -81,11 +81,11 @@ class OptionsBar extends Component {
               <img className='image-optionBar options' data-action='down' src="/img/down-icon.png" alt='down' onClick={this.handleMoveComponent}/>
               <img className='image-optionBar options' data-action='up' src="/img/up-icon.png" alt='up' onClick={this.handleMoveComponent}/>
               {addLink && <img alt="newLink" onClick={addLink} className='image-optionBar options' src="/img/link-icon.png"/> }
-              {changeColor && <img onClick={this.toggleColorPicker} alt="newLink" className='image-optionBar' src="/img/color-icon.png"/> }
+              {changeColor && <img onClick={this.toggleColorPicker} alt="newLink" className='image-optionBar options' src="/img/color-icon.png"/> }
               {changeBackgroundImage && <img onClick={this.uploadHandler} alt="newLink" className='image-optionBar options' src="/img/upload-icon.png"/> }
               <input name='image' id='image' style={{ display: 'none' }} onChange={changeBackgroundImage} ref="imageUploader" type="file"/>
               {changeHeight && <input className='height-optionsBar options' type='number' min='40' step='5' value={height} onChange={this.handleChangeHeight} name='height' max='400'/>}
-              <img className='image-optionBar' onClick={this.handleDelete} src="/img/deleteBar-icon.png" alt='delete'></img>
+              <img className='image-optionBar options' onClick={this.handleDelete} src="/img/deleteBar-icon.png" alt='delete'></img>
             </div>
           }
         </div>

@@ -1,9 +1,8 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import ImageEditable from '../../droy/ImageEditable'
 
 const timelineContainer = {
-  fontFamily: "'Caladea', serif",
+  fontFamily: "'Roboto', sans-serif",
   display: 'flex',
   position: 'relative',
   padding: '50px',
@@ -20,52 +19,46 @@ const textTimelineContainer = {
   width: '100%'
 }
 
-const imageContainer = {
-  width: '80px'
-}
-
 const titleSection1 = {
-  fontWeight: '400',
+  fontWeight: '700',
   maxWidth: '100%',
-  overflow: 'hidden'
+  color: '#181f32',
+  margin: '0px'
 }
 
-class ClassicTimeline extends Component {
+const textSection1 = {
+  color: '#181f32',
+  textTransform: 'uppercase'
+}
+
+class ModernTimeline extends Component {
   render () {
-    const { userStyle, info, changeImage, children: optionsBar, openChangeModal } = this.props
+    const { userStyle, info, children: optionsBar, openChangeModal } = this.props
     return (
       <div style={Object.assign({}, timelineContainer, userStyle)}>
         {optionsBar}
         <div style={textTimelineContainer}>
-          <div style={imageContainer}>
-            <ImageEditable data-id="image1" src={info.image1.src} changeImage={changeImage} />
-          </div>
           <h2 style={Object.assign({}, titleSection1, info.text1.style)} data-id="text1" onDoubleClick={openChangeModal}>{info.text1.text}</h2>
+          <p style={Object.assign({}, textSection1, info.text5.style)} data-id="text5" onDoubleClick={openChangeModal}>{info.text5.text}</p>
         </div>
         <div style={textTimelineContainer}>
-          <div style={imageContainer}>
-            <ImageEditable data-id="image2" src={info.image2.src} changeImage={changeImage} />
-          </div>
           <h2 style={Object.assign({}, titleSection1, info.text2.style)} data-id="text2" onDoubleClick={openChangeModal}>{info.text2.text}</h2>
+          <p style={Object.assign({}, textSection1, info.text6.style)} data-id="text6" onDoubleClick={openChangeModal}>{info.text6.text}</p>
         </div>
         <div style={textTimelineContainer}>
-          <div style={imageContainer}>
-            <ImageEditable data-id="image3" src={info.image3.src} changeImage={changeImage} />
-          </div>
           <h2 style={Object.assign({}, titleSection1, info.text3.style)} data-id="text3" onDoubleClick={openChangeModal}>{info.text3.text}</h2>
+          <p style={Object.assign({}, textSection1, info.text7.style)} data-id="text7" onDoubleClick={openChangeModal}>{info.text7.text}</p>
         </div>
         <div style={textTimelineContainer}>
-          <div style={imageContainer}>
-            <ImageEditable data-id="image4" src={info.image4.src} changeImage={changeImage} />
-          </div>
           <h2 style={Object.assign({}, titleSection1, info.text4.style)} data-id="text4" onDoubleClick={openChangeModal}>{info.text4.text}</h2>
+          <p style={Object.assign({}, textSection1, info.text8.style)} data-id="text8" onDoubleClick={openChangeModal}>{info.text8.text}</p>
         </div>
       </div>
     )
   }
 }
 
-ClassicTimeline.propTypes = {
+ModernTimeline.propTypes = {
   info: PropTypes.object,
   changeInfo: PropTypes.func,
   optionsBar: PropTypes.object,
@@ -75,8 +68,7 @@ ClassicTimeline.propTypes = {
   ]),
   code: PropTypes.string,
   userStyle: PropTypes.object,
-  changeImage: PropTypes.func,
   openChangeModal: PropTypes.func
 }
 
-export default ClassicTimeline
+export default ModernTimeline
