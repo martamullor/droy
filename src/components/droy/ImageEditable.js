@@ -3,6 +3,7 @@ import React, { Component } from 'react'
 export default class ImageEditable extends Component {
 
   uploadHandler = () => {
+    if(this.props.mode === 'view') return
     this.refs.imageUploader.click();
   }
 

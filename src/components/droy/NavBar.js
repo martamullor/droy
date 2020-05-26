@@ -4,8 +4,30 @@ import PropTypes from 'prop-types'
 import '../../styles/navBar.css'
 import { Link, withRouter } from 'react-router-dom'
 import firebase from '../../services/firebase'
+import api from '../../services/apiClient'
+import ModalDeploy from '../droy/ModalDeploy'
+
 
 class NavBar extends Component {
+
+  constructor(props) {
+    super(props)
+    this.state = {
+      modalDeploy: false
+    }
+  }
+
+  handleCloseModal = () => {
+    this.setState({ modalDeploy: false })
+  }
+
+  deployApp = async () => {
+    const { projectId } = this.props
+    await api.get(`/projects/${projectId}/deploy`)
+    this.setState({
+      modalDeploy: true
+    })
+  }
 
   handleSave = () => {
     const { projectId, save } = this.props
@@ -30,14 +52,17 @@ class NavBar extends Component {
   }
 
   render() {
-    const { withOptions, savingStep } = this.props
+    const { withOptions, savingStep, projectId } = this.props
+    const { modalDeploy } = this.state
     const { currentUser } = firebase.auth()
     return (
       <div className='nav-bar'>
+        {modalDeploy && <ModalDeploy projectId={projectId} onClose={this.handleCloseModal}/>}
         <Link to='/' >
           <img className='logo-navBar' src='/img/logo-green.png' alt='logo-green'></img>
         </Link>
         {withOptions && <div>
+          <button className='buttons-navBar' onClick={this.deployApp}>Publish</button>
           <button className='buttons-navBar' onClick={this.handleSave}>{savingStep}</button>
           {this.showEditViewButton()}
         </div>
@@ -51,7 +76,6 @@ class NavBar extends Component {
           <p>{currentUser.displayName}</p>
         </div>
         }
-
       </div>
     )
   }
