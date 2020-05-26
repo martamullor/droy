@@ -5,11 +5,9 @@ import ImageEditable from '../../droy/ImageEditable'
 const timelineContainer = {
   display: 'flex',
   flexDirection: 'column',
-  justifyContent: 'center',
-  alignItems: 'center',
   position: 'relative',
-  padding: '0px 50px',
-  backgroundColor: '#edecdf',
+  padding: '50px',
+  backgroundColor: 'white',
   fontFamily: "'Caladea', serif"
 }
 
@@ -23,31 +21,26 @@ const twosections = {
 
 const textTimelineContainer = {
   display: 'flex',
-  flexDirection: 'column',
   textAlign: 'left',
   alignItems: 'center',
   justifyContent: 'center',
-  color: '#242424',
-  width: '90%',
+  color: '#2a2c2a',
+  width: '100%',
   fontFamily: "'Caladea', serif",
-  margin: '0px 5px 30px 0px',
-  padding: '30px',
-  boxShadow: '-5px 4px 9px -1px rgba(225,225,225,1)',
-  borderRadius: '5px',
-  backgroundColor: 'white'
-
+  marginBottom: '15px'
 }
 
 const titleSection = {
-  padding: ' 5px 30px',
-  color: '#242424',
-  textAlign: 'center'
+  margin: '5px 0px',
+  padding: ' 0px 30px',
+  color: '#30374d',
+  textAlign: 'left'
 }
 
 const imageContainer = {
-  width: '100%',
-  padding: '10px 20px',
-  borderRadius: '5px'
+  minWidth: '70px',
+  maxWidth: '70px',
+  padding: '10px 20px'
 }
 
 const titleSection1 = {
@@ -58,10 +51,10 @@ const titleSection1 = {
 }
 
 const textSection1 = {
-  color: '#242424'
+  color: '#7d818f'
 }
 
-class ClassicBlog extends Component {
+class Classic4Options extends Component {
   render () {
     const { userStyle, info, changeImage, children: optionsBar, openChangeModal } = this.props
     return (
@@ -115,7 +108,7 @@ class ClassicBlog extends Component {
   }
 }
 
-ClassicBlog.propTypes = {
+Classic4Options.propTypes = {
   info: PropTypes.object,
   changeInfo: PropTypes.func,
   optionsBar: PropTypes.object,
@@ -129,4 +122,4 @@ ClassicBlog.propTypes = {
   openChangeModal: PropTypes.func
 }
 
-export default ClassicBlog
+export default Classic4Options
