@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import ImageEditable from '../../droy/ImageEditable'
 
-const timelineContainer = {
+const SaleRateContainer = {
   display: 'flex',
   flexDirection: 'column',
   justifyContent: 'center',
@@ -79,7 +79,7 @@ class ClassicSaleRate extends Component {
   render () {
     const { userStyle, info, changeImage, children: optionsBar, openChangeModal } = this.props
     return (
-      <div style={Object.assign({}, timelineContainer, userStyle)}>
+      <div style={Object.assign({}, SaleRateContainer, userStyle)}>
         {optionsBar}
         <h1 style={Object.assign({}, titleSection, info.text5.style)} data-id="text5" onDoubleClick={openChangeModal}>{info.text5.text}</h1>
         <div style={container4options}>

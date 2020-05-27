@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import LinksListEditable from '../../droy/LinksListEditable'
+import LinkEditable from '../../droy/LinkEditable'
 
 const timelineContainer = {
   display: 'flex',
@@ -106,14 +106,14 @@ class ModernTwoContainer extends Component {
             <div>
               <h2 style={Object.assign({}, titleSection1, info.text1.style)} data-id="text1" onDoubleClick={openChangeModal}>{info.text1.text}</h2>
               <p style={Object.assign({}, textSection1, info.text6.style)} data-id="text6" onDoubleClick={openChangeModal}>{info.text6.text}</p>
-              <LinksListEditable mode={mode} openChangeModal={openChangeModal} info={info} contentStyle={info} containerStyle={linksContainer} linksStyle={linksStyle1}/>
+              <LinkEditable contentAttrStyle={info.link1.style} mode={mode} info={info.link1} style={linksStyle1} data-id='link1' onDoubleClick={openChangeModal}/>
             </div>
           </div>
           <div style={textTimelineContainerTwo}>
             <div>
               <h2 style={Object.assign({}, titleSection1, info.text2.style)} data-id="text2" onDoubleClick={openChangeModal}>{info.text2.text}</h2>
               <p style={Object.assign({}, textSection1, info.text7.style)} data-id="text7" onDoubleClick={openChangeModal}>{info.text7.text}</p>
-              <LinksListEditable mode={mode} openChangeModal={openChangeModal} info={info} contentStyle={info} containerStyle={linksContainer} linksStyle={linksStyle2}/>
+              <LinkEditable contentAttrStyle={info.link2.style} mode={mode} info={info.link2} style={linksStyle2} data-id='link2' onDoubleClick={openChangeModal}/>
             </div>
           </div>
         </div>

@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import ImageEditable from '../../droy/ImageEditable'
 import LinksListEditable from '../../droy/LinksListEditable'
+import LinkEditable from '../../droy/LinkEditable'
 
 const sectionContainer = {
   position: 'relative',
@@ -88,6 +89,7 @@ class ModernSectionBackground2 extends Component {
             <h1 style={Object.assign({}, titleSection1, info.text1.style)} data-id="text1" onDoubleClick={openChangeModal}>{info.text1.text}</h1>
             <p style={Object.assign({}, textSection1, info.text2.style)} data-id="text2" onDoubleClick={openChangeModal}>{info.text2.text}</p>
             <LinksListEditable mode={mode} openChangeModal={openChangeModal} info={info} contentStyle={info} containerStyle={linksContainer} linksStyle={linksStyle}/>
+            <LinkEditable contentAttrStyle={info['link1'].style} mode={mode} info={info} style={linksStyle} data-id='link1' onDoubleClick={openChangeModal}/>)
           </div>
         </div>
       </div>

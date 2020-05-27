@@ -23,7 +23,8 @@ const containerArticle = {
 const titleArticle1 = {
   fontWeight: '400',
   maxWidth: '100%',
-  overflow: 'hidden'
+  overflow: 'hidden',
+  maxHeight: '120px'
 }
 
 const textArticle1 = {
@@ -33,7 +34,8 @@ const textArticle1 = {
   overflow: 'hidden',
   textAlign: 'left',
   padding: '5px 55px',
-  flexGrow: '1'
+  flexGrow: '1',
+  maxHeight: '130px'
 }
 
 class ClassicArticle1 extends Component {

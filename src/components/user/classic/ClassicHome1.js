@@ -17,19 +17,21 @@ const textHomeContainer = {
   color: '#2a2c2a'
 }
 
-const titleHome1 = {
+const titleHome = {
   fontWeight: '400',
   maxWidth: '50vw',
-  overflow: 'hidden'
+  overflow: 'hidden',
+  maxHeight: '180px'
 }
 
-const textHome1 = {
+const textHome = {
   fontSize: '1rem',
   fontWeight: '200',
   marginTop: '-35px',
   padding: '0px 55% 0px 0px',
   maxWidth: '80vw',
-  overflow: 'hidden'
+  overflow: 'hidden',
+  maxHeight: '198px'
 }
 
 const linksContainer = {
@@ -59,8 +61,8 @@ class ClassicHome1 extends Component {
       <div style={Object.assign({}, homeContainer, userStyle)}>
         {optionsBar}
         <div style={textHomeContainer}>
-          <h1 style={Object.assign({}, titleHome1, info.text1.style)} data-id="text1" onDoubleClick={openChangeModal}>{info.text1.text}</h1>
-          <p style={Object.assign({}, textHome1, info.text2.style)} data-id="text2" onDoubleClick={openChangeModal}>{info.text2.text}</p>
+          <h1 style={Object.assign({}, titleHome, info.text1.style)} data-id="text1" onDoubleClick={openChangeModal}>{info.text1.text}</h1>
+          <p style={Object.assign({}, textHome, info.text2.style)} data-id="text2" onDoubleClick={openChangeModal}>{info.text2.text}</p>
           <LinksListEditable mode={mode} openChangeModal={openChangeModal} info={info} contentStyle={info} containerStyle={linksContainer} linksStyle={linksStyle}/>
         </div>
       </div>
