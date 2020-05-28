@@ -18,6 +18,7 @@ class NavBar extends Component {
     }
   }
 
+  /* Show and hide dropdown menu options */
   showDropdown = () => {
     console.log(this.state.showDropdown)
     this.setState({
@@ -25,6 +26,7 @@ class NavBar extends Component {
     })
   }
 
+  /* Close modal deploy */
   handleCloseModal = () => {
     this.setState({ modalDeploy: false })
   }
