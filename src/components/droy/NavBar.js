@@ -69,7 +69,7 @@ class NavBar extends Component {
       <div className='nav-bar'>
         {modalDeploy && <ModalDeploy projectId={projectId} onClose={this.handleCloseModal} />}
         <Link to='/' >
-          <img className='logo-navBar' src='/img/logo-green.png' alt='logo-green'></img>
+          <img className='logo-navBar' src='/img/logo-green.png' alt='logo-green'/>
         </Link>
         {withOptions && <div>
           <button className='buttons-navBar' onClick={this.deployApp}>Publish</button>
@@ -78,15 +78,21 @@ class NavBar extends Component {
         </div>
         }
         {currentUser
-          ? null
-          : <Link className='buttons-navBar' to="/signup">Sign up</Link>}
+          ?  null
+          : <div className='container-navbar'>
+            <p className='text-navbar' to="/signup">You don't have an account?</p>
+            <Link className='buttons-navBar' to="/signup">Sign up</Link>
+          </div>}
         {currentUser &&
           <div className='user-nav' onClick={this.showDropdown}>
-            <img src={currentUser.photoURL} alt="user" />
+            <img className='profile-image' src={currentUser.photoURL} alt="user" />
             <p className='user-text-nav'>{currentUser.displayName}</p>
             {showDropdown &&
               <div className='dropdown-container'>
-                <button onClick={this.handleLogout} className='dropdown-element'>Logout</button>
+                <button onClick={this.handleLogout} className='dropdown-element'>
+                <img className='icon-navBar' src='/img/logout-icon.png' alt='logo-green'/>
+                <p className='text-logout'>Logout</p>
+                </button>
               </div>}
           </div>
         }

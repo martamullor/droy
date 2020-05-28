@@ -43,13 +43,13 @@
 }
 
 .input-form {
-    margin: 7px;
     background-color: #f1f2f4;
     border: none;
     padding: 12px;
     border-radius: 3px;
     color: #3f5476;
     border: 1px solid #c8ced8;
+    margin: 10px 0px;
 }
 
 .input-form::placeholder {
@@ -64,7 +64,7 @@
 }
 
 .link-login-container {
-    margin-right: 50px;
+    margin: 10px 50px 0px 0px;
 }
 
 
@@ -87,12 +87,14 @@
     color: #3f5476;
     align-self: center;
     flex-grow: 1;
-    font-size: 0.8rem;
-    text-decoration: underline;
+    font-size: 0.9rem;
     cursor: pointer;
+    text-decoration: none;
 }
 
-
+.text-form:hover {
+    text-decoration: underline;
+}
 
 .google-container {
     display: flex;
@@ -113,4 +115,12 @@
 .google-text {
     font-size: 0.9rem;
     color: #3f5476;
+}
+
+.label-login-signup {
+    display: flex;
+    flex-direction: column;
+    color: #3f5476;
+    padding: 5px 0px;
+    font-size: 0.75rem;
 }
