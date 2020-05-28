@@ -10,7 +10,7 @@ class ModalStartProject extends Component {
     super(props)
     this.state = {
       name: '',
-      theme: ''
+      theme: 'classic'
     }
   }
 
@@ -33,6 +33,10 @@ class ModalStartProject extends Component {
     }
   }
 
+  selectOption = (theme) => {
+    this.setState({ theme })
+  }
+
   render() {
     const { onClose, styles } = this.props
     const { name, theme } = this.state;
@@ -52,10 +56,9 @@ class ModalStartProject extends Component {
               placeholder="name"
               onChange={this.handleChange} />
             <label className='label-modal' htmlFor="theme">Choose a theme:</label>
-            <select required="required" className='option-modal' id='theme' value={theme} name='theme' onChange={this.handleChange}>
-              <option value=""></option>
-              {styles.map((s, k) => <option key={k} value={s.code}>{s.name}</option>)}
-            </select>
+            <div className="selector-container">
+            {styles.map((s, k) => <div className="image-selector"><img className={theme === s.code && "selected"} key={k} src={s.image} onClick={() => this.selectOption(s.code)}/>{s.name}</div>)}
+            </div>
             <button className='button-modal' type='submit'>Create project</button>
           </form>
         </div>
