@@ -63,7 +63,7 @@ class ClassicFooter1 extends Component {
           <LinkEditable contentAttrStyle={info.link9.style} mode={mode} info={info.link9} style={linksStyle} data-id='link9' onDoubleClick={openChangeModal}/>
           <LinkEditable contentAttrStyle={info.link10.style} mode={mode} info={info.link10} style={linksStyle} data-id='link10' onDoubleClick={openChangeModal}/>
           <LinkEditable contentAttrStyle={info.link11.style} mode={mode} info={info.link11} style={linksStyle} data-id='link11' onDoubleClick={openChangeModal}/>
-          <LinkEditable contentAttrStyle={info.link12.style} mode={mode} info={info.link12} style={linksStyle} data-id='link4' onDoubleClick={openChangeModal}/>
+          <LinkEditable contentAttrStyle={info.link12.style} mode={mode} info={info.link12} style={linksStyle} data-id='link12' onDoubleClick={openChangeModal}/>
         </div>
       </div>
     )

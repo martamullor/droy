@@ -49,14 +49,16 @@ const textContainerTwo = {
 const titleSection = {
   margin: '5px 0px',
   color: '#242424',
-  textAlign: 'center'
+  textAlign: 'center',
+  maxHeight: '70px'
 }
 
 const subtitleSection = {
   fontWeight: '700',
   width: '100%',
   overflow: 'hidden',
-  color: '#242424'
+  color: '#242424',
+  maxHeight: '200px'
 }
 
 const textSection = {
@@ -69,7 +71,8 @@ const textSection = {
 }
 
 const linksStyle1 = {
-  padding: '8px 55px 8px 55px',
+  padding: '8px',
+  width: '100%',
   marginRight: '10px',
   backgroundColor: 'transparent',
   border: '2px solid white',
@@ -81,7 +84,8 @@ const linksStyle1 = {
 }
 
 const linksStyle2 = {
-  padding: '8px 55px 8px 55px',
+  padding: '8px',
+  width: '100%',
   marginRight: '10px',
   backgroundColor: 'transparent',
   border: '2px solid #2d334d',

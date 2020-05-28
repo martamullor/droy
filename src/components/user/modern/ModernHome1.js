@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import LinksListEditable from '../../droy/LinksListEditable'
 
+// ##181f32
+
 const homeContainer = {
   backgroundImage: 'url("/img/modern-home1.jpg")',
   height: '600px',
@@ -15,22 +17,24 @@ const textHomeContainer = {
   textAlign: 'center'
 }
 
-const titleHome1 = {
+const titleHome = {
   fontSize: '3rem',
   overflow: 'hidden',
   fontFamily: "'Roboto Mono', monospace",
   fontWeight: '700',
   padding: '20px 30px',
-  color: 'white'
+  color: 'white',
+  maxHeight: '240px'
 }
 
-const textHome1 = {
+const textHome = {
   fontSize: '1rem',
   fontWeight: '800',
   marginTop: '-25px',
   overflow: 'hidden',
   padding: '10px 120px',
-  color: 'white'
+  color: 'white',
+  maxHeight: '198px'
 }
 
 const linksContainer = {
@@ -55,8 +59,8 @@ class ModernHome1 extends Component {
       <div style={Object.assign({}, homeContainer, userStyle)}>
         {optionsBar}
         <div style={textHomeContainer}>
-          <h1 style={Object.assign({}, titleHome1, info.text1.style)} data-id="text1" onDoubleClick={openChangeModal}>{info.text1.text}</h1>
-          <p style={Object.assign({}, textHome1, info.text2.style)} data-id="text2" onDoubleClick={openChangeModal}>{info.text2.text}</p>
+          <h1 style={Object.assign({}, titleHome, info.text1.style)} data-id="text1" onDoubleClick={openChangeModal}>{info.text1.text}</h1>
+          <p style={Object.assign({}, textHome, info.text2.style)} data-id="text2" onDoubleClick={openChangeModal}>{info.text2.text}</p>
           <LinksListEditable mode={mode} openChangeModal={openChangeModal} info={info} contentStyle={info} containerStyle={linksContainer} linksStyle={linksStyle}/>
         </div>
       </div>

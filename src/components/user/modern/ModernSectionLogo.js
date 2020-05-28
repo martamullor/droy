@@ -28,14 +28,15 @@ const imageContainer = {
   alignItems: 'center'
 }
 
-const titleSection1 = {
+const titleSection = {
   fontWeight: '400',
   maxWidth: '100%',
   overflow: 'hidden',
   fontFamily: "'Roboto', sans-serif",
   color: '#b7b7b7',
   margin: '20px',
-  marginTop: '-10px'
+  marginTop: '-10px',
+  maxHeight: '20px'
 }
 
 class ModernSectionLogo extends Component {
@@ -44,7 +45,7 @@ class ModernSectionLogo extends Component {
     return (
       <div style={Object.assign({}, logosContainer, userStyle)}>
         {optionsBar}
-        <h2 style={Object.assign({}, titleSection1, info.text1.style)} data-id="text1" onDoubleClick={openChangeModal}>{info.text1.text}</h2>
+        <h2 style={Object.assign({}, titleSection, info.text1.style)} data-id="text1" onDoubleClick={openChangeModal}>{info.text1.text}</h2>
         <div style={imageLogosContainer}>
           <div style={imageContainer}>
             <ImageEditable data-id="image1" src={info.image1.src} changeImage={changeImage} />
