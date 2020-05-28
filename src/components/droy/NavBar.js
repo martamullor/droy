@@ -13,8 +13,16 @@ class NavBar extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      modalDeploy: false
+      modalDeploy: false,
+      showDropdown: false,
     }
+  }
+
+  showDropdown = () => {
+    console.log(this.state.showDropdown)
+    this.setState({
+      showDropdown: !this.state.showDropdown,
+    })
   }
 
   handleCloseModal = () => {
@@ -53,11 +61,11 @@ class NavBar extends Component {
 
   render() {
     const { withOptions, savingStep, projectId } = this.props
-    const { modalDeploy } = this.state
+    const { modalDeploy, showDropdown } = this.state
     const { currentUser } = firebase.auth()
     return (
       <div className='nav-bar'>
-        {modalDeploy && <ModalDeploy projectId={projectId} onClose={this.handleCloseModal}/>}
+        {modalDeploy && <ModalDeploy projectId={projectId} onClose={this.handleCloseModal} />}
         <Link to='/' >
           <img className='logo-navBar' src='/img/logo-green.png' alt='logo-green'></img>
         </Link>
@@ -68,13 +76,17 @@ class NavBar extends Component {
         </div>
         }
         {currentUser
-          ? <button onClick={this.handleLogout} className='buttons-navBar'>Logout</button>
-          : <Link className='buttons-navBar' to="/login">Login</Link>}
-        {currentUser && 
-          <div className='user-nav'>
-          <img src={currentUser.photoURL} alt="user" />
-          <p>{currentUser.displayName}</p>
-        </div>
+          ? null
+          : <Link className='buttons-navBar' to="/signup">Sign up</Link>}
+        {currentUser &&
+          <div className='user-nav' onClick={this.showDropdown}>
+            <img src={currentUser.photoURL} alt="user" />
+            <p className='user-text-nav'>{currentUser.displayName}</p>
+            {showDropdown &&
+              <div className='dropdown-container'>
+                <button onClick={this.handleLogout} className='dropdown-element'>Logout</button>
+              </div>}
+          </div>
         }
       </div>
     )
