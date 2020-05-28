@@ -59,7 +59,9 @@ ClassicHeading1.propTypes = {
   ]),
   code: PropTypes.string,
   changeImage: PropTypes.func,
-  openChangeModal: PropTypes.func
+  openChangeModal: PropTypes.func,
+  userStyle: PropTypes.object,
+  mode: PropTypes.string
 }
 
 export default ClassicHeading1

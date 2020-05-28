@@ -37,10 +37,13 @@ export default class ModalDelete extends Component {
       notifyError("Invalid letter spacing: must be px/rem/inherit")
       return false
     }
+    // Revisar aquí peta cuando editas un texto 
+    /*
     if(!linkRegex.test(info.href)) {
       notifyError("Invalid link")
       return false
     }
+    */
     return true
   }
 

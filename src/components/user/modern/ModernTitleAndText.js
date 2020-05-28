@@ -19,20 +19,22 @@ const textSectionContainer = {
   padding: ' 0px 90px 0px 30px'
 }
 
-const titleSection1 = {
+const titleSection = {
   fontWeight: '800',
   maxWidth: '100%',
   overflow: 'hidden',
   fontFamily: "'Roboto Mono', monospace",
-  color: '#2d334d'
+  color: '#2d334d',
+  maxHeight: '45px'
 }
 
-const textSection1 = {
+const textSection = {
   fontWeight: '200',
   maxWidth: '100%',
   overflow: 'hidden',
   marginTop: '-5px',
-  color: '#818594'
+  color: '#818594',
+  maxHeight: '80px'
 }
 
 class ModernTitleAndText extends Component {
@@ -42,8 +44,8 @@ class ModernTitleAndText extends Component {
       <div style={Object.assign({}, sectionContainer, userStyle)}>
         {optionsBar}
         <div style={textSectionContainer}>
-          <h1 style={Object.assign({}, titleSection1, info.text1.style)} data-id="text1" onDoubleClick={openChangeModal}>{info.text1.text}</h1>
-          <p style={Object.assign({}, textSection1, info.text2.style)} data-id="text2" onDoubleClick={openChangeModal}>{info.text2.text}</p>
+          <h1 style={Object.assign({}, titleSection, info.text1.style)} data-id="text1" onDoubleClick={openChangeModal}>{info.text1.text}</h1>
+          <p style={Object.assign({}, textSection, info.text2.style)} data-id="text2" onDoubleClick={openChangeModal}>{info.text2.text}</p>
         </div>
       </div>
     )

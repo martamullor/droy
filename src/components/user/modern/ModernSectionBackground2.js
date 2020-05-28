@@ -41,19 +41,21 @@ const textSectionContainer = {
   padding: ' 0px 90px 0px 30px'
 }
 
-const titleSection1 = {
+const titleSection = {
   fontWeight: '700',
   maxWidth: '100%',
   overflow: 'hidden',
-  color: '#2d334d'
+  color: '#2d334d',
+  maxHeight: '80px'
 }
 
-const textSection1 = {
+const textSection = {
   fontWeight: '200',
   maxWidth: '100%',
   overflow: 'hidden',
   marginTop: '0px',
-  color: '#818594'
+  color: '#818594',
+  maxHeight: '200px'
 }
 
 const linksContainer = {
@@ -65,7 +67,8 @@ const linksContainer = {
 }
 
 const linksStyle = {
-  padding: '8px 55px 8px 55px',
+  padding: '10px 0px',
+  width: '100%',
   marginRight: '10px',
   backgroundColor: 'transparent',
   border: '2px solid #008cbe',
@@ -85,8 +88,8 @@ class ModernSectionBackground2 extends Component {
             <ImageEditable data-id="image1" src={info.image1.src} changeImage={changeImage} />
           </div>
           <div style={textSectionContainer}>
-            <h1 style={Object.assign({}, titleSection1, info.text1.style)} data-id="text1" onDoubleClick={openChangeModal}>{info.text1.text}</h1>
-            <p style={Object.assign({}, textSection1, info.text2.style)} data-id="text2" onDoubleClick={openChangeModal}>{info.text2.text}</p>
+            <h1 style={Object.assign({}, titleSection, info.text1.style)} data-id="text1" onDoubleClick={openChangeModal}>{info.text1.text}</h1>
+            <p style={Object.assign({}, textSection, info.text2.style)} data-id="text2" onDoubleClick={openChangeModal}>{info.text2.text}</p>
             <LinksListEditable mode={mode} openChangeModal={openChangeModal} info={info} contentStyle={info} containerStyle={linksContainer} linksStyle={linksStyle}/>
           </div>
         </div>

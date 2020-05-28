@@ -20,20 +20,22 @@ const containerArticle = {
   justifyContent: 'center'
 }
 
-const titleArticle1 = {
+const titleArticle = {
   fontWeight: '400',
   maxWidth: '100%',
-  overflow: 'hidden'
+  overflow: 'hidden',
+  maxHeight: '120px'
 }
 
-const textArticle1 = {
+const textArticle = {
   fontSize: '1rem',
   fontWeight: '200',
   maxWidth: '100%',
   overflow: 'hidden',
   textAlign: 'left',
   padding: '5px 55px',
-  flexGrow: '1'
+  flexGrow: '1',
+  maxHeight: '130px'
 }
 
 class ClassicArticle1 extends Component {
@@ -43,10 +45,10 @@ class ClassicArticle1 extends Component {
       <div style={Object.assign({}, articleContainer, userStyle)}>
         {optionsBar}
         <div style={textArticleContainer}>
-          <h1 style={Object.assign({}, titleArticle1, info.text1.style)} data-id="text1" onDoubleClick={openChangeModal}>{info.text1.text}</h1>
+          <h1 style={Object.assign({}, titleArticle, info.text1.style)} data-id="text1" onDoubleClick={openChangeModal}>{info.text1.text}</h1>
           <div style={containerArticle}>
-            <p style={Object.assign({}, textArticle1, info.text2.style)} data-id="text2" onDoubleClick={openChangeModal}>{info.text2.text}</p>
-            <p style={Object.assign({}, textArticle1, info.text3.style)} data-id="text3" onDoubleClick={openChangeModal}>{info.text3.text}</p>
+            <p style={Object.assign({}, textArticle, info.text2.style)} data-id="text2" onDoubleClick={openChangeModal}>{info.text2.text}</p>
+            <p style={Object.assign({}, textArticle, info.text3.style)} data-id="text3" onDoubleClick={openChangeModal}>{info.text3.text}</p>
           </div>
         </div>
       </div>

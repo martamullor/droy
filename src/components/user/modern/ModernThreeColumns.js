@@ -10,11 +10,11 @@ const containerSection = {
   fontFamily: "'Roboto Mono', monospace"
 }
 
-const timelineContainer = {
+const threeColumnsContainer = {
   display: 'flex'
 }
 
-const textTimelineContainer = {
+const textThreeColumnsContainer = {
   display: 'flex',
   flexDirection: 'column',
   justifyContent: 'center',
@@ -28,18 +28,24 @@ const textTimelineContainer = {
 const titleSection = {
   margin: '-5px',
   padding: ' 0px 30px',
-  color: '#30374d'
+  color: '#30374d',
+  overflow: 'hidden',
+  maxHeight: '55px'
 }
 
-const titleSection1 = {
+const subtitleSection = {
   fontWeight: '700',
   maxWidth: '100%',
   color: '#30374d',
-  margin: '0px'
+  margin: '0px',
+  overflow: 'hidden',
+  maxHeight: '30px'
 }
 
-const textSection1 = {
-  color: '#7d818f'
+const textSection = {
+  color: '#7d818f',
+  overflow: 'hidden',
+  maxHeight: '180px'
 }
 
 const imageIcon = {
@@ -54,21 +60,21 @@ class ModernThreeColumns extends Component {
       <div style={Object.assign({}, containerSection, userStyle)}>
         {optionsBar}
         <h1 style={Object.assign({}, titleSection, info.text8.style)} data-id="text8" onDoubleClick={openChangeModal}>{info.text8.text}</h1>
-        <div style={timelineContainer}>
-          <div style={ textTimelineContainer }>
+        <div style={threeColumnsContainer}>
+          <div style={ textThreeColumnsContainer }>
             <ImageEditable style={imageIcon} data-id="image1" src={info.image1.src} changeImage={changeImage} />
-            <h2 style={Object.assign({}, titleSection1, info.text1.style)} data-id="text1" onDoubleClick={openChangeModal}>{info.text1.text}</h2>
-            <p style={Object.assign({}, textSection1, info.text5.style)} data-id="text5" onDoubleClick={openChangeModal}>{info.text5.text}</p>
+            <h2 style={Object.assign({}, subtitleSection, info.text1.style)} data-id="text1" onDoubleClick={openChangeModal}>{info.text1.text}</h2>
+            <p style={Object.assign({}, textSection, info.text5.style)} data-id="text5" onDoubleClick={openChangeModal}>{info.text5.text}</p>
           </div>
-          <div style={textTimelineContainer} >
+          <div style={textThreeColumnsContainer} >
             <ImageEditable style={imageIcon} data-id="image2" src={info.image2.src} changeImage={changeImage} />
-            <h2 style={Object.assign({}, titleSection1, info.text2.style)} data-id="text2" onDoubleClick={openChangeModal}>{info.text2.text}</h2>
-            <p style={Object.assign({}, textSection1, info.text6.style)} data-id="text6" onDoubleClick={openChangeModal}>{info.text6.text}</p>
+            <h2 style={Object.assign({}, subtitleSection, info.text2.style)} data-id="text2" onDoubleClick={openChangeModal}>{info.text2.text}</h2>
+            <p style={Object.assign({}, textSection, info.text6.style)} data-id="text6" onDoubleClick={openChangeModal}>{info.text6.text}</p>
           </div>
-          <div style={textTimelineContainer}>
+          <div style={textThreeColumnsContainer}>
             <ImageEditable style={imageIcon} data-id="image3" src={info.image3.src} changeImage={changeImage} />
-            <h2 style={Object.assign({}, titleSection1, info.text3.style)} data-id="text3" onDoubleClick={openChangeModal}>{info.text3.text}</h2>
-            <p style={Object.assign({}, textSection1, info.text7.style)} data-id="text7" onDoubleClick={openChangeModal}>{info.text7.text}</p>
+            <h2 style={Object.assign({}, subtitleSection, info.text3.style)} data-id="text3" onDoubleClick={openChangeModal}>{info.text3.text}</h2>
+            <p style={Object.assign({}, textSection, info.text7.style)} data-id="text7" onDoubleClick={openChangeModal}>{info.text7.text}</p>
           </div>
         </div>
       </div>
