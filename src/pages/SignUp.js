@@ -84,6 +84,7 @@ class SignUp extends Component {
             <h1 className='title-login-signup'>Sign Up</h1>
             <p className='error-text padding-error'>{errorMessage}</p>
             <form className='login-form' onSubmit={this.handleSubmit}>
+            <label className='label-login-signup'> Your email adress
               <input className='input-form'
                 placeholder="email"
                 type="text"
@@ -93,6 +94,8 @@ class SignUp extends Component {
                 id="email"
                 onChange={this.handleChange}
               />
+              </label>
+              <label className='label-login-signup'> Choose your password
               <input className='input-form'
                 type="password"
                 required="required"
@@ -102,6 +105,8 @@ class SignUp extends Component {
                 value={hashedPassword}
                 onChange={this.handleChange}
               />
+              </label>
+              <label className='label-login-signup'> Repeat your password
               <input className='input-form'
                 type="password"
                 required="required"
@@ -111,6 +116,8 @@ class SignUp extends Component {
                 value={confirmationPassword}
                 onChange={this.handleChange}
               />
+              </label>
+              <label className='label-login-signup'> Your name
               <input className='input-form'
                 type="text"
                 required="required"
@@ -120,6 +127,7 @@ class SignUp extends Component {
                 value={name}
                 onChange={this.handleChange}
               />
+              </label>
               <div className='button-link-login-signup'>
                 <Link className='text-form' to="/login">Already have an account? Log in here!</Link>
                 <input className='button-form' type="submit" value="create your account" />

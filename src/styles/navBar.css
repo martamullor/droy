@@ -15,7 +15,7 @@
 .buttons-navBar{
     font-family: Montserrat, 'sans-serif';
     background-color: #f1f2f4;
-    padding: 8px 30px;
+    padding: 10px 30px;
     margin-right: 10px;
     border-radius: 3px;
     border: none;
@@ -27,12 +27,81 @@
 
 .user-nav {
     display: flex;
-    flex-direction: row-reverse;
+    flex-direction: row;
+    cursor: pointer;
+    position: relative;
 }
 
-.user-nav img{
+.profile-image{
     height: 40px;
     width: 40px;
-    margin-left: 10px;
+    margin-right: 10px;
     border-radius: 50%;
 }
+
+.user-text-nav {
+    text-transform: capitalize;
+    color: #3f5476;
+    font-size: 0.8rem;
+    margin-right: 20px;
+}
+
+.dropdown-container {
+    position: absolute;
+    top: 128%;
+    width: 118%;
+    z-index: 100;
+}
+
+.icon-navBar {
+    width: 28px;
+    align-self: center;
+    margin-right: 10px;
+}
+
+.dropdown-element {
+    width: 100%;
+    font-family: Montserrat, 'sans-serif';
+    padding: 10px 40px;
+    border-radius: 3px;
+    border: none;
+    color: #3f5476;
+    font-weight: 400;
+    font-size: 0.8rem;
+    text-decoration: none;
+    animation: opacity 500ms ease-in-out normal;
+    box-shadow: 1px 10px 9px -1px rgba(210,210,210,1);
+    background-color: white; 
+    display: flex;
+    justify-content: left;
+    align-self: center;
+}
+
+.dropdown-element:hover {
+    color: #3f5476;
+    font-weight: 900;
+}
+
+.container-navbar {
+    display: flex;
+}
+
+.text-navbar {
+    color: #3f5476;
+    font-size: 0.8rem;
+    margin-right: 25px;
+}
+
+@keyframes opacity {
+    0% {
+      transform: translate(300px, 0px);
+    }
+    50%{
+      opacity: 0.5;
+      transform: translate(300px, 0px);
+    }
+    100% {
+      transition: transform 0.2s;
+      opacity: 1;
+    }
+  }

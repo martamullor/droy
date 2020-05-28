@@ -13,10 +13,20 @@ class NavBar extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      modalDeploy: false
+      modalDeploy: false,
+      showDropdown: false,
     }
   }
 
+  /* Show and hide dropdown menu options */
+  showDropdown = () => {
+    console.log(this.state.showDropdown)
+    this.setState({
+      showDropdown: !this.state.showDropdown,
+    })
+  }
+
+  /* Close modal deploy */
   handleCloseModal = () => {
     this.setState({ modalDeploy: false })
   }
@@ -53,13 +63,13 @@ class NavBar extends Component {
 
   render() {
     const { withOptions, savingStep, projectId } = this.props
-    const { modalDeploy } = this.state
+    const { modalDeploy, showDropdown } = this.state
     const { currentUser } = firebase.auth()
     return (
       <div className='nav-bar'>
-        {modalDeploy && <ModalDeploy projectId={projectId} onClose={this.handleCloseModal}/>}
+        {modalDeploy && <ModalDeploy projectId={projectId} onClose={this.handleCloseModal} />}
         <Link to='/' >
-          <img className='logo-navBar' src='/img/logo-green.png' alt='logo-green'></img>
+          <img className='logo-navBar' src='/img/logo-green.png' alt='logo-green'/>
         </Link>
         {withOptions && <div>
           <button className='buttons-navBar' onClick={this.deployApp}>Publish</button>
@@ -68,13 +78,23 @@ class NavBar extends Component {
         </div>
         }
         {currentUser
-          ? <button onClick={this.handleLogout} className='buttons-navBar'>Logout</button>
-          : <Link className='buttons-navBar' to="/login">Login</Link>}
-        {currentUser && 
-          <div className='user-nav'>
-          <img src={currentUser.photoURL} alt="user" />
-          <p>{currentUser.displayName}</p>
-        </div>
+          ?  null
+          : <div className='container-navbar'>
+            <p className='text-navbar' to="/signup">You don't have an account?</p>
+            <Link className='buttons-navBar' to="/signup">Sign up</Link>
+          </div>}
+        {currentUser &&
+          <div className='user-nav' onClick={this.showDropdown}>
+            <img className='profile-image' src={currentUser.photoURL} alt="user" />
+            <p className='user-text-nav'>{currentUser.displayName}</p>
+            {showDropdown &&
+              <div className='dropdown-container'>
+                <button onClick={this.handleLogout} className='dropdown-element'>
+                <img className='icon-navBar' src='/img/logout-icon.png' alt='logo-green'/>
+                <p className='text-logout'>Logout</p>
+                </button>
+              </div>}
+          </div>
         }
       </div>
     )
