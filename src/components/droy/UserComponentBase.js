@@ -66,7 +66,7 @@ class UserComponentBase extends Component {
     const targetComponentInfo = alias.findByCode(userLayoutObj, code).info
     const linksIds = [] 
     for (const key in targetComponentInfo) {
-      if(targetComponentInfo[key].type !== 'link') continue
+      if(targetComponentInfo[key].type !== 'listLink') continue
       linksIds.push(parseInt(key.match(/\d+$/)[0]))
     }
     if(linksIds.length >= 5) return
@@ -74,7 +74,7 @@ class UserComponentBase extends Component {
     if(!linksIds.length) newAttr = 'link1'
     else newAttr = `link${Math.max(...linksIds)+1}`
     // Cambiar link por default a pagina de quienes somos de Droy
-    const newInfo = { style: { fontSize: '1rem', letterSpacing: 'inherit' }, type: 'link', text: "New link", href: 'http://www.droy-prod.web.app', toNewPage:true}
+    const newInfo = { style: { fontSize: '1rem', letterSpacing: 'inherit' }, type: 'listLink', text: "New link", href: 'http://www.droy-prod.web.app', toNewPage:true}
     saveComponentInfoToContext(code, newAttr, newInfo)
   }
 
@@ -153,7 +153,6 @@ class UserComponentBase extends Component {
     modalProps['changeInfo'] = this.changeInfo
     modalProps['info'] = attributeSelectedInfo
     modalProps['code'] = code
-
     return (
       <UserComp {...componentProps} mode={mode}>
         {mode === "edit" && <OptionsBar {...optionsProps}/>}

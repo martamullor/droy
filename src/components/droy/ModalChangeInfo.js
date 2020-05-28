@@ -38,7 +38,7 @@ export default class ModalDelete extends Component {
       return false
     }
     
-    if(info.type === 'link' && !linkRegex.test(info.href)) {
+    if(info.type === 'link' || info.type === 'listLink' && !linkRegex.test(info.href)) {
       notifyError("Invalid link")
       return false
     }
@@ -48,7 +48,7 @@ export default class ModalDelete extends Component {
 
   submitChanges = (e) => {
     e.preventDefault()
-    const { changeInfo } = this.props
+    const { changeInfo, fromListLinks } = this.props
     const { info, style } = this.state
     const finalInfo = {...info, style}
     if(this.isValid(finalInfo)) changeInfo(finalInfo)
@@ -71,7 +71,7 @@ export default class ModalDelete extends Component {
                 value={info.text}
                 onChange={this.handleChangeNormal} />
             </div>
-            {info.type === 'link' &&
+            {info.type === 'link' || info.type === 'listLink' &&
               <div className="modal-field-group">
                 <label className="label-modal" htmlFor="link-to">Link destination:</label>
                 <input id="link-to" required="required" className='input-modal' type="text"
@@ -102,7 +102,7 @@ export default class ModalDelete extends Component {
               </div>
             <button className='button-modal' type='submit'>Update info</button>
           </form>
-          {info.type === 'link' && <p onClick={deleteLink} className='button-modal-red' type='submit'>Delete link</p>}
+          {info.type === 'listLink' && <p onClick={deleteLink} className='button-modal-red' type='submit'>Delete link</p>}
         </div>
       </div>
     )
