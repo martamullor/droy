@@ -21,7 +21,6 @@ const textSectionContainer = {
   overflow: 'hidden',
   color: '#2a2c2a',
   width: '30%',
-  backgroundColor: 'white',
   justifyContent: 'center',
   display: 'flex',
   flexDirection: 'column',

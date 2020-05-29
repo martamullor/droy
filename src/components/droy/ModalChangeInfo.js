@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { notifyError } from '../../services/notifications'
 
-export default class ModalDelete extends Component {
+export default class ModalChangeInfo extends Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -42,9 +42,13 @@ export default class ModalDelete extends Component {
       notifyError("Invalid link")
       return false
     }
-    if ((info.type === 'link' || info.type === 'listLink') && !backgroundRegex.test(info.backgroundColor))
+    if ((info.type === 'link' || info.type === 'listLink') && !backgroundRegex.test(info.style.backgroundColor) && info.style.backgroundColor !== 'transparent'){
+      notifyError("Invalid HEX code: must be transparent or #??????")
+      return false
+    }
     return true
   }
+  
 
   submitChanges = (e) => {
     e.preventDefault()

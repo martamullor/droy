@@ -15,14 +15,16 @@ class NavBar extends Component {
     this.state = {
       modalDeploy: false,
       showDropdown: false,
+      menuClicked: false
     }
   }
 
   /* Show and hide dropdown menu options */
   showDropdown = () => {
-    console.log(this.state.showDropdown)
+    const {showDropdown, menuClicked } = this.state
     this.setState({
-      showDropdown: !this.state.showDropdown,
+      showDropdown: !showDropdown,
+      menuClicked: !menuClicked
     })
   }
 
@@ -53,18 +55,19 @@ class NavBar extends Component {
   showEditViewButton = () => {
     const { mode, switchMode, userLayoutObj } = this.props
     if (mode === 'view') {
-      return <button className='buttons-navBar' onClick={switchMode}>Edit page</button>
+      return <button className='buttons-navBar' onClick={switchMode}>Edit</button>
     }
     if (userLayoutObj && !userLayoutObj.length) {
-      return <button className='buttons-navBar'>View page</button>
+      return <button className='buttons-navBar'>Preview</button>
     }
-    return <button className='buttons-navBar' onClick={switchMode}>View page</button>
+    return <button className='buttons-navBar' onClick={switchMode}>Preview</button>
   }
 
   render() {
-    const { withOptions, savingStep, projectId } = this.props
-    const { modalDeploy, showDropdown } = this.state
+    const { withOptions, projectId } = this.props
+    const { modalDeploy, showDropdown, menuClicked } = this.state
     const { currentUser } = firebase.auth()
+    let styleMenuClicked = menuClicked ? "user-navClicked" : "user-nav";
     return (
       <div className='nav-bar'>
         {modalDeploy && <ModalDeploy projectId={projectId} onClose={this.handleCloseModal} />}
@@ -72,9 +75,9 @@ class NavBar extends Component {
           <img className='logo-navBar' src='/img/logo-green.png' alt='logo-green'/>
         </Link>
         {withOptions && <div>
-          <button className='buttons-navBar' onClick={this.deployApp}>Publish</button>
-          <button className='buttons-navBar' onClick={this.handleSave}>{savingStep}</button>
+          <button className='buttons-navBar' onClick={this.handleSave}>Save</button>
           {this.showEditViewButton()}
+          <button className='buttons-navBar' onClick={this.deployApp}>Publish</button>
         </div>
         }
         {currentUser
@@ -84,7 +87,7 @@ class NavBar extends Component {
             <Link className='buttons-navBar' to="/signup">Sign up</Link>
           </div>}
         {currentUser &&
-          <div className='user-nav' onClick={this.showDropdown}>
+          <div className={styleMenuClicked} onClick={this.showDropdown}>
             <img className='profile-image' src={currentUser.photoURL} alt="user" />
             <p className='user-text-nav'>{currentUser.displayName}</p>
             {showDropdown &&

@@ -48,22 +48,16 @@ class ClassicFooter1 extends Component {
           <h4 style={Object.assign({}, titleFooter, info.text1.style)} data-id="text1" onDoubleClick={openChangeModal}>{info.text1.text}</h4>
           <LinkEditable contentAttrStyle={info.link1.style} mode={mode} info={info.link1} style={linksStyle} data-id='link1' onDoubleClick={openChangeModal}/>
           <LinkEditable contentAttrStyle={info.link2.style} mode={mode} info={info.link2} style={linksStyle} data-id='link2' onDoubleClick={openChangeModal}/>
+        </div>
+        <div style={containerFooter}>
+          <h4 style={Object.assign({}, titleFooter, info.text2.style)} data-id="text2" onDoubleClick={openChangeModal}>{info.text2.text}</h4>
           <LinkEditable contentAttrStyle={info.link3.style} mode={mode} info={info.link3} style={linksStyle} data-id='link3' onDoubleClick={openChangeModal}/>
           <LinkEditable contentAttrStyle={info.link4.style} mode={mode} info={info.link4} style={linksStyle} data-id='link4' onDoubleClick={openChangeModal}/>
         </div>
         <div style={containerFooter}>
-          <h4 style={Object.assign({}, titleFooter, info.text2.style)} data-id="text2" onDoubleClick={openChangeModal}>{info.text2.text}</h4>
+          <h4 style={Object.assign({}, titleFooter, info.text3.style)} data-id="text3" onDoubleClick={openChangeModal}>{info.text3.text}</h4>
           <LinkEditable contentAttrStyle={info.link5.style} mode={mode} info={info.link5} style={linksStyle} data-id='link5' onDoubleClick={openChangeModal}/>
           <LinkEditable contentAttrStyle={info.link6.style} mode={mode} info={info.link6} style={linksStyle} data-id='link6' onDoubleClick={openChangeModal}/>
-          <LinkEditable contentAttrStyle={info.link7.style} mode={mode} info={info.link7} style={linksStyle} data-id='link7' onDoubleClick={openChangeModal}/>
-          <LinkEditable contentAttrStyle={info.link8.style} mode={mode} info={info.link8} style={linksStyle} data-id='link8' onDoubleClick={openChangeModal}/>
-        </div>
-        <div style={containerFooter}>
-          <h4 style={Object.assign({}, titleFooter, info.text3.style)} data-id="text3" onDoubleClick={openChangeModal}>{info.text3.text}</h4>
-          <LinkEditable contentAttrStyle={info.link9.style} mode={mode} info={info.link9} style={linksStyle} data-id='link9' onDoubleClick={openChangeModal}/>
-          <LinkEditable contentAttrStyle={info.link10.style} mode={mode} info={info.link10} style={linksStyle} data-id='link10' onDoubleClick={openChangeModal}/>
-          <LinkEditable contentAttrStyle={info.link11.style} mode={mode} info={info.link11} style={linksStyle} data-id='link11' onDoubleClick={openChangeModal}/>
-          <LinkEditable contentAttrStyle={info.link12.style} mode={mode} info={info.link12} style={linksStyle} data-id='link12' onDoubleClick={openChangeModal}/>
         </div>
       </div>
     )
