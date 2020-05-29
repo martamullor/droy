@@ -128,11 +128,37 @@
 .text-modal-close {
     color: #3f5476;
     font-size: 0.8rem;
+    text-align: left;
+}
+
+.button-modal-delete {
+    margin: 15px 5px 15px 5px;
+    font-family: 'Montserrat', sans-serif;
+    padding: 8px;
+    border-radius: 8px;
+    color: red;
+    text-transform: capitalize;
+    font-size: 0.9rem;
+    font-weight: 500; 
+    border: 1px solid red; 
+    background: transparent;
 }
 
 .name-text-delete {
-    font-weight: 700;
-    font-style: italic;
+    color: red;
+}
+
+.soft-hr-style {
+	height: 10px;
+	border: 0;
+	box-shadow: 0 10px 10px -10px #e4e4e4 inset;
+}
+
+.title-modal {
+    font-size: 1.3rem;
+    color: #3f5476;
+    font-weight: 500;
+    text-align: left;
 }
 
 .themes-options {

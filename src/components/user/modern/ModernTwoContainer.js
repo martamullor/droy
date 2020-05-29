@@ -17,22 +17,7 @@ const container4options = {
   width: '100%'
 }
 
-const textContainerOne = {
-  display: 'flex',
-  textAlign: 'left',
-  alignItems: 'center',
-  justifyContent: 'center',
-  color: '#2a2c2a',
-  width: '50%',
-  fontFamily: "'Roboto', sans-serif",
-  backgroundColor: '#fff3e5',
-  padding: '50px',
-  margin: '15px 30px 15px 0px',
-  borderRadius: '5px',
-  overflow: 'hidden'
-}
-
-const textContainerTwo = {
+const textContainer = {
   display: 'flex',
   textAlign: 'left',
   alignItems: 'center',
@@ -71,20 +56,7 @@ const textSection = {
   maxHeight: '200px'
 }
 
-const linksStyle1 = {
-  padding: '10px',
-  width: '100%',
-  marginRight: '10px',
-  backgroundColor: 'transparent',
-  border: '2px solid #ff8b00',
-  color: '#ff8b00',
-  fontFamily: "'Roboto', sans-serif",
-  borderRadius: '3px',
-  maxHeight: '70px',
-  overflow: 'hidden'
-}
-
-const linksStyle2 = {
+const linksStyle = {
   padding: '10px',
   width: '100%',
   marginRight: '10px',
@@ -105,18 +77,18 @@ class ModernTwoContainer extends Component {
         {optionsBar}
         <h1 style={Object.assign({}, titleSection, info.text5.style)} data-id="text5" onDoubleClick={openChangeModal}>{info.text5.text}</h1>
         <div style={container4options}>
-          <div style={textContainerOne}>
+          <div style={textContainer}>
             <div>
               <h2 style={Object.assign({}, subtitleSection, info.text1.style)} data-id="text1" onDoubleClick={openChangeModal}>{info.text1.text}</h2>
               <p style={Object.assign({}, textSection, info.text6.style)} data-id="text6" onDoubleClick={openChangeModal}>{info.text6.text}</p>
-              <LinkEditable contentAttrStyle={info.link1.style} mode={mode} info={info.link1} style={linksStyle1} data-id='link1' onDoubleClick={openChangeModal}/>
+              <LinkEditable contentAttrStyle={info.link1.style} mode={mode} info={info.link1} style={linksStyle} data-id='link1' onDoubleClick={openChangeModal}/>
             </div>
           </div>
-          <div style={textContainerTwo}>
+          <div style={textContainer}>
             <div>
               <h2 style={Object.assign({}, subtitleSection, info.text2.style)} data-id="text2" onDoubleClick={openChangeModal}>{info.text2.text}</h2>
               <p style={Object.assign({}, textSection, info.text7.style)} data-id="text7" onDoubleClick={openChangeModal}>{info.text7.text}</p>
-              <LinkEditable contentAttrStyle={info.link2.style} mode={mode} info={info.link2} style={linksStyle2} data-id='link2' onDoubleClick={openChangeModal}/>
+              <LinkEditable contentAttrStyle={info.link2.style} mode={mode} info={info.link2} style={linksStyle} data-id='link2' onDoubleClick={openChangeModal}/>
             </div>
           </div>
         </div>

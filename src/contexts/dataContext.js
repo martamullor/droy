@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import api from '../services/apiClient'
 import alias from '../utils/alias'
-import { notifyError } from '../services/notifications'
+import { notifyError, notifyInfo } from '../services/notifications'
 
 const DataContext = React.createContext()
 
@@ -26,8 +26,7 @@ class DataProvider extends Component {
       userLayoutObj: [],
       projectStyle: "",
       projectId: "",
-      dataError: "",
-      savingStep: 'Save',
+      dataError: ""
     }
   }
 
@@ -89,13 +88,9 @@ class DataProvider extends Component {
   /* Save actual user configuration to BBDD */
   save = async (projectId) => {
     try {
-      this.setState({ savingStep: 'Saving...' })
       const { userLayoutObj } = this.state
       await api.put(`/projects/${projectId}`, { componentsConfiguration: userLayoutObj })
-      setTimeout(() => {
-        this.setState({ savingStep: 'OK' })
-        setTimeout(() => { this.setState({ savingStep: 'Save' }) }, 500);
-      }, 500);
+      notifyInfo("Saved!")
     } catch (error) {
       notifyError("Not saved. Try again.")
     }   

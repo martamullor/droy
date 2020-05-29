@@ -57,7 +57,7 @@ class ModalStartProject extends Component {
               onChange={this.handleChange} />
             <label className='label-modal' htmlFor="theme">Choose a theme:</label>
             <div className="selector-container">
-            {styles.map((s, k) => <div className="image-selector"><img className={theme === s.code && "selected"} key={k} src={s.image} onClick={() => this.selectOption(s.code)}/>{s.name}</div>)}
+            {styles.map((s, k) => <div className="image-selector"><img className={theme === s.code && "selected"} alt='theme' key={k} src={s.image} onClick={() => this.selectOption(s.code)}/>{s.name}</div>)}
             </div>
             <button className='button-modal' type='submit'>Create project</button>
           </form>

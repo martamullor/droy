@@ -3,13 +3,13 @@
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    padding: 12px 30px;
     box-shadow: 1px 1px 9px -1px rgba(210,210,210,1);
     background-color: white;
 }
 
 .logo-navBar {
     width: 70px;
+    padding: 12px 30px;
 }
 
 .buttons-navBar{
@@ -23,6 +23,7 @@
     font-weight: 400;
     font-size: 0.9rem;
     text-decoration: none;
+    width: 150px;
 }
 
 .user-nav {
@@ -30,9 +31,22 @@
     flex-direction: row;
     cursor: pointer;
     position: relative;
+    padding: 12px 30px;
+    border: 1px solid white;
+    margin-top: 5px;
 }
 
-.profile-image{
+.user-navClicked {
+    display: flex;
+    flex-direction: row;
+    cursor: pointer;
+    position: relative;
+    border: 1px solid #c8ced8;
+    padding: 12px 30px;
+    margin-top: 5px;
+}
+
+.profile-image {
     height: 40px;
     width: 40px;
     margin-right: 10px;
@@ -48,13 +62,14 @@
 
 .dropdown-container {
     position: absolute;
-    top: 128%;
-    width: 118%;
+    top: 100%;
+    width: 101%;
+    left: -0.5%;
     z-index: 100;
 }
 
 .icon-navBar {
-    width: 28px;
+    width: 30px;
     align-self: center;
     margin-right: 10px;
 }
@@ -63,23 +78,17 @@
     width: 100%;
     font-family: Montserrat, 'sans-serif';
     padding: 10px 40px;
-    border-radius: 3px;
-    border: none;
-    color: #3f5476;
+    border-radius: 0px 3px;
+    border: 1px solid #c8ced8;
+    color: #db0000;
     font-weight: 400;
     font-size: 0.8rem;
     text-decoration: none;
-    animation: opacity 500ms ease-in-out normal;
-    box-shadow: 1px 10px 9px -1px rgba(210,210,210,1);
+    box-shadow: 1px 10px 9px -1px rgba(210,210,210,0.5);
     background-color: white; 
     display: flex;
     justify-content: left;
     align-self: center;
-}
-
-.dropdown-element:hover {
-    color: #3f5476;
-    font-weight: 900;
 }
 
 .container-navbar {

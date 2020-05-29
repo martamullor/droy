@@ -34,7 +34,8 @@ const textHome = {
   overflow: 'hidden',
   padding: '10px 120px',
   color: 'white',
-  maxHeight: '198px'
+  maxHeight: '198px',
+  display: 'block'
 }
 
 const linksContainer = {

@@ -18,8 +18,7 @@ const textSectionContainer = {
   textAlign: 'left',
   overflow: 'hidden',
   color: '#2a2c2a',
-  width: '50%',
-  backgroundColor: 'white'
+  width: '50%'
 }
 
 const titleSection = {

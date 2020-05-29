@@ -20,8 +20,6 @@ import ModernTimeline from '../components/user/modern/ModernTimeline'
 import ModernThreeColumns from '../components/user/modern/ModernThreeColumns'
 import Modern4Options from '../components/user/modern/Modern4Options'
 import ModernTitleAndText from '../components/user/modern/ModernTitleAndText'
-import ModernSectionBackground from '../components/user/modern/ModernSectionBackground'
-import ModernSectionBackground2 from '../components/user/modern/ModernSectionBackground2'
 import ModernTwoContainer from '../components/user/modern/ModernTwoContainer'
 import ModernBlog from '../components/user/modern/ModernBlog'
 import ModernArticle1 from '../components/user/modern/ModernArticle1'
@@ -50,8 +48,6 @@ export default {
   ModernThreeColumns: ModernThreeColumns,
   Modern4Options: Modern4Options,
   ModernTitleAndText: ModernTitleAndText,
-  ModernSectionBackground: ModernSectionBackground,
-  ModernSectionBackground2: ModernSectionBackground2,
   ModernTwoContainer: ModernTwoContainer,
   ModernBlog: ModernBlog,
   ModernArticle1: ModernArticle1,

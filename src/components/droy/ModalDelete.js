@@ -48,13 +48,15 @@ export default class ModalDelete extends Component {
           <button className='close-modal' onClick={onClose}>
             <img className='close-modal-image' src="../../img/close-icon.png" alt='delete-project'></img>
           </button>
-          <p className='text-modal-close'> Type <span className='name-text-delete'>{project.name}</span> to delete your project permanently.</p>
+          <h2 className='title-modal'>Delete your proyect:</h2>
+          <p className='text-modal-close'> Deleting your project is irreversible. <br/> Enter your project name <code className='name-text-delete'> {project.name} </code> 
+          below to confirm you want to permanently delete it:</p>
           <form className='form-create-project' onSubmit={this.handleDelete}>
             <input required="required" className='input-modal' type="text"
               name="name"
               placeholder=""
               onChange={this.handleChange} />
-            <button className='button-modal' type='submit'>Delete</button>
+            <button className='button-modal-delete' type='submit'>Delete</button>
           </form>
         </div>
       </div>
