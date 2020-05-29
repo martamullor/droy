@@ -5,13 +5,13 @@ export default class ModalDelete extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      info: this.props.info, 
+      info: this.props.info,
       style: this.props.style,
     }
   }
 
   handleChangeNormal = (e) => {
-    const infoCopy = {...this.state.info}
+    const infoCopy = { ...this.state.info }
     infoCopy[e.target.name] = e.target.name === "toNewPage" ? e.target.checked : e.target.value
     this.setState({
       info: infoCopy
@@ -19,7 +19,7 @@ export default class ModalDelete extends Component {
   }
 
   handleChangeStyle = (e) => {
-    const infoCopy = {...this.state.style}
+    const infoCopy = { ...this.state.style }
     infoCopy[e.target.name] = e.target.value
     this.setState({
       style: infoCopy
@@ -29,29 +29,29 @@ export default class ModalDelete extends Component {
   isValid = (info) => {
     const pxRemRegex = /^(\d{0,3}\.?\d{0,3})(px|rem)$/
     const linkRegex = /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_+.~#?&//=]*)/
+    const backgroundRegex = /^#[a-z0-9]{6}$/
     if (!pxRemRegex.test(info.style.fontSize) && info.style.fontSize !== 'inherit') {
       notifyError("Invalid text size: must be px/rem/inherit")
       return false
     }
-    if(!pxRemRegex.test(info.style.letterSpacing) && info.style.letterSpacing !== 'inherit') {
+    if (!pxRemRegex.test(info.style.letterSpacing) && info.style.letterSpacing !== 'inherit') {
       notifyError("Invalid letter spacing: must be px/rem/inherit")
       return false
     }
-    
-    if(info.type === 'link' || info.type === 'listLink' && !linkRegex.test(info.href)) {
+    if ((info.type === 'link' || info.type === 'listLink') && !linkRegex.test(info.href)) {
       notifyError("Invalid link")
       return false
     }
-    
+    if ((info.type === 'link' || info.type === 'listLink') && !backgroundRegex.test(info.backgroundColor))
     return true
   }
 
   submitChanges = (e) => {
     e.preventDefault()
-    const { changeInfo, fromListLinks } = this.props
+    const { changeInfo } = this.props
     const { info, style } = this.state
-    const finalInfo = {...info, style}
-    if(this.isValid(finalInfo)) changeInfo(finalInfo)
+    const finalInfo = { ...info, style }
+    if (this.isValid(finalInfo)) changeInfo(finalInfo)
   }
 
   render() {
@@ -71,35 +71,45 @@ export default class ModalDelete extends Component {
                 value={info.text}
                 onChange={this.handleChangeNormal} />
             </div>
-            {info.type === 'link' || info.type === 'listLink' &&
-              <div className="modal-field-group">
-                <label className="label-modal" htmlFor="link-to">Link destination:</label>
-                <input id="link-to" required="required" className='input-modal' type="text"
-                name="href"
-                value={info.href}
-                onChange={this.handleChangeNormal} />
-                <label className="label-modal" htmlFor="link-to">Open in new window?</label>
-                <input className="checkbox" onChange={this.handleChangeNormal} checked={info.toNewPage ? 'checked' : false } type="checkbox" name="toNewPage" id="toNewPage"/>
-              </div>
-            }
-             <div className="modal-field-subgroup">
-               <div className="subgroup-field">
-                <label className="label-modal" htmlFor="fontSize">Text size:</label>
-                <input id="fontSize" required="required" className='input-modal' type="text"
-                name="fontSize"
-                data-type="style"
-                value={style.fontSize}
-                onChange={this.handleChangeStyle} />
-               </div>
-               <div className="subgroup-field">
-                <label className="label-modal" htmlFor="letterSpacing">Letter spacing:</label>
-                <input id="letterSpacing" required="required" className='input-modal' type="text"
-                name="letterSpacing"
-                data-type="style"
-                value={style.letterSpacing}
-                onChange={this.handleChangeStyle} />
+            {(info.type === 'link' || info.type === 'listLink')  &&
+              <div>
+                <div className="modal-field-group">
+                  <label className="label-modal" htmlFor="link-to">Link destination:</label>
+                  <input id="link-to" required="required" className='input-modal' type="text"
+                    name="href"
+                    value={info.href}
+                    onChange={this.handleChangeNormal} />
+                  <label className="label-modal" htmlFor="link-to">Open in new window?</label>
+                  <input className="checkbox" onChange={this.handleChangeNormal} checked={info.toNewPage ? 'checked' : false} type="checkbox" name="toNewPage" id="toNewPage" />
+                </div>
+                <div className="subgroup-field">
+                  <label className="label-modal" htmlFor="fontSize">Background:</label>
+                  <input id="backgroundColor" required="required" className='input-modal' type="text"
+                    name="backgroundColor"
+                    data-type="style"
+                    value={style.backgroundColor}
+                    onChange={this.handleChangeStyle} />
                 </div>
               </div>
+            }
+            <div className="modal-field-subgroup">
+              <div className="subgroup-field">
+                <label className="label-modal" htmlFor="fontSize">Text size:</label>
+                <input id="fontSize" required="required" className='input-modal' type="text"
+                  name="fontSize"
+                  data-type="style"
+                  value={style.fontSize}
+                  onChange={this.handleChangeStyle} />
+              </div>
+              <div className="subgroup-field">
+                <label className="label-modal" htmlFor="letterSpacing">Letter spacing:</label>
+                <input id="letterSpacing" required="required" className='input-modal' type="text"
+                  name="letterSpacing"
+                  data-type="style"
+                  value={style.letterSpacing}
+                  onChange={this.handleChangeStyle} />
+              </div>
+            </div>
             <button className='button-modal' type='submit'>Update info</button>
           </form>
           {info.type === 'listLink' && <p onClick={deleteLink} className='button-modal-red' type='submit'>Delete link</p>}
