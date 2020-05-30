@@ -83,7 +83,7 @@ class Login extends Component {
             <div className='logo-container'>
             </div>
             <div className='form-title-container'>
-              <h1 className='title-login-signup'>Login:</h1>
+              <h1 className='title-login-signup'>Login</h1>
               <p className='error-text padding-error'>{errorMessage}</p>
               {resetPasswordModal && <ModalResetPassword onClose={this.closeModalReset} />}
               <form className='login-form' onSubmit={this.handleSubmit}>
