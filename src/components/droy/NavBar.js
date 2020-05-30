@@ -63,6 +63,28 @@ class NavBar extends Component {
     return <button className='buttons-navBar' onClick={switchMode}>Preview</button>
   }
 
+  showButtonLoginSignup = () => {
+    const { currentUser } = firebase.auth()
+    const { path } = this.props.match
+    if(!currentUser){
+      if(path === '/signup' || '/about'){
+        return (
+          <div className='container-navbar'>
+            <p className='text-navbar'>Do you have an account?</p>
+            <Link className='buttons-navBar' to="/login">Log in</Link>
+          </div>
+        )
+      } else if(path === '/login') {
+        return (
+          <div className='container-navbar'>
+            <p className='text-navbar'>You don't have an account?</p>
+            <Link className='buttons-navBar' to="/signup">Sign up</Link>
+          </div>
+        )
+      }
+    }
+  }
+
   render() {
     const { withOptions, projectId } = this.props
     const { modalDeploy, showDropdown, menuClicked } = this.state
@@ -80,12 +102,7 @@ class NavBar extends Component {
           <button className='buttons-navBar' onClick={this.deployApp}>Publish</button>
         </div>
         }
-        {currentUser
-          ?  null
-          : <div className='container-navbar'>
-            <p className='text-navbar' to="/signup">You don't have an account?</p>
-            <Link className='buttons-navBar' to="/signup">Sign up</Link>
-          </div>}
+        {this.showButtonLoginSignup()}
         {currentUser &&
           <div className={styleMenuClicked} onClick={this.showDropdown}>
             <img className='profile-image' src={currentUser.photoURL} alt="user" />

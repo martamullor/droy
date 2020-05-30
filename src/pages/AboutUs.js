@@ -19,7 +19,7 @@ class AboutUs extends Component {
                         <section className='section-home-about'>
                             <h2 className='title-home'>Free Website Builder</h2>
                             <h1 className='subtitle-home'>Create awesome websites! <br /> No coding and free.</h1>
-                            <Link className='button-home' to='/signup'>Start now</Link>
+                            <Link className='button-home' to='/login'>Start now</Link>
                         </section>
                     </ParallaxLayer>
                     <ParallaxLayer offset={1} speed={0} style={{ opacity: 1 }}>
@@ -70,7 +70,7 @@ class AboutUs extends Component {
                     <ParallaxLayer offset={3} speed={0.5} style={{ opacity: 1 }}>
                         <section className='section-about'>
                             <h3 className='subtitle-home'>Its easy and simple</h3>
-                            <Link className='button-home' to='/signup'>Start now</Link>
+                            <Link className='button-home' to='/login'>Start now</Link>
                         </section>
                     </ParallaxLayer>
                     <ParallaxLayer offset={3.55} speed={0} style={{ opacity: 1 }}>
