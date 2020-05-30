@@ -66,7 +66,6 @@ class NavBar extends Component {
   showButtonLoginSignup = () => {
     const { currentUser } = firebase.auth()
     const { path } = this.props.match
-    console.log(path)
     if(!currentUser){
       if(path === '/signup' || path === '/about'){
         return (
