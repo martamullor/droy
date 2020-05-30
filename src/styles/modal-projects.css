@@ -3,13 +3,18 @@
     justify-content: center;
     align-content: center;
     text-align: center;
-    width: 99%;
     animation: pulse 0.5s forwards;
-    position: absolute;
+    position: fixed;
     top: 50vh;
-    transform: translateY(-50%);
+    left: 50%;
+    transform: translateY(-40%);
     z-index: 50;
     font-family: 'Montserrat', sans-serif;
+}
+
+.home-projects-modal {
+    left: 30%;  
+    top: 45vh;
 }
 
 .modal-container-reset {
@@ -24,11 +29,10 @@
 .modal-style {
     background-color: #fafafa;
     box-shadow: 10px 11px 19px -10px rgba(214,214,214,1);   
-    width: 45%;
     color: white;
     border-radius: 8px;
-    margin-top: -80px;
-    padding: 30px 20px 30px 40px; /* Refaaaaactor: mejor poner el button close absolute */
+    padding: 30px 40px;
+    position: relative;
 }
 
 .modal-style-deploy {
@@ -60,6 +64,8 @@
     float: right;
     color: white;
     border: none;
+    position: absolute;
+    right: 10%;
 }
 
 .close-modal-image {
@@ -70,17 +76,17 @@
     text-align: left;
     color: #3f5476;
     font-size: 1.1rem;
-    margin: 10px 0px;
+    margin: 10px 5px;
 }
 
 .input-modal {
     margin: 10px 0px;
     background: white;
-    border: none;
     padding: 10px;
     border-radius: 5px;
-    color: #3f5476;
+    color: grey;
     border: 1px solid #c8ced8;
+    font-family: 'Montserrat', sans-serif;
 }
 
 .input-modal::placeholder {
@@ -166,21 +172,10 @@
 }
 
 
-@keyframes pulse {
-    0% {
-      opacity: 0.1%;
-      transform: scale(0.7);
-    }
-    100% {
-      opacity: 1;
-      transition: transform 0.5s;
-    }
-  }
-
 .label-modal {
-    color: darkgray;
+    color: #001745;
+    font-weight: 500;
     font-size: 0.8rem;
-    margin-bottom: 0px;
 }
 
 .modal-field-group {
@@ -188,15 +183,11 @@
     flex-direction: column;
 }
 
-.modal-field-subgroup {
-    display: flex;
-    flex-direction: row;
-    width: 100%;
-}
+
 .subgroup-field {
     display: flex;
-    flex-direction: column;
     align-items: center;
+    justify-content: space-between;
 }
 
 .subgroup-field input{
@@ -237,3 +228,72 @@
 .selected {
     outline: 5px solid #00c77f;
 }
+
+.openWindow-container {
+    display: flex;
+    align-content: center;
+    justify-content: space-between;
+}  
+
+.switch {
+    position: relative;
+    display: inline-block;
+    align-self: center;
+    margin-left: 30px;
+  }
+  .switch-input {
+    display: none;
+  }
+  .switch-label {
+    display: block;
+    width: 48px;
+    height: 24px;
+    text-indent: -150%;
+    clip: rect(0 0 0 0);
+    color: transparent;
+    user-select: none;
+  }
+  .switch-label::before,
+  .switch-label::after {
+    content: "";
+    display: block;
+    position: absolute;
+    cursor: pointer;
+  }
+  .switch-label::before {
+    width: 100%;
+    height: 100%;
+    background-color: #dedede;
+    border-radius: 9999em;
+    -webkit-transition: background-color 0.25s ease;
+    transition: background-color 0.25s ease;
+  }
+  .switch-label::after {
+    top: 0;
+    left: 0;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background-color: #fff;
+    box-shadow: 0 0 2px rgba(0, 0, 0, 0.45);
+    -webkit-transition: left 0.25s ease;
+    transition: left 0.25s ease;
+  }
+  .switch-input:checked + .switch-label::before {
+    background-color: #00c77f;
+  }
+  .switch-input:checked + .switch-label::after {
+    left: 24px;
+  }
+
+
+  @keyframes pulse {
+    0% {
+      opacity: 0.1%;
+      transform: scale(0.7);
+    }
+    100% {
+      opacity: 1;
+      transition: transform 0.5s;
+    }
+  }

@@ -43,7 +43,7 @@ export default class ModalDelete extends Component {
   render() {
     const { onClose, project } = this.props
     return (
-      <div className='modal-container'>
+      <div className='modal-container home-projects-modal'>
         <div className='modal-style'>
           <button className='close-modal' onClick={onClose}>
             <img className='close-modal-image' src="../../img/close-icon.png" alt='delete-project'></img>
