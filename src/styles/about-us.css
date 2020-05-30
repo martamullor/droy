@@ -37,13 +37,9 @@
     text-decoration: none;
     z-index: 1;
     text-transform: uppercase;
-    letter-spacing: 2px;
-}
-
-.button-home:hover {
+    letter-spacing: 2px;;
     font-weight: 600;
 }
-
 
 .section-title {
     text-align: center;

@@ -42,13 +42,13 @@ export default class ModalChangeInfo extends Component {
       notifyError("Invalid link")
       return false
     }
-    if ((info.type === 'link' || info.type === 'listLink') && !backgroundRegex.test(info.style.backgroundColor) && info.style.backgroundColor !== 'transparent'){
+    if ((info.type === 'link' || info.type === 'listLink') && !backgroundRegex.test(info.style.backgroundColor) && info.style.backgroundColor !== 'transparent') {
       notifyError("Invalid HEX code: must be transparent or #??????")
       return false
     }
     return true
   }
-  
+
 
   submitChanges = (e) => {
     e.preventDefault()
@@ -75,7 +75,7 @@ export default class ModalChangeInfo extends Component {
                 value={info.text}
                 onChange={this.handleChangeNormal} />
             </div>
-            {(info.type === 'link' || info.type === 'listLink')  &&
+            {(info.type === 'link' || info.type === 'listLink') &&
               <div>
                 <div className="modal-field-group">
                   <label className="label-modal" htmlFor="link-to">Link destination:</label>
@@ -83,11 +83,16 @@ export default class ModalChangeInfo extends Component {
                     name="href"
                     value={info.href}
                     onChange={this.handleChangeNormal} />
-                  <label className="label-modal" htmlFor="link-to">Open in new window?</label>
-                  <input className="checkbox" onChange={this.handleChangeNormal} checked={info.toNewPage ? 'checked' : false} type="checkbox" name="toNewPage" id="toNewPage" />
+                  <div className='openWindow-container'>
+                    <label className="label-modal" htmlFor="link-to">Open in new window?</label>
+                    <div className='switch'>
+                      <input class="switch-input" onChange={this.handleChangeNormal} checked={info.toNewPage ? 'checked' : false} type="checkbox" name="toNewPage" id="toNewPage" />
+                      <label for="toNewPage" class="switch-label">Switch</label>
+                    </div>
+                  </div>
                 </div>
                 <div className="subgroup-field">
-                  <label className="label-modal" htmlFor="fontSize">Background:</label>
+                  <label className="label-modal" htmlFor="backgroundColor">Background color:</label>
                   <input id="backgroundColor" required="required" className='input-modal' type="text"
                     name="backgroundColor"
                     data-type="style"
@@ -96,7 +101,6 @@ export default class ModalChangeInfo extends Component {
                 </div>
               </div>
             }
-            <div className="modal-field-subgroup">
               <div className="subgroup-field">
                 <label className="label-modal" htmlFor="fontSize">Text size:</label>
                 <input id="fontSize" required="required" className='input-modal' type="text"
@@ -113,7 +117,6 @@ export default class ModalChangeInfo extends Component {
                   value={style.letterSpacing}
                   onChange={this.handleChangeStyle} />
               </div>
-            </div>
             <button className='button-modal' type='submit'>Update info</button>
           </form>
           {info.type === 'listLink' && <p onClick={deleteLink} className='button-modal-red' type='submit'>Delete link</p>}

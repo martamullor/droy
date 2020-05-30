@@ -35,7 +35,7 @@ class AboutUs extends Component {
                             </div>
                             <div className='icon-container'>
                                 <img className='section-icon' src='/img/edit-icons.png' alt='about-home' />
-                                <p className='text-section-icon'>Edit the style</p>
+                                <p className='text-section-icon'>Edit style and content</p>
                             </div>
                             <div className='icon-container'>
                                 <img className='section-icon' src='/img/deploy-icons.png' alt='about-home' />
@@ -48,7 +48,7 @@ class AboutUs extends Component {
                     </ParallaxLayer>
                     <ParallaxLayer offset={1.9} speed={0.8} style={{ opacity: 1 }}>
                         <div className='section-container-info-right'>
-                            <h3 className='title-section-right'>Drag blocks <br /> to page</h3>
+                            <h3 className='title-section-right'>Drag components <br /> to page</h3>
                         </div>
                     </ParallaxLayer>
                     <ParallaxLayer offset={2} speed={0.3} style={{ opacity: 1 }}>
@@ -56,7 +56,7 @@ class AboutUs extends Component {
                     </ParallaxLayer>
                     <ParallaxLayer offset={2} speed={0.5} style={{ opacity: 1 }}>
                         <div className='section-container-info-left'>
-                            <h3 className='title-section-left'>Edit and <br /> style inline</h3>
+                            <h3 className='title-section-left'>Edit content and <br /> style inline</h3>
                         </div>
                     </ParallaxLayer>
                     <ParallaxLayer offset={2.95} speed={0.7} style={{ opacity: 1 }}>
@@ -77,14 +77,14 @@ class AboutUs extends Component {
                         <h2 className='section-title'>What users say</h2>
                         <div className='opinions-container'>
                             <div className='opinion-container'>
-                                <h4 className='name-opinion'>Roger Hollings</h4>
-                                <p className='text-section-icon'>Mobirise Website Builder is a refresher on the two
-                                solutions for creating websites that load as well on mobile devices as they do on desktops.</p>
+                                <h4 className='name-opinion'>Jorge de Juana</h4>
+                                <p className='text-section-icon'>"Drag and drop blocks and build websites in mere minutes!
+                                This is definitely one of the easiest software solution for website building."</p>
                             </div>
                             <div className='opinion-container'>
-                                <h4 className='name-opinion'>Roger Hollings</h4>
-                                <p className='text-section-icon'>Mobirise Website Builder is a refresher on the two
-                                solutions for creating websites that load as well on mobile devices as they do on desktops.</p>
+                                <h4 className='name-opinion'>Edu Carmona</h4>
+                                <p className='text-section-icon'>"Droy Website Builder looks great, is genuinely easy to use, 
+                                and allows you to build stylish and attractive websites with no hassles at all."</p>
                             </div>
                         </div>
                     </ParallaxLayer>
