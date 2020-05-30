@@ -6,9 +6,9 @@ export default class ModalDeploy extends Component {
     const { projectId, onClose } = this.props
     const projectUrl = `http://${projectId}.my-droy.com`
     return (
-      <div className='modal-container'>
+      <div className='modal-container deploy-projects-modal'>
         <div className='modal-style-deploy'>
-          <button className='close-modal' onClick={onClose}>
+          <button className='close-modal close-deploy' onClick={onClose}>
             <img className='close-modal-image' src="/img/close-icon.png" alt='delete-project'></img>
           </button>
           <img className="modal-img" src="/img/done.gif" alt="done"/>
