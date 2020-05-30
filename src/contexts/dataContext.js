@@ -137,6 +137,7 @@ class DataProvider extends Component {
         projectId: _id,
         userLayoutObj: componentsConfiguration,
         projectStyle: style,
+        mode: 'edit'
       })
     } catch (error) {
       notifyError("We can't retrieve your project information.... So sorry.")
