@@ -54,7 +54,9 @@ class ComponentsSelectorBar extends Component {
     const { styleComponents } = this.state
     const code = e.target.attributes['data-code'].value  
     const { defaultConfig, componentOptions, componentStyle } = alias.findByCode(styleComponents, code)
-    addComponent(code, defaultConfig, componentOptions, componentStyle)
+    const compConfig = alias.copyObject(defaultConfig)
+    const compStyle = alias.copyObject(componentStyle)
+    addComponent(code, compConfig, componentOptions, compStyle)
   }
 
   showContent = () => {
