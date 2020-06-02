@@ -8,7 +8,7 @@
     flex-grow: 1;
     width: 75vw;
     overflow:scroll;
-    animation: onChargeBuilder 2s forwards;
+    animation: onChargeBuilder 1.7s forwards;
 }
 
 

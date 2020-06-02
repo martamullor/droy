@@ -98,7 +98,7 @@
     width: 100%;
     font-family: Montserrat, 'sans-serif';
     padding: 10px 40px;
-    border-radius: 0px 3px;
+    border-radius: 0px 0px 3px 3px;
     border: 1px solid #c8ced8;
     color: #db0000;
     font-weight: 400;
@@ -109,6 +109,17 @@
     display: flex;
     justify-content: left;
     align-self: center;
+}
+
+.border {
+  border-bottom: none;
+  border-radius: 0px;
+  width: 66.5%;
+}
+
+.text-projects {
+  text-decoration: none;
+  color: #3f5476;
 }
 
 .container-navbar {
@@ -152,8 +163,3 @@
         transform: translate(0px, 0px);  
     }
   }
-
-.text-projects {
-  text-decoration: none;
-  color: #3f5476;
-}
