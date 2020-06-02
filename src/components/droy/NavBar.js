@@ -58,7 +58,7 @@ class NavBar extends Component {
       return <button className='buttons-navBar' onClick={switchMode}>Edit</button>
     }
     if (userLayoutObj && !userLayoutObj.length) {
-      return <button className='buttons-navBar'>Preview</button>
+      return <button className='buttons-navBar-blocked'>Preview</button>
     }
     return <button className='buttons-navBar' onClick={switchMode}>Preview</button>
   }

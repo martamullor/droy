@@ -3,6 +3,7 @@
     box-shadow: 3px 6px 12px -2px rgba(214,214,214,1);
     width: 25vw;
     overflow:scroll;
+    animation: onChargeSelector 2s forwards;
 }
 
 .components-bar::-webkit-scrollbar {
@@ -35,3 +36,15 @@
 .component-selector:hover {
     transform: scale(1.05);
 }
+
+
+@keyframes onChargeSelector {
+    0% {
+      opacity: 0;
+      transform: translate(-300px, 0px);
+    }
+    100% {
+      opacity: 1;
+      transition: transform 0.2s;
+    }
+  }

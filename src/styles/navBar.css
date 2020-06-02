@@ -27,6 +27,25 @@
     text-align: center;
 }
 
+.buttons-navBar-blocked {
+    font-family: Montserrat, 'sans-serif';
+    background-color: #f1f2f4;
+    padding: 10px 30px;
+    margin-right: 10px;
+    border-radius: 3px;
+    border: none;
+    color: #3f5476;
+    font-weight: 400;
+    font-size: 0.9rem;
+    text-decoration: none;
+    width: 150px;
+    text-align: center; 
+}
+
+.buttons-navBar-blocked:active {
+    animation: disabled 2s forwards;
+  }
+
 .user-nav {
     display: flex;
     flex-direction: row;
@@ -113,5 +132,23 @@
     100% {
       transition: transform 0.2s;
       opacity: 1;
+    }
+  }
+
+  @keyframes disabled {
+    0% {
+      transform: translate(5px, 0px);
+    }
+    10%{
+      transform: translate(-5px, 0px);
+    }
+    30%{
+        transform: translate(5px, 0px);
+      }
+    40% {
+        transform: translate(-5px, 0px);
+    }
+    100% {
+        transform: translate(0px, 0px);  
     }
   }
