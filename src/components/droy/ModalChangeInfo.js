@@ -86,8 +86,8 @@ export default class ModalChangeInfo extends Component {
                   <div className='openWindow-container'>
                     <label className="label-modal" htmlFor="link-to">Open in new window?</label>
                     <div className='switch'>
-                      <input class="switch-input" onChange={this.handleChangeNormal} checked={info.toNewPage ? 'checked' : false} type="checkbox" name="toNewPage" id="toNewPage" />
-                      <label for="toNewPage" class="switch-label">Switch</label>
+                      <input className="switch-input" onChange={this.handleChangeNormal} checked={info.toNewPage ? 'checked' : false} type="checkbox" name="toNewPage" id="toNewPage" />
+                      <label htmlFor="toNewPage" className="switch-label">Switch</label>
                     </div>
                   </div>
                 </div>

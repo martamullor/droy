@@ -12,14 +12,11 @@
     font-family: 'Montserrat', sans-serif;
 }
 
-.home-projects-modal {
-    left: 30%;  
-    top: 45vh;
-}
-
-.deploy-projects-modal {
-    left: 10%;  
-    top: 45vh;
+.centered-modal {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
 

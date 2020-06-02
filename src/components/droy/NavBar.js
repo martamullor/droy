@@ -52,6 +52,14 @@ class NavBar extends Component {
     history.push('/login')
   }
 
+  showPublishButton = () => {
+    const { userLayoutObj } = this.props
+    if (userLayoutObj && !userLayoutObj.length) {
+      return <button className='buttons-navBar-blocked'>Publish</button>
+    }
+    return <button className='buttons-navBar' onClick={this.deployApp}>Publish</button>
+  }
+
   showEditViewButton = () => {
     const { mode, switchMode, userLayoutObj } = this.props
     if (mode === 'view') {
@@ -99,7 +107,7 @@ class NavBar extends Component {
         {withOptions && <div>
           <button className='buttons-navBar' onClick={this.handleSave}>Save</button>
           {this.showEditViewButton()}
-          <button className='buttons-navBar' onClick={this.deployApp}>Publish</button>
+          {this.showPublishButton()}
         </div>
         }
         {this.showButtonLoginSignup()}

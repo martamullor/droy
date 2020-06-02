@@ -33,7 +33,7 @@ class App extends Component {
         this.setState({ authLoading: false })
       });
     } catch (error) {
-      console.error('error on login')
+      console.error(error)
     }
   }
 
