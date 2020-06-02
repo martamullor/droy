@@ -8,6 +8,7 @@
     flex-grow: 1;
     width: 75vw;
     overflow:scroll;
+    animation: onChargeBuilder 2s forwards;
 }
 
 
@@ -36,5 +37,16 @@
     align-self: center;
     padding: 20px;
 }
+
+@keyframes onChargeBuilder {
+    0% {
+      opacity: 0.5;
+      transform: translate(600px, 0px);
+    }
+    100% {
+      opacity: 1;
+      transition: transform 0.2s;
+    }
+  }
 
 
