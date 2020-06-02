@@ -117,9 +117,13 @@ class NavBar extends Component {
             <p className='user-text-nav'>{currentUser.displayName}</p>
             {showDropdown &&
               <div className='dropdown-container'>
+                <Link to='/' className='dropdown-element'>
+                  <img className='icon-navBar' src='/img/logout-icon.png' alt='logo-green'/>
+                  <p className="text-projects">Projects</p>
+                </Link>
                 <button onClick={this.handleLogout} className='dropdown-element'>
-                <img className='icon-navBar' src='/img/logout-icon.png' alt='logo-green'/>
-                <p className='text-logout'>Logout</p>
+                  <img className='icon-navBar' src='/img/logout-icon.png' alt='logo-green'/>
+                  <p>Logout</p>
                 </button>
               </div>}
           </div>

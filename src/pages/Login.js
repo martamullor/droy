@@ -87,7 +87,7 @@ class Login extends Component {
               <p className='error-text padding-error'>{errorMessage}</p>
               {resetPasswordModal && <ModalResetPassword onClose={this.closeModalReset} />}
               <form className='login-form' onSubmit={this.handleSubmit}>
-              <label className='label-login-signup'> Your email adress
+              <label className='label-login-signup'> Your email address
                 <input className='input-form'
                   placeholder="email"
                   type="text"
