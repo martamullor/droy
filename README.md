@@ -26,7 +26,9 @@ Online tool that allows you to build your own website without having programming
     - The user can edit the content of a component by double-clicking on the information to be updated.
     - The user can remove a component.
     - The user can save his project 
+    
  ![](public/img/gif1-readme.gif)
+ 
   - **Preview Mode**:
     - It's used so that the user can view his page without distractions.
     - Hide the side menu so you can't add new components.
