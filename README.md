@@ -28,7 +28,7 @@ Online tool that allows you to build your own website without having programming
     - The user can remove a component.
     - The user can save his project 
     
- ![](public/img/gif1-readme.gif)
+ ![](public/img/gif2-readme.gif)
  
   - **Preview Mode**:
     - It's used so that the user can view his page without distractions.
@@ -36,14 +36,14 @@ Online tool that allows you to build your own website without having programming
     - Block all editing functionality of a component (delete, edit, change position).    
     - Links work according to the attributes that we've given them in edit mode.
     
-![](public/img/gif2-readme.gif)
+![](public/img/gif3-readme.gif)
 
    - **Publish Mode**:
       - The user decides to publish their website and make it visible for everybody.
       - We generate a first level url.
       - The user can share the url to their contacts and even set their own domain.
           
-![](public/img/gif1-readme.gif)
+![](public/img/gif4-readme.gif)
 
 
 * * *
