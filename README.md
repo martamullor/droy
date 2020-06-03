@@ -53,16 +53,25 @@ Online tool that allows you to build your own website without having programming
 
 * * *
 
-## MVP Views 
+## Routes
 
 | RUTA | Descripción |
 | -- | -- |
-| / | Muestra la página principal donde se puede iniciar un proyecto. | 
-| /builder/_id | Permite al usuario construir/editar/visualizar su página web. |
-| /about | Permite al usuario construir/editar/visualizar su página web. |
+| /about | Page where the user can know a little bit more about our project |
+| /signup | Page where the user can signup |
+| /login | Page where the user can login |
+| / | Displays the main page where the user can start a project. | 
+| /builder/_id | It allows the user to build / edit / view / publish their website. |
 
 * * *
 
+## Demo 
+
+[⚡️A demo is worth a thousand words](https://droy-prod.web.app/about)
+
+## Contribute
+
+Show your ❤️ and support by giving a ⭐. Any suggestions are welcome!
 
 ## Links
 
