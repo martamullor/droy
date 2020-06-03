@@ -6,8 +6,6 @@ Online tool that allows you to build your own website without having programming
 
 ![](public/img/cover1-readme.gif)
 
-* * *
-
 ## 👩🏻‍💻👨🏻‍💻 User Stories 
 
 * The user can see who we are in the about page.
@@ -38,14 +36,11 @@ Online tool that allows you to build your own website without having programming
     
 ![](public/img/gif3-readme.gif)
 
-   - **Publish Mode**:
+   - **Publish webpage**:
       - The user decides to publish their website and make it visible for everybody.
       - We generate a first level url.
       - The user can share the url to their contacts and even set their own domain
           
-
-* * *
-
 ## 🔜 Backlog 
 
 * The user can add a component to a specific position on their web page by drag and drop, and not by using the + button.
@@ -55,8 +50,6 @@ Online tool that allows you to build your own website without having programming
 * The user not only has two basic styles to choose when his create a new project.
 * The tool creates responsive web pages.
 
-* * *
-
 ## ✍🏻 Project Routes
 
 | Routes | Description |
@@ -65,28 +58,25 @@ Online tool that allows you to build your own website without having programming
 | /signup | Page where the user can signup |
 | /login | Page where the user can login |
 | / | Displays the main page where the user can start a project. | 
-| /builder/_id | It allows the user to build / edit / view / publish their website. |
-
-* * *
+| /builder/:id | It allows the user to build / edit / view / publish their website. |
 
 ## ⚡️Demo 
 
 [A demo is worth a thousand words](https://droy-prod.web.app/about)
-
-* * *
 
 ## Contribute
 
 Show your ❤️ and support by giving a ⭐. 
 Any suggestions are welcome!
 
-* * *
-
 ## Links
 
 [Link to Trello](https://trello.com/b/Krfo4Qp5/droy)
 
-[Github](https://github.com/marcmnc7/droy)
+[Droy](https://github.com/marcmnc7/droy)
 
-[Presentación](https://docs.google.com/presentation/d/1uFGmgLAgxeSe85KBZDAyAb9DgJ9LqC1k4Wlm6_MQMug/edit#slide=id.p)
+[Droy-API](https://github.com/marcmnc7/droy-api)
 
+[Droy-Deploy](https://github.com/marcmnc7/droy-deploy)
+
+[Slides](https://docs.google.com/presentation/d/1uFGmgLAgxeSe85KBZDAyAb9DgJ9LqC1k4Wlm6_MQMug/edit#slide=id.p)
