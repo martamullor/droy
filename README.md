@@ -53,9 +53,9 @@ Online tool that allows you to build your own website without having programming
 
 * * *
 
-## Routes
+## Project Routes
 
-| RUTA | Descripción |
+| Routes | Description |
 | -- | -- |
 | /about | Page where the user can know a little bit more about our project |
 | /signup | Page where the user can signup |
