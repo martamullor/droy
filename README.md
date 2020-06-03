@@ -58,7 +58,8 @@ Online tool that allows you to build your own website without having programming
 | RUTA | Descripción |
 | -- | -- |
 | / | Muestra la página principal donde se puede iniciar un proyecto. | 
-| /builder | Permite al usuario construir/editar/visualizar su página web. |
+| /builder/_id | Permite al usuario construir/editar/visualizar su página web. |
+| /about | Permite al usuario construir/editar/visualizar su página web. |
 
 * * *
 
