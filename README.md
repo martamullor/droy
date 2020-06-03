@@ -69,9 +69,14 @@ Online tool that allows you to build your own website without having programming
 
 [⚡️A demo is worth a thousand words](https://droy-prod.web.app/about)
 
+* * *
+
 ## Contribute
 
-Show your ❤️ and support by giving a ⭐. Any suggestions are welcome!
+Show your ❤️ and support by giving a ⭐. 
+Any suggestions are welcome!
+
+* * *
 
 ## Links
 
