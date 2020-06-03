@@ -21,7 +21,7 @@ Online tool that allows you to build your own website without having programming
 ![](public/img/gif1-readme.gif)
 
   - **Edit Mode**:
- ![](public/img/gif1-readme.gif)
+![](public/img/gif1-readme.gif)
     - The user can add a component to the user's web page, through a lateral menu that shows all the specific components             available for this theme. To include a component, the user has to add it using the + button. The component is included         in the last position.
     - The user can change the position of a component using the up / down buttons or drag an drop.
     - The user can edit the content of a component by double-clicking on the information to be updated.
