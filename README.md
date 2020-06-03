@@ -8,7 +8,7 @@ Online tool that allows you to build your own website without having programming
 
 * * *
 
-## 👩🏻‍💻👨🏻‍💻User Stories 
+## 👩🏻‍💻👨🏻‍💻 User Stories 
 
 * The user can see who we are in the about page.
 * The user can login or sign up with his credentials or Google.
@@ -42,7 +42,7 @@ Online tool that allows you to build your own website without having programming
 
 * * *
 
-## 🧐Backlog 
+## 🔜 Backlog 
 
 * The user can add a component to a specific position on their web page by drag and drop, and not by using the + button.
 * The user can add more types of components such as counters, contact forms...
@@ -53,7 +53,7 @@ Online tool that allows you to build your own website without having programming
 
 * * *
 
-## ✍🏻Project Routes
+## ✍🏻 Project Routes
 
 | Routes | Description |
 | -- | -- |
@@ -71,14 +71,14 @@ Online tool that allows you to build your own website without having programming
 
 * * *
 
-## ❤️ Contribute
+## Contribute
 
 Show your ❤️ and support by giving a ⭐. 
 Any suggestions are welcome!
 
 * * *
 
-## 💥Links
+## Links
 
 [Link to Trello](https://trello.com/b/Krfo4Qp5/droy)
 
