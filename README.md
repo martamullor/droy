@@ -16,7 +16,7 @@ Online tool that allows you to build your own website without having programming
 * The user can create a project and choose between two predefined themes.
 * The user can delete a project.
 * The user can reset his password.
-(imagen)
+![](public/img/gif1-readme.gif)
 
 * In the builder page, the user has three available modes: edit, preview and publish.
   - **Edit Mode**:
