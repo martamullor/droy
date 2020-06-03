@@ -9,10 +9,6 @@ Online tool that allows you to build your own website without having programming
 
 * * *
 
-Solarized dark             |  Solarized Ocean
-:-------------------------:|:-------------------------:
-![](https://...Dark.png)  |  ![](https://...Ocean.png)
-
 ## User Stories 
 
 * El individuo, visualiza una página de inicio donde puede empezar un proyecto.
