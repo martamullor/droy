@@ -1,10 +1,10 @@
-# Droy
+# 🛠 DROY
 
 * * *
 
-## Description 
+## What is DROY?
 
-Herramienta online que te permite construir tu propia página web de forma visual y sin tener conocimientos de programación.
+Online tool that allows you to build your own website without having programming knowledge.
 ![](public/img/Prueba1.gif)
 
 * * *
