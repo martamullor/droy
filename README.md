@@ -4,7 +4,7 @@
 ## What is DROY?
 Online tool that allows you to build your own website without having programming knowledge.
 
-![](public/img/cover-readme.gif)
+![](public/img/cover1-readme.gif)
 
 * * *
 
