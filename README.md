@@ -1,68 +1,82 @@
 # 🛠 DROY
 
-* * *
-
 ## What is DROY?
+
 Online tool that allows you to build your own website without having programming knowledge.
 
-![Readme Cover](public/img/cover-readme.gif)
+![Readme Cover](public/img/cover1-readme.gif)
 
-* * *
+## 👩🏻‍💻👨🏻‍💻 User Stories 
 
-## User Stories 
+* The user can see who we are in the about page.
+* The user can login or sign up with his credentials or Google.
+* The user see a home page where can start a project or continue working on an existing project.
+* The user can create a project and choose between two predefined themes.
+* The user can delete a project.
+* The user can reset his password.
+* In the builder page, the user has three available modes: edit, preview and publish.
+* The user can see a 404 and 5 ** controlled page.
 
-* El individuo, visualiza una página de inicio donde puede empezar un proyecto.
-* Al individuo, antes de empezar un proyecto, le aparece un modal donde se le pregunta el nombre y el estilo base (theme) que querrá que tenga (Clásico o Moderno). Una vez confirmado, se le redirige a la "Builder” page para poder empezar.
-* Durante la construccion de la pagina web, el individuo tiene dos modos disponibles: Edición y Visualización, que puede intercambiar en cualquier momento.
-  - **Modo edicion**:
-    - Permite añadir una seccion (componente) a la pagina web del usuario, mediante un menú lateral en scroll que muestra todos los componentes específicos disponibles para este estilo. Para incluir un componente, el usuario tiene que seleccionarlo y añadirlo mediante un botón +. El componente se añade en la última posición.
-    - Permite cambiar la posicion de un componente mediante unos botones de subir/bajar.
-    - Permite editar el contenido de un componente (textos e imágenes) realizando un doble click sobre la informacion a actualizar.
-    - Permite eliminar un componente.
-  - **Modo visualización**:
-    - Sirve para que el usuario puedo visualizar sin distracciones como esta quedando su página web.
-    - Oculta el menú lateral en scroll para que no pueda añadir nuevos componentes.
-    - Bloquea al usuario todas las funcionalidades de edicion de un componente (eliminar, editar y cambiar de posicion)
-    - Oculta el navbar propio de Droy así como otros elementos prescindibles.
+![Login gif](public/img/gif1-readme.gif)
+
+  - **Edit Mode**:
+    - The user can add a component to the user's web page, through a lateral menu that shows all the specific components             available for this theme. To include a component, the user has to add it using the + button. The component is included         in the last position.
+    - The user can change the position of a component using the up / down buttons or drag an drop.
+    - The user can edit the content of a component by double-clicking on the information to be updated.
+    - The user can remove a component.
+    - The user can save his project 
     
+ ![Edit gif](public/img/gif2-readme.gif)
+ 
+  - **Preview Mode**:
+    - It's used so that the user can view his page without distractions.
+    - Hide the side menu so you can't add new components.
+    - Block all editing functionality of a component (delete, edit, change position).    
+    - Links work according to the attributes that we've given them in edit mode.
+    
+![Publish gif](public/img/gif3-readme.gif)
 
-* * *
+   - **Publish webpage**:
+      - The user decides to publish their website and make it visible for everybody.
+      - We generate a first level url.
+      - The user can share the url to their contacts and even set their own domain
+          
+## 🔜 Backlog 
 
-## Backlog 
+* The user can add a component to a specific position on their web page by drag and drop, and not by using the + button.
+* The user can add more types of components such as counters, contact forms...
+* User can edit more component attributes like text-color, hide / show, heading fixed...
+* The user can edit their information (name, password)
+* The user not only has two basic styles to choose when his create a new project.
+* The tool creates responsive web pages.
 
-* El individuo, pasa a ser usuario: puede registrarse, hacer log-in y log-out.
-* El usuario, puede guardar el progreso de su página web en cualquier momento para poder seguir en otro momento.
-* El usuario puede tener varios proyectos, no solo uno. En la página inicial, visualiza todos los proyectos empezados y tiene la posibilidad de crear uno de nuevo, asi como de eliminar uno que ya exista. El usuario, cuando quiere ver / modificar alguno de sus proyectos o empezar el recién creado, se le dirige a la “Builder” page.
-* El usuario, puede añadir un componente a una posicion específica de su pagina web mediante drag & drop, y no mediante el botón +.
-* El usuario, puede cambiar la posicion de un componente ya añadido mediante drag & drop y no con los botones de subir/bajar.
-* El usuario puede añadir componentes tales como Contadores, Formularios de contacto, ...
-* El usuario puede editar el estilo de un elemento de contenido, no solo su text/imagen (text-size, text color, referencia de un link, ocularlo/mostrarlo, heading fixed o no,... etc.)
-* El usuario puede editar el estilo general de un componente, no solo su contenido (height, background-color/image, espaciado, paddings, ... )
-* El usuario puede editar su información (nombre, password)
-* El usuario no solo dispone de dos estilos básicos a elegir en el momento de creación de un nuevo proyecto.
-* El usuario, cuando considera que ha terminado una versión para su página web, puede deployarla para que esté en producción.
-* El usuario puede registrarse con google.
-* La aplicacion crea paginas web responsive.
-* El usuario puede recuperar la password.
-* El usuario puede ver una página de 404 y 5** controlada.
+## ✍🏻 Project Routes
 
-* * *
-
-## MVP Views 
-
-| RUTA | Descripción |
+| Routes | Description |
 | -- | -- |
-| / | Muestra la página principal donde se puede iniciar un proyecto. | 
-| /builder | Permite al usuario construir/editar/visualizar su página web. |
+| /about | Page where the user can know a little bit more about our project |
+| /signup | Page where the user can signup |
+| /login | Page where the user can login |
+| / | Displays the main page where the user can start a project. | 
+| /builder/:id | It allows the user to build / edit / view / publish their website. |
 
-* * *
+## ⚡️Demo 
 
+[A demo is worth a thousand words](https://droy-prod.web.app/about)
+
+## Contribute
+
+Show your ❤️ and support by giving a ⭐. 
+Any suggestions are welcome!
 
 ## Links
 
 [Link to Trello](https://trello.com/b/Krfo4Qp5/droy)
 
-[Github](https://github.com/marcmnc7/droy)
+[Droy](https://github.com/marcmnc7/droy)
 
-[Presentación](https://docs.google.com/presentation/d/1uFGmgLAgxeSe85KBZDAyAb9DgJ9LqC1k4Wlm6_MQMug/edit#slide=id.p)
+[Droy-API](https://github.com/marcmnc7/droy-api)
 
+[Droy-Deploy](https://github.com/marcmnc7/droy-deploy)
+
+[Slides](https://docs.google.com/presentation/d/1uFGmgLAgxeSe85KBZDAyAb9DgJ9LqC1k4Wlm6_MQMug/edit#slide=id.p)
