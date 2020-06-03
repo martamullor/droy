@@ -16,10 +16,10 @@ Online tool that allows you to build your own website without having programming
 * The user can create a project and choose between two predefined themes.
 * The user can delete a project.
 * The user can reset his password.
+* In the builder page, the user has three available modes: edit, preview and publish.
 
 ![](public/img/gif1-readme.gif)
 
-* In the builder page, the user has three available modes: edit, preview and publish.
   - **Edit Mode**:
   (imagen)
     - The user can add a component to the user's web page, through a lateral menu that shows all the specific components             available for this theme. To include a component, the user has to add it using the + button. The component is included         in the last position.
