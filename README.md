@@ -6,8 +6,6 @@
 Online tool that allows you to build your own website without having programming knowledge.
 
 ![](public/img/cover-readme.gif)
-❮img src="public/img/cover-readme.gif" width="100" ❯
-
 
 * * *
 
