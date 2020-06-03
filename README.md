@@ -44,12 +44,12 @@ Online tool that allows you to build your own website without having programming
 
 ## Backlog 
 
-* El usuario, puede añadir un componente a una posicion específica de su pagina web mediante drag & drop, y no mediante el botón +.
-* El usuario puede añadir componentes tales como Contadores, Formularios de contacto.
-* El usuario puede editar el estilo de un elemento de contenido, no solo su text/imagen (text-size, text color, referencia de un link, ocularlo/mostrarlo, heading fixed o no,... etc.)
-* El usuario puede editar su información (nombre, password)
-* El usuario no solo dispone de dos estilos básicos a elegir en el momento de creación de un nuevo proyecto.
-* La aplicacion crea paginas web responsive.
+* The user can add a component to a specific position on their web page by drag and drop, and not by using the + button.
+* The user can add more types of components such as counters, contact forms...
+* User can edit more component attributes like text-color, hide / show, heading fixed...
+* The user can edit their information (name, password)
+* The user not only has two basic styles to choose when his create a new project.
+* The tool creates responsive web pages.
 
 * * *
 
