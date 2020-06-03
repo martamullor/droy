@@ -1,6 +1,5 @@
 # 🛠 DROY
 
-* * *
 
 ## What is DROY?
 Online tool that allows you to build your own website without having programming knowledge.
@@ -11,14 +10,19 @@ Online tool that allows you to build your own website without having programming
 
 ## User Stories 
 
-* El individuo, visualiza una página de inicio donde puede empezar un proyecto.
-* Al individuo, antes de empezar un proyecto, le aparece un modal donde se le pregunta el nombre y el estilo base (theme) que querrá que tenga (Clásico o Moderno). Una vez confirmado, se le redirige a la "Builder” page para poder empezar.
-* Durante la construccion de la pagina web, el individuo tiene dos modos disponibles: Edición y Visualización, que puede intercambiar en cualquier momento.
-  - **Modo edicion**:
-    - Permite añadir una seccion (componente) a la pagina web del usuario, mediante un menú lateral en scroll que muestra todos los componentes específicos disponibles para este estilo. Para incluir un componente, el usuario tiene que seleccionarlo y añadirlo mediante un botón +. El componente se añade en la última posición.
-    - Permite cambiar la posicion de un componente mediante unos botones de subir/bajar.
-    - Permite editar el contenido de un componente (textos e imágenes) realizando un doble click sobre la informacion a actualizar.
-    - Permite eliminar un componente.
+* The user can see who we are in the about page.
+* The user can login or sign up with his credentials or Google.
+* The user see a home page where can start a project or continue working on an existing project.
+* The user can create a project and choose between two predefined themes.
+(imagen)
+
+* In the builder page, the user has three available modes: edit, preview and publish.
+  - **Edit Mode**:
+  (imagen)
+    - The user can add a component to the user's web page, through a lateral menu that shows all the specific components available for this theme.To include a component, the user has to add it using the + button. The component is included in the last position.
+    - The user can change the position of a component using the up / down buttons or drag an drop.
+    - The user can edit the content of a component by double-clicking on the information to be updated.
+    - The user can remove a component.
   - **Modo visualización**:
     - Sirve para que el usuario puedo visualizar sin distracciones como esta quedando su página web.
     - Oculta el menú lateral en scroll para que no pueda añadir nuevos componentes.
