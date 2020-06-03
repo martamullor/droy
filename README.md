@@ -7,6 +7,12 @@ Online tool that allows you to build your own website without having programming
 
 ![](public/img/cover-readme.gif)
 
+* * *
+
+Solarized dark             |  Solarized Ocean
+:-------------------------:|:-------------------------:
+![](https://...Dark.png)  |  ![](https://...Ocean.png)
+
 ## User Stories 
 
 * El individuo, visualiza una página de inicio donde puede empezar un proyecto.
@@ -55,43 +61,6 @@ Online tool that allows you to build your own website without having programming
 
 * * *
 
-## Models
-
-```javascript
-
-User = {
-  name: "Bob",
-  email: "bob@marley.com",
-  password: "····",
-  userProjects: [userProjectId, ...]
-}
-
-UserProject = {
-  name: "My First Project",
-  style: "Classic",
-  componentsConfiguration: [{
-    parentComponentCode: "classic-heading-1",
-    componentInfo: { text1: "Hello", text2: "World"},
-    ...
-  }]
-}
-
-Components = {
-  code: "heading-1", // unique y que identifica un componente creado dentro de React. 
-  defaultConfig: { text1: "Default Hello", text2: "Default World" },
-  belongsToStyle: "classic",
-  image: "https://..."
-}
-
-Styles = {
-  code: "classic",
-  name: "Classic",
-  image: "https://...",
-  description: "This is the most classic style.",
-  className: "classic" // para que se setee programaticamente el el buildingApp parent div.
-}
-
-```
 
 ## Links
 
