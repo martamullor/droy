@@ -21,20 +21,18 @@ Online tool that allows you to build your own website without having programming
 ![](public/img/gif1-readme.gif)
 
   - **Edit Mode**:
-  (imagen)
+ ![](public/img/gif1-readme.gif)
     - The user can add a component to the user's web page, through a lateral menu that shows all the specific components             available for this theme. To include a component, the user has to add it using the + button. The component is included         in the last position.
     - The user can change the position of a component using the up / down buttons or drag an drop.
     - The user can edit the content of a component by double-clicking on the information to be updated.
     - The user can remove a component.
     - The user can save his project 
   - **Preview Mode**:
-  (imagen)
     - It's used so that the user can view his page without distractions.
     - Hide the side menu so you can't add new components.
     - Block all editing functionality of a component (delete, edit, change position).    
     - Links work according to the attributes that we've given them in edit mode.
    - **Publish Mode**:
-   (imagen)
       - The user decides to publish their website and make it visible for everybody.
       - We generate a first level url.
       - The user can share the url to their contacts and even set their own domain.
