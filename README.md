@@ -34,9 +34,9 @@ Online tool that allows you to build your own website without having programming
     - Links work according to the attributes that we've given them in edit mode.
    - **Publish Mode**:
    (imagen)
-    - The user decides to publish their website and make it visible for everybody.
-    - We generate a first level url.
-    - The user can share the url to their contacts and even set their own domain.
+      - The user decides to publish their website and make it visible for everybody.
+      - We generate a first level url.
+      - The user can share the url to their contacts and even set their own domain.
  * The user can see a 404 and 5 ** controlled page.
     
 
